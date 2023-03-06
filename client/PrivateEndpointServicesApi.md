@@ -57,7 +57,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **createPrivateEndpointRequest** | **CreatePrivateEndpointRequest**| Creates one private resource endpoint for the specified cloud service provider. |
  **groupId** | [**string**] | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. | defaults to undefined
- **cloudProvider** | [**&#39;AWS&#39; | &#39;AZURE&#39; | &#39;GCP&#39;**]**Array<&#39;AWS&#39; &#124; &#39;AZURE&#39; &#124; &#39;GCP&#39;>** | Cloud service provider that manages this private endpoint. | defaults to 'AWS'
+ **cloudProvider** | [**&#39;AWS&#39; | &#39;AZURE&#39; | &#39;GCP&#39;**]**Array<&#39;AWS&#39; &#124; &#39;AZURE&#39; &#124; &#39;GCP&#39; &#124; &#39;11184809&#39;>** | Cloud service provider that manages this private endpoint. | defaults to 'AWS'
  **endpointServiceId** | [**string**] | Unique 24-hexadecimal digit string that identifies the private endpoint service for which you want to create a private endpoint. | defaults to undefined
  **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
  **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
@@ -69,7 +69,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -140,7 +140,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -198,7 +198,7 @@ apiInstance.deletePrivateEndpoint(body).then((data:any) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **groupId** | [**string**] | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. | defaults to undefined
- **cloudProvider** | [**&#39;AWS&#39; | &#39;AZURE&#39; | &#39;GCP&#39;**]**Array<&#39;AWS&#39; &#124; &#39;AZURE&#39; &#124; &#39;GCP&#39;>** | Cloud service provider that manages this private endpoint. | defaults to 'AWS'
+ **cloudProvider** | [**&#39;AWS&#39; | &#39;AZURE&#39; | &#39;GCP&#39;**]**Array<&#39;AWS&#39; &#124; &#39;AZURE&#39; &#124; &#39;GCP&#39; &#124; &#39;11184809&#39;>** | Cloud service provider that manages this private endpoint. | defaults to 'AWS'
  **endpointId** | [**string**] | Unique string that identifies the private endpoint you want to delete. The format of the **endpointId** parameter differs for AWS and Azure. You must URL encode the **endpointId** for Azure private endpoints. | defaults to undefined
  **endpointServiceId** | [**string**] | Unique 24-hexadecimal digit string that identifies the private endpoint service from which you want to delete a private endpoint. | defaults to undefined
  **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
@@ -211,7 +211,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -267,7 +267,7 @@ apiInstance.deletePrivateEndpointService(body).then((data:any) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **groupId** | [**string**] | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. | defaults to undefined
- **cloudProvider** | [**&#39;AWS&#39; | &#39;AZURE&#39; | &#39;GCP&#39;**]**Array<&#39;AWS&#39; &#124; &#39;AZURE&#39; &#124; &#39;GCP&#39;>** | Cloud service provider that manages this private endpoint service. | defaults to 'AWS'
+ **cloudProvider** | [**&#39;AWS&#39; | &#39;AZURE&#39; | &#39;GCP&#39;**]**Array<&#39;AWS&#39; &#124; &#39;AZURE&#39; &#124; &#39;GCP&#39; &#124; &#39;11184809&#39;>** | Cloud service provider that manages this private endpoint service. | defaults to 'AWS'
  **endpointServiceId** | [**string**] | Unique 24-hexadecimal digit string that identifies the private endpoint service that you want to delete. | defaults to undefined
  **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
  **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
@@ -279,7 +279,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -337,7 +337,7 @@ apiInstance.getPrivateEndpoint(body).then((data:any) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **groupId** | [**string**] | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. | defaults to undefined
- **cloudProvider** | [**&#39;AWS&#39; | &#39;AZURE&#39; | &#39;GCP&#39;**]**Array<&#39;AWS&#39; &#124; &#39;AZURE&#39; &#124; &#39;GCP&#39;>** | Cloud service provider that manages this private endpoint. | defaults to 'AWS'
+ **cloudProvider** | [**&#39;AWS&#39; | &#39;AZURE&#39; | &#39;GCP&#39;**]**Array<&#39;AWS&#39; &#124; &#39;AZURE&#39; &#124; &#39;GCP&#39; &#124; &#39;11184809&#39;>** | Cloud service provider that manages this private endpoint. | defaults to 'AWS'
  **endpointId** | [**string**] | Unique string that identifies the private endpoint you want to return. The format of the **endpointId** parameter differs for AWS and Azure. You must URL encode the **endpointId** for Azure private endpoints. | defaults to undefined
  **endpointServiceId** | [**string**] | Unique 24-hexadecimal digit string that identifies the private endpoint service for which you want to return a private endpoint. | defaults to undefined
  **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
@@ -350,7 +350,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -407,7 +407,7 @@ apiInstance.getPrivateEndpointService(body).then((data:any) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **groupId** | [**string**] | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. | defaults to undefined
- **cloudProvider** | [**&#39;AWS&#39; | &#39;AZURE&#39; | &#39;GCP&#39;**]**Array<&#39;AWS&#39; &#124; &#39;AZURE&#39; &#124; &#39;GCP&#39;>** | Cloud service provider that manages this private endpoint service. | defaults to 'AWS'
+ **cloudProvider** | [**&#39;AWS&#39; | &#39;AZURE&#39; | &#39;GCP&#39;**]**Array<&#39;AWS&#39; &#124; &#39;AZURE&#39; &#124; &#39;GCP&#39; &#124; &#39;11184809&#39;>** | Cloud service provider that manages this private endpoint service. | defaults to 'AWS'
  **endpointServiceId** | [**string**] | Unique 24-hexadecimal digit string that identifies the private endpoint service that you want to return. | defaults to undefined
  **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
  **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
@@ -419,7 +419,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -482,7 +482,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -537,7 +537,7 @@ apiInstance.listPrivateEndpointServices(body).then((data:any) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **groupId** | [**string**] | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. | defaults to undefined
- **cloudProvider** | [**&#39;AWS&#39; | &#39;AZURE&#39; | &#39;GCP&#39;**]**Array<&#39;AWS&#39; &#124; &#39;AZURE&#39; &#124; &#39;GCP&#39;>** | Cloud service provider that manages this private endpoint service. | defaults to 'AWS'
+ **cloudProvider** | [**&#39;AWS&#39; | &#39;AZURE&#39; | &#39;GCP&#39;**]**Array<&#39;AWS&#39; &#124; &#39;AZURE&#39; &#124; &#39;GCP&#39; &#124; &#39;11184809&#39;>** | Cloud service provider that manages this private endpoint service. | defaults to 'AWS'
  **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
  **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
 
@@ -548,7 +548,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -615,7 +615,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 

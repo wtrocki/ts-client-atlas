@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -151,7 +151,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -223,7 +223,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -293,7 +293,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -369,7 +369,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -457,7 +457,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 

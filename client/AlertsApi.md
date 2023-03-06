@@ -64,7 +64,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -131,7 +131,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -197,7 +197,7 @@ Name | Type | Description  | Notes
  **itemsPerPage** | [**number**] | Number of items that the response returns per page. | (optional) defaults to 100
  **pageNum** | [**number**] | Number of the page that displays the current set of the total objects that the response returns. | (optional) defaults to 1
  **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
- **status** | [**&#39;OPEN&#39; | &#39;TRACKING&#39; | &#39;CLOSED&#39;**]**Array<&#39;OPEN&#39; &#124; &#39;TRACKING&#39; &#124; &#39;CLOSED&#39;>** | Status of the alerts to return. Omit to return all alerts in all statuses. | (optional) defaults to undefined
+ **status** | [**&#39;OPEN&#39; | &#39;TRACKING&#39; | &#39;CLOSED&#39;**]**Array<&#39;OPEN&#39; &#124; &#39;TRACKING&#39; &#124; &#39;CLOSED&#39; &#124; &#39;11184809&#39;>** | Status of the alerts to return. Omit to return all alerts in all statuses. | (optional) defaults to undefined
 
 
 ### Return type
@@ -206,7 +206,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -281,7 +281,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 

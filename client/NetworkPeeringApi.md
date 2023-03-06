@@ -67,7 +67,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -139,7 +139,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -208,7 +208,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -274,7 +274,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -344,7 +344,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -410,7 +410,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -476,7 +476,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -541,7 +541,7 @@ Name | Type | Description  | Notes
  **itemsPerPage** | [**number**] | Number of items that the response returns per page. | (optional) defaults to 100
  **pageNum** | [**number**] | Number of the page that displays the current set of the total objects that the response returns. | (optional) defaults to 1
  **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
- **providerName** | [**&#39;AWS&#39; | &#39;AZURE&#39; | &#39;GCP&#39;**]**Array<&#39;AWS&#39; &#124; &#39;AZURE&#39; &#124; &#39;GCP&#39;>** | Cloud service provider to use for this VPC peering connection. | (optional) defaults to 'AWS'
+ **providerName** | [**&#39;AWS&#39; | &#39;AZURE&#39; | &#39;GCP&#39;**]**Array<&#39;AWS&#39; &#124; &#39;AZURE&#39; &#124; &#39;GCP&#39; &#124; &#39;11184809&#39;>** | Cloud service provider to use for this VPC peering connection. | (optional) defaults to 'AWS'
 
 
 ### Return type
@@ -550,7 +550,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -611,7 +611,7 @@ apiInstance.listPeeringContainerByCloudProvider(body).then((data:any) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **groupId** | [**string**] | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. | defaults to undefined
- **providerName** | [**&#39;AWS&#39; | &#39;AZURE&#39; | &#39;GCP&#39;**]**Array<&#39;AWS&#39; &#124; &#39;AZURE&#39; &#124; &#39;GCP&#39;>** | Cloud service provider that serves the desired network peering containers. | defaults to 'AWS'
+ **providerName** | [**&#39;AWS&#39; | &#39;AZURE&#39; | &#39;GCP&#39;**]**Array<&#39;AWS&#39; &#124; &#39;AZURE&#39; &#124; &#39;GCP&#39; &#124; &#39;11184809&#39;>** | Cloud service provider that serves the desired network peering containers. | defaults to 'AWS'
  **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
  **includeCount** | [**boolean**] | Flag that indicates whether the response returns the total number of items (**totalCount**) in the response. | (optional) defaults to undefined
  **itemsPerPage** | [**number**] | Number of items that the response returns per page. | (optional) defaults to 100
@@ -625,7 +625,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -697,7 +697,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -765,7 +765,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -840,7 +840,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -906,7 +906,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 

@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 AWSClustersDNSApi.md
 AccessTrackingApi.md
 AlertConfigurationsApi.md
@@ -95,7 +94,6 @@ apis/baseapi.ts
 apis/exception.ts
 auth/auth.ts
 configuration.ts
-git_push.sh
 http/http.ts
 http/isomorphic-fetch.ts
 index.ts
@@ -645,10 +643,8 @@ models/X509Certificate.ts
 models/X509CertificateView.ts
 models/ZoneMapping.ts
 models/all.ts
-package.json
 rxjsStub.ts
 servers.ts
-tsconfig.json
 types/ObjectParamAPI.ts
 types/ObservableAPI.ts
 types/PromiseAPI.ts

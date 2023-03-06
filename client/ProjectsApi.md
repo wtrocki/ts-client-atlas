@@ -78,7 +78,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -152,7 +152,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -214,7 +214,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -277,7 +277,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -330,7 +330,7 @@ apiInstance.deleteProjectLimit(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limitName** | [**&#39;atlas.project.security.databaseAccess.users&#39; | &#39;atlas.project.deployment.clusters&#39; | &#39;atlas.project.security.databaseAccess.customRoles&#39; | &#39;atlas.project.security.networkAccess.entries&#39; | &#39;atlas.project.security.networkAccess.crossRegionEntries&#39; | &#39;atlas.project.deployment.nodesPerPrivateLinkRegion&#39; | &#39;dataFederation.bytesProcessed.query&#39; | &#39;dataFederation.bytesProcessed.daily&#39; | &#39;dataFederation.bytesProcessed.weekly&#39; | &#39;dataFederation.bytesProcessed.monthly&#39;**]**Array<&#39;atlas.project.security.databaseAccess.users&#39; &#124; &#39;atlas.project.deployment.clusters&#39; &#124; &#39;atlas.project.security.databaseAccess.customRoles&#39; &#124; &#39;atlas.project.security.networkAccess.entries&#39; &#124; &#39;atlas.project.security.networkAccess.crossRegionEntries&#39; &#124; &#39;atlas.project.deployment.nodesPerPrivateLinkRegion&#39; &#124; &#39;dataFederation.bytesProcessed.query&#39; &#124; &#39;dataFederation.bytesProcessed.daily&#39; &#124; &#39;dataFederation.bytesProcessed.weekly&#39; &#124; &#39;dataFederation.bytesProcessed.monthly&#39;>** | Human-readable label that identifies this project limit.  | Limit Name | Description | Default | | --- | --- | --- | | atlas.project.deployment.clusters | Limit on the number of clusters in this project | 25 | | atlas.project.deployment.nodesPerPrivateLinkRegion | Limit on the number of nodes per Private Link region in this project | 50 | | atlas.project.security.databaseAccess.customRoles | Limit on the number of custom roles in this project | 100 | | atlas.project.security.databaseAccess.users | Limit on the number of database users in this project | 100 | | atlas.project.security.networkAccess.crossRegionEntries | Limit on the number of cross-region network access entries in this project | 40 | | atlas.project.security.networkAccess.entries | Limit on the number of network access entries in this project | 200 | | dataFederation.bytesProcessed.query | Limit on the number of bytes processed during a single Data Federation query | N/A | | dataFederation.bytesProcessed.daily | Limit on the number of bytes processed across all Data Federation tenants for the current day | N/A | | dataFederation.bytesProcessed.weekly | Limit on the number of bytes processed across all Data Federation tenants for the current week | N/A | | dataFederation.bytesProcessed.monthly | Limit on the number of bytes processed across all Data Federation tenants for the current month | N/A |  | defaults to undefined
+ **limitName** | [**&#39;atlas.project.security.databaseAccess.users&#39; | &#39;atlas.project.deployment.clusters&#39; | &#39;atlas.project.security.databaseAccess.customRoles&#39; | &#39;atlas.project.security.networkAccess.entries&#39; | &#39;atlas.project.security.networkAccess.crossRegionEntries&#39; | &#39;atlas.project.deployment.nodesPerPrivateLinkRegion&#39; | &#39;dataFederation.bytesProcessed.query&#39; | &#39;dataFederation.bytesProcessed.daily&#39; | &#39;dataFederation.bytesProcessed.weekly&#39; | &#39;dataFederation.bytesProcessed.monthly&#39;**]**Array<&#39;atlas.project.security.databaseAccess.users&#39; &#124; &#39;atlas.project.deployment.clusters&#39; &#124; &#39;atlas.project.security.databaseAccess.customRoles&#39; &#124; &#39;atlas.project.security.networkAccess.entries&#39; &#124; &#39;atlas.project.security.networkAccess.crossRegionEntries&#39; &#124; &#39;atlas.project.deployment.nodesPerPrivateLinkRegion&#39; &#124; &#39;dataFederation.bytesProcessed.query&#39; &#124; &#39;dataFederation.bytesProcessed.daily&#39; &#124; &#39;dataFederation.bytesProcessed.weekly&#39; &#124; &#39;dataFederation.bytesProcessed.monthly&#39; &#124; &#39;11184809&#39;>** | Human-readable label that identifies this project limit.  | Limit Name | Description | Default | | --- | --- | --- | | atlas.project.deployment.clusters | Limit on the number of clusters in this project | 25 | | atlas.project.deployment.nodesPerPrivateLinkRegion | Limit on the number of nodes per Private Link region in this project | 50 | | atlas.project.security.databaseAccess.customRoles | Limit on the number of custom roles in this project | 100 | | atlas.project.security.databaseAccess.users | Limit on the number of database users in this project | 100 | | atlas.project.security.networkAccess.crossRegionEntries | Limit on the number of cross-region network access entries in this project | 40 | | atlas.project.security.networkAccess.entries | Limit on the number of network access entries in this project | 200 | | dataFederation.bytesProcessed.query | Limit on the number of bytes processed during a single Data Federation query | N/A | | dataFederation.bytesProcessed.daily | Limit on the number of bytes processed across all Data Federation tenants for the current day | N/A | | dataFederation.bytesProcessed.weekly | Limit on the number of bytes processed across all Data Federation tenants for the current week | N/A | | dataFederation.bytesProcessed.monthly | Limit on the number of bytes processed across all Data Federation tenants for the current month | N/A |  | defaults to undefined
  **groupId** | [**string**] | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. | defaults to undefined
  **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
  **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
@@ -342,7 +342,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -406,7 +406,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -537,7 +537,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -591,7 +591,7 @@ apiInstance.getProjectLimit(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limitName** | [**&#39;atlas.project.security.databaseAccess.users&#39; | &#39;atlas.project.deployment.clusters&#39; | &#39;atlas.project.security.databaseAccess.customRoles&#39; | &#39;atlas.project.security.networkAccess.entries&#39; | &#39;atlas.project.security.networkAccess.crossRegionEntries&#39; | &#39;atlas.project.deployment.nodesPerPrivateLinkRegion&#39; | &#39;dataFederation.bytesProcessed.query&#39; | &#39;dataFederation.bytesProcessed.daily&#39; | &#39;dataFederation.bytesProcessed.weekly&#39; | &#39;dataFederation.bytesProcessed.monthly&#39;**]**Array<&#39;atlas.project.security.databaseAccess.users&#39; &#124; &#39;atlas.project.deployment.clusters&#39; &#124; &#39;atlas.project.security.databaseAccess.customRoles&#39; &#124; &#39;atlas.project.security.networkAccess.entries&#39; &#124; &#39;atlas.project.security.networkAccess.crossRegionEntries&#39; &#124; &#39;atlas.project.deployment.nodesPerPrivateLinkRegion&#39; &#124; &#39;dataFederation.bytesProcessed.query&#39; &#124; &#39;dataFederation.bytesProcessed.daily&#39; &#124; &#39;dataFederation.bytesProcessed.weekly&#39; &#124; &#39;dataFederation.bytesProcessed.monthly&#39;>** | Human-readable label that identifies this project limit.  | Limit Name | Description | Default | | --- | --- | --- | | atlas.project.deployment.clusters | Limit on the number of clusters in this project | 25 | | atlas.project.deployment.nodesPerPrivateLinkRegion | Limit on the number of nodes per Private Link region in this project | 50 | | atlas.project.security.databaseAccess.customRoles | Limit on the number of custom roles in this project | 100 | | atlas.project.security.databaseAccess.users | Limit on the number of database users in this project | 100 | | atlas.project.security.networkAccess.crossRegionEntries | Limit on the number of cross-region network access entries in this project | 40 | | atlas.project.security.networkAccess.entries | Limit on the number of network access entries in this project | 200 | | dataFederation.bytesProcessed.query | Limit on the number of bytes processed during a single Data Federation query | N/A | | dataFederation.bytesProcessed.daily | Limit on the number of bytes processed across all Data Federation tenants for the current day | N/A | | dataFederation.bytesProcessed.weekly | Limit on the number of bytes processed across all Data Federation tenants for the current week | N/A | | dataFederation.bytesProcessed.monthly | Limit on the number of bytes processed across all Data Federation tenants for the current month | N/A |  | defaults to undefined
+ **limitName** | [**&#39;atlas.project.security.databaseAccess.users&#39; | &#39;atlas.project.deployment.clusters&#39; | &#39;atlas.project.security.databaseAccess.customRoles&#39; | &#39;atlas.project.security.networkAccess.entries&#39; | &#39;atlas.project.security.networkAccess.crossRegionEntries&#39; | &#39;atlas.project.deployment.nodesPerPrivateLinkRegion&#39; | &#39;dataFederation.bytesProcessed.query&#39; | &#39;dataFederation.bytesProcessed.daily&#39; | &#39;dataFederation.bytesProcessed.weekly&#39; | &#39;dataFederation.bytesProcessed.monthly&#39;**]**Array<&#39;atlas.project.security.databaseAccess.users&#39; &#124; &#39;atlas.project.deployment.clusters&#39; &#124; &#39;atlas.project.security.databaseAccess.customRoles&#39; &#124; &#39;atlas.project.security.networkAccess.entries&#39; &#124; &#39;atlas.project.security.networkAccess.crossRegionEntries&#39; &#124; &#39;atlas.project.deployment.nodesPerPrivateLinkRegion&#39; &#124; &#39;dataFederation.bytesProcessed.query&#39; &#124; &#39;dataFederation.bytesProcessed.daily&#39; &#124; &#39;dataFederation.bytesProcessed.weekly&#39; &#124; &#39;dataFederation.bytesProcessed.monthly&#39; &#124; &#39;11184809&#39;>** | Human-readable label that identifies this project limit.  | Limit Name | Description | Default | | --- | --- | --- | | atlas.project.deployment.clusters | Limit on the number of clusters in this project | 25 | | atlas.project.deployment.nodesPerPrivateLinkRegion | Limit on the number of nodes per Private Link region in this project | 50 | | atlas.project.security.databaseAccess.customRoles | Limit on the number of custom roles in this project | 100 | | atlas.project.security.databaseAccess.users | Limit on the number of database users in this project | 100 | | atlas.project.security.networkAccess.crossRegionEntries | Limit on the number of cross-region network access entries in this project | 40 | | atlas.project.security.networkAccess.entries | Limit on the number of network access entries in this project | 200 | | dataFederation.bytesProcessed.query | Limit on the number of bytes processed during a single Data Federation query | N/A | | dataFederation.bytesProcessed.daily | Limit on the number of bytes processed across all Data Federation tenants for the current day | N/A | | dataFederation.bytesProcessed.weekly | Limit on the number of bytes processed across all Data Federation tenants for the current week | N/A | | dataFederation.bytesProcessed.monthly | Limit on the number of bytes processed across all Data Federation tenants for the current month | N/A |  | defaults to undefined
  **groupId** | [**string**] | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. | defaults to undefined
  **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
  **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
@@ -603,7 +603,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -668,7 +668,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -735,7 +735,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -797,7 +797,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -877,7 +877,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -1011,7 +1011,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -1071,7 +1071,7 @@ apiInstance.setProjectLimit(body).then((data:any) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **apiLimitView** | **ApiLimitView**|  |
- **limitName** | [**&#39;atlas.project.security.databaseAccess.users&#39; | &#39;atlas.project.deployment.clusters&#39; | &#39;atlas.project.security.databaseAccess.customRoles&#39; | &#39;atlas.project.security.networkAccess.entries&#39; | &#39;atlas.project.security.networkAccess.crossRegionEntries&#39; | &#39;atlas.project.deployment.nodesPerPrivateLinkRegion&#39; | &#39;dataFederation.bytesProcessed.query&#39; | &#39;dataFederation.bytesProcessed.daily&#39; | &#39;dataFederation.bytesProcessed.weekly&#39; | &#39;dataFederation.bytesProcessed.monthly&#39;**]**Array<&#39;atlas.project.security.databaseAccess.users&#39; &#124; &#39;atlas.project.deployment.clusters&#39; &#124; &#39;atlas.project.security.databaseAccess.customRoles&#39; &#124; &#39;atlas.project.security.networkAccess.entries&#39; &#124; &#39;atlas.project.security.networkAccess.crossRegionEntries&#39; &#124; &#39;atlas.project.deployment.nodesPerPrivateLinkRegion&#39; &#124; &#39;dataFederation.bytesProcessed.query&#39; &#124; &#39;dataFederation.bytesProcessed.daily&#39; &#124; &#39;dataFederation.bytesProcessed.weekly&#39; &#124; &#39;dataFederation.bytesProcessed.monthly&#39;>** | Human-readable label that identifies this project limit.  | Limit Name | Description | Default | | --- | --- | --- | | atlas.project.deployment.clusters | Limit on the number of clusters in this project | 25 | | atlas.project.deployment.nodesPerPrivateLinkRegion | Limit on the number of nodes per Private Link region in this project | 50 | | atlas.project.security.databaseAccess.customRoles | Limit on the number of custom roles in this project | 100 | | atlas.project.security.databaseAccess.users | Limit on the number of database users in this project | 100 | | atlas.project.security.networkAccess.crossRegionEntries | Limit on the number of cross-region network access entries in this project | 40 | | atlas.project.security.networkAccess.entries | Limit on the number of network access entries in this project | 200 | | dataFederation.bytesProcessed.query | Limit on the number of bytes processed during a single Data Federation query | N/A | | dataFederation.bytesProcessed.daily | Limit on the number of bytes processed across all Data Federation tenants for the current day | N/A | | dataFederation.bytesProcessed.weekly | Limit on the number of bytes processed across all Data Federation tenants for the current week | N/A | | dataFederation.bytesProcessed.monthly | Limit on the number of bytes processed across all Data Federation tenants for the current month | N/A |  | defaults to undefined
+ **limitName** | [**&#39;atlas.project.security.databaseAccess.users&#39; | &#39;atlas.project.deployment.clusters&#39; | &#39;atlas.project.security.databaseAccess.customRoles&#39; | &#39;atlas.project.security.networkAccess.entries&#39; | &#39;atlas.project.security.networkAccess.crossRegionEntries&#39; | &#39;atlas.project.deployment.nodesPerPrivateLinkRegion&#39; | &#39;dataFederation.bytesProcessed.query&#39; | &#39;dataFederation.bytesProcessed.daily&#39; | &#39;dataFederation.bytesProcessed.weekly&#39; | &#39;dataFederation.bytesProcessed.monthly&#39;**]**Array<&#39;atlas.project.security.databaseAccess.users&#39; &#124; &#39;atlas.project.deployment.clusters&#39; &#124; &#39;atlas.project.security.databaseAccess.customRoles&#39; &#124; &#39;atlas.project.security.networkAccess.entries&#39; &#124; &#39;atlas.project.security.networkAccess.crossRegionEntries&#39; &#124; &#39;atlas.project.deployment.nodesPerPrivateLinkRegion&#39; &#124; &#39;dataFederation.bytesProcessed.query&#39; &#124; &#39;dataFederation.bytesProcessed.daily&#39; &#124; &#39;dataFederation.bytesProcessed.weekly&#39; &#124; &#39;dataFederation.bytesProcessed.monthly&#39; &#124; &#39;11184809&#39;>** | Human-readable label that identifies this project limit.  | Limit Name | Description | Default | | --- | --- | --- | | atlas.project.deployment.clusters | Limit on the number of clusters in this project | 25 | | atlas.project.deployment.nodesPerPrivateLinkRegion | Limit on the number of nodes per Private Link region in this project | 50 | | atlas.project.security.databaseAccess.customRoles | Limit on the number of custom roles in this project | 100 | | atlas.project.security.databaseAccess.users | Limit on the number of database users in this project | 100 | | atlas.project.security.networkAccess.crossRegionEntries | Limit on the number of cross-region network access entries in this project | 40 | | atlas.project.security.networkAccess.entries | Limit on the number of network access entries in this project | 200 | | dataFederation.bytesProcessed.query | Limit on the number of bytes processed during a single Data Federation query | N/A | | dataFederation.bytesProcessed.daily | Limit on the number of bytes processed across all Data Federation tenants for the current day | N/A | | dataFederation.bytesProcessed.weekly | Limit on the number of bytes processed across all Data Federation tenants for the current week | N/A | | dataFederation.bytesProcessed.monthly | Limit on the number of bytes processed across all Data Federation tenants for the current month | N/A |  | defaults to undefined
  **groupId** | [**string**] | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. | defaults to undefined
  **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
  **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
@@ -1083,7 +1083,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -1153,7 +1153,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -1226,7 +1226,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -1297,7 +1297,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -1371,7 +1371,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 

@@ -21,23 +21,9 @@ export interface TokenProvider {
   getToken(): Promise<string> | string;
 }
 
-/**
- * Applies http authentication to the request context.
- */
-export class DigestAuthAuthentication implements SecurityAuthentication {
-
-    public getName(): string {
-        return "DigestAuth";
-    }
-
-    public applySecurityAuthentication(context: RequestContext) {
-    }
-}
-
 
 export type AuthMethods = {
     "default"?: SecurityAuthentication,
-    "DigestAuth"?: SecurityAuthentication
 }
 
 export type ApiKeyConfiguration = string;
@@ -47,7 +33,6 @@ export type OAuth2Configuration = { accessToken: string };
 
 export type AuthMethodsConfiguration = {
     "default"?: SecurityAuthentication,
-    "DigestAuth"?: 
 }
 
 /**
@@ -61,11 +46,6 @@ export function configureAuthMethods(config: AuthMethodsConfiguration | undefine
         return authMethods;
     }
     authMethods["default"] = config["default"]
-
-    if (config["DigestAuth"]) {
-        authMethods["DigestAuth"] = new DigestAuthAuthentication(
-        );
-    }
 
     return authMethods;
 }

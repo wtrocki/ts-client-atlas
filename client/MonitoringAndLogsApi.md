@@ -68,7 +68,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -136,7 +136,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -200,7 +200,7 @@ Name | Type | Description  | Notes
  **processId** | [**string**] | Combination of hostname and Internet Assigned Numbers Authority (IANA) port that serves the MongoDB process. The host must be the hostname, fully qualified domain name (FQDN), or Internet Protocol address (IPv4 or IPv6) of the host that runs the MongoDB process (&#x60;mongod&#x60; or &#x60;mongos&#x60;). The port must be the IANA port on which the MongoDB process listens for requests. | defaults to undefined
  **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
  **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
- **m** | **Array<&#39;DATABASE_AVERAGE_OBJECT_SIZE&#39; &#124; &#39;DATABASE_COLLECTION_COUNT&#39; &#124; &#39;DATABASE_DATA_SIZE&#39; &#124; &#39;DATABASE_STORAGE_SIZE&#39; &#124; &#39;DATABASE_INDEX_SIZE&#39; &#124; &#39;DATABASE_INDEX_COUNT&#39; &#124; &#39;DATABASE_EXTENT_COUNT&#39; &#124; &#39;DATABASE_OBJECT_COUNT&#39; &#124; &#39;DATABASE_VIEW_COUNT&#39;>** | One or more types of measurement to request for this MongoDB process. If omitted, the resource returns all measurements. To specify multiple values for &#x60;m&#x60;, repeat the &#x60;m&#x60; parameter for each value. Specify measurements that apply to the specified host. MongoDB Cloud returns an error if you specified any invalid measurements. | (optional) defaults to undefined
+ **m** | **Array<&#39;DATABASE_AVERAGE_OBJECT_SIZE&#39; &#124; &#39;DATABASE_COLLECTION_COUNT&#39; &#124; &#39;DATABASE_DATA_SIZE&#39; &#124; &#39;DATABASE_STORAGE_SIZE&#39; &#124; &#39;DATABASE_INDEX_SIZE&#39; &#124; &#39;DATABASE_INDEX_COUNT&#39; &#124; &#39;DATABASE_EXTENT_COUNT&#39; &#124; &#39;DATABASE_OBJECT_COUNT&#39; &#124; &#39;DATABASE_VIEW_COUNT&#39; &#124; &#39;11184809&#39;>** | One or more types of measurement to request for this MongoDB process. If omitted, the resource returns all measurements. To specify multiple values for &#x60;m&#x60;, repeat the &#x60;m&#x60; parameter for each value. Specify measurements that apply to the specified host. MongoDB Cloud returns an error if you specified any invalid measurements. | (optional) defaults to undefined
 
 
 ### Return type
@@ -273,7 +273,7 @@ Name | Type | Description  | Notes
  **processId** | [**string**] | Combination of hostname and Internet Assigned Numbers Authority (IANA) port that serves the MongoDB process. The host must be the hostname, fully qualified domain name (FQDN), or Internet Protocol address (IPv4 or IPv6) of the host that runs the MongoDB process (&#x60;mongod&#x60; or &#x60;mongos&#x60;). The port must be the IANA port on which the MongoDB process listens for requests. | defaults to undefined
  **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
  **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
- **m** | **Array<&#39;DISK_PARTITION_IOPS_READ&#39; &#124; &#39;MAX_DISK_PARTITION_IOPS_READ&#39; &#124; &#39;DISK_PARTITION_IOPS_WRITE&#39; &#124; &#39;MAX_DISK_PARTITION_IOPS_WRITE&#39; &#124; &#39;DISK_PARTITION_IOPS_TOTAL&#39; &#124; &#39;MAX_DISK_PARTITION_IOPS_TOTAL&#39; &#124; &#39;DISK_PARTITION_UTILIZATION&#39; &#124; &#39;MAX_DISK_PARTITION_UTILIZATION&#39; &#124; &#39;DISK_PARTITION_LATENCY_READ&#39; &#124; &#39;MAX_DISK_PARTITION_LATENCY_READ&#39; &#124; &#39;DISK_PARTITION_LATENCY_WRITE&#39; &#124; &#39;MAX_DISK_PARTITION_LATENCY_WRITE&#39; &#124; &#39;DISK_PARTITION_SPACE_FREE&#39; &#124; &#39;MAX_DISK_PARTITION_SPACE_FREE&#39; &#124; &#39;DISK_PARTITION_SPACE_USED&#39; &#124; &#39;MAX_DISK_PARTITION_SPACE_USED&#39; &#124; &#39;DISK_PARTITION_SPACE_PERCENT_FREE&#39; &#124; &#39;MAX_DISK_PARTITION_SPACE_PERCENT_FREE&#39; &#124; &#39;DISK_PARTITION_SPACE_PERCENT_USED&#39; &#124; &#39;MAX_DISK_PARTITION_SPACE_PERCENT_USED&#39;>** | One or more types of measurement to request for this MongoDB process. If omitted, the resource returns all measurements. To specify multiple values for &#x60;m&#x60;, repeat the &#x60;m&#x60; parameter for each value. Specify measurements that apply to the specified host. MongoDB Cloud returns an error if you specified any invalid measurements. | (optional) defaults to undefined
+ **m** | **Array<&#39;DISK_PARTITION_IOPS_READ&#39; &#124; &#39;MAX_DISK_PARTITION_IOPS_READ&#39; &#124; &#39;DISK_PARTITION_IOPS_WRITE&#39; &#124; &#39;MAX_DISK_PARTITION_IOPS_WRITE&#39; &#124; &#39;DISK_PARTITION_IOPS_TOTAL&#39; &#124; &#39;MAX_DISK_PARTITION_IOPS_TOTAL&#39; &#124; &#39;DISK_PARTITION_UTILIZATION&#39; &#124; &#39;MAX_DISK_PARTITION_UTILIZATION&#39; &#124; &#39;DISK_PARTITION_LATENCY_READ&#39; &#124; &#39;MAX_DISK_PARTITION_LATENCY_READ&#39; &#124; &#39;DISK_PARTITION_LATENCY_WRITE&#39; &#124; &#39;MAX_DISK_PARTITION_LATENCY_WRITE&#39; &#124; &#39;DISK_PARTITION_SPACE_FREE&#39; &#124; &#39;MAX_DISK_PARTITION_SPACE_FREE&#39; &#124; &#39;DISK_PARTITION_SPACE_USED&#39; &#124; &#39;MAX_DISK_PARTITION_SPACE_USED&#39; &#124; &#39;DISK_PARTITION_SPACE_PERCENT_FREE&#39; &#124; &#39;MAX_DISK_PARTITION_SPACE_PERCENT_FREE&#39; &#124; &#39;DISK_PARTITION_SPACE_PERCENT_USED&#39; &#124; &#39;MAX_DISK_PARTITION_SPACE_PERCENT_USED&#39; &#124; &#39;11184809&#39;>** | One or more types of measurement to request for this MongoDB process. If omitted, the resource returns all measurements. To specify multiple values for &#x60;m&#x60;, repeat the &#x60;m&#x60; parameter for each value. Specify measurements that apply to the specified host. MongoDB Cloud returns an error if you specified any invalid measurements. | (optional) defaults to undefined
 
 
 ### Return type
@@ -282,7 +282,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -339,7 +339,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **groupId** | [**string**] | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. | defaults to undefined
  **hostName** | [**string**] | Fully qualified domain name or IP address of the MongoDB host that stores the log files that you want to download. | defaults to undefined
- **logName** | [**&#39;mongodb&#39; | &#39;mongos&#39; | &#39;mongodb-audit-log&#39; | &#39;mongos-audit-log&#39;**]**Array<&#39;mongodb&#39; &#124; &#39;mongos&#39; &#124; &#39;mongodb-audit-log&#39; &#124; &#39;mongos-audit-log&#39;>** | Human-readable label of the log file that you want to return. You can return audit logs only if you enable Database Auditing for the specified project. | defaults to undefined
+ **logName** | [**&#39;mongodb&#39; | &#39;mongos&#39; | &#39;mongodb-audit-log&#39; | &#39;mongos-audit-log&#39;**]**Array<&#39;mongodb&#39; &#124; &#39;mongos&#39; &#124; &#39;mongodb-audit-log&#39; &#124; &#39;mongos-audit-log&#39; &#124; &#39;11184809&#39;>** | Human-readable label of the log file that you want to return. You can return audit logs only if you enable Database Auditing for the specified project. | defaults to undefined
  **endDate** | [**number**] | Date and time when the period specifies the inclusive ending point for the range of log messages to retrieve. This parameter expresses its value in the number of seconds that have elapsed since the UNIX epoch. | (optional) defaults to undefined
  **startDate** | [**number**] | Date and time when the period specifies the inclusive starting point for the range of log messages to retrieve. This parameter expresses its value in the number of seconds that have elapsed since the UNIX epoch. | (optional) defaults to undefined
 
@@ -350,7 +350,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -417,7 +417,7 @@ Name | Type | Description  | Notes
  **processId** | [**string**] | Combination of hostname and Internet Assigned Numbers Authority (IANA) port that serves the MongoDB process. The host must be the hostname, fully qualified domain name (FQDN), or Internet Protocol address (IPv4 or IPv6) of the host that runs the MongoDB process (&#x60;mongod&#x60; or &#x60;mongos&#x60;). The port must be the IANA port on which the MongoDB process listens for requests. | defaults to undefined
  **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
  **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
- **m** | **Array<&#39;ASSERT_MSG&#39; &#124; &#39;ASSERT_REGULAR&#39; &#124; &#39;ASSERT_USER&#39; &#124; &#39;ASSERT_WARNING&#39; &#124; &#39;BACKGROUND_FLUSH_AVG&#39; &#124; &#39;CACHE_BYTES_READ_INTO&#39; &#124; &#39;CACHE_BYTES_WRITTEN_FROM&#39; &#124; &#39;CACHE_DIRTY_BYTES&#39; &#124; &#39;CACHE_USED_BYTES&#39; &#124; &#39;COMPUTED_MEMORY&#39; &#124; &#39;CONNECTIONS&#39; &#124; &#39;CURSORS_TOTAL_OPEN&#39; &#124; &#39;CURSORS_TOTAL_TIMED_OUT&#39; &#124; &#39;DB_DATA_SIZE_TOTAL&#39; &#124; &#39;DB_STORAGE_TOTAL&#39; &#124; &#39;DOCUMENT_METRICS_DELETED&#39; &#124; &#39;DOCUMENT_METRICS_INSERTED&#39; &#124; &#39;DOCUMENT_METRICS_RETURNED&#39; &#124; &#39;DOCUMENT_METRICS_UPDATED&#39; &#124; &#39;EXTRA_INFO_PAGE_FAULTS&#39; &#124; &#39;FTS_DISK_UTILIZATION&#39; &#124; &#39;FTS_MEMORY_MAPPED&#39; &#124; &#39;FTS_MEMORY_RESIDENT&#39; &#124; &#39;FTS_MEMORY_VIRTUAL&#39; &#124; &#39;FTS_PROCESS_CPU_KERNEL&#39; &#124; &#39;FTS_PROCESS_CPU_USER&#39; &#124; &#39;FTS_PROCESS_NORMALIZED_CPU_KERNEL&#39; &#124; &#39;FTS_PROCESS_NORMALIZED_CPU_USER&#39; &#124; &#39;GLOBAL_ACCESSES_NOT_IN_MEMORY&#39; &#124; &#39;GLOBAL_LOCK_CURRENT_QUEUE_READERS&#39; &#124; &#39;GLOBAL_LOCK_CURRENT_QUEUE_TOTAL&#39; &#124; &#39;GLOBAL_LOCK_CURRENT_QUEUE_WRITERS&#39; &#124; &#39;GLOBAL_PAGE_FAULT_EXCEPTIONS_THROWN&#39; &#124; &#39;INDEX_COUNTERS_BTREE_ACCESSES&#39; &#124; &#39;INDEX_COUNTERS_BTREE_HITS&#39; &#124; &#39;INDEX_COUNTERS_BTREE_MISS_RATIO&#39; &#124; &#39;INDEX_COUNTERS_BTREE_MISSES&#39; &#124; &#39;JOURNALING_COMMITS_IN_WRITE_LOCK&#39; &#124; &#39;JOURNALING_MB&#39; &#124; &#39;JOURNALING_WRITE_DATA_FILES_MB&#39; &#124; &#39;MAX_PROCESS_CPU_CHILDREN_KERNEL&#39; &#124; &#39;MAX_PROCESS_CPU_CHILDREN_USER&#39; &#124; &#39;MAX_PROCESS_CPU_KERNEL&#39; &#124; &#39;MAX_PROCESS_CPU_USER&#39; &#124; &#39;MAX_PROCESS_NORMALIZED_CPU_CHILDREN_KERNEL&#39; &#124; &#39;MAX_PROCESS_NORMALIZED_CPU_CHILDREN_USER&#39; &#124; &#39;MAX_PROCESS_NORMALIZED_CPU_KERNEL&#39; &#124; &#39;MAX_PROCESS_NORMALIZED_CPU_USER&#39; &#124; &#39;MAX_SWAP_USAGE_FREE&#39; &#124; &#39;MAX_SWAP_USAGE_USED &#39; &#124; &#39;MAX_SYSTEM_CPU_GUEST&#39; &#124; &#39;MAX_SYSTEM_CPU_IOWAIT&#39; &#124; &#39;MAX_SYSTEM_CPU_IRQ&#39; &#124; &#39;MAX_SYSTEM_CPU_KERNEL&#39; &#124; &#39;MAX_SYSTEM_CPU_SOFTIRQ&#39; &#124; &#39;MAX_SYSTEM_CPU_STEAL&#39; &#124; &#39;MAX_SYSTEM_CPU_USER&#39; &#124; &#39;MAX_SYSTEM_MEMORY_AVAILABLE&#39; &#124; &#39;MAX_SYSTEM_MEMORY_FREE&#39; &#124; &#39;MAX_SYSTEM_MEMORY_USED&#39; &#124; &#39;MAX_SYSTEM_NETWORK_IN&#39; &#124; &#39;MAX_SYSTEM_NETWORK_OUT&#39; &#124; &#39;MAX_SYSTEM_NORMALIZED_CPU_GUEST&#39; &#124; &#39;MAX_SYSTEM_NORMALIZED_CPU_IOWAIT&#39; &#124; &#39;MAX_SYSTEM_NORMALIZED_CPU_IRQ&#39; &#124; &#39;MAX_SYSTEM_NORMALIZED_CPU_KERNEL&#39; &#124; &#39;MAX_SYSTEM_NORMALIZED_CPU_NICE&#39; &#124; &#39;MAX_SYSTEM_NORMALIZED_CPU_SOFTIRQ&#39; &#124; &#39;MAX_SYSTEM_NORMALIZED_CPU_STEAL&#39; &#124; &#39;MAX_SYSTEM_NORMALIZED_CPU_USER&#39; &#124; &#39;MEMORY_MAPPED&#39; &#124; &#39;MEMORY_RESIDENT&#39; &#124; &#39;MEMORY_VIRTUAL&#39; &#124; &#39;NETWORK_BYTES_IN&#39; &#124; &#39;NETWORK_BYTES_OUT&#39; &#124; &#39;NETWORK_NUM_REQUESTS&#39; &#124; &#39;OP_EXECUTION_TIME_COMMANDS&#39; &#124; &#39;OP_EXECUTION_TIME_READS&#39; &#124; &#39;OP_EXECUTION_TIME_WRITES&#39; &#124; &#39;OPCOUNTER_CMD&#39; &#124; &#39;OPCOUNTER_DELETE&#39; &#124; &#39;OPCOUNTER_GETMORE&#39; &#124; &#39;OPCOUNTER_INSERT&#39; &#124; &#39;OPCOUNTER_QUERY&#39; &#124; &#39;OPCOUNTER_REPL_CMD&#39; &#124; &#39;OPCOUNTER_REPL_DELETE&#39; &#124; &#39;OPCOUNTER_REPL_INSERT&#39; &#124; &#39;OPCOUNTER_REPL_UPDATE&#39; &#124; &#39;OPCOUNTER_UPDATE&#39; &#124; &#39;OPERATIONS_SCAN_AND_ORDER&#39; &#124; &#39;OPLOG_MASTER_LAG_TIME_DIFF&#39; &#124; &#39;OPLOG_MASTER_TIME&#39; &#124; &#39;OPLOG_RATE_GB_PER_HOUR&#39; &#124; &#39;OPLOG_SLAVE_LAG_MASTER_TIME&#39; &#124; &#39;OPLOG_REPLICATION_LAG&#39; &#124; &#39;PROCESS_CPU_CHILDREN_KERNEL&#39; &#124; &#39;PROCESS_CPU_CHILDREN_USER&#39; &#124; &#39;PROCESS_CPU_KERNEL&#39; &#124; &#39;PROCESS_CPU_USER&#39; &#124; &#39;PROCESS_NORMALIZED_CPU_CHILDREN_KERNEL&#39; &#124; &#39;PROCESS_NORMALIZED_CPU_CHILDREN_USER&#39; &#124; &#39;PROCESS_NORMALIZED_CPU_KERNEL&#39; &#124; &#39;PROCESS_NORMALIZED_CPU_USER&#39; &#124; &#39;QUERY_EXECUTOR_SCANNED&#39; &#124; &#39;QUERY_EXECUTOR_SCANNED_OBJECTS&#39; &#124; &#39;QUERY_TARGETING_SCANNED_OBJECTS_PER_RETURNED&#39; &#124; &#39;QUERY_TARGETING_SCANNED_PER_RETURNED&#39; &#124; &#39;RESTARTS_IN_LAST_HOUR&#39; &#124; &#39;SWAP_USAGE_FREE&#39; &#124; &#39;SWAP_USAGE_USED&#39; &#124; &#39;SYSTEM_CPU_GUEST&#39; &#124; &#39;SYSTEM_CPU_IOWAIT&#39; &#124; &#39;SYSTEM_CPU_IRQ&#39; &#124; &#39;SYSTEM_CPU_KERNEL&#39; &#124; &#39;SYSTEM_CPU_NICE&#39; &#124; &#39;SYSTEM_CPU_SOFTIRQ&#39; &#124; &#39;SYSTEM_CPU_STEAL&#39; &#124; &#39;SYSTEM_CPU_USER&#39; &#124; &#39;SYSTEM_MEMORY_AVAILABLE&#39; &#124; &#39;SYSTEM_MEMORY_FREE&#39; &#124; &#39;SYSTEM_MEMORY_USED&#39; &#124; &#39;SYSTEM_NETWORK_IN&#39; &#124; &#39;SYSTEM_NETWORK_OUT&#39; &#124; &#39;SYSTEM_NORMALIZED_CPU_GUEST&#39; &#124; &#39;SYSTEM_NORMALIZED_CPU_IOWAIT&#39; &#124; &#39;SYSTEM_NORMALIZED_CPU_IRQ&#39; &#124; &#39;SYSTEM_NORMALIZED_CPU_KERNEL&#39; &#124; &#39;SYSTEM_NORMALIZED_CPU_NICE&#39; &#124; &#39;SYSTEM_NORMALIZED_CPU_SOFTIRQ&#39; &#124; &#39;SYSTEM_NORMALIZED_CPU_STEAL&#39; &#124; &#39;SYSTEM_NORMALIZED_CPU_USER&#39; &#124; &#39;TICKETS_AVAILABLE_READS&#39; &#124; &#39;TICKETS_AVAILABLE_WRITE&#39;>** | One or more types of measurement to request for this MongoDB process. If omitted, the resource returns all measurements. To specify multiple values for &#x60;m&#x60;, repeat the &#x60;m&#x60; parameter for each value. Specify measurements that apply to the specified host. MongoDB Cloud returns an error if you specified any invalid measurements. | (optional) defaults to undefined
+ **m** | **Array<&#39;ASSERT_MSG&#39; &#124; &#39;ASSERT_REGULAR&#39; &#124; &#39;ASSERT_USER&#39; &#124; &#39;ASSERT_WARNING&#39; &#124; &#39;BACKGROUND_FLUSH_AVG&#39; &#124; &#39;CACHE_BYTES_READ_INTO&#39; &#124; &#39;CACHE_BYTES_WRITTEN_FROM&#39; &#124; &#39;CACHE_DIRTY_BYTES&#39; &#124; &#39;CACHE_USED_BYTES&#39; &#124; &#39;COMPUTED_MEMORY&#39; &#124; &#39;CONNECTIONS&#39; &#124; &#39;CURSORS_TOTAL_OPEN&#39; &#124; &#39;CURSORS_TOTAL_TIMED_OUT&#39; &#124; &#39;DB_DATA_SIZE_TOTAL&#39; &#124; &#39;DB_STORAGE_TOTAL&#39; &#124; &#39;DOCUMENT_METRICS_DELETED&#39; &#124; &#39;DOCUMENT_METRICS_INSERTED&#39; &#124; &#39;DOCUMENT_METRICS_RETURNED&#39; &#124; &#39;DOCUMENT_METRICS_UPDATED&#39; &#124; &#39;EXTRA_INFO_PAGE_FAULTS&#39; &#124; &#39;FTS_DISK_UTILIZATION&#39; &#124; &#39;FTS_MEMORY_MAPPED&#39; &#124; &#39;FTS_MEMORY_RESIDENT&#39; &#124; &#39;FTS_MEMORY_VIRTUAL&#39; &#124; &#39;FTS_PROCESS_CPU_KERNEL&#39; &#124; &#39;FTS_PROCESS_CPU_USER&#39; &#124; &#39;FTS_PROCESS_NORMALIZED_CPU_KERNEL&#39; &#124; &#39;FTS_PROCESS_NORMALIZED_CPU_USER&#39; &#124; &#39;GLOBAL_ACCESSES_NOT_IN_MEMORY&#39; &#124; &#39;GLOBAL_LOCK_CURRENT_QUEUE_READERS&#39; &#124; &#39;GLOBAL_LOCK_CURRENT_QUEUE_TOTAL&#39; &#124; &#39;GLOBAL_LOCK_CURRENT_QUEUE_WRITERS&#39; &#124; &#39;GLOBAL_PAGE_FAULT_EXCEPTIONS_THROWN&#39; &#124; &#39;INDEX_COUNTERS_BTREE_ACCESSES&#39; &#124; &#39;INDEX_COUNTERS_BTREE_HITS&#39; &#124; &#39;INDEX_COUNTERS_BTREE_MISS_RATIO&#39; &#124; &#39;INDEX_COUNTERS_BTREE_MISSES&#39; &#124; &#39;JOURNALING_COMMITS_IN_WRITE_LOCK&#39; &#124; &#39;JOURNALING_MB&#39; &#124; &#39;JOURNALING_WRITE_DATA_FILES_MB&#39; &#124; &#39;MAX_PROCESS_CPU_CHILDREN_KERNEL&#39; &#124; &#39;MAX_PROCESS_CPU_CHILDREN_USER&#39; &#124; &#39;MAX_PROCESS_CPU_KERNEL&#39; &#124; &#39;MAX_PROCESS_CPU_USER&#39; &#124; &#39;MAX_PROCESS_NORMALIZED_CPU_CHILDREN_KERNEL&#39; &#124; &#39;MAX_PROCESS_NORMALIZED_CPU_CHILDREN_USER&#39; &#124; &#39;MAX_PROCESS_NORMALIZED_CPU_KERNEL&#39; &#124; &#39;MAX_PROCESS_NORMALIZED_CPU_USER&#39; &#124; &#39;MAX_SWAP_USAGE_FREE&#39; &#124; &#39;MAX_SWAP_USAGE_USED &#39; &#124; &#39;MAX_SYSTEM_CPU_GUEST&#39; &#124; &#39;MAX_SYSTEM_CPU_IOWAIT&#39; &#124; &#39;MAX_SYSTEM_CPU_IRQ&#39; &#124; &#39;MAX_SYSTEM_CPU_KERNEL&#39; &#124; &#39;MAX_SYSTEM_CPU_SOFTIRQ&#39; &#124; &#39;MAX_SYSTEM_CPU_STEAL&#39; &#124; &#39;MAX_SYSTEM_CPU_USER&#39; &#124; &#39;MAX_SYSTEM_MEMORY_AVAILABLE&#39; &#124; &#39;MAX_SYSTEM_MEMORY_FREE&#39; &#124; &#39;MAX_SYSTEM_MEMORY_USED&#39; &#124; &#39;MAX_SYSTEM_NETWORK_IN&#39; &#124; &#39;MAX_SYSTEM_NETWORK_OUT&#39; &#124; &#39;MAX_SYSTEM_NORMALIZED_CPU_GUEST&#39; &#124; &#39;MAX_SYSTEM_NORMALIZED_CPU_IOWAIT&#39; &#124; &#39;MAX_SYSTEM_NORMALIZED_CPU_IRQ&#39; &#124; &#39;MAX_SYSTEM_NORMALIZED_CPU_KERNEL&#39; &#124; &#39;MAX_SYSTEM_NORMALIZED_CPU_NICE&#39; &#124; &#39;MAX_SYSTEM_NORMALIZED_CPU_SOFTIRQ&#39; &#124; &#39;MAX_SYSTEM_NORMALIZED_CPU_STEAL&#39; &#124; &#39;MAX_SYSTEM_NORMALIZED_CPU_USER&#39; &#124; &#39;MEMORY_MAPPED&#39; &#124; &#39;MEMORY_RESIDENT&#39; &#124; &#39;MEMORY_VIRTUAL&#39; &#124; &#39;NETWORK_BYTES_IN&#39; &#124; &#39;NETWORK_BYTES_OUT&#39; &#124; &#39;NETWORK_NUM_REQUESTS&#39; &#124; &#39;OP_EXECUTION_TIME_COMMANDS&#39; &#124; &#39;OP_EXECUTION_TIME_READS&#39; &#124; &#39;OP_EXECUTION_TIME_WRITES&#39; &#124; &#39;OPCOUNTER_CMD&#39; &#124; &#39;OPCOUNTER_DELETE&#39; &#124; &#39;OPCOUNTER_GETMORE&#39; &#124; &#39;OPCOUNTER_INSERT&#39; &#124; &#39;OPCOUNTER_QUERY&#39; &#124; &#39;OPCOUNTER_REPL_CMD&#39; &#124; &#39;OPCOUNTER_REPL_DELETE&#39; &#124; &#39;OPCOUNTER_REPL_INSERT&#39; &#124; &#39;OPCOUNTER_REPL_UPDATE&#39; &#124; &#39;OPCOUNTER_UPDATE&#39; &#124; &#39;OPERATIONS_SCAN_AND_ORDER&#39; &#124; &#39;OPLOG_MASTER_LAG_TIME_DIFF&#39; &#124; &#39;OPLOG_MASTER_TIME&#39; &#124; &#39;OPLOG_RATE_GB_PER_HOUR&#39; &#124; &#39;OPLOG_SLAVE_LAG_MASTER_TIME&#39; &#124; &#39;OPLOG_REPLICATION_LAG&#39; &#124; &#39;PROCESS_CPU_CHILDREN_KERNEL&#39; &#124; &#39;PROCESS_CPU_CHILDREN_USER&#39; &#124; &#39;PROCESS_CPU_KERNEL&#39; &#124; &#39;PROCESS_CPU_USER&#39; &#124; &#39;PROCESS_NORMALIZED_CPU_CHILDREN_KERNEL&#39; &#124; &#39;PROCESS_NORMALIZED_CPU_CHILDREN_USER&#39; &#124; &#39;PROCESS_NORMALIZED_CPU_KERNEL&#39; &#124; &#39;PROCESS_NORMALIZED_CPU_USER&#39; &#124; &#39;QUERY_EXECUTOR_SCANNED&#39; &#124; &#39;QUERY_EXECUTOR_SCANNED_OBJECTS&#39; &#124; &#39;QUERY_TARGETING_SCANNED_OBJECTS_PER_RETURNED&#39; &#124; &#39;QUERY_TARGETING_SCANNED_PER_RETURNED&#39; &#124; &#39;RESTARTS_IN_LAST_HOUR&#39; &#124; &#39;SWAP_USAGE_FREE&#39; &#124; &#39;SWAP_USAGE_USED&#39; &#124; &#39;SYSTEM_CPU_GUEST&#39; &#124; &#39;SYSTEM_CPU_IOWAIT&#39; &#124; &#39;SYSTEM_CPU_IRQ&#39; &#124; &#39;SYSTEM_CPU_KERNEL&#39; &#124; &#39;SYSTEM_CPU_NICE&#39; &#124; &#39;SYSTEM_CPU_SOFTIRQ&#39; &#124; &#39;SYSTEM_CPU_STEAL&#39; &#124; &#39;SYSTEM_CPU_USER&#39; &#124; &#39;SYSTEM_MEMORY_AVAILABLE&#39; &#124; &#39;SYSTEM_MEMORY_FREE&#39; &#124; &#39;SYSTEM_MEMORY_USED&#39; &#124; &#39;SYSTEM_NETWORK_IN&#39; &#124; &#39;SYSTEM_NETWORK_OUT&#39; &#124; &#39;SYSTEM_NORMALIZED_CPU_GUEST&#39; &#124; &#39;SYSTEM_NORMALIZED_CPU_IOWAIT&#39; &#124; &#39;SYSTEM_NORMALIZED_CPU_IRQ&#39; &#124; &#39;SYSTEM_NORMALIZED_CPU_KERNEL&#39; &#124; &#39;SYSTEM_NORMALIZED_CPU_NICE&#39; &#124; &#39;SYSTEM_NORMALIZED_CPU_SOFTIRQ&#39; &#124; &#39;SYSTEM_NORMALIZED_CPU_STEAL&#39; &#124; &#39;SYSTEM_NORMALIZED_CPU_USER&#39; &#124; &#39;TICKETS_AVAILABLE_READS&#39; &#124; &#39;TICKETS_AVAILABLE_WRITE&#39; &#124; &#39;11184809&#39;>** | One or more types of measurement to request for this MongoDB process. If omitted, the resource returns all measurements. To specify multiple values for &#x60;m&#x60;, repeat the &#x60;m&#x60; parameter for each value. Specify measurements that apply to the specified host. MongoDB Cloud returns an error if you specified any invalid measurements. | (optional) defaults to undefined
  **period** | [**Date**] | Date and time that indicates how far in the past to query. You can&#39;t set this value with **start** and **end** in the same request. This parameter expresses its value in the ISO 8601 duration format in UTC | (optional) defaults to undefined
 
 
@@ -427,7 +427,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -502,7 +502,7 @@ Name | Type | Description  | Notes
  **collectionName** | [**string**] | Human-readable label that identifies the collection. | defaults to undefined
  **groupId** | [**string**] | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. | defaults to undefined
  **granularity** | [**string**] | Duration that specifies the interval at which Atlas reports the metrics. This parameter expresses its value in the ISO 8601 duration format in UTC. | defaults to undefined
- **metrics** | **Array<&#39;INDEX_SIZE_ON_DISK&#39; &#124; &#39;NUMBER_OF_DELETES&#39; &#124; &#39;NUMBER_OF_ERROR_QUERIES&#39; &#124; &#39;NUMBER_OF_GETMORE_COMMANDS&#39; &#124; &#39;NUMBER_OF_INDEX_FIELDS&#39; &#124; &#39;NUMBER_OF_INSERTS&#39; &#124; &#39;NUMBER_OF_SUCCESS_QUERIES&#39; &#124; &#39;NUMBER_OF_UPDATES&#39; &#124; &#39;REPLICATION_LAG&#39; &#124; &#39;TOTAL_NUMBER_OF_QUERIES&#39;>** | List that contains the measurements that MongoDB Atlas reports for the associated data series. | defaults to undefined
+ **metrics** | **Array<&#39;INDEX_SIZE_ON_DISK&#39; &#124; &#39;NUMBER_OF_DELETES&#39; &#124; &#39;NUMBER_OF_ERROR_QUERIES&#39; &#124; &#39;NUMBER_OF_GETMORE_COMMANDS&#39; &#124; &#39;NUMBER_OF_INDEX_FIELDS&#39; &#124; &#39;NUMBER_OF_INSERTS&#39; &#124; &#39;NUMBER_OF_SUCCESS_QUERIES&#39; &#124; &#39;NUMBER_OF_UPDATES&#39; &#124; &#39;REPLICATION_LAG&#39; &#124; &#39;TOTAL_NUMBER_OF_QUERIES&#39; &#124; &#39;11184809&#39;>** | List that contains the measurements that MongoDB Atlas reports for the associated data series. | defaults to undefined
  **period** | [**string**] | Duration over which Atlas reports the metrics. This parameter expresses its value in the ISO 8601 duration format in UTC. Include this parameter when you do not set **start** and **end**. | (optional) defaults to undefined
  **start** | [**Date**] | Date and time when MongoDB Cloud begins reporting the metrics. This parameter expresses its value in the ISO 8601 timestamp format in UTC. Include this parameter when you do not set **period**. | (optional) defaults to undefined
  **end** | [**Date**] | Date and time when MongoDB Cloud stops reporting the metrics. This parameter expresses its value in the ISO 8601 timestamp format in UTC. Include this parameter when you do not set **period**. | (optional) defaults to undefined
@@ -515,7 +515,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -582,7 +582,7 @@ Name | Type | Description  | Notes
  **processId** | [**string**] | Combination of hostname and IANA port that serves the MongoDB process. The host must be the hostname, fully qualified domain name (FQDN), or Internet Protocol address (IPv4 or IPv6) of the host that runs the MongoDB process (mongod or mongos). The port must be the IANA port on which the MongoDB process listens for requests. | defaults to undefined
  **groupId** | [**string**] | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. | defaults to undefined
  **granularity** | [**string**] | Duration that specifies the interval at which Atlas reports the metrics. This parameter expresses its value in the ISO 8601 duration format in UTC. | defaults to undefined
- **metrics** | **Array<&#39;FTS_DISK_USAGE&#39; &#124; &#39;FTS_PROCESS_CPU_KERNEL&#39; &#124; &#39;FTS_PROCESS_CPU_USER&#39; &#124; &#39;FTS_PROCESS_NORMALIZED_CPU_KERNEL&#39; &#124; &#39;FTS_PROCESS_NORMALIZED_CPU_USER&#39; &#124; &#39;FTS_PROCESS_RESIDENT_MEMORY&#39; &#124; &#39;FTS_PROCESS_SHARED_MEMORY&#39; &#124; &#39;FTS_PROCESS_VIRTUAL_MEMORY&#39; &#124; &#39;JVM_CURRENT_MEMORY&#39; &#124; &#39;JVM_MAX_MEMORY&#39;>** | List that contains the metrics that you want MongoDB Atlas to report for the associated data series. If you don&#39;t set this parameter, this resource returns all hardware and status metrics for the associated data series. | defaults to undefined
+ **metrics** | **Array<&#39;FTS_DISK_USAGE&#39; &#124; &#39;FTS_PROCESS_CPU_KERNEL&#39; &#124; &#39;FTS_PROCESS_CPU_USER&#39; &#124; &#39;FTS_PROCESS_NORMALIZED_CPU_KERNEL&#39; &#124; &#39;FTS_PROCESS_NORMALIZED_CPU_USER&#39; &#124; &#39;FTS_PROCESS_RESIDENT_MEMORY&#39; &#124; &#39;FTS_PROCESS_SHARED_MEMORY&#39; &#124; &#39;FTS_PROCESS_VIRTUAL_MEMORY&#39; &#124; &#39;JVM_CURRENT_MEMORY&#39; &#124; &#39;JVM_MAX_MEMORY&#39; &#124; &#39;11184809&#39;>** | List that contains the metrics that you want MongoDB Atlas to report for the associated data series. If you don&#39;t set this parameter, this resource returns all hardware and status metrics for the associated data series. | defaults to undefined
  **period** | [**string**] | Duration over which Atlas reports the metrics. This parameter expresses its value in the ISO 8601 duration format in UTC. Include this parameter when you do not set **start** and **end**. | (optional) defaults to undefined
  **start** | [**Date**] | Date and time when MongoDB Cloud begins reporting the metrics. This parameter expresses its value in the ISO 8601 timestamp format in UTC. Include this parameter when you do not set **period**. | (optional) defaults to undefined
  **end** | [**Date**] | Date and time when MongoDB Cloud stops reporting the metrics. This parameter expresses its value in the ISO 8601 timestamp format in UTC. Include this parameter when you do not set **period**. | (optional) defaults to undefined
@@ -595,7 +595,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -667,7 +667,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -741,7 +741,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -806,7 +806,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -880,7 +880,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -952,7 +952,7 @@ Name | Type | Description  | Notes
  **collectionName** | [**string**] | Human-readable label that identifies the collection. | defaults to undefined
  **groupId** | [**string**] | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. | defaults to undefined
  **granularity** | [**string**] | Duration that specifies the interval at which Atlas reports the metrics. This parameter expresses its value in the ISO 8601 duration format in UTC. | defaults to undefined
- **metrics** | **Array<&#39;INDEX_SIZE_ON_DISK&#39; &#124; &#39;NUMBER_OF_DELETES&#39; &#124; &#39;NUMBER_OF_ERROR_QUERIES&#39; &#124; &#39;NUMBER_OF_GETMORE_COMMANDS&#39; &#124; &#39;NUMBER_OF_INDEX_FIELDS&#39; &#124; &#39;NUMBER_OF_INSERTS&#39; &#124; &#39;NUMBER_OF_SUCCESS_QUERIES&#39; &#124; &#39;NUMBER_OF_UPDATES&#39; &#124; &#39;REPLICATION_LAG&#39; &#124; &#39;TOTAL_NUMBER_OF_QUERIES&#39;>** | List that contains the measurements that MongoDB Atlas reports for the associated data series. | defaults to undefined
+ **metrics** | **Array<&#39;INDEX_SIZE_ON_DISK&#39; &#124; &#39;NUMBER_OF_DELETES&#39; &#124; &#39;NUMBER_OF_ERROR_QUERIES&#39; &#124; &#39;NUMBER_OF_GETMORE_COMMANDS&#39; &#124; &#39;NUMBER_OF_INDEX_FIELDS&#39; &#124; &#39;NUMBER_OF_INSERTS&#39; &#124; &#39;NUMBER_OF_SUCCESS_QUERIES&#39; &#124; &#39;NUMBER_OF_UPDATES&#39; &#124; &#39;REPLICATION_LAG&#39; &#124; &#39;TOTAL_NUMBER_OF_QUERIES&#39; &#124; &#39;11184809&#39;>** | List that contains the measurements that MongoDB Atlas reports for the associated data series. | defaults to undefined
  **period** | [**string**] | Duration over which Atlas reports the metrics. This parameter expresses its value in the ISO 8601 duration format in UTC. Include this parameter when you do not set **start** and **end**. | (optional) defaults to undefined
  **start** | [**Date**] | Date and time when MongoDB Cloud begins reporting the metrics. This parameter expresses its value in the ISO 8601 timestamp format in UTC. Include this parameter when you do not set **period**. | (optional) defaults to undefined
  **end** | [**Date**] | Date and time when MongoDB Cloud stops reporting the metrics. This parameter expresses its value in the ISO 8601 timestamp format in UTC. Include this parameter when you do not set **period**. | (optional) defaults to undefined
@@ -965,7 +965,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -1028,7 +1028,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[DigestAuth](README.md#DigestAuth)
+No authorization required
 
 ### HTTP request headers
 
