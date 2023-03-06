@@ -2,9 +2,7 @@
 ## When editing please consider updating master branch with the same changes.
 name: Generate Client
 on:
- push:
-  branches:
-    - main
+ workflow_dispatch:
 
 jobs:
   generate-client:
