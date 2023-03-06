@@ -57,7 +57,7 @@ export class MonitoringAndLogsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
-        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+        requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
 
         // Query Params
         if (envelope !== undefined) {
@@ -119,7 +119,7 @@ export class MonitoringAndLogsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
-        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+        requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
 
         // Query Params
         if (envelope !== undefined) {
@@ -183,7 +183,7 @@ export class MonitoringAndLogsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
-        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+        requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
 
         // Query Params
         if (envelope !== undefined) {
@@ -252,7 +252,7 @@ export class MonitoringAndLogsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
-        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+        requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
 
         // Query Params
         if (envelope !== undefined) {
@@ -319,7 +319,7 @@ export class MonitoringAndLogsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
-        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+        requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-02-01+gzip")
 
         // Query Params
         if (endDate !== undefined) {
@@ -377,7 +377,7 @@ export class MonitoringAndLogsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
-        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+        requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
 
         // Query Params
         if (envelope !== undefined) {
@@ -483,7 +483,7 @@ export class MonitoringAndLogsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
-        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+        requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
 
         // Query Params
         if (granularity !== undefined) {
@@ -575,7 +575,7 @@ export class MonitoringAndLogsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
-        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+        requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
 
         // Query Params
         if (granularity !== undefined) {
@@ -647,7 +647,7 @@ export class MonitoringAndLogsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
-        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+        requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
 
         // Query Params
         if (envelope !== undefined) {
@@ -722,7 +722,7 @@ export class MonitoringAndLogsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
-        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+        requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
 
         // Query Params
         if (envelope !== undefined) {
@@ -797,7 +797,7 @@ export class MonitoringAndLogsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
-        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+        requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
 
         // Query Params
         if (envelope !== undefined) {
@@ -852,7 +852,7 @@ export class MonitoringAndLogsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
-        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+        requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
 
         // Query Params
         if (envelope !== undefined) {
@@ -955,7 +955,7 @@ export class MonitoringAndLogsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
-        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+        requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
 
         // Query Params
         if (granularity !== undefined) {
@@ -1027,7 +1027,7 @@ export class MonitoringAndLogsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
-        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+        requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
 
         // Query Params
         if (envelope !== undefined) {

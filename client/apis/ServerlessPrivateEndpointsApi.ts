@@ -55,7 +55,7 @@ export class ServerlessPrivateEndpointsApiRequestFactory extends BaseAPIRequestF
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
-        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+        requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
 
         // Query Params
         if (envelope !== undefined) {
@@ -121,7 +121,7 @@ export class ServerlessPrivateEndpointsApiRequestFactory extends BaseAPIRequestF
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
-        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+        requestContext.setHeaderParam("Accept","application/json")
 
         // Query Params
         if (envelope !== undefined) {
@@ -176,7 +176,7 @@ export class ServerlessPrivateEndpointsApiRequestFactory extends BaseAPIRequestF
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
-        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+        requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
 
         // Query Params
         if (envelope !== undefined) {
@@ -223,7 +223,7 @@ export class ServerlessPrivateEndpointsApiRequestFactory extends BaseAPIRequestF
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
-        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+        requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
 
         // Query Params
         if (envelope !== undefined) {
@@ -280,7 +280,7 @@ export class ServerlessPrivateEndpointsApiRequestFactory extends BaseAPIRequestF
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
-        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+        requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
 
         // Query Params
         if (envelope !== undefined) {
