@@ -1,8 +1,8 @@
-#  Client Template
+#  Atlas Client for typescript
 
 > NOTE: This project is just experiment. It should not be used by general public 
 
-Generate various clients using OpenAPI generator.
+Generated typescript client for atlas.
 
 ## Contents
 
