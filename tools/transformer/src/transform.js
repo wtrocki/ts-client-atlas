@@ -3,8 +3,10 @@ const {
   applyOneOfTransformations,
   applyModelNameTransformations,
   applyDiscriminatorTransformations,
+  applyDigestTransformations,
 } = require("./transformations");
 const { getAPI, saveAPI } = require("./engine/apifile");
+const {  } = require("./transformations/digest");
 
 const log = require("simple-node-logger").createSimpleLogger();
 
@@ -18,5 +20,6 @@ doc = applyDiscriminatorTransformations(doc);
 doc = applyOneOfTransformations(doc);
 doc = applyAllOfTransformations(doc);
 doc = applyModelNameTransformations(doc, "ApiAtlas", "View");
+doc = applyDigestTransformations(doc);
 
 saveAPI(doc, apiFileLocation);
