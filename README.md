@@ -1,6 +1,6 @@
 #  Atlas Client for typescript
 
-> NOTE: This project is just experiment. It should not be used by general public 
+> NOTE: This project is just an experiment. It should not be used by general public.
 
 Generated typescript client for atlas.
 
@@ -14,3 +14,16 @@ Project contains:
 
 See [tools](./tools) for more info.
 
+## Installing 
+
+```
+npm install --save wtr-cloud-api-client
+```
+
+### Building
+
+To build and compile the typescript sources to javascript use:
+```
+npm install
+npm run build
+```
