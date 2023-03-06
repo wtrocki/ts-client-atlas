@@ -30,7 +30,8 @@ const apiUrl = new atlas.ServerConfiguration<{  }>(process.env.MDB_BASE_URL || "
 // Create configuration parameter object
 const configurationParameters = {
     httpApi: new DigestFetchHttpLibrary(client), // Can also be ignored - default is usually fine
-    baseServer: apiUrl, 
+    baseServer: apiUrl,
+    
     // authMethods: authConfig, // No auth is default
     promiseMiddleware: [new Test()],
 }
@@ -40,4 +41,4 @@ const config = atlas.createConfiguration(configurationParameters);
 
 // Use configuration with your_api
 const api = new atlas.ProjectsApi(config);
-api.listProjects();
+api.listProjects().then(console.log).catch(console.error)
