@@ -19,7 +19,8 @@ export class TokenFilterlowercase {
     /**
     * Human-readable label that identifies this token filter type.
     */
-    'type': TokenFilterlowercaseTypeEnum;
+
+    'type': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -27,7 +28,7 @@ export class TokenFilterlowercase {
         {
             "name": "type",
             "baseName": "type",
-            "type": "TokenFilterlowercaseTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

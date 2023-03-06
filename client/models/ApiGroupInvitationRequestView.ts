@@ -16,10 +16,12 @@ export class ApiGroupInvitationRequestView {
     /**
     * One or more organization or project level roles to assign to the MongoDB Cloud user.
     */
-    'roles'?: Set<ApiGroupInvitationRequestViewRolesEnum>;
+
+    'roles'?: Set<string>;
     /**
     * Email address of the MongoDB Cloud user invited to the specified project.
     */
+
     'username'?: string;
 
     static readonly discriminator: string | undefined = undefined;
@@ -28,7 +30,7 @@ export class ApiGroupInvitationRequestView {
         {
             "name": "roles",
             "baseName": "roles",
-            "type": "Set<ApiGroupInvitationRequestViewRolesEnum>",
+            "type": "Set<string>",
             "format": ""
         },
         {

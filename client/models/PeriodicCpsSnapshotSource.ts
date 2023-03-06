@@ -19,27 +19,33 @@ export class PeriodicCpsSnapshotSource {
     /**
     * Human-readable name that identifies the cluster.
     */
+
     'clusterName'?: string;
     /**
     * Human-readable name that identifies the collection.
     */
+
     'collectionName'?: string;
     /**
     * Human-readable name that identifies the database.
     */
+
     'databaseName'?: string;
     /**
     * Unique 24-hexadecimal character string that identifies the project.
     */
+
     'groupId'?: string;
     /**
     * Unique 24-hexadecimal character string that identifies a policy item.
     */
+
     'policyItemId'?: string;
     /**
     * Type of ingestion source of this Data Lake Pipeline.
     */
-    'type'?: PeriodicCpsSnapshotSourceTypeEnum;
+
+    'type'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -77,7 +83,7 @@ export class PeriodicCpsSnapshotSource {
         {
             "name": "type",
             "baseName": "type",
-            "type": "PeriodicCpsSnapshotSourceTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

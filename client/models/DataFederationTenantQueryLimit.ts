@@ -19,34 +19,42 @@ export class DataFederationTenantQueryLimit {
     /**
     * Amount that indicates the current usage of the limit.
     */
+
     'currentUsage'?: number;
     /**
     * Default value of the limit.
     */
+
     'defaultLimit'?: number;
     /**
     * Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
     */
+
     'lastModifiedDate'?: Date;
     /**
     * Maximum value of the limit.
     */
+
     'maximumLimit'?: number;
     /**
     * Human-readable label that identifies the user-managed limit to modify.
     */
+
     'name': string;
     /**
     * Only used for Data Federation limits. Action to take when the usage limit is exceeded. If limit span is set to QUERY, this is ignored because MongoDB Cloud stops the query when it exceeds the usage limit.
     */
-    'overrunPolicy'?: DataFederationTenantQueryLimitOverrunPolicyEnum;
+
+    'overrunPolicy'?: string;
     /**
     * Human-readable label that identifies the Federated Database Instance. If specified, the usage limit is for the specified federated database instance only. If omitted, the usage limit is for all federated database instances in the project.
     */
+
     'tenantName'?: string;
     /**
     * Amount to set the limit to.
     */
+
     'value': number;
 
     static readonly discriminator: string | undefined = undefined;
@@ -85,7 +93,7 @@ export class DataFederationTenantQueryLimit {
         {
             "name": "overrunPolicy",
             "baseName": "overrunPolicy",
-            "type": "DataFederationTenantQueryLimitOverrunPolicyEnum",
+            "type": "string",
             "format": ""
         },
         {

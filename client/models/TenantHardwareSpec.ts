@@ -16,7 +16,8 @@ export class TenantHardwareSpec {
     /**
     * Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
     */
-    'instanceSize'?: TenantHardwareSpecInstanceSizeEnum;
+
+    'instanceSize'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -24,7 +25,7 @@ export class TenantHardwareSpec {
         {
             "name": "instanceSize",
             "baseName": "instanceSize",
-            "type": "TenantHardwareSpecInstanceSizeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

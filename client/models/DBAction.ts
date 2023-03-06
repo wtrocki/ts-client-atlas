@@ -20,10 +20,12 @@ export class DBAction {
     /**
     * Human-readable label that identifies the privilege action.
     */
-    'action': DBActionActionEnum;
+
+    'action': string;
     /**
     * List of resources on which you grant the action.
     */
+
     'resources'?: Array<DBResource>;
 
     static readonly discriminator: string | undefined = undefined;
@@ -32,7 +34,7 @@ export class DBAction {
         {
             "name": "action",
             "baseName": "action",
-            "type": "DBActionActionEnum",
+            "type": "string",
             "format": ""
         },
         {

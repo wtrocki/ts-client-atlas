@@ -19,10 +19,12 @@ export class CloudProviderAccessFeatureUsageExportSnapshotFeatureId {
     /**
     * Unique 24-hexadecimal digit string that identifies the AWS S3 bucket to which you export your snapshots.
     */
+
     'exportBucketId'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies your project.
     */
+
     'groupId'?: string;
 
     static readonly discriminator: string | undefined = undefined;

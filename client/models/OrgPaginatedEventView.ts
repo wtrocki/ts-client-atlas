@@ -18,14 +18,17 @@ export class OrgPaginatedEventView {
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
     /**
     * List of returned documents that MongoDB Cloud providers when completing this request.
     */
+
     'results'?: Array<EventViewForOrg>;
     /**
     * Number of documents returned in this response if **includeCount** query param is true.
     */
+
     'totalCount'?: number;
 
     static readonly discriminator: string | undefined = undefined;

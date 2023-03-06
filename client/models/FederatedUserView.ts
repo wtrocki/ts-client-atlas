@@ -19,22 +19,27 @@ export class FederatedUserView {
     /**
     * Email address of the MongoDB Cloud user linked to the federated organization.
     */
+
     'emailAddress': string;
     /**
     * Unique 24-hexadecimal digit string that identifies the federation to which this MongoDB Cloud user belongs.
     */
+
     'federationSettingsId': string;
     /**
     * First or given name that belongs to the MongoDB Cloud user.
     */
+
     'firstName': string;
     /**
     * Last name, family name, or surname that belongs to the MongoDB Cloud user.
     */
+
     'lastName': string;
     /**
     * Unique 24-hexadecimal digit string that identifies this user.
     */
+
     'userId'?: string;
 
     static readonly discriminator: string | undefined = undefined;

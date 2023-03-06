@@ -17,36 +17,45 @@ export class IdentityProviderUpdate {
     /**
     * List that contains the domains associated with the identity provider.
     */
+
     'associatedDomains'?: Set<string>;
     /**
     * Human-readable label that identifies the identity provider.
     */
+
     'displayName'?: string;
     /**
     * Unique string that identifies the issuer of the SAML Assertion.
     */
+
     'issuerUri'?: string;
+
     'pemFileInfo'?: PemFileInfo;
     /**
     * SAML Authentication Request Protocol HTTP method binding (POST or REDIRECT) that Federated Authentication uses to send the authentication request.
     */
-    'requestBinding'?: IdentityProviderUpdateRequestBindingEnum;
+
+    'requestBinding'?: string;
     /**
     * Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.
     */
-    'responseSignatureAlgorithm'?: IdentityProviderUpdateResponseSignatureAlgorithmEnum;
+
+    'responseSignatureAlgorithm'?: string;
     /**
     * Flag that indicates whether the identity provider has SSO debug enabled.
     */
+
     'ssoDebugEnabled': boolean;
     /**
     * Unique string that identifies the intended audience of the SAML assertion.
     */
+
     'ssoUrl'?: string;
     /**
     * String enum that indicates whether the identity provider is active.
     */
-    'status'?: IdentityProviderUpdateStatusEnum;
+
+    'status'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -78,13 +87,13 @@ export class IdentityProviderUpdate {
         {
             "name": "requestBinding",
             "baseName": "requestBinding",
-            "type": "IdentityProviderUpdateRequestBindingEnum",
+            "type": "string",
             "format": ""
         },
         {
             "name": "responseSignatureAlgorithm",
             "baseName": "responseSignatureAlgorithm",
-            "type": "IdentityProviderUpdateResponseSignatureAlgorithmEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -102,7 +111,7 @@ export class IdentityProviderUpdate {
         {
             "name": "status",
             "baseName": "status",
-            "type": "IdentityProviderUpdateStatusEnum",
+            "type": "string",
             "format": ""
         }    ];
 

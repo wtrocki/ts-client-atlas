@@ -16,7 +16,8 @@ export class NetworkPermissionEntryStatus {
     /**
     * State of the access list entry when MongoDB Cloud made this request.  | Status | Activity | |---|---| | `ACTIVE` | This access list entry applies to all relevant cloud providers. | | `PENDING` | MongoDB Cloud has started to add access list entry. This access list entry may not apply to all cloud providers at the time of this request. | | `FAILED` | MongoDB Cloud didn't succeed in adding this access list entry. | 
     */
-    'STATUS': NetworkPermissionEntryStatusSTATUSEnum;
+
+    'STATUS': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -24,7 +25,7 @@ export class NetworkPermissionEntryStatus {
         {
             "name": "STATUS",
             "baseName": "STATUS",
-            "type": "NetworkPermissionEntryStatusSTATUSEnum",
+            "type": "string",
             "format": ""
         }    ];
 

@@ -17,6 +17,7 @@ export class ApiNamespacesView {
     /**
     * List that contains each combination of database, collection, and type on the specified host.
     */
+
     'namespaces'?: Set<ApiNamespaceObjView>;
 
     static readonly discriminator: string | undefined = undefined;

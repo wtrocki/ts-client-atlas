@@ -16,6 +16,7 @@ export class TargetOrgRequestView {
     /**
     * IP address access list entries associated with the API key.
     */
+
     'accessListIps'?: Array<string>;
 
     static readonly discriminator: string | undefined = undefined;

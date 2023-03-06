@@ -16,6 +16,7 @@ export class PrivateIPModeView {
     /**
     * Flag that indicates whether someone enabled **Connect via Peering Only** mode for the specified project.
     */
+
     'enabled': boolean;
 
     static readonly discriminator: string | undefined = undefined;

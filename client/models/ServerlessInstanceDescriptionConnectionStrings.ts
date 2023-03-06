@@ -20,10 +20,12 @@ export class ServerlessInstanceDescriptionConnectionStrings {
     /**
     * List of private endpoint-aware connection strings that you can use to connect to this serverless instance through a private endpoint. This parameter returns only if you created a private endpoint for this serverless instance and it is AVAILABLE.
     */
+
     'privateEndpoint'?: Array<ServerlessInstanceDescriptionConnectionStringsPrivateEndpoint>;
     /**
     * Public connection string that you can use to connect to this serverless instance. This connection string uses the `mongodb+srv://` protocol.
     */
+
     'standardSrv'?: string;
 
     static readonly discriminator: string | undefined = undefined;

@@ -19,10 +19,12 @@ export class CloudProviderAccessFeatureUsageDataLakeFeatureId {
     /**
     * Unique 24-hexadecimal digit string that identifies your project.
     */
+
     'groupId'?: string;
     /**
     * Human-readable label that identifies the data lake.
     */
+
     'name'?: string;
 
     static readonly discriminator: string | undefined = undefined;

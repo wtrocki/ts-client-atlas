@@ -19,11 +19,13 @@ export class CustomCriteriaView {
     /**
     * MongoDB find query that selects documents to archive. The specified query follows the syntax of the `db.collection.find(query)` command. This query can't use the empty document (`{}`) to return all documents. Set this parameter when **\"criteria.type\" : \"CUSTOM\"**.
     */
+
     'query': string;
     /**
     * Means by which MongoDB Cloud selects data to archive. Data can be chosen using the age of the data or a MongoDB query. **DATE** selects documents to archive based on a date. **CUSTOM** selects documents to archive based on a custom JSON query. MongoDB Cloud doesn't support **CUSTOM** when `\"collectionType\": \"TIMESERIES\"`.
     */
-    'type'?: CustomCriteriaViewTypeEnum;
+
+    'type'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -37,7 +39,7 @@ export class CustomCriteriaView {
         {
             "name": "type",
             "baseName": "type",
-            "type": "CustomCriteriaViewTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

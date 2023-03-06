@@ -17,18 +17,22 @@ export class ExampleResourceResponseView20230201 {
     /**
     * Dummy additional field added to the response.
     */
+
     'additionalInfo'?: string;
     /**
     * Array that contains the dummy metadata.
     */
+
     'data'?: Array<string>;
     /**
     * Dummy description added as response.
     */
+
     'description': string;
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
 
     static readonly discriminator: string | undefined = undefined;

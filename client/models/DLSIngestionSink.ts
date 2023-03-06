@@ -20,19 +20,23 @@ export class DLSIngestionSink {
     /**
     * Target cloud provider for this Data Lake Pipeline.
     */
-    'metadataProvider'?: DLSIngestionSinkMetadataProviderEnum;
+
+    'metadataProvider'?: string;
     /**
     * Target cloud provider region for this Data Lake Pipeline.
     */
+
     'metadataRegion'?: string;
     /**
     * Ordered fields used to physically organize data in the destination.
     */
+
     'partitionFields'?: Array<PartitionField>;
     /**
     * Type of ingestion destination of this Data Lake Pipeline.
     */
-    'type'?: DLSIngestionSinkTypeEnum;
+
+    'type'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -40,7 +44,7 @@ export class DLSIngestionSink {
         {
             "name": "metadataProvider",
             "baseName": "metadataProvider",
-            "type": "DLSIngestionSinkMetadataProviderEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -58,7 +62,7 @@ export class DLSIngestionSink {
         {
             "name": "type",
             "baseName": "type",
-            "type": "DLSIngestionSinkTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

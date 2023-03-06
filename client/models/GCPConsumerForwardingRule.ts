@@ -16,15 +16,18 @@ export class GCPConsumerForwardingRule {
     /**
     * Human-readable label that identifies the Google Cloud consumer forwarding rule that you created.
     */
+
     'endpointName'?: string;
     /**
     * One Private Internet Protocol version 4 (IPv4) address to which this Google Cloud consumer forwarding rule resolves.
     */
+
     'ipAddress'?: string;
     /**
     * State of the MongoDB Cloud endpoint group when MongoDB Cloud received this request.
     */
-    'status'?: GCPConsumerForwardingRuleStatusEnum;
+
+    'status'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -44,7 +47,7 @@ export class GCPConsumerForwardingRule {
         {
             "name": "status",
             "baseName": "status",
-            "type": "GCPConsumerForwardingRuleStatusEnum",
+            "type": "string",
             "format": ""
         }    ];
 

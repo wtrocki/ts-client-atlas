@@ -19,10 +19,12 @@ export class ApiBSONTimestampView {
     /**
     * Date and time when the oplog recorded this database operation. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     */
+
     'date'?: Date;
     /**
     * Order of the database operation that the oplog recorded at specific date and time.
     */
+
     'increment'?: number;
 
     static readonly discriminator: string | undefined = undefined;

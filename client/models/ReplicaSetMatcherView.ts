@@ -17,14 +17,17 @@ import { HttpFile } from '../http/http';
 * Rules to apply when comparing an replica set against this alert configuration.
 */
 export class ReplicaSetMatcherView {
+
     'fieldName'?: ReplicaSetMatcherField;
     /**
     * Comparison operator to apply when checking the current metric value against **matcher[n].value**.
     */
-    'operator'?: ReplicaSetMatcherViewOperatorEnum;
+
+    'operator'?: string;
     /**
     * Value to match or exceed using the specified **matchers.operator**.
     */
+
     'value'?: string;
 
     static readonly discriminator: string | undefined = undefined;
@@ -39,7 +42,7 @@ export class ReplicaSetMatcherView {
         {
             "name": "operator",
             "baseName": "operator",
-            "type": "ReplicaSetMatcherViewOperatorEnum",
+            "type": "string",
             "format": ""
         },
         {

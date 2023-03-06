@@ -21,36 +21,45 @@ import { HttpFile } from '../http/http';
 * Group of cloud provider settings that configure the provisioned MongoDB hosts.
 */
 export class ClusterProviderSettings {
+
     'autoScaling'?: FreeAutoScaling;
     /**
     * Maximum Disk Input/Output Operations per Second (IOPS) that the database host can perform.
     */
+
     'diskIOPS'?: number;
     /**
     * Flag that indicates whether the Amazon Elastic Block Store (EBS) encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Clusters always have this setting enabled.
     */
+
     'encryptEBSVolume'?: boolean;
     /**
     * Cluster tier, with a default storage and memory capacity, that applies to all the data-bearing hosts in your cluster. You must set **providerSettings.providerName** to `TENANT` and specify the cloud service provider in **providerSettings.backingProviderName**.
     */
-    'instanceSizeName'?: ClusterProviderSettingsInstanceSizeNameEnum;
+
+    'instanceSizeName'?: string;
     /**
     * Human-readable label that identifies the geographic location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). For multi-region clusters, see **replicationSpec.{region}**.
     */
+
     'regionName'?: string;
     /**
     * Disk Input/Output Operations per Second (IOPS) setting for Amazon Web Services (AWS) storage that you configure only for abbr title=\"Amazon Web Services\">AWS</abbr>. Specify whether Disk Input/Output Operations per Second (IOPS) must not exceed the default Input/Output Operations per Second (IOPS) rate for the selected volume size (`STANDARD`), or must fall within the allowable Input/Output Operations per Second (IOPS) range for the selected volume size (`PROVISIONED`).
     */
-    'volumeType'?: ClusterProviderSettingsVolumeTypeEnum;
+
+    'volumeType'?: string;
+
     'providerName': string;
     /**
     * Disk type that corresponds to the host's root volume for Azure instances. If omitted, the default disk type for the selected **providerSettings.instanceSizeName** applies.
     */
-    'diskTypeName'?: ClusterProviderSettingsDiskTypeNameEnum;
+
+    'diskTypeName'?: string;
     /**
     * Cloud service provider on which MongoDB Cloud provisioned the multi-tenant host. The resource returns this parameter when **providerSettings.providerName** is `TENANT` and **providerSetting.instanceSizeName** is `M2` or `M5`.
     */
-    'backingProviderName'?: ClusterProviderSettingsBackingProviderNameEnum;
+
+    'backingProviderName'?: string;
 
     static readonly discriminator: string | undefined = "providerName";
 
@@ -76,7 +85,7 @@ export class ClusterProviderSettings {
         {
             "name": "instanceSizeName",
             "baseName": "instanceSizeName",
-            "type": "ClusterProviderSettingsInstanceSizeNameEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -88,7 +97,7 @@ export class ClusterProviderSettings {
         {
             "name": "volumeType",
             "baseName": "volumeType",
-            "type": "ClusterProviderSettingsVolumeTypeEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -100,13 +109,13 @@ export class ClusterProviderSettings {
         {
             "name": "diskTypeName",
             "baseName": "diskTypeName",
-            "type": "ClusterProviderSettingsDiskTypeNameEnum",
+            "type": "string",
             "format": ""
         },
         {
             "name": "backingProviderName",
             "baseName": "backingProviderName",
-            "type": "ClusterProviderSettingsBackingProviderNameEnum",
+            "type": "string",
             "format": ""
         }    ];
 
@@ -115,7 +124,6 @@ export class ClusterProviderSettings {
     }
 
     public constructor() {
-        this.providerName = "ClusterProviderSettings";
     }
 }
 

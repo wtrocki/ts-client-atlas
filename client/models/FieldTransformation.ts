@@ -19,11 +19,13 @@ export class FieldTransformation {
     /**
     * Key in the document.
     */
+
     'field'?: string;
     /**
     * Type of transformation applied during the export of the namespace in a Data Lake Pipeline.
     */
-    'type'?: FieldTransformationTypeEnum;
+
+    'type'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -37,7 +39,7 @@ export class FieldTransformation {
         {
             "name": "type",
             "baseName": "type",
-            "type": "FieldTransformationTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

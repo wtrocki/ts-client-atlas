@@ -19,19 +19,23 @@ export class TokenFilterregex {
     /**
     * Value that indicates whether to replace only the first matching pattern or all matching patterns.
     */
-    'matches': TokenFilterregexMatchesEnum;
+
+    'matches': string;
     /**
     * Regular expression pattern to apply to each token.
     */
+
     'pattern': string;
     /**
     * Replacement string to substitute wherever a matching pattern occurs.
     */
+
     'replacement': string;
     /**
     * Human-readable label that identifies this token filter type.
     */
-    'type': TokenFilterregexTypeEnum;
+
+    'type': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -39,7 +43,7 @@ export class TokenFilterregex {
         {
             "name": "matches",
             "baseName": "matches",
-            "type": "TokenFilterregexMatchesEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -57,7 +61,7 @@ export class TokenFilterregex {
         {
             "name": "type",
             "baseName": "type",
-            "type": "TokenFilterregexTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

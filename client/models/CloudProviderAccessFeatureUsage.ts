@@ -20,11 +20,13 @@ import { HttpFile } from '../http/http';
 * MongoDB Cloud features associated with this Amazon Web Services (AWS) Identity and Access Management (IAM) role.
 */
 export class CloudProviderAccessFeatureUsage {
+
     'featureId'?: CloudProviderAccessFeatureUsageExportSnapshotFeatureId;
     /**
     * Human-readable label that describes one MongoDB Cloud feature linked to this Amazon Web Services (AWS) Identity and Access Management (IAM) role.
     */
-    'featureType'?: CloudProviderAccessFeatureUsageFeatureTypeEnum;
+
+    'featureType'?: string;
 
     static readonly discriminator: string | undefined = "featureType";
 
@@ -38,7 +40,7 @@ export class CloudProviderAccessFeatureUsage {
         {
             "name": "featureType",
             "baseName": "featureType",
-            "type": "CloudProviderAccessFeatureUsageFeatureTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 
@@ -47,7 +49,6 @@ export class CloudProviderAccessFeatureUsage {
     }
 
     public constructor() {
-        this.featureType = "CloudProviderAccessFeatureUsage";
     }
 }
 

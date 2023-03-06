@@ -16,42 +16,52 @@ export class ClusterDescriptionProcessArgs {
     /**
     * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster.  MongoDB 4.4 clusters default to `available`. MongoDB 5.0 and later clusters default to `local`.
     */
-    'defaultReadConcern'?: ClusterDescriptionProcessArgsDefaultReadConcernEnum;
+
+    'defaultReadConcern'?: string;
     /**
     * [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster.  MongoDB 4.4 clusters default to `1`. MongoDB 5.0 and later clusters default to `majority`.
     */
+
     'defaultWriteConcern'?: string;
     /**
     * Flag that indicates whether you can insert or update documents where all indexed entries don't exceed 1024 bytes. If you set this to false, [mongod](https://docs.mongodb.com/upcoming/reference/program/mongod/#mongodb-binary-bin.mongod) writes documents that exceed this limit but doesn't index them.
     */
+
     'failIndexKeyTooLong'?: boolean;
     /**
     * Flag that indicates whether the cluster allows execution of operations that perform server-side executions of JavaScript.
     */
+
     'javascriptEnabled'?: boolean;
     /**
     * Minimum Transport Layer Security (TLS) version that the cluster accepts for incoming connections. Clusters using TLS 1.0 or 1.1 should consider setting TLS 1.2 as the minimum TLS protocol version.
     */
-    'minimumEnabledTlsProtocol'?: ClusterDescriptionProcessArgsMinimumEnabledTlsProtocolEnum;
+
+    'minimumEnabledTlsProtocol'?: string;
     /**
     * Flag that indicates whether the cluster disables executing any query that requires a collection scan to return results.
     */
+
     'noTableScan'?: boolean;
     /**
     * Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
     */
+
     'oplogMinRetentionHours'?: number;
     /**
     * Storage limit of cluster's oplog expressed in megabytes. A value of null indicates that the cluster uses the default oplog size that MongoDB Cloud calculates.
     */
+
     'oplogSizeMB'?: number;
     /**
     * Interval in seconds at which the mongosqld process re-samples data to create its relational schema.
     */
+
     'sampleRefreshIntervalBIConnector'?: number;
     /**
     * Number of documents per database to sample when gathering schema information.
     */
+
     'sampleSizeBIConnector'?: number;
 
     static readonly discriminator: string | undefined = undefined;
@@ -60,7 +70,7 @@ export class ClusterDescriptionProcessArgs {
         {
             "name": "defaultReadConcern",
             "baseName": "defaultReadConcern",
-            "type": "ClusterDescriptionProcessArgsDefaultReadConcernEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -84,7 +94,7 @@ export class ClusterDescriptionProcessArgs {
         {
             "name": "minimumEnabledTlsProtocol",
             "baseName": "minimumEnabledTlsProtocol",
-            "type": "ClusterDescriptionProcessArgsMinimumEnabledTlsProtocolEnum",
+            "type": "string",
             "format": ""
         },
         {

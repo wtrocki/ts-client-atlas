@@ -17,10 +17,12 @@ export class ExampleResourceResponseView20230101 {
     /**
     * Dummy data added as response.
     */
+
     'data': string;
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
 
     static readonly discriminator: string | undefined = undefined;

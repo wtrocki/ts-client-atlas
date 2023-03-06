@@ -17,10 +17,12 @@ export class ClusterStatus {
     /**
     * State of cluster at the time of this request.
     */
-    'changeStatus'?: ClusterStatusChangeStatusEnum;
+
+    'changeStatus'?: string;
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
 
     static readonly discriminator: string | undefined = undefined;
@@ -29,7 +31,7 @@ export class ClusterStatus {
         {
             "name": "changeStatus",
             "baseName": "changeStatus",
-            "type": "ClusterStatusChangeStatusEnum",
+            "type": "string",
             "format": ""
         },
         {

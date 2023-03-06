@@ -19,14 +19,17 @@ export class DiskBackupShardedClusterSnapshotMember {
     /**
     * Human-readable label that identifies the cloud provider that stores this snapshot. The resource returns this parameter when `\"type\": \"replicaSet\"`.
     */
-    'cloudProvider': DiskBackupShardedClusterSnapshotMemberCloudProviderEnum;
+
+    'cloudProvider': string;
     /**
     * Unique 24-hexadecimal digit string that identifies the snapshot.
     */
+
     'id': string;
     /**
     * Human-readable label that identifies the shard or config host from which MongoDB Cloud took this snapshot.
     */
+
     'replicaSetName': string;
 
     static readonly discriminator: string | undefined = undefined;
@@ -35,7 +38,7 @@ export class DiskBackupShardedClusterSnapshotMember {
         {
             "name": "cloudProvider",
             "baseName": "cloudProvider",
-            "type": "DiskBackupShardedClusterSnapshotMemberCloudProviderEnum",
+            "type": "string",
             "format": ""
         },
         {

@@ -17,42 +17,52 @@ export class ApiOrganizationInvitationView {
     /**
     * Date and time when MongoDB Cloud sent the invitation. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
     */
+
     'createdAt'?: Date;
     /**
     * Date and time when the invitation from MongoDB Cloud expires. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
     */
+
     'expiresAt'?: Date;
     /**
     * Unique 24-hexadecimal digit string that identifies this organization.
     */
+
     'id'?: string;
     /**
     * Email address of the MongoDB Cloud user who sent the invitation to join the organization.
     */
+
     'inviterUsername'?: string;
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
     /**
     * Unique 24-hexadecimal digit string that identifies the organization.
     */
+
     'orgId'?: string;
     /**
     * Human-readable label that identifies this organization.
     */
+
     'orgName': string;
     /**
     * One or more organization or project level roles to assign to the MongoDB Cloud user.
     */
-    'roles'?: Set<ApiOrganizationInvitationViewRolesEnum>;
+
+    'roles'?: Set<string>;
     /**
     * List of unique 24-hexadecimal digit strings that identifies each team.
     */
+
     'teamIds'?: Set<string>;
     /**
     * Email address of the MongoDB Cloud user invited to join the organization.
     */
+
     'username'?: string;
 
     static readonly discriminator: string | undefined = undefined;
@@ -103,7 +113,7 @@ export class ApiOrganizationInvitationView {
         {
             "name": "roles",
             "baseName": "roles",
-            "type": "Set<ApiOrganizationInvitationViewRolesEnum>",
+            "type": "Set<string>",
             "format": ""
         },
         {

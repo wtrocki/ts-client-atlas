@@ -21,55 +21,69 @@ export class DiskBackupSnapshotSchedule {
     /**
     * Flag that indicates whether MongoDB Cloud automatically exports cloud backup snapshots to the AWS bucket.
     */
+
     'autoExportEnabled'?: boolean;
     /**
     * Unique 24-hexadecimal digit string that identifies the cluster with the snapshot you want to return.
     */
+
     'clusterId'?: string;
     /**
     * Human-readable label that identifies the cluster with the snapshot you want to return.
     */
+
     'clusterName'?: string;
     /**
     * List that contains a document for each copy setting item in the desired backup policy.
     */
+
     'copySettings'?: Array<DiskBackupCopySetting>;
     /**
     * List that contains a document for each deleted copy setting whose backup copies you want to delete.
     */
+
     'deleteCopiedBackups'?: Array<ApiDeleteCopiedBackupsView>;
+
     '_export'?: AutoExportPolicyView;
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
     /**
     * Date and time when MongoDB Cloud takes the next snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     */
+
     'nextSnapshot'?: Date;
     /**
     * Rules set for this backup schedule.
     */
+
     'policies'?: Array<ApiPolicyView>;
     /**
     * Hour of day in Coordinated Universal Time (UTC) that represents when MongoDB Cloud takes the snapshot.
     */
+
     'referenceHourOfDay'?: number;
     /**
     * Minute of the **referenceHourOfDay** that represents when MongoDB Cloud takes the snapshot.
     */
+
     'referenceMinuteOfHour'?: number;
     /**
     * Number of previous days that you can restore back to with Continuous Cloud Backup accuracy. You must specify a positive, non-zero integer. This parameter applies to continuous cloud backups only.
     */
+
     'restoreWindowDays'?: number;
     /**
     * Flag that indicates whether to apply the retention changes in the updated backup policy to snapshots that MongoDB Cloud took previously.
     */
+
     'updateSnapshots'?: boolean;
     /**
     * Flag that indicates whether to use organization and project names instead of organization and project UUIDs in the path to the metadata files that MongoDB Cloud uploads to your AWS bucket.
     */
+
     'useOrgAndGroupNamesInExportPrefix'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;

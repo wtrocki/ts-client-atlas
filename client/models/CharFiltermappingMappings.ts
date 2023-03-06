@@ -16,6 +16,7 @@ import { HttpFile } from '../http/http';
 * Comma-separated list of mappings. A mapping indicates that one character or group of characters should be substituted for another, using the following format:  `<original> : <replacement>`
 */
 export class CharFiltermappingMappings {
+
     'additionalProperties'?: string;
 
     static readonly discriminator: string | undefined = undefined;

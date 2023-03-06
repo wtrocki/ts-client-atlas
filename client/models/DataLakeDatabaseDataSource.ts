@@ -19,42 +19,52 @@ export class DataLakeDatabaseDataSource {
     /**
     * Flag that validates the scheme in the specified URLs. If `true`, allows insecure `HTTP` scheme, doesn't verify the server's certificate chain and hostname, and accepts any certificate with any hostname presented by the server. If `false`, allows secure `HTTPS` scheme only.
     */
+
     'allowInsecure'?: boolean;
     /**
     * Human-readable label that identifies the collection in the database. For creating a wildcard (`*`) collection, you must omit this parameter.
     */
+
     'collection'?: string;
     /**
     * Regex pattern to use for creating the wildcard (*) collection. To learn more about the regex syntax, see [Go programming language](https://pkg.go.dev/regexp).
     */
+
     'collectionRegex'?: string;
     /**
     * Human-readable label that identifies the database, which contains the collection in the cluster. You must omit this parameter to generate wildcard (`*`) collections for dynamically generated databases.
     */
+
     'database'?: string;
     /**
     * Regex pattern to use for creating the wildcard (*) database. To learn more about the regex syntax, see [Go programming language](https://pkg.go.dev/regexp).
     */
+
     'databaseRegex'?: string;
     /**
     * File format that MongoDB Cloud uses if it encounters a file without a file extension while searching **storeName**.
     */
-    'defaultFormat'?: DataLakeDatabaseDataSourceDefaultFormatEnum;
+
+    'defaultFormat'?: string;
     /**
     * File path that controls how MongoDB Cloud searches for and parses files in the **storeName** before mapping them to a collection.Specify ``/`` to capture all files and folders from the ``prefix`` path.
     */
+
     'path'?: string;
     /**
     * Name for the field that includes the provenance of the documents in the results. MongoDB Cloud returns different fields in the results for each supported provider.
     */
+
     'provenanceFieldName'?: string;
     /**
     * Human-readable label that identifies the data store that MongoDB Cloud maps to the collection.
     */
+
     'storeName'?: string;
     /**
     * URLs of the publicly accessible data files. You can't specify URLs that require authentication. Atlas Data Lake creates a partition for each URL. If empty or omitted, Data Lake uses the URLs from the store specified in the **dataSources.storeName** parameter.
     */
+
     'urls'?: Array<string>;
 
     static readonly discriminator: string | undefined = undefined;
@@ -93,7 +103,7 @@ export class DataLakeDatabaseDataSource {
         {
             "name": "defaultFormat",
             "baseName": "defaultFormat",
-            "type": "DataLakeDatabaseDataSourceDefaultFormatEnum",
+            "type": "string",
             "format": ""
         },
         {

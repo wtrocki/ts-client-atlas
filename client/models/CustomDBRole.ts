@@ -18,14 +18,17 @@ export class CustomDBRole {
     /**
     * List of the individual privilege actions that the role grants.
     */
+
     'actions'?: Array<DBAction>;
     /**
     * List of the built-in roles that this custom role inherits.
     */
+
     'inheritedRoles'?: Set<InheritedRole>;
     /**
     * Human-readable label that identifies the role for the request. This name must be unique for this custom role in this project.
     */
+
     'roleName': string;
 
     static readonly discriminator: string | undefined = undefined;

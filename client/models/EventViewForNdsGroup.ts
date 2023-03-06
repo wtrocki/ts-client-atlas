@@ -20,113 +20,143 @@ export class EventViewForNdsGroup {
     /**
     * Unique 24-hexadecimal digit string that identifies the [API Key](https://dochub.mongodb.org/core/atlas-create-prog-api-key) that triggered the event. If this resource returns this parameter, it doesn't return the **userId** parameter.
     */
+
     'apiKeyId'?: string;
     /**
     * Date and time when this event occurred. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC.
     */
+
     'created'?: Date;
+
     'eventTypeName'?: UserEventTypeViewForNdsGroup;
     /**
     * Unique 24-hexadecimal digit string that identifies the project in which the event occurred. The **eventId** identifies the specific event.
     */
+
     'groupId'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the event.
     */
+
     'id'?: string;
     /**
     * Flag that indicates whether a MongoDB employee triggered the specified event.
     */
+
     'isGlobalAdmin'?: boolean;
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
     /**
     * Unique 24-hexadecimal digit string that identifies the organization to which these events apply.
     */
+
     'orgId'?: string;
     /**
     * Public part of the [API Key](https://dochub.mongodb.org/core/atlas-create-prog-api-key) that triggered the event. If this resource returns this parameter, it doesn't return the **username** parameter.
     */
+
     'publicKey'?: string;
+
     'raw'?: Raw;
     /**
     * IPv4 or IPv6 address from which the user triggered this event.
     */
+
     'remoteAddress'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the console user who triggered the event. If this resource returns this parameter, it doesn't return the **apiKeyId** parameter.
     */
+
     'userId'?: string;
     /**
     * Email address for the user who triggered this event. If this resource returns this parameter, it doesn't return the **publicApiKey** parameter.
     */
+
     'username'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the alert associated with the event.
     */
+
     'alertId'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the alert configuration associated with the **alertId**.
     */
+
     'alertConfigId'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies of the invoice associated with the event.
     */
+
     'invoiceId'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the invoice payment associated with this event.
     */
+
     'paymentId'?: string;
     /**
     * Human-readable label of the shard associated with the event.
     */
+
     'shardName'?: string;
     /**
     * Human-readable label of the collection on which the event occurred. The resource returns this parameter when the **eventTypeName** includes `DATA_EXPLORER`.
     */
+
     'collection'?: string;
     /**
     * Human-readable label of the database on which this incident occurred. The resource returns this parameter when `\"eventTypeName\" : \"DATA_EXPLORER\"` or `\"eventTypeName\" : \"DATA_EXPLORER_CRUD\"`.
     */
+
     'database'?: string;
     /**
     * Action that the database attempted to execute when the event triggered. The response returns this parameter when `eventTypeName\" : \"DATA_EXPLORER\"`.
     */
+
     'opType'?: string;
     /**
     * IANA port on which the MongoDB process listens for requests.
     */
+
     'port'?: number;
     /**
     * Human-readable label of the replica set associated with the event.
     */
+
     'replicaSetName'?: string;
+
     'currentValue'?: HostMetricValueView;
     /**
     * Human-readable label of the metric associated with the **alertId**. This field may change type of **currentValue** field.
     */
+
     'metricName'?: string;
     /**
     * Entry in the list of source host addresses that the API key accepts and this event targets.
     */
+
     'whitelistEntry'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the endpoint associated with this event.
     */
+
     'endpointId'?: string;
     /**
     * Unique identification string that the cloud provider uses to identify the private endpoint.
     */
+
     'providerEndpointId'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the organization team associated with this event.
     */
+
     'teamId'?: string;
     /**
     * Email address for the console user that this event targets. The resource returns this parameter when `\"eventTypeName\" : \"USER\"`.
     */
+
     'targetUsername'?: string;
 
     static readonly discriminator: string | undefined = undefined;

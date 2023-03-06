@@ -22,48 +22,61 @@ export class FTSIndexAuditView {
     /**
     * Unique 24-hexadecimal digit string that identifies the [API Key](https://dochub.mongodb.org/core/atlas-create-prog-api-key) that triggered the event. If this resource returns this parameter, it doesn't return the **userId** parameter.
     */
+
     'apiKeyId'?: string;
     /**
     * Date and time when this event occurred. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC.
     */
+
     'created': Date;
+
     'eventTypeName': FTSIndexAuditTypeView;
     /**
     * Unique 24-hexadecimal digit string that identifies the project in which the event occurred. The **eventId** identifies the specific event.
     */
+
     'groupId'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the event.
     */
+
     'id': string;
     /**
     * Flag that indicates whether a MongoDB employee triggered the specified event.
     */
+
     'isGlobalAdmin'?: boolean;
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
     /**
     * Unique 24-hexadecimal digit string that identifies the organization to which these events apply.
     */
+
     'orgId'?: string;
     /**
     * Public part of the [API Key](https://dochub.mongodb.org/core/atlas-create-prog-api-key) that triggered the event. If this resource returns this parameter, it doesn't return the **username** parameter.
     */
+
     'publicKey'?: string;
+
     'raw'?: Raw;
     /**
     * IPv4 or IPv6 address from which the user triggered this event.
     */
+
     'remoteAddress'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the console user who triggered the event. If this resource returns this parameter, it doesn't return the **apiKeyId** parameter.
     */
+
     'userId'?: string;
     /**
     * Email address for the user who triggered this event. If this resource returns this parameter, it doesn't return the **publicApiKey** parameter.
     */
+
     'username'?: string;
 
     static readonly discriminator: string | undefined = undefined;

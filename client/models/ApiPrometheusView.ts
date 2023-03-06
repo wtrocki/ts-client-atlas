@@ -19,32 +19,41 @@ export class ApiPrometheusView {
     /**
     * Flag that indicates whether someone has activated the Prometheus integration.
     */
+
     'enabled': boolean;
     /**
     * Combination of IPv4 address and Internet Assigned Numbers Authority (IANA) port or the IANA port alone to which Prometheus binds to ingest MongoDB metrics.
     */
+
     'listenAddress'?: string;
+
     'password'?: string;
+
     'rateLimitInterval'?: number;
     /**
     * Security Scheme to apply to HyperText Transfer Protocol (HTTP) traffic between Prometheus and MongoDB Cloud.
     */
-    'scheme': ApiPrometheusViewSchemeEnum;
+
+    'scheme': string;
     /**
     * Desired method to discover the Prometheus service.
     */
-    'serviceDiscovery': ApiPrometheusViewServiceDiscoveryEnum;
+
+    'serviceDiscovery': string;
     /**
     * Root-relative path to the Transport Layer Security (TLS) Privacy Enhanced Mail (PEM) key and certificate file on the host.
     */
+
     'tlsPemPath'?: string;
     /**
     * Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the third-party service integration type.
     */
-    'type'?: ApiPrometheusViewTypeEnum;
+
+    'type'?: string;
     /**
     * Human-readable label that identifies your Prometheus incoming webhook.
     */
+
     'username': string;
 
     static readonly discriminator: string | undefined = undefined;
@@ -77,13 +86,13 @@ export class ApiPrometheusView {
         {
             "name": "scheme",
             "baseName": "scheme",
-            "type": "ApiPrometheusViewSchemeEnum",
+            "type": "string",
             "format": ""
         },
         {
             "name": "serviceDiscovery",
             "baseName": "serviceDiscovery",
-            "type": "ApiPrometheusViewServiceDiscoveryEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -95,7 +104,7 @@ export class ApiPrometheusView {
         {
             "name": "type",
             "baseName": "type",
-            "type": "ApiPrometheusViewTypeEnum",
+            "type": "string",
             "format": ""
         },
         {

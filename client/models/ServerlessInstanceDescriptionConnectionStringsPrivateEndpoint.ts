@@ -20,15 +20,18 @@ export class ServerlessInstanceDescriptionConnectionStringsPrivateEndpoint {
     /**
     * List that contains the private endpoints through which you connect to MongoDB Cloud when you use **connectionStrings.privateEndpoint[n].srvConnectionString**.
     */
+
     'endpoints'?: Array<ServerlessInstanceDescriptionConnectionStringsPrivateEndpointEndpoint>;
     /**
     * Private endpoint-aware connection string that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in the Domain Name System (DNS).
     */
+
     'srvConnectionString'?: string;
     /**
     * MongoDB process type to which your application connects.
     */
-    'type'?: ServerlessInstanceDescriptionConnectionStringsPrivateEndpointTypeEnum;
+
+    'type'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -48,7 +51,7 @@ export class ServerlessInstanceDescriptionConnectionStringsPrivateEndpoint {
         {
             "name": "type",
             "baseName": "type",
-            "type": "ServerlessInstanceDescriptionConnectionStringsPrivateEndpointTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

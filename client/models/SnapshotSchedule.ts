@@ -17,43 +17,53 @@ export class SnapshotSchedule {
     /**
     * Quantity of time expressed in minutes between successive cluster checkpoints. This parameter applies only to sharded clusters. This number determines the granularity of continuous cloud backups for sharded clusters.
     */
-    'clusterCheckpointIntervalMin': SnapshotScheduleClusterCheckpointIntervalMinEnum;
+
+    'clusterCheckpointIntervalMin': number;
     /**
     * Unique 24-hexadecimal digit string that identifies the cluster with the snapshot you want to return.
     */
+
     'clusterId': string;
     /**
     * Quantity of time to keep daily snapshots. MongoDB Cloud expresses this value in days. Set this value to `0` to disable daily snapshot retention.
     */
-    'dailySnapshotRetentionDays': SnapshotScheduleDailySnapshotRetentionDaysEnum;
+
+    'dailySnapshotRetentionDays': number;
     /**
     * Unique 24-hexadecimal digit string that identifies the project that contains the cluster.
     */
+
     'groupId': string;
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
     /**
     * Number of months that MongoDB Cloud must keep monthly snapshots. Set this value to `0` to disable monthly snapshot retention.
     */
-    'monthlySnapshotRetentionMonths': SnapshotScheduleMonthlySnapshotRetentionMonthsEnum;
+
+    'monthlySnapshotRetentionMonths': number;
     /**
     * Number of hours before the current time from which MongoDB Cloud can create a Continuous Cloud Backup snapshot.
     */
+
     'pointInTimeWindowHours': number;
     /**
     * Number of hours that must elapse before taking another snapshot.
     */
-    'snapshotIntervalHours': SnapshotScheduleSnapshotIntervalHoursEnum;
+
+    'snapshotIntervalHours': number;
     /**
     * Number of days that MongoDB Cloud must keep recent snapshots.
     */
-    'snapshotRetentionDays': SnapshotScheduleSnapshotRetentionDaysEnum;
+
+    'snapshotRetentionDays': number;
     /**
     * Number of weeks that MongoDB Cloud must keep weekly snapshots. Set this value to `0` to disable weekly snapshot retention.
     */
-    'weeklySnapshotRetentionWeeks': SnapshotScheduleWeeklySnapshotRetentionWeeksEnum;
+
+    'weeklySnapshotRetentionWeeks': number;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -61,7 +71,7 @@ export class SnapshotSchedule {
         {
             "name": "clusterCheckpointIntervalMin",
             "baseName": "clusterCheckpointIntervalMin",
-            "type": "SnapshotScheduleClusterCheckpointIntervalMinEnum",
+            "type": "number",
             "format": "int32"
         },
         {
@@ -73,7 +83,7 @@ export class SnapshotSchedule {
         {
             "name": "dailySnapshotRetentionDays",
             "baseName": "dailySnapshotRetentionDays",
-            "type": "SnapshotScheduleDailySnapshotRetentionDaysEnum",
+            "type": "number",
             "format": "int32"
         },
         {
@@ -91,7 +101,7 @@ export class SnapshotSchedule {
         {
             "name": "monthlySnapshotRetentionMonths",
             "baseName": "monthlySnapshotRetentionMonths",
-            "type": "SnapshotScheduleMonthlySnapshotRetentionMonthsEnum",
+            "type": "number",
             "format": "int32"
         },
         {
@@ -103,19 +113,19 @@ export class SnapshotSchedule {
         {
             "name": "snapshotIntervalHours",
             "baseName": "snapshotIntervalHours",
-            "type": "SnapshotScheduleSnapshotIntervalHoursEnum",
+            "type": "number",
             "format": "int32"
         },
         {
             "name": "snapshotRetentionDays",
             "baseName": "snapshotRetentionDays",
-            "type": "SnapshotScheduleSnapshotRetentionDaysEnum",
+            "type": "number",
             "format": "int32"
         },
         {
             "name": "weeklySnapshotRetentionWeeks",
             "baseName": "weeklySnapshotRetentionWeeks",
-            "type": "SnapshotScheduleWeeklySnapshotRetentionWeeksEnum",
+            "type": "number",
             "format": "int32"
         }    ];
 

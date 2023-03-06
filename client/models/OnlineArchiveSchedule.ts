@@ -20,30 +20,37 @@ import { HttpFile } from '../http/http';
 * Regular frequency and duration when archiving process occurs.
 */
 export class OnlineArchiveSchedule {
+
     'type': string;
     /**
     * Hour of the day when the scheduled window to run one online archive ends.
     */
+
     'endHour'?: number;
     /**
     * Minute of the hour when the scheduled window to run one online archive ends.
     */
+
     'endMinute'?: number;
     /**
     * Hour of the day when the when the scheduled window to run one online archive starts.
     */
+
     'startHour'?: number;
     /**
     * Minute of the hour when the scheduled window to run one online archive starts.
     */
+
     'startMinute'?: number;
     /**
     * Day of the week when the scheduled archive starts. The week starts with Monday (`1`) and ends with Sunday (`7`).
     */
+
     'dayOfWeek'?: number;
     /**
     * Day of the month when the scheduled archive starts.
     */
+
     'dayOfMonth'?: number;
 
     static readonly discriminator: string | undefined = "type";
@@ -97,7 +104,6 @@ export class OnlineArchiveSchedule {
     }
 
     public constructor() {
-        this.type = "OnlineArchiveSchedule";
     }
 }
 

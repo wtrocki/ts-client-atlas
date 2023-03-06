@@ -17,42 +17,52 @@ export class ServerlessBackupSnapshot {
     /**
     * Date and time when MongoDB Cloud took the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     */
+
     'createdAt'?: Date;
     /**
     * Date and time when MongoDB Cloud deletes the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     */
+
     'expiresAt'?: Date;
     /**
     * Human-readable label that identifies how often this snapshot triggers.
     */
-    'frequencyType'?: ServerlessBackupSnapshotFrequencyTypeEnum;
+
+    'frequencyType'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the snapshot.
     */
+
     'id'?: string;
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
     /**
     * Version of the MongoDB host that this snapshot backs up.
     */
+
     'mongodVersion'?: string;
     /**
     * Human-readable label given to the serverless instance from which MongoDB Cloud took this snapshot.
     */
+
     'serverlessInstanceName'?: string;
     /**
     * Human-readable label that identifies when this snapshot triggers.
     */
-    'snapshotType'?: ServerlessBackupSnapshotSnapshotTypeEnum;
+
+    'snapshotType'?: string;
     /**
     * Human-readable label that indicates the stage of the backup process for this snapshot.
     */
-    'status'?: ServerlessBackupSnapshotStatusEnum;
+
+    'status'?: string;
     /**
     * Number of bytes taken to store the backup snapshot.
     */
+
     'storageSizeBytes'?: number;
 
     static readonly discriminator: string | undefined = undefined;
@@ -73,7 +83,7 @@ export class ServerlessBackupSnapshot {
         {
             "name": "frequencyType",
             "baseName": "frequencyType",
-            "type": "ServerlessBackupSnapshotFrequencyTypeEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -103,13 +113,13 @@ export class ServerlessBackupSnapshot {
         {
             "name": "snapshotType",
             "baseName": "snapshotType",
-            "type": "ServerlessBackupSnapshotSnapshotTypeEnum",
+            "type": "string",
             "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "ServerlessBackupSnapshotStatusEnum",
+            "type": "string",
             "format": ""
         },
         {

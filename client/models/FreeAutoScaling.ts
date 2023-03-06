@@ -19,6 +19,7 @@ export class FreeAutoScaling {
     /**
     * Collection of settings that configures how a cluster might scale its cluster tier and whether the cluster can scale down.
     */
+
     'compute'?: string;
 
     static readonly discriminator: string | undefined = undefined;

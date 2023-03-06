@@ -19,46 +19,57 @@ export class AvailableDeploymentView {
     /**
     * Version of MongoDB Agent that monitors/manages the cluster.
     */
+
     'agentVersion'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the cluster.
     */
+
     'clusterId'?: string;
     /**
     * Size of this database on disk at the time of the request expressed in bytes.
     */
+
     'dbSizeBytes'?: number;
     /**
     * Version of MongoDB [features](https://docs.mongodb.com/manual/reference/command/setFeatureCompatibilityVersion) that this cluster supports.
     */
+
     'featureCompatibilityVersion': string;
     /**
     * Flag that indicates whether Automation manages this cluster.
     */
+
     'managed': boolean;
     /**
     * Version of MongoDB that this cluster runs.
     */
+
     'mongoDBVersion': string;
     /**
     * Human-readable label that identifies this cluster.
     */
+
     'name': string;
     /**
     * Size of the Oplog on disk at the time of the request expressed in MB.
     */
+
     'oplogSizeMB'?: number;
     /**
     * Flag that indicates whether someone configured this cluster as a sharded cluster.  - If `true`, this cluster serves as a sharded cluster. - If `false`, this cluster serves as a replica set.
     */
+
     'sharded': boolean;
     /**
     * Number of shards that comprise this cluster.
     */
+
     'shardsSize'?: number;
     /**
     * Flag that indicates whether someone enabled TLS for this cluster.
     */
+
     'tlsEnabled': boolean;
 
     static readonly discriminator: string | undefined = undefined;

@@ -19,10 +19,12 @@ export class InheritedRole {
     /**
     * Human-readable label that identifies the database on which someone grants the action to one MongoDB user.
     */
+
     'db': string;
     /**
     * Human-readable label that identifies the role inherited. Set this value to `admin` for every role except `read` or `readWrite`.
     */
+
     'role': string;
 
     static readonly discriminator: string | undefined = undefined;

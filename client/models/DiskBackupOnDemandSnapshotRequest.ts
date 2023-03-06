@@ -17,14 +17,17 @@ export class DiskBackupOnDemandSnapshotRequest {
     /**
     * Human-readable phrase or sentence that explains the purpose of the snapshot. The resource returns this parameter when `\"status\" : \"onDemand\"`.
     */
+
     'description'?: string;
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
     /**
     * Number of days that MongoDB Cloud should retain the on-demand snapshot. Must be at least **1**.
     */
+
     'retentionInDays'?: number;
 
     static readonly discriminator: string | undefined = undefined;

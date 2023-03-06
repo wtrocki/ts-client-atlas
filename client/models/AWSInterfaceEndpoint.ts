@@ -19,18 +19,22 @@ export class AWSInterfaceEndpoint {
     /**
     * State of the Amazon Web Service PrivateLink connection when MongoDB Cloud received this request.
     */
-    'connectionStatus'?: AWSInterfaceEndpointConnectionStatusEnum;
+
+    'connectionStatus'?: string;
     /**
     * Flag that indicates whether MongoDB Cloud received a request to remove the specified private endpoint from the private endpoint service.
     */
+
     'deleteRequested'?: boolean;
     /**
     * Error message returned when requesting private connection resource. The resource returns `null` if the request succeeded.
     */
+
     'errorMessage'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the interface endpoint.
     */
+
     'interfaceEndpointId'?: string;
 
     static readonly discriminator: string | undefined = undefined;
@@ -39,7 +43,7 @@ export class AWSInterfaceEndpoint {
         {
             "name": "connectionStatus",
             "baseName": "connectionStatus",
-            "type": "AWSInterfaceEndpointConnectionStatusEnum",
+            "type": "string",
             "format": ""
         },
         {

@@ -19,6 +19,7 @@ export class CreateAWSEndpointRequest {
     /**
     * Unique string that identifies the private endpoint's network interface that someone added to this private endpoint service.
     */
+
     'id'?: string;
 
     static readonly discriminator: string | undefined = undefined;

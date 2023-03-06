@@ -19,18 +19,22 @@ export class RegionSpec {
     /**
     * Number of analytics nodes in the region. Analytics nodes handle analytic data such as reporting queries from MongoDB Connector for Business Intelligence on MongoDB Cloud. Analytics nodes are read-only, and can never become the primary. Use **replicationSpecs[n].{region}.analyticsNodes** instead.
     */
+
     'analyticsNodes'?: number;
     /**
     * Number of electable nodes to deploy in the specified region. Electable nodes can become the primary and can facilitate local reads. Use **replicationSpecs[n].{region}.electableNodes** instead.
     */
-    'electableNodes'?: RegionSpecElectableNodesEnum;
+
+    'electableNodes'?: number;
     /**
     * Number that indicates the election priority of the region. To identify the Preferred Region of the cluster, set this parameter to `7`. The primary node runs in the **Preferred Region**. To identify a read-only region, set this parameter to `0`.
     */
+
     'priority'?: number;
     /**
     * Number of read-only nodes in the region. Read-only nodes can never become the primary member, but can facilitate local reads. Use **replicationSpecs[n].{region}.readOnlyNodes** instead.
     */
+
     'readOnlyNodes'?: number;
 
     static readonly discriminator: string | undefined = undefined;
@@ -45,7 +49,7 @@ export class RegionSpec {
         {
             "name": "electableNodes",
             "baseName": "electableNodes",
-            "type": "RegionSpecElectableNodesEnum",
+            "type": "number",
             "format": "int32"
         },
         {

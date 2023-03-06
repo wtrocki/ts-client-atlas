@@ -17,15 +17,18 @@ import { HttpFile } from '../http/http';
 * A Limit that triggers an alert when  exceeded. The resource returns this parameter when **eventTypeName** has not been set to `OUTSIDE_METRIC_THRESHOLD`.
 */
 export class ThresholdViewInteger {
+
     'operator'?: Operator;
     /**
     * Value of metric that, when exceeded, triggers an alert.
     */
+
     'threshold'?: number;
     /**
     * Element used to express the quantity. This can be an element of time, storage capacity, and the like.
     */
-    'units'?: ThresholdViewIntegerUnitsEnum;
+
+    'units'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -45,7 +48,7 @@ export class ThresholdViewInteger {
         {
             "name": "units",
             "baseName": "units",
-            "type": "ThresholdViewIntegerUnitsEnum",
+            "type": "string",
             "format": ""
         }    ];
 

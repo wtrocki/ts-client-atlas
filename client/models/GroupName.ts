@@ -19,6 +19,7 @@ export class GroupName {
     /**
     * Human-readable label that identifies the project included in the MongoDB Cloud organization.
     */
+
     'name'?: string;
 
     static readonly discriminator: string | undefined = undefined;

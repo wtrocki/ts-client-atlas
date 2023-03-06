@@ -22,32 +22,41 @@ export class IngestionPipeline {
     /**
     * Unique 24-hexadecimal digit string that identifies the Data Lake Pipeline.
     */
+
     'id'?: string;
     /**
     * Timestamp that indicates when the Data Lake Pipeline was created.
     */
+
     'createdDate'?: Date;
     /**
     * Unique 24-hexadecimal digit string that identifies the group.
     */
+
     'groupId'?: string;
     /**
     * Timestamp that indicates the last time that the Data Lake Pipeline was updated.
     */
+
     'lastUpdatedDate'?: Date;
     /**
     * Name of this Data Lake Pipeline.
     */
+
     'name'?: string;
+
     'sink'?: IngestionSink;
+
     'source'?: IngestionSource;
     /**
     * State of this Data Lake Pipeline.
     */
-    'state'?: IngestionPipelineStateEnum;
+
+    'state'?: string;
     /**
     * Fields to be excluded for this Data Lake Pipeline.
     */
+
     'transformations'?: Array<FieldTransformation>;
 
     static readonly discriminator: string | undefined = undefined;
@@ -98,7 +107,7 @@ export class IngestionPipeline {
         {
             "name": "state",
             "baseName": "state",
-            "type": "IngestionPipelineStateEnum",
+            "type": "string",
             "format": ""
         },
         {

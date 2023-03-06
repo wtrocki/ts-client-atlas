@@ -17,7 +17,9 @@ import { HttpFile } from '../http/http';
 * PEM file information for the identity provider's certificates.
 */
 export class PemFileInfo {
+
     'certificates'?: Array<X509Certificate>;
+
     'fileName'?: string;
 
     static readonly discriminator: string | undefined = undefined;

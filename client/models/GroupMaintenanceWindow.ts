@@ -16,18 +16,22 @@ export class GroupMaintenanceWindow {
     /**
     * Flag that indicates whether MongoDB Cloud should defer all maintenance windows for one week after you enable them.
     */
+
     'autoDeferOnceEnabled'?: boolean;
     /**
     * One-based integer that represents the day of the week that the maintenance window starts.  | Value | Day of Week | |---|---| | `1` | Sunday | | `2` | Monday | | `3` | Tuesday | | `4` | Wednesday | | `5` | Thursday | | `6` | Friday | | `7` | Saturday | 
     */
+
     'dayOfWeek': number;
     /**
     * Zero-based integer that represents the hour of the of the day that the maintenance window starts according to a 24-hour clock. Use `0` for midnight and `12` for noon.
     */
+
     'hourOfDay': number;
     /**
     * Flag that indicates whether MongoDB Cloud starts the maintenance window immediately upon receiving this request. To start the maintenance window immediately for your project, MongoDB Cloud must have maintenance scheduled and you must set a maintenance window. This flag resets to `false` after MongoDB Cloud completes maintenance.
     */
+
     'startASAP'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;

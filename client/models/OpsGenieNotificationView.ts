@@ -19,23 +19,28 @@ export class OpsGenieNotificationView {
     /**
     * Number of minutes that MongoDB Cloud waits after detecting an alert condition before it sends out the first notification.
     */
+
     'delayMin'?: number;
     /**
     * Number of minutes to wait between successive notifications. MongoDB Cloud sends notifications until someone acknowledges the unacknowledged alert.  PagerDuty, VictorOps, and OpsGenie notifications don't return this element. Configure and manage the notification interval within each of those services.
     */
+
     'intervalMin'?: number;
     /**
     * API Key that MongoDB Cloud needs to send this notification via Opsgenie. The resource requires this parameter when `\"notifications.[n].typeName\" : \"OPS_GENIE\"`. If the key later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.  **NOTE**: After you create a notification which requires an API or integration key, the key appears partially redacted when you:  * View or edit the alert through the Atlas UI.  * Query the alert for the notification through the Atlas Administration API.
     */
+
     'opsGenieApiKey'?: string;
     /**
     * Opsgenie region that indicates which API Uniform Resource Locator (URL) to use.
     */
-    'opsGenieRegion'?: OpsGenieNotificationViewOpsGenieRegionEnum;
+
+    'opsGenieRegion'?: string;
     /**
     * Human-readable label that displays the alert notification type.
     */
-    'typeName': OpsGenieNotificationViewTypeNameEnum;
+
+    'typeName': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -61,13 +66,13 @@ export class OpsGenieNotificationView {
         {
             "name": "opsGenieRegion",
             "baseName": "opsGenieRegion",
-            "type": "OpsGenieNotificationViewOpsGenieRegionEnum",
+            "type": "string",
             "format": ""
         },
         {
             "name": "typeName",
             "baseName": "typeName",
-            "type": "OpsGenieNotificationViewTypeNameEnum",
+            "type": "string",
             "format": ""
         }    ];
 

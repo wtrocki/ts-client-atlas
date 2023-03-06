@@ -16,6 +16,7 @@ export class ApiAddUserToTeamView {
     /**
     * Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
     */
+
     'id': string;
 
     static readonly discriminator: string | undefined = undefined;

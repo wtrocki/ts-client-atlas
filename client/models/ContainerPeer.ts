@@ -16,10 +16,12 @@ export class ContainerPeer {
     /**
     * Unique 24-hexadecimal digit string that identifies the MongoDB Cloud network container that contains the specified network peering connection.
     */
+
     'containerId': string;
     /**
     * Unique 24-hexadecimal digit string that identifies the network peering connection.
     */
+
     'id'?: string;
 
     static readonly discriminator: string | undefined = undefined;

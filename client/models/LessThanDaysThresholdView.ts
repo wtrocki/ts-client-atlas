@@ -19,15 +19,18 @@ export class LessThanDaysThresholdView {
     /**
     * Comparison operator to apply when checking the current metric value.
     */
-    'operator'?: LessThanDaysThresholdViewOperatorEnum;
+
+    'operator'?: string;
     /**
     * Value of metric that, when exceeded, triggers an alert.
     */
+
     'threshold'?: number;
     /**
     * Element used to express the quantity. This can be an element of time, storage capacity, and the like.
     */
-    'units'?: LessThanDaysThresholdViewUnitsEnum;
+
+    'units'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -35,7 +38,7 @@ export class LessThanDaysThresholdView {
         {
             "name": "operator",
             "baseName": "operator",
-            "type": "LessThanDaysThresholdViewOperatorEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -47,7 +50,7 @@ export class LessThanDaysThresholdView {
         {
             "name": "units",
             "baseName": "units",
-            "type": "LessThanDaysThresholdViewUnitsEnum",
+            "type": "string",
             "format": ""
         }    ];
 

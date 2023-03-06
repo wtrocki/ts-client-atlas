@@ -13,19 +13,24 @@
 import { HttpFile } from '../http/http';
 
 export class ApiError {
+
     'detail'?: string;
     /**
     * HTTP status code returned with this error.
     */
+
     'error'?: number;
     /**
     * Application error code returned with this error.
     */
+
     'errorCode'?: string;
+
     'parameters'?: Array<any>;
     /**
     * Application error message returned with this error.
     */
+
     'reason'?: string;
 
     static readonly discriminator: string | undefined = undefined;

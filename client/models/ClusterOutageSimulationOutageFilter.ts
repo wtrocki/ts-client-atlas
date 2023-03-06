@@ -16,15 +16,18 @@ export class ClusterOutageSimulationOutageFilter {
     /**
     * The cloud provider of the region that undergoes the outage simulation.
     */
-    'cloudProvider'?: ClusterOutageSimulationOutageFilterCloudProviderEnum;
+
+    'cloudProvider'?: string;
     /**
     * The name of the region to undergo an outage simulation.
     */
+
     'regionName'?: string;
     /**
     * The type of cluster outage to simulate.  | Type       | Description | |------------|-------------| | `REGION`   | Simulates a cluster outage for a region.|
     */
-    'type'?: ClusterOutageSimulationOutageFilterTypeEnum;
+
+    'type'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -32,7 +35,7 @@ export class ClusterOutageSimulationOutageFilter {
         {
             "name": "cloudProvider",
             "baseName": "cloudProvider",
-            "type": "ClusterOutageSimulationOutageFilterCloudProviderEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -44,7 +47,7 @@ export class ClusterOutageSimulationOutageFilter {
         {
             "name": "type",
             "baseName": "type",
-            "type": "ClusterOutageSimulationOutageFilterTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

@@ -18,67 +18,84 @@ export class ServerlessBackupRestoreJob {
     /**
     * Flag that indicates whether someone canceled this restore job.
     */
+
     'cancelled'?: boolean;
     /**
     * Human-readable label that categorizes the restore job to create.
     */
-    'deliveryType': ServerlessBackupRestoreJobDeliveryTypeEnum;
+
+    'deliveryType': string;
     /**
     * One or more Uniform Resource Locators (URLs) that point to the compressed snapshot files for manual download. MongoDB Cloud returns this parameter when `\"deliveryType\" : \"download\"`.
     */
+
     'deliveryUrl'?: Array<string>;
+
     'desiredTimestamp'?: ApiBSONTimestampView;
     /**
     * Flag that indicates whether the restore job expired.
     */
+
     'expired'?: boolean;
     /**
     * Date and time when the restore job expires. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     */
+
     'expiresAt'?: Date;
     /**
     * Flag that indicates whether the restore job failed.
     */
+
     'failed'?: boolean;
     /**
     * Date and time when the restore job completed. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     */
+
     'finishedAt'?: Date;
     /**
     * Unique 24-hexadecimal character string that identifies the restore job.
     */
+
     'id'?: string;
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
     /**
     * Oplog operation number from which you want to restore this snapshot. This number represents the second part of an Oplog timestamp. The resource returns this parameter when `\"deliveryType\" : \"pointInTime\"` and **oplogTs** exceeds `0`.
     */
+
     'oplogInc'?: number;
     /**
     * Date and time from which you want to restore this snapshot. This parameter expresses this timestamp in the number of seconds that have elapsed since the UNIX epoch. This number represents the first part of an Oplog timestamp. The resource returns this parameter when `\"deliveryType\" : \"pointInTime\"` and **oplogTs** exceeds `0`.
     */
+
     'oplogTs'?: number;
     /**
     * Date and time from which MongoDB Cloud restored this snapshot. This parameter expresses this timestamp in the number of seconds that have elapsed since the UNIX epoch. The resource returns this parameter when `\"deliveryType\" : \"pointInTime\"` and **pointInTimeUTCSeconds** exceeds `0`.
     */
+
     'pointInTimeUTCSeconds'?: number;
     /**
     * Unique 24-hexadecimal character string that identifies the snapshot.
     */
+
     'snapshotId'?: string;
     /**
     * Human-readable label that identifies the target cluster to which the restore job restores the snapshot. The resource returns this parameter when `\"deliveryType\":` `\"automated\"`.
     */
+
     'targetClusterName': string;
     /**
     * Unique 24-hexadecimal digit string that identifies the target project for the specified **targetClusterName**.
     */
+
     'targetGroupId': string;
     /**
     * Date and time when MongoDB Cloud took the snapshot associated with **snapshotId**. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     */
+
     'timestamp'?: Date;
 
     static readonly discriminator: string | undefined = undefined;
@@ -93,7 +110,7 @@ export class ServerlessBackupRestoreJob {
         {
             "name": "deliveryType",
             "baseName": "deliveryType",
-            "type": "ServerlessBackupRestoreJobDeliveryTypeEnum",
+            "type": "string",
             "format": ""
         },
         {

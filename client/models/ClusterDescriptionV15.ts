@@ -21,81 +21,102 @@ export class ClusterDescriptionV15 {
     /**
     * Flag that indicates whether the cluster can perform backups. If set to `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters. Backup uses [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/) for dedicated clusters and [Shared Cluster Backups](https://docs.atlas.mongodb.com/backup/shared-tier/overview/) for tenant clusters. If set to `false`, the cluster doesn't use backups.
     */
+
     'backupEnabled'?: boolean;
+
     'biConnector'?: BiConnector;
     /**
     * Configuration of nodes that comprise the cluster.
     */
-    'clusterType'?: ClusterDescriptionV15ClusterTypeEnum;
+
+    'clusterType'?: string;
+
     'connectionStrings'?: ClusterDescriptionConnectionStrings;
     /**
     * Date and time when MongoDB Cloud created this cluster. This parameter expresses its value in ISO 8601 format in UTC.
     */
+
     'createDate'?: Date;
     /**
     * Storage capacity that the host's root volume possesses expressed in gigabytes. Increase this number to add capacity. MongoDB Cloud requires this parameter if you set **replicationSpecs**. If you specify a disk size below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
     */
+
     'diskSizeGB'?: number;
     /**
     * Cloud service provider that manages your customer keys to provide an additional layer of encryption at rest for the cluster. To enable customer key management for encryption at rest, the cluster **replicationSpecs[n].regionConfigs[m].{type}Specs.instanceSize** setting must be `M10` or higher and `\"backupEnabled\" : false` or omitted entirely.
     */
-    'encryptionAtRestProvider'?: ClusterDescriptionV15EncryptionAtRestProviderEnum;
+
+    'encryptionAtRestProvider'?: string;
     /**
     * Unique 24-hexadecimal character string that identifies the project.
     */
+
     'groupId'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the replication object for a zone in a Global Cluster. If you include existing zones in the request, you must specify this parameter. If you add a new zone to an existing Global Cluster, you may specify this parameter. The request deletes any existing zones in a Global Cluster that you exclude from the request.
     */
+
     'id'?: string;
     /**
     * Collection of key-value pairs between 1 to 255 characters in length that tag and categorize the cluster. The MongoDB Cloud console doesn't display your labels.
     */
+
     'labels'?: Array<NDSLabel>;
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
     /**
     * Major MongoDB version of the cluster. MongoDB Cloud deploys the cluster with the latest stable release of the specified version.
     */
-    'mongoDBMajorVersion'?: ClusterDescriptionV15MongoDBMajorVersionEnum;
+
+    'mongoDBMajorVersion'?: string;
     /**
     * Version of MongoDB that the cluster runs.
     */
+
     'mongoDBVersion'?: string;
     /**
     * Human-readable label that identifies the advanced cluster.
     */
+
     'name'?: string;
     /**
     * Flag that indicates whether the cluster is paused.
     */
+
     'paused'?: boolean;
     /**
     * Flag that indicates whether the cluster uses continuous cloud backups.
     */
+
     'pitEnabled'?: boolean;
     /**
     * List of settings that configure your cluster regions. For Global Clusters, each object in the array represents a zone where your clusters nodes deploy. For non-Global sharded clusters and replica sets, this array has one object representing where your clusters nodes deploy.
     */
+
     'replicationSpecs'?: Array<ReplicationSpec>;
     /**
     * Root Certificate Authority that MongoDB Cloud cluster uses. MongoDB Cloud supports Internet Security Research Group.
     */
-    'rootCertType'?: ClusterDescriptionV15RootCertTypeEnum;
+
+    'rootCertType'?: string;
     /**
     * Human-readable label that indicates the current operating condition of this cluster.
     */
-    'stateName'?: ClusterDescriptionV15StateNameEnum;
+
+    'stateName'?: string;
     /**
     * Flag that indicates whether termination protection is enabled on the cluster. If set to `true`, MongoDB Cloud won't delete the cluster. If set to `false`, MongoDB Cloud will delete the cluster.
     */
+
     'terminationProtectionEnabled'?: boolean;
     /**
     * Method by which the cluster maintains the MongoDB versions. If value is `CONTINUOUS`, you must not specify **mongoDBMajorVersion**.
     */
-    'versionReleaseSystem'?: ClusterDescriptionV15VersionReleaseSystemEnum;
+
+    'versionReleaseSystem'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -115,7 +136,7 @@ export class ClusterDescriptionV15 {
         {
             "name": "clusterType",
             "baseName": "clusterType",
-            "type": "ClusterDescriptionV15ClusterTypeEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -139,7 +160,7 @@ export class ClusterDescriptionV15 {
         {
             "name": "encryptionAtRestProvider",
             "baseName": "encryptionAtRestProvider",
-            "type": "ClusterDescriptionV15EncryptionAtRestProviderEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -169,7 +190,7 @@ export class ClusterDescriptionV15 {
         {
             "name": "mongoDBMajorVersion",
             "baseName": "mongoDBMajorVersion",
-            "type": "ClusterDescriptionV15MongoDBMajorVersionEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -205,13 +226,13 @@ export class ClusterDescriptionV15 {
         {
             "name": "rootCertType",
             "baseName": "rootCertType",
-            "type": "ClusterDescriptionV15RootCertTypeEnum",
+            "type": "string",
             "format": ""
         },
         {
             "name": "stateName",
             "baseName": "stateName",
-            "type": "ClusterDescriptionV15StateNameEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -223,7 +244,7 @@ export class ClusterDescriptionV15 {
         {
             "name": "versionReleaseSystem",
             "baseName": "versionReleaseSystem",
-            "type": "ClusterDescriptionV15VersionReleaseSystemEnum",
+            "type": "string",
             "format": ""
         }    ];
 

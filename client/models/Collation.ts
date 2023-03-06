@@ -19,38 +19,47 @@ export class Collation {
     /**
     * Method to handle whitespace and punctuation as base characters for purposes of comparison.  | Value | Evaluate Whitespace and Punctuation as Base Characters | |---|---| | `\"non-ignorable\"` | Yes | | `\"shifted\"` | No. MongoDB Cloud distinguishes these characters when `\"strength\" > 3`. | 
     */
-    'alternate'?: CollationAlternateEnum;
+
+    'alternate'?: string;
     /**
     * Flag that indicates whether strings with diacritics sort from back of the string. Some French dictionary orders strings in this way.  | Value | String Comparison Method |  |---|---| | `true` | Compare from back to front. | | `false` | Compare from front to back. | 
     */
+
     'backwards'?: boolean;
     /**
     * Method to handle sort order of case differences during tertiary level comparisons.  | Value | Sort Order Method |  |---|---|  | `\"upper\"` | Uppercase sorts before lowercase. |  | `\"lower\"` | Lowercase sorts before uppercase. |  | `\"off\"` | Similar to \"lower\" with slight differences. | 
     */
-    'caseFirst'?: CollationCaseFirstEnum;
+
+    'caseFirst'?: string;
     /**
     * Flag that indicates whether to include case comparison when `\"strength\" : 1` or `\"strength\" : 2`.  | Value | Compare case at level 1 or 2? | Strength Level | Comparisons Include |  |---|---|---|---|  | true | Yes | 1 | Base characters and case. |  |  |  | 2 | Base characters, diacritics (and possible other secondary differences),   and case. |  | false | No |  |  | 
     */
+
     'caseLevel'?: boolean;
     /**
     * International Components for Unicode (ICU) code that represents a localized language. To specify simple binary comparison, set `\"locale\" : \"simple\"`.
     */
-    'locale': CollationLocaleEnum;
+
+    'locale': string;
     /**
     * Field that indicates which characters can be ignored when `\"alternate\" : \"shifted\"`. This has no affect if `\"alternate\" : \"non-ignorable\"`.  | Value | Ignore |  |---|---| | `\"punct\"` | Both whitespace and punctuation | | `\"space\"` | Whitespace | 
     */
-    'maxVariable'?: CollationMaxVariableEnum;
+
+    'maxVariable'?: string;
     /**
     * Flag that indicates whether to check if the text requires normalization and then perform it. Most text doesn't require this normalization processing.  | Value | Normalization Method |  |---|---| | `true` | Yes, check if fully normalized and perform normalization to compare text. | | `false` | No, don't check. | 
     */
+
     'normalization'?: boolean;
     /**
     * Flag that indicates whether to compare sequences of digits as numbers or as strings.  | Value | Comparison Method |  |---|---| | `true` | Compare as numbers. This results in `10 > 2`. | | `false` | Compare as strings. This results in `\"10\" < \"2\"`. | 
     */
+
     'numericOrdering'?: boolean;
     /**
     * Degree of comparison to perform when sorting words. MongoDB Cloud accepts the following values:  | Value | Comparison Level | Comparison Method | |---|---|---| | 1 | Primary | Compares the base characters only, ignoring other differences such as diacritics and case. | | 2 | Secondary | Compares base characters (primary) and diacritics (secondary). Primary differences take precedence over secondary differences. | | 3 | Tertiary | Compares base characters (primary), diacritics (secondary), and case and variants (tertiary). Differences between base characters takes precedence over secondary differences which take precedence over tertiary differences. | | 4 | Quaternary | Compares for the specific use case to consider punctuation when levels 1 through 3 ignore punctuation or for processing Japanese text. | | 5 | Identical | Compares for the specific use case of tie breaker. | 
     */
+
     'strength'?: number;
 
     static readonly discriminator: string | undefined = undefined;
@@ -59,7 +68,7 @@ export class Collation {
         {
             "name": "alternate",
             "baseName": "alternate",
-            "type": "CollationAlternateEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -71,7 +80,7 @@ export class Collation {
         {
             "name": "caseFirst",
             "baseName": "caseFirst",
-            "type": "CollationCaseFirstEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -83,13 +92,13 @@ export class Collation {
         {
             "name": "locale",
             "baseName": "locale",
-            "type": "CollationLocaleEnum",
+            "type": "string",
             "format": ""
         },
         {
             "name": "maxVariable",
             "baseName": "maxVariable",
-            "type": "CollationMaxVariableEnum",
+            "type": "string",
             "format": ""
         },
         {

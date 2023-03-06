@@ -18,14 +18,17 @@ export class PaginatedCloudBackupRestoreJobView {
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
     /**
     * List of returned documents that MongoDB Cloud providers when completing this request.
     */
+
     'results'?: Array<DiskBackupRestoreJob>;
     /**
     * Number of documents returned in this response.
     */
+
     'totalCount'?: number;
 
     static readonly discriminator: string | undefined = undefined;

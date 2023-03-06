@@ -18,10 +18,12 @@ export class UpdateCustomDBRole {
     /**
     * List of the individual privilege actions that the role grants.
     */
+
     'actions'?: Array<DBAction>;
     /**
     * List of the built-in roles that this custom role inherits.
     */
+
     'inheritedRoles'?: Set<InheritedRole>;
 
     static readonly discriminator: string | undefined = undefined;

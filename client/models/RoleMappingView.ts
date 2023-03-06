@@ -20,14 +20,17 @@ export class RoleMappingView {
     /**
     * Unique human-readable label that identifies the identity provider group to whichthis role mapping applies.
     */
+
     'externalGroupName': string;
     /**
     * Unique 24-hexadecimal digit string that identifies this role mapping.
     */
+
     'id'?: string;
     /**
     * Atlas roles and the unique identifiers of the groups and organizations associated with each role.
     */
+
     'roleAssignments'?: Set<RoleAssignment>;
 
     static readonly discriminator: string | undefined = undefined;

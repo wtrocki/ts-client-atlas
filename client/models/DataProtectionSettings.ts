@@ -17,39 +17,49 @@ export class DataProtectionSettings {
     /**
     * Flag that indicates whether to enable additional backup copies for the cluster.
     */
+
     'copyProtectionEnabled'?: boolean;
     /**
     * Flag that indicates whether Encryption at Rest using Customer Key  Management is required for all clusters with a Data Protection Policy.
     */
+
     'encryptionAtRestEnabled'?: boolean;
+
     'onDemandPolicyItem'?: ApiPolicyItemView;
     /**
     * Flag that indicates whether the cluster uses Continuous Cloud Backups with a Data Protection Policy.
     */
+
     'pitEnabled'?: boolean;
     /**
     * Unique 24-hexadecimal digit string that identifies the project for the Data Protection Policy.
     */
+
     'projectId'?: string;
     /**
     * Number of previous days that you can restore back to with Continuous Cloud Backup with a Data Protection Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Data Protection Policy.
     */
+
     'restoreWindowDays'?: number;
     /**
     * List that contains the specifications for one scheduled policy.
     */
+
     'scheduledPolicyItems'?: Array<ApiPolicyItemView>;
     /**
     * Label that indicates the state of the Data Protection Policy settings.
     */
-    'state'?: DataProtectionSettingsStateEnum;
+
+    'state'?: string;
     /**
     * ISO 8601 timestamp format in UTC that indicates when the user updated the Data Protection Policy settings.
     */
+
     'updatedDate'?: Date;
     /**
     * Email address that identifies the user who updated the Data Protection Policy settings.
     */
+
     'updatedUser'?: string;
 
     static readonly discriminator: string | undefined = undefined;
@@ -100,7 +110,7 @@ export class DataProtectionSettings {
         {
             "name": "state",
             "baseName": "state",
-            "type": "DataProtectionSettingsStateEnum",
+            "type": "string",
             "format": ""
         },
         {

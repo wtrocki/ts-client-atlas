@@ -19,14 +19,17 @@ export class MatcherView {
     /**
     * Name of the parameter in the target object that MongoDB Cloud checks. The parameter must match all rules for MongoDB Cloud to check for alert configurations.
     */
+
     'fieldName'?: string;
     /**
     * Comparison operator to apply when checking the current metric value against **matcher[n].value**.
     */
-    'operator'?: MatcherViewOperatorEnum;
+
+    'operator'?: string;
     /**
     * Value to match or exceed using the specified **matchers.operator**.
     */
+
     'value'?: string;
 
     static readonly discriminator: string | undefined = undefined;
@@ -41,7 +44,7 @@ export class MatcherView {
         {
             "name": "operator",
             "baseName": "operator",
-            "type": "MatcherViewOperatorEnum",
+            "type": "string",
             "format": ""
         },
         {

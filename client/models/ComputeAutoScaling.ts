@@ -19,10 +19,12 @@ export class ComputeAutoScaling {
     /**
     * Flag that indicates whether cluster tier auto-scaling is enabled. Set to `true` to enable cluster tier auto-scaling. If enabled, you must specify a value for **providerSettings.autoScaling.compute.maxInstanceSize** also. Set to `false` to disable cluster tier auto-scaling.
     */
+
     'enabled'?: boolean;
     /**
     * Flag that indicates whether the cluster tier can scale down. This is required if **autoScaling.compute.enabled** is `true`. If you enable this option, specify a value for **providerSettings.autoScaling.compute.minInstanceSize**.
     */
+
     'scaleDownEnabled'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;

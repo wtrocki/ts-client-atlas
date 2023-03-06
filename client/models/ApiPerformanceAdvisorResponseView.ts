@@ -18,10 +18,12 @@ export class ApiPerformanceAdvisorResponseView {
     /**
     * List of query predicates, sorts, and projections that the Performance Advisor suggests.
     */
+
     'shapes'?: Array<ApiPerformanceAdvisorShapeView>;
     /**
     * List that contains the documents with information about the indexes that the Performance Advisor suggests.
     */
+
     'suggestedIndexes'?: Array<ApiPerformanceAdvisorIndexView>;
 
     static readonly discriminator: string | undefined = undefined;

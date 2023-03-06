@@ -20,48 +20,60 @@ export class DiskBackupExportJob {
     /**
     * Information on the export job for each replica set in the sharded cluster.
     */
+
     'components'?: Array<DiskBackupBaseRestoreMember>;
     /**
     * Date and time when someone created this export job. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
     */
+
     'createdAt'?: Date;
     /**
     * Collection of key-value pairs that represent custom data for the metadata file that MongoDB Cloud uploads to the bucket when the export job finishes.
     */
+
     'customData'?: Array<Label>;
     /**
     * One or more Uniform Resource Locators (URLs) that point to the compressed snapshot files for manual download. MongoDB Cloud returns this parameter when `\"deliveryType\" : \"download\"`.
     */
+
     'deliveryUrl'?: Array<string>;
     /**
     * Unique 24-hexadecimal character string that identifies the AWS bucket to which MongoDB Cloud exports the Cloud Backup snapshot.
     */
+
     'exportBucketId': string;
+
     'exportStatus'?: ApiExportStatusView;
     /**
     * Date and time when this export job completed. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
     */
+
     'finishedAt'?: Date;
     /**
     * Unique 24-hexadecimal character string that identifies the restore job.
     */
+
     'id'?: string;
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
     /**
     * Full path on the cloud provider bucket to the folder where the snapshot is exported.
     */
+
     'prefix'?: string;
     /**
     * Unique 24-hexadecimal character string that identifies the snapshot.
     */
+
     'snapshotId'?: string;
     /**
     * State of the export job.
     */
-    'state'?: DiskBackupExportJobStateEnum;
+
+    'state'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -135,7 +147,7 @@ export class DiskBackupExportJob {
         {
             "name": "state",
             "baseName": "state",
-            "type": "DiskBackupExportJobStateEnum",
+            "type": "string",
             "format": ""
         }    ];
 

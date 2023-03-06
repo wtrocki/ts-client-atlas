@@ -19,19 +19,23 @@ export class NDSNotificationView {
     /**
     * Number of minutes that MongoDB Cloud waits after detecting an alert condition before it sends out the first notification.
     */
+
     'delayMin'?: number;
     /**
     * Number of minutes to wait between successive notifications. MongoDB Cloud sends notifications until someone acknowledges the unacknowledged alert.  PagerDuty, VictorOps, and OpsGenie notifications don't return this element. Configure and manage the notification interval within each of those services.
     */
+
     'intervalMin'?: number;
     /**
     * Degree of seriousness given to this notification.
     */
-    'severity'?: NDSNotificationViewSeverityEnum;
+
+    'severity'?: string;
     /**
     * Human-readable label that displays the alert notification type.
     */
-    'typeName': NDSNotificationViewTypeNameEnum;
+
+    'typeName': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -51,13 +55,13 @@ export class NDSNotificationView {
         {
             "name": "severity",
             "baseName": "severity",
-            "type": "NDSNotificationViewSeverityEnum",
+            "type": "string",
             "format": ""
         },
         {
             "name": "typeName",
             "baseName": "typeName",
-            "type": "NDSNotificationViewTypeNameEnum",
+            "type": "string",
             "format": ""
         }    ];
 

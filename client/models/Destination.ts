@@ -19,18 +19,22 @@ export class Destination {
     /**
     * Label that identifies the destination cluster.
     */
+
     'clusterName': string;
     /**
     * Unique 24-hexadecimal digit string that identifies the destination project.
     */
+
     'groupId': string;
     /**
     * The network type to use between the migration host and the target cluster.
     */
-    'hostnameSchemaType': DestinationHostnameSchemaTypeEnum;
+
+    'hostnameSchemaType': string;
     /**
     * Represents the endpoint to use when the host schema type is `PRIVATE_LINK`.
     */
+
     'privateLinkId'?: string;
 
     static readonly discriminator: string | undefined = undefined;
@@ -51,7 +55,7 @@ export class Destination {
         {
             "name": "hostnameSchemaType",
             "baseName": "hostnameSchemaType",
-            "type": "DestinationHostnameSchemaTypeEnum",
+            "type": "string",
             "format": ""
         },
         {

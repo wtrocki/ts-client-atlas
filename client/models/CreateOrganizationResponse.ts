@@ -15,11 +15,14 @@ import { ApiOrganizationView } from '../models/ApiOrganizationView';
 import { HttpFile } from '../http/http';
 
 export class CreateOrganizationResponse {
+
     'apiKey'?: ApiApiUserView;
     /**
     * Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role.
     */
+
     'orgOwnerId'?: string;
+
     'organization'?: ApiOrganizationView;
 
     static readonly discriminator: string | undefined = undefined;

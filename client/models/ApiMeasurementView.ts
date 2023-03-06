@@ -17,15 +17,18 @@ export class ApiMeasurementView {
     /**
     * List that contains the value of, and metadata provided for, one data point generated at a particular moment in time. If no data point exists for a particular moment in time, the `value` parameter returns `null`.
     */
+
     'dataPoints'?: Array<ApiMetricDataPointView>;
     /**
     * Human-readable label of the measurement that this data point covers.
     */
+
     'name'?: string;
     /**
     * Element used to quantify the measurement. The resource returns units of throughput, storage, and time.
     */
-    'units'?: ApiMeasurementViewUnitsEnum;
+
+    'units'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -45,7 +48,7 @@ export class ApiMeasurementView {
         {
             "name": "units",
             "baseName": "units",
-            "type": "ApiMeasurementViewUnitsEnum",
+            "type": "string",
             "format": ""
         }    ];
 

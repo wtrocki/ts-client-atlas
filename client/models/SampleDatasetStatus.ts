@@ -16,27 +16,33 @@ export class SampleDatasetStatus {
     /**
     * Unique 24-hexadecimal character string that identifies this sample dataset.
     */
+
     'id'?: string;
     /**
     * Human-readable label that identifies the cluster into which you loaded the sample dataset.
     */
+
     'clusterName'?: string;
     /**
     * Date and time when the sample dataset load job completed. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
     */
+
     'completeDate'?: Date;
     /**
     * Date and time when you started the sample dataset load job. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
     */
+
     'createDate'?: Date;
     /**
     * Details of the error returned when MongoDB Cloud loads the sample dataset. This endpoint returns null if state has a value other than FAILED.
     */
+
     'errorMessage'?: string;
     /**
     * Status of the sample dataset load job.
     */
-    'state'?: SampleDatasetStatusStateEnum;
+
+    'state'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -74,7 +80,7 @@ export class SampleDatasetStatus {
         {
             "name": "state",
             "baseName": "state",
-            "type": "SampleDatasetStatusStateEnum",
+            "type": "string",
             "format": ""
         }    ];
 

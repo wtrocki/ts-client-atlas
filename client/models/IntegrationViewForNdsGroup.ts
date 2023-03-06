@@ -25,88 +25,111 @@ export class IntegrationViewForNdsGroup {
     /**
     * Key that allows MongoDB Cloud to access your VictorOps account.  **NOTE**: After you create a notification which requires an API or integration key, the key appears partially redacted when you:  * View or edit the alert through the Atlas UI.  * Query the alert for the notification through the Atlas Administration API.
     */
+
     'apiKey': string;
     /**
     * PagerDuty region that indicates the API Uniform Resource Locator (URL) to use.
     */
-    'region'?: IntegrationViewForNdsGroupRegionEnum;
+
+    'region'?: string;
     /**
     * Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the third-party service integration type.
     */
-    'type'?: IntegrationViewForNdsGroupTypeEnum;
+
+    'type'?: string;
     /**
     * Endpoint web address of the Microsoft Teams webhook to which MongoDB Cloud sends notifications.  **NOTE**: When you view or edit the alert for a Microsoft Teams notification, the URL appears partially redacted.
     */
+
     'microsoftTeamsWebhookUrl': string;
     /**
     * Unique 40-hexadecimal digit string that identifies your New Relic account.
     */
+
     'accountId': string;
     /**
     * Unique 40-hexadecimal digit string that identifies your New Relic license.  **IMPORTANT**: Effective Wednesday, June 16th, 2021, New Relic no longer supports the plugin-based integration with MongoDB. We do not recommend that you sign up for the plugin-based integration. To learn more, see the <a href=\"https://discuss.newrelic.com/t/new-relic-plugin-eol-wednesday-june-16th-2021/127267\" target=\"_blank\">New Relic Plugin EOL Statement</a> Consider configuring an alternative monitoring integration before June 16th to maintain visibility into your MongoDB deployments.
     */
+
     'licenseKey': string;
     /**
     * Query key used to access your New Relic account.
     */
+
     'readToken': string;
     /**
     * Insert key associated with your New Relic account.
     */
+
     'writeToken': string;
     /**
     * Service key associated with your PagerDuty account.  **NOTE**: After you create a notification which requires an API or integration key, the key appears partially redacted when you:  * View or edit the alert through the Atlas UI.  * Query the alert for the notification through the Atlas Administration API.
     */
+
     'serviceKey': string;
     /**
     * Flag that indicates whether someone has activated the Prometheus integration.
     */
+
     'enabled': boolean;
     /**
     * Combination of IPv4 address and Internet Assigned Numbers Authority (IANA) port or the IANA port alone to which Prometheus binds to ingest MongoDB metrics.
     */
+
     'listenAddress'?: string;
+
     'password'?: string;
+
     'rateLimitInterval'?: number;
     /**
     * Security Scheme to apply to HyperText Transfer Protocol (HTTP) traffic between Prometheus and MongoDB Cloud.
     */
-    'scheme': IntegrationViewForNdsGroupSchemeEnum;
+
+    'scheme': string;
     /**
     * Desired method to discover the Prometheus service.
     */
-    'serviceDiscovery': IntegrationViewForNdsGroupServiceDiscoveryEnum;
+
+    'serviceDiscovery': string;
     /**
     * Root-relative path to the Transport Layer Security (TLS) Privacy Enhanced Mail (PEM) key and certificate file on the host.
     */
+
     'tlsPemPath'?: string;
     /**
     * Human-readable label that identifies your Prometheus incoming webhook.
     */
+
     'username': string;
     /**
     * Key that allows MongoDB Cloud to access your Slack account.  **NOTE**: After you create a notification which requires an API or integration key, the key appears partially redacted when you:  * View or edit the alert through the Atlas UI.  * Query the alert for the notification through the Atlas Administration API.  **IMPORTANT**: Slack integrations now use the OAuth2 verification method and must  be initially configured, or updated from a legacy integration, through the Atlas  third-party service integrations page. Legacy tokens will soon no longer be  supported.
     */
+
     'apiToken': string;
     /**
     * Name of the Slack channel to which MongoDB Cloud sends alert notifications.
     */
+
     'channelName': string;
     /**
     * Human-readable label that identifies your Slack team. Set this parameter when you configure a legacy Slack integration.
     */
+
     'teamName'?: string;
     /**
     * Routing key associated with your Splunk On-Call account.
     */
+
     'routingKey'?: string;
     /**
     * An optional field returned if your webhook is configured with a secret.  **NOTE**: When you view or edit the alert for a webhook notification, the secret appears completely redacted.
     */
+
     'secret'?: string;
     /**
     * Endpoint web address to which MongoDB Cloud sends notifications.  **NOTE**: When you view or edit the alert for a webhook notification, the URL appears partially redacted.
     */
+
     'url': string;
 
     static readonly discriminator: string | undefined = undefined;
@@ -121,13 +144,13 @@ export class IntegrationViewForNdsGroup {
         {
             "name": "region",
             "baseName": "region",
-            "type": "IntegrationViewForNdsGroupRegionEnum",
+            "type": "string",
             "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "IntegrationViewForNdsGroupTypeEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -193,13 +216,13 @@ export class IntegrationViewForNdsGroup {
         {
             "name": "scheme",
             "baseName": "scheme",
-            "type": "IntegrationViewForNdsGroupSchemeEnum",
+            "type": "string",
             "format": ""
         },
         {
             "name": "serviceDiscovery",
             "baseName": "serviceDiscovery",
-            "type": "IntegrationViewForNdsGroupServiceDiscoveryEnum",
+            "type": "string",
             "format": ""
         },
         {

@@ -17,18 +17,22 @@ export class ApiTeamView {
     /**
     * Unique 24-hexadecimal digit string that identifies this team.
     */
+
     'id': string;
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
     /**
     * Human-readable label that identifies the team.
     */
+
     'name': string;
     /**
     * List that contains the MongoDB Cloud users in this team.
     */
+
     'usernames'?: Set<string>;
 
     static readonly discriminator: string | undefined = undefined;

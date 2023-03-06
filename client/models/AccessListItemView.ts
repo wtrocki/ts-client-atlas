@@ -16,10 +16,12 @@ export class AccessListItemView {
     /**
     * Range of IP addresses in Classless Inter-Domain Routing (CIDR) notation that found in this project's access list.
     */
+
     'cidrBlock'?: string;
     /**
     * IP address included in the API access list.
     */
+
     'ipAddress': string;
 
     static readonly discriminator: string | undefined = undefined;

@@ -19,7 +19,8 @@ export class TokenFilterreverse {
     /**
     * Human-readable label that identifies this token filter type.
     */
-    'type': TokenFilterreverseTypeEnum;
+
+    'type': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -27,7 +28,7 @@ export class TokenFilterreverse {
         {
             "name": "type",
             "baseName": "type",
-            "type": "TokenFilterreverseTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

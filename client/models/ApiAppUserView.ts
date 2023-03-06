@@ -18,54 +18,67 @@ export class ApiAppUserView {
     /**
     * Two alphabet characters that identifies MongoDB Cloud user's geographic location. This parameter uses the ISO 3166-1a2 code format.
     */
+
     'country': string;
     /**
     * Date and time when the current account is created. This value is in the ISO 8601 timestamp format in UTC.
     */
+
     'createdAt'?: Date;
     /**
     * Email address that belongs to the MongoDB Cloud user.
     */
+
     'emailAddress': string;
     /**
     * First or given name that belongs to the MongoDB Cloud user.
     */
+
     'firstName': string;
     /**
     * Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
     */
+
     'id'?: string;
     /**
     * Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
     */
+
     'lastAuth'?: Date;
     /**
     * Last name, family name, or surname that belongs to the MongoDB Cloud user.
     */
+
     'lastName': string;
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
     /**
     * Mobile phone number that belongs to the MongoDB Cloud user.
     */
+
     'mobileNumber': string;
     /**
     * Password applied with the username to log in to MongoDB Cloud. MongoDB Cloud does not return this parameter except in response to creating a new MongoDB Cloud user. Only the MongoDB Cloud user can update their password after it has been set from the MongoDB Cloud console.
     */
+
     'password': string;
     /**
     * List of objects that display the MongoDB Cloud user's roles and the corresponding organization or project to which that role applies. A role can apply to one organization or one project but not both.
     */
+
     'roles'?: Array<ApiRoleAssignmentView>;
     /**
     * List of unique 24-hexadecimal digit strings that identifies the teams to which this MongoDB Cloud user belongs.
     */
+
     'teamIds'?: Set<string>;
     /**
     * Email address that represents the username of the MongoDB Cloud user.
     */
+
     'username': string;
 
     static readonly discriminator: string | undefined = undefined;

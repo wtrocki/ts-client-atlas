@@ -19,7 +19,8 @@ export class TokenFiltertrim {
     /**
     * Human-readable label that identifies this token filter type.
     */
-    'type': TokenFiltertrimTypeEnum;
+
+    'type': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -27,7 +28,7 @@ export class TokenFiltertrim {
         {
             "name": "type",
             "baseName": "type",
-            "type": "TokenFiltertrimTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

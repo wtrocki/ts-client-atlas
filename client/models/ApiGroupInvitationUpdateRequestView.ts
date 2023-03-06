@@ -16,7 +16,8 @@ export class ApiGroupInvitationUpdateRequestView {
     /**
     * One or more organization or project level roles to assign to the MongoDB Cloud user.
     */
-    'roles'?: Set<ApiGroupInvitationUpdateRequestViewRolesEnum>;
+
+    'roles'?: Set<string>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -24,7 +25,7 @@ export class ApiGroupInvitationUpdateRequestView {
         {
             "name": "roles",
             "baseName": "roles",
-            "type": "Set<ApiGroupInvitationUpdateRequestViewRolesEnum>",
+            "type": "Set<string>",
             "format": ""
         }    ];
 

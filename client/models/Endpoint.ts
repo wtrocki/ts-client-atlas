@@ -20,42 +20,52 @@ export class Endpoint {
     /**
     * State of the Amazon Web Service PrivateLink connection when MongoDB Cloud received this request.
     */
-    'connectionStatus'?: EndpointConnectionStatusEnum;
+
+    'connectionStatus'?: string;
     /**
     * Flag that indicates whether MongoDB Cloud received a request to remove the specified private endpoint from the private endpoint service.
     */
+
     'deleteRequested'?: boolean;
     /**
     * Error message returned when requesting private connection resource. The resource returns `null` if the request succeeded.
     */
+
     'errorMessage'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the interface endpoint.
     */
+
     'interfaceEndpointId'?: string;
     /**
     * Human-readable label that MongoDB Cloud generates that identifies the private endpoint connection.
     */
+
     'privateEndpointConnectionName'?: string;
     /**
     * IPv4 address of the private endpoint in your Azure VNet that someone added to this private endpoint service.
     */
+
     'privateEndpointIPAddress'?: string;
     /**
     * Unique string that identifies the Azure private endpoint's network interface that someone added to this private endpoint service.
     */
+
     'privateEndpointResourceId'?: string;
     /**
     * State of the Google Cloud network endpoint group when MongoDB Cloud received this request.
     */
-    'status'?: EndpointStatusEnum;
+
+    'status'?: string;
     /**
     * Human-readable label that identifies a set of endpoints.
     */
+
     'endpointGroupName'?: string;
     /**
     * List of individual private endpoints that comprise this endpoint group.
     */
+
     'endpoints'?: Array<GCPConsumerForwardingRule>;
 
     static readonly discriminator: string | undefined = undefined;
@@ -64,7 +74,7 @@ export class Endpoint {
         {
             "name": "connectionStatus",
             "baseName": "connectionStatus",
-            "type": "EndpointConnectionStatusEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -106,7 +116,7 @@ export class Endpoint {
         {
             "name": "status",
             "baseName": "status",
-            "type": "EndpointStatusEnum",
+            "type": "string",
             "format": ""
         },
         {

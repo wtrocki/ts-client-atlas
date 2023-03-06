@@ -16,23 +16,28 @@ export class LiveMigrationResponseView {
     /**
     * Unique 24-hexadecimal digit string that identifies the migration job.
     */
+
     'id'?: string;
     /**
     * Replication lag between the source and destination clusters. Atlas returns this setting only during an active migration, before the cutover phase.
     */
+
     'lagTimeSeconds'?: number;
     /**
     * List of hosts running MongoDB Agents. These Agents can transfer your MongoDB data between one source and one target cluster.
     */
+
     'migrationHosts'?: Array<string>;
     /**
     * Flag that indicates the migrated cluster can be cut over to MongoDB Atlas.
     */
+
     'readyForCutover'?: boolean;
     /**
     * Progress made in migrating one cluster to MongoDB Atlas.  | Status   | Explanation | |----------|-------------| | NEW      | Someone scheduled a local cluster migration to MongoDB Atlas. | | FAILED   | The cluster migration to MongoDB Atlas failed.                | | COMPLETE | The cluster migration to MongoDB Atlas succeeded.             | | EXPIRED  | MongoDB Atlas prepares to begin the cut over of the migrating cluster when source and target clusters have almost synchronized. If `\"readyForCutover\" : true`, this synchronization starts a timer of 120 hours. You can extend this timer. If the timer expires, MongoDB Atlas returns this status. | | WORKING  | The cluster migration to MongoDB Atlas is performing one of the following tasks:<ul><li>Preparing connections to source and target clusters</li><li>Replicating data from source to target</li><li>Verifying MongoDB Atlas connection settings</li><li>Stopping replication after the cut over</li></ul> | 
     */
-    'status'?: LiveMigrationResponseViewStatusEnum;
+
+    'status'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -64,7 +69,7 @@ export class LiveMigrationResponseView {
         {
             "name": "status",
             "baseName": "status",
-            "type": "LiveMigrationResponseViewStatusEnum",
+            "type": "string",
             "format": ""
         }    ];
 

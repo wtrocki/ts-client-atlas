@@ -16,6 +16,7 @@ export class ServerlessTenantEndpointCreate {
     /**
     * Human-readable comment associated with the private endpoint.
     */
+
     'comment'?: string;
 
     static readonly discriminator: string | undefined = undefined;

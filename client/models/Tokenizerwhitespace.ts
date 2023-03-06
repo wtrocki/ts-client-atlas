@@ -19,11 +19,13 @@ export class Tokenizerwhitespace {
     /**
     * Maximum number of characters in a single token. Tokens greater than this length are split at this length into multiple tokens.
     */
+
     'maxTokenLength'?: number;
     /**
     * Human-readable label that identifies this tokenizer type.
     */
-    'type': TokenizerwhitespaceTypeEnum;
+
+    'type': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -37,7 +39,7 @@ export class Tokenizerwhitespace {
         {
             "name": "type",
             "baseName": "type",
-            "type": "TokenizerwhitespaceTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

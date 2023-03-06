@@ -16,6 +16,7 @@ export class AWSCustomDNSEnabledView {
     /**
     * Flag that indicates whether the project's clusters deployed to Amazon Web Services (AWS) use a custom Domain Name System (DNS). When `\"enabled\": true`, connect to your cluster using Private IP for Peering connection strings.
     */
+
     'enabled': boolean;
 
     static readonly discriminator: string | undefined = undefined;

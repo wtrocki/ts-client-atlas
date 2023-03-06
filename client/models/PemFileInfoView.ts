@@ -20,10 +20,12 @@ export class PemFileInfoView {
     /**
     * List of certificates in the file.
     */
+
     'certificates'?: Array<X509CertificateView>;
     /**
     * Human-readable label given to the file.
     */
+
     'fileName'?: string;
 
     static readonly discriminator: string | undefined = undefined;

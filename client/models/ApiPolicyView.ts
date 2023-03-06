@@ -20,10 +20,12 @@ export class ApiPolicyView {
     /**
     * Unique 24-hexadecimal digit string that identifies this backup policy.
     */
+
     'id'?: string;
     /**
     * List that contains the specifications for one policy.
     */
+
     'policyItems'?: Array<ApiPolicyItemView>;
 
     static readonly discriminator: string | undefined = undefined;

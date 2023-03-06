@@ -16,6 +16,7 @@ export class TargetOrgView {
     /**
     * Link token that contains all the information required to complete the link.
     */
+
     'linkToken': string;
 
     static readonly discriminator: string | undefined = undefined;

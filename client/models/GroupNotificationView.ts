@@ -19,27 +19,33 @@ export class GroupNotificationView {
     /**
     * Number of minutes that MongoDB Cloud waits after detecting an alert condition before it sends out the first notification.
     */
+
     'delayMin'?: number;
     /**
     * Flag that indicates whether MongoDB Cloud should send email notifications. The resource requires this parameter when one of the following values have been set:  - `\"notifications.[n].typeName\" : \"ORG\"` - `\"notifications.[n].typeName\" : \"GROUP\"` - `\"notifications.[n].typeName\" : \"USER\"`
     */
+
     'emailEnabled'?: boolean;
     /**
     * Number of minutes to wait between successive notifications. MongoDB Cloud sends notifications until someone acknowledges the unacknowledged alert.  PagerDuty, VictorOps, and OpsGenie notifications don't return this element. Configure and manage the notification interval within each of those services.
     */
+
     'intervalMin'?: number;
     /**
     * List that contains the one or more [organization](https://dochub.mongodb.org/core/atlas-org-roles) or [project roles](https://dochub.mongodb.org/core/atlas-proj-roles) that receive the configured alert. The resource requires this parameter when `\"notifications.[n].typeName\" : \"GROUP\"` or `\"notifications.[n].typeName\" : \"ORG\"`. If you include this parameter, MongoDB Cloud sends alerts only to users assigned the roles you specify in the array. If you omit this parameter, MongoDB Cloud sends alerts to users assigned any role.
     */
-    'roles'?: Array<GroupNotificationViewRolesEnum>;
+
+    'roles'?: Array<string>;
     /**
     * Flag that indicates whether MongoDB Cloud should send text message notifications. The resource requires this parameter when one of the following values have been set:  - `\"notifications.[n].typeName\" : \"ORG\"` - `\"notifications.[n].typeName\" : \"GROUP\"` - `\"notifications.[n].typeName\" : \"USER\"`
     */
+
     'smsEnabled'?: boolean;
     /**
     * Human-readable label that displays the alert notification type.
     */
-    'typeName': GroupNotificationViewTypeNameEnum;
+
+    'typeName': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -65,7 +71,7 @@ export class GroupNotificationView {
         {
             "name": "roles",
             "baseName": "roles",
-            "type": "Array<GroupNotificationViewRolesEnum>",
+            "type": "Array<string>",
             "format": ""
         },
         {
@@ -77,7 +83,7 @@ export class GroupNotificationView {
         {
             "name": "typeName",
             "baseName": "typeName",
-            "type": "GroupNotificationViewTypeNameEnum",
+            "type": "string",
             "format": ""
         }    ];
 

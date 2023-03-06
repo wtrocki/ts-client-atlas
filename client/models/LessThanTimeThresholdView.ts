@@ -20,11 +20,14 @@ export class LessThanTimeThresholdView {
     /**
     * Comparison operator to apply when checking the current metric value.
     */
-    'operator'?: LessThanTimeThresholdViewOperatorEnum;
+
+    'operator'?: string;
     /**
     * Value of metric that, when exceeded, triggers an alert.
     */
+
     'threshold'?: number;
+
     'units'?: TimeMetricUnits;
 
     static readonly discriminator: string | undefined = undefined;
@@ -33,7 +36,7 @@ export class LessThanTimeThresholdView {
         {
             "name": "operator",
             "baseName": "operator",
-            "type": "LessThanTimeThresholdViewOperatorEnum",
+            "type": "string",
             "format": ""
         },
         {

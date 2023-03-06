@@ -19,10 +19,12 @@ export class ApiAtlasFTSMappingsViewManual {
     /**
     * Flag that indicates whether the index uses dynamic or static mappings. Required if **mappings.fields** is omitted.
     */
+
     'dynamic'?: boolean;
     /**
     * One or more field specifications for the Atlas Search index. Required if **mappings.dynamic** is omitted or set to **false**.
     */
+
     'fields'?: { [key: string]: any; };
 
     static readonly discriminator: string | undefined = undefined;

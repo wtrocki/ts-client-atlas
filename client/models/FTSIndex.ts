@@ -19,39 +19,49 @@ export class FTSIndex {
     /**
     * Specific pre-defined method chosen to convert database field text into searchable words. This conversion reduces the text of fields into the smallest units of text. These units are called a **term** or **token**. This process, known as tokenization, involves a variety of changes made to the text in fields:  - extracting words - removing punctuation - removing accents - changing to lowercase - removing common words - reducing words to their root form (stemming) - changing words to their base form (lemmatization)  MongoDB Cloud uses the selected process to build the Atlas Search index.
     */
-    'analyzer'?: FTSIndexAnalyzerEnum;
+
+    'analyzer'?: string;
     /**
     * List of user-defined methods to convert database field text into searchable words.
     */
+
     'analyzers'?: Array<ApiAtlasFTSAnalyzersViewManual>;
     /**
     * Human-readable label that identifies the collection that contains one or more Atlas Search indexes.
     */
+
     'collectionName': string;
     /**
     * Human-readable label that identifies the database that contains the collection with one or more Atlas Search indexes.
     */
+
     'database': string;
     /**
     * Unique 24-hexadecimal digit string that identifies this Atlas Search index.
     */
+
     'indexID'?: string;
+
     'mappings'?: ApiAtlasFTSMappingsViewManual;
     /**
     * Human-readable label that identifies this index. Within each namespace, names of all indexes in the namespace must be unique.
     */
+
     'name': string;
     /**
     * Method applied to identify words when searching this index.
     */
-    'searchAnalyzer'?: FTSIndexSearchAnalyzerEnum;
+
+    'searchAnalyzer'?: string;
     /**
     * Condition of the search index when you made this request.  | Status | Index Condition |  |---|---|  | IN_PROGRESS | Atlas is building or re-building the index after an edit. |  | STEADY | You can use this search index. |  | FAILED | Atlas could not build the index. |  | MIGRATING | Atlas is upgrading the underlying cluster tier and migrating indexes. |  | PAUSED | The cluster is paused. | 
     */
-    'status'?: FTSIndexStatusEnum;
+
+    'status'?: string;
     /**
     * Rule sets that map words to their synonyms in this index.
     */
+
     'synonyms'?: Array<FTSSynonymMappingDefinition>;
 
     static readonly discriminator: string | undefined = undefined;
@@ -60,7 +70,7 @@ export class FTSIndex {
         {
             "name": "analyzer",
             "baseName": "analyzer",
-            "type": "FTSIndexAnalyzerEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -102,13 +112,13 @@ export class FTSIndex {
         {
             "name": "searchAnalyzer",
             "baseName": "searchAnalyzer",
-            "type": "FTSIndexSearchAnalyzerEnum",
+            "type": "string",
             "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "FTSIndexStatusEnum",
+            "type": "string",
             "format": ""
         },
         {

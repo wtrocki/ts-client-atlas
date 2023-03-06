@@ -19,10 +19,12 @@ export class ApiExportStatusView {
     /**
     * Number of collections on the replica set that MongoDB Cloud exported.
     */
+
     'exportedCollections'?: number;
     /**
     * Total number of collections on the replica set to export.
     */
+
     'totalCollections'?: number;
 
     static readonly discriminator: string | undefined = undefined;

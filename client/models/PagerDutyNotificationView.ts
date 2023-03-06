@@ -19,23 +19,28 @@ export class PagerDutyNotificationView {
     /**
     * Number of minutes that MongoDB Cloud waits after detecting an alert condition before it sends out the first notification.
     */
+
     'delayMin'?: number;
     /**
     * Number of minutes to wait between successive notifications. MongoDB Cloud sends notifications until someone acknowledges the unacknowledged alert.  PagerDuty, VictorOps, and OpsGenie notifications don't return this element. Configure and manage the notification interval within each of those services.
     */
+
     'intervalMin'?: number;
     /**
     * PagerDuty region that indicates which API Uniform Resource Locator (URL) to use.
     */
-    'region'?: PagerDutyNotificationViewRegionEnum;
+
+    'region'?: string;
     /**
     * PagerDuty service key that MongoDB Cloud needs to send notifications via PagerDuty. The resource requires this parameter when `\"notifications.[n].typeName\" : \"PAGER_DUTY\"`. If the key later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.  **NOTE**: After you create a notification which requires an API or integration key, the key appears partially redacted when you:  * View or edit the alert through the Atlas UI.  * Query the alert for the notification through the Atlas Administration API.
     */
+
     'serviceKey'?: string;
     /**
     * Human-readable label that displays the alert notification type.
     */
-    'typeName': PagerDutyNotificationViewTypeNameEnum;
+
+    'typeName': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -55,7 +60,7 @@ export class PagerDutyNotificationView {
         {
             "name": "region",
             "baseName": "region",
-            "type": "PagerDutyNotificationViewRegionEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -67,7 +72,7 @@ export class PagerDutyNotificationView {
         {
             "name": "typeName",
             "baseName": "typeName",
-            "type": "PagerDutyNotificationViewTypeNameEnum",
+            "type": "string",
             "format": ""
         }    ];
 

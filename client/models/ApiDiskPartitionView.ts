@@ -17,10 +17,12 @@ export class ApiDiskPartitionView {
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
     /**
     * Human-readable label of the disk or partition to which the measurements apply.
     */
+
     'partitionName'?: string;
 
     static readonly discriminator: string | undefined = undefined;

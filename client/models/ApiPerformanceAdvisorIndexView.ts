@@ -16,26 +16,32 @@ export class ApiPerformanceAdvisorIndexView {
     /**
     * The average size of an object in the collection of this index.
     */
+
     'avgObjSize'?: number;
     /**
     * Unique 24-hexadecimal digit string that identifies this index.
     */
+
     'id'?: string;
     /**
     * List that contains unique 24-hexadecimal character string that identifies the query shapes in this response that the Performance Advisor suggests.
     */
+
     'impact'?: Array<string>;
     /**
     * List that contains documents that specify a key in the index and its sort order.
     */
-    'index'?: Array<{ [key: InnerEnum]: InnerEnum; }>;
+
+    'index'?: Array<{ [key: string]: string; }>;
     /**
     * Human-readable label that identifies the namespace on the specified host. The resource expresses this parameter value as `<database>.<collection>`.
     */
+
     'namespace'?: string;
     /**
     * Estimated performance improvement that the suggested index provides. This value corresponds to **Impact** in the Performance Advisor user interface.
     */
+
     'weight'?: number;
 
     static readonly discriminator: string | undefined = undefined;
@@ -62,7 +68,7 @@ export class ApiPerformanceAdvisorIndexView {
         {
             "name": "index",
             "baseName": "index",
-            "type": "Array<{ [key: InnerEnum]: InnerEnum; }>",
+            "type": "Array<{ [key: string]: string; }>",
             "format": ""
         },
         {

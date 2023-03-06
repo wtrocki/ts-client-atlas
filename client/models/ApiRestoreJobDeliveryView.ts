@@ -19,50 +19,62 @@ export class ApiRestoreJobDeliveryView {
     /**
     * Header name to use when downloading the restore, used with `\"delivery.methodName\" : \"HTTP\"`.
     */
+
     'authHeader'?: string;
     /**
     * Header value to use when downloading the restore, used with `\"delivery.methodName\" : \"HTTP\"`.
     */
+
     'authValue'?: string;
     /**
     * Number of hours after the restore job completes that indicates when the Uniform Resource Locator (URL) for the snapshot download file expires. The resource returns this parameter when `\"delivery.methodName\" : \"HTTP\"`.
     */
+
     'expirationHours'?: number;
     /**
     * Date and time when the Uniform Resource Locator (URL) for the snapshot download file expires. This parameter expresses its value in the ISO 8601 timestamp format in UTC. The resource returns this parameter when `\"delivery.methodName\" : \"HTTP\"`.
     */
+
     'expires'?: Date;
     /**
     * Positive integer that indicates how many times you can use the Uniform Resource Locator (URL) for the snapshot download file. The resource returns this parameter when `\"delivery.methodName\" : \"HTTP\"`.
     */
+
     'maxDownloads'?: number;
     /**
     * Human-readable label that identifies the means for delivering the data. If you set `\"delivery.methodName\" : \"AUTOMATED_RESTORE\"`, you must also set: **delivery.targetGroupId** and **delivery.targetClusterName** or **delivery.targetClusterId**. The response returns `\"delivery.methodName\" : \"HTTP\"` as an automated restore uses HyperText Transport Protocol (HTTP) to deliver the restore job to the target host.
     */
-    'methodName': ApiRestoreJobDeliveryViewMethodNameEnum;
+
+    'methodName': string;
     /**
     * State of the downloadable snapshot file when MongoDB Cloud received this request.
     */
-    'statusName'?: ApiRestoreJobDeliveryViewStatusNameEnum;
+
+    'statusName'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the target cluster. Use the **clusterId** returned in the response body of the **Get All Snapshots** and **Get a Snapshot** endpoints. This parameter applies when `\"delivery.methodName\" : \"AUTOMATED_RESTORE\"`.   If the target cluster doesn't have backup enabled, two resources return parameters with empty values:  - **Get All Snapshots** endpoint returns an empty results array without **clusterId** elements - **Get a Snapshot** endpoint doesn't return a **clusterId** parameter.  To return a response with the **clusterId** parameter, either use the **delivery.targetClusterName** parameter or enable backup on the target cluster.
     */
+
     'targetClusterId'?: string;
     /**
     * Human-readable label that identifies the target cluster. Use the **clusterName** returned in the response body of the **Get All Snapshots** and **Get a Snapshot** endpoints.  This parameter applies when `\"delivery.methodName\" : \"AUTOMATED_RESTORE\"`.  If the target cluster doesn't have backup enabled, two resources return parameters with empty values:  - **Get All Snapshots** endpoint returns an empty results array without **clusterId** elements - **Get a Snapshot** endpoint doesn't return a **clusterId** parameter.  To return a response with the **clusterId** parameter, either use the **delivery.targetClusterName** parameter or enable backup on the target cluster.
     */
+
     'targetClusterName'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the project that contains the destination cluster for the restore job. The resource returns this parameter when `\"delivery.methodName\" : \"AUTOMATED_RESTORE\"`.
     */
+
     'targetGroupId'?: string;
     /**
     * Uniform Resource Locator (URL) from which you can download the restored snapshot data. Url includes the verification key. The resource returns this parameter when `\"delivery.methodName\" : \"HTTP\"`.
     */
+
     'url'?: string;
     /**
     * Uniform Resource Locator (URL) from which you can download the restored snapshot data. This should be preferred over **url**. The verification key must be sent as an HTTP header. The resource returns this parameter when `\"delivery.methodName\" : \"HTTP\"`.
     */
+
     'urlV2'?: string;
 
     static readonly discriminator: string | undefined = undefined;
@@ -101,13 +113,13 @@ export class ApiRestoreJobDeliveryView {
         {
             "name": "methodName",
             "baseName": "methodName",
-            "type": "ApiRestoreJobDeliveryViewMethodNameEnum",
+            "type": "string",
             "format": ""
         },
         {
             "name": "statusName",
             "baseName": "statusName",
-            "type": "ApiRestoreJobDeliveryViewStatusNameEnum",
+            "type": "string",
             "format": ""
         },
         {

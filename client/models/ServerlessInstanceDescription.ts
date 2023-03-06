@@ -20,40 +20,51 @@ import { HttpFile } from '../http/http';
 * Group of settings that configure a MongoDB serverless instance.
 */
 export class ServerlessInstanceDescription {
+
     'connectionStrings'?: ServerlessInstanceDescriptionConnectionStrings;
     /**
     * Date and time when MongoDB Cloud created this serverless instance. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
     */
+
     'createDate'?: Date;
     /**
     * Unique 24-hexadecimal character string that identifies the project.
     */
+
     'groupId'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the serverless instance.
     */
+
     'id'?: string;
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
     /**
     * Version of MongoDB that the serverless instance runs.
     */
+
     'mongoDBVersion'?: string;
     /**
     * Human-readable label that identifies the serverless instance.
     */
+
     'name'?: string;
+
     'providerSettings': ServerlessProviderSettings;
+
     'serverlessBackupOptions'?: ServerlessBackupOptions;
     /**
     * Human-readable label that indicates the current operating condition of the serverless instance.
     */
-    'stateName'?: ServerlessInstanceDescriptionStateNameEnum;
+
+    'stateName'?: string;
     /**
     * Flag that indicates whether termination protection is enabled on the serverless instance. If set to `true`, MongoDB Cloud won't delete the serverless instance. If set to `false`, MongoDB Cloud will delete the serverless instance.
     */
+
     'terminationProtectionEnabled'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;
@@ -116,7 +127,7 @@ export class ServerlessInstanceDescription {
         {
             "name": "stateName",
             "baseName": "stateName",
-            "type": "ServerlessInstanceDescriptionStateNameEnum",
+            "type": "string",
             "format": ""
         },
         {

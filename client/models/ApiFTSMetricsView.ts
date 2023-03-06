@@ -18,26 +18,32 @@ export class ApiFTSMetricsView {
     /**
     * Unique 24-hexadecimal digit string that identifies the project.
     */
+
     'groupId': string;
     /**
     * List that contains all host compute, memory, and storage utilization dedicated to Atlas Search when MongoDB Atlas received this request.
     */
+
     'hardwareMetrics'?: Array<ApiFTSMetricView>;
     /**
     * List that contains all performance and utilization measurements that Atlas Search index performed by the time MongoDB Atlas received this request.
     */
+
     'indexMetrics'?: Array<ApiFTSMetricView>;
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
     /**
     * Hostname and port that identifies the process.
     */
+
     'processId': string;
     /**
     * List that contains all available Atlas Search status metrics when MongoDB Atlas received this request.
     */
+
     'statusMetrics'?: Array<ApiFTSMetricView>;
 
     static readonly discriminator: string | undefined = undefined;

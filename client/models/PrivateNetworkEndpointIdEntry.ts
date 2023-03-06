@@ -16,19 +16,23 @@ export class PrivateNetworkEndpointIdEntry {
     /**
     * Human-readable string to associate with this private endpoint.
     */
+
     'comment'?: string;
     /**
     * Unique 22-character alphanumeric string that identifies the private endpoint.
     */
+
     'endpointId': string;
     /**
     * Human-readable label that identifies the cloud service provider. Atlas Data Lake supports Amazon Web Services only.
     */
-    'provider'?: PrivateNetworkEndpointIdEntryProviderEnum;
+
+    'provider'?: string;
     /**
     * Human-readable label that identifies the resource type associated with this private endpoint.
     */
-    'type'?: PrivateNetworkEndpointIdEntryTypeEnum;
+
+    'type'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -48,13 +52,13 @@ export class PrivateNetworkEndpointIdEntry {
         {
             "name": "provider",
             "baseName": "provider",
-            "type": "PrivateNetworkEndpointIdEntryProviderEnum",
+            "type": "string",
             "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "PrivateNetworkEndpointIdEntryTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

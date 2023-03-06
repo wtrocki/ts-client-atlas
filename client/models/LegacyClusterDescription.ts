@@ -24,118 +24,149 @@ import { HttpFile } from '../http/http';
 * Group of settings that configure a MongoDB cluster.
 */
 export class LegacyClusterDescription {
+
     'autoScaling'?: AutoScaling;
     /**
     * Flag that indicates whether the cluster can perform backups. If set to `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters. Backup uses Cloud Backups for dedicated clusters and Shared Cluster Backups for tenant clusters. If set to `false`, the cluster doesn't use MongoDB Cloud backups.
     */
+
     'backupEnabled'?: boolean;
+
     'biConnector'?: BiConnector;
     /**
     * Configuration of nodes that comprise the cluster.
     */
-    'clusterType'?: LegacyClusterDescriptionClusterTypeEnum;
+
+    'clusterType'?: string;
+
     'connectionStrings'?: ClusterDescriptionConnectionStrings;
     /**
     * Date and time when MongoDB Cloud created this serverless instance. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
     */
+
     'createDate'?: Date;
     /**
     * Storage capacity that the host's root volume possesses expressed in gigabytes. Increase this number to add capacity. MongoDB Cloud requires this parameter if you set **replicationSpecs**. If you specify a disk size below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
     */
+
     'diskSizeGB'?: number;
     /**
     * Cloud service provider that manages your customer keys to provide an additional layer of Encryption at Rest for the cluster.
     */
-    'encryptionAtRestProvider'?: LegacyClusterDescriptionEncryptionAtRestProviderEnum;
+
+    'encryptionAtRestProvider'?: string;
     /**
     * Unique 24-hexadecimal character string that identifies the project.
     */
+
     'groupId'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the cluster.
     */
+
     'id'?: string;
     /**
     * Collection of key-value pairs between 1 to 255 characters in length that tag and categorize the cluster. The MongoDB Cloud console doesn't display your labels.
     */
+
     'labels'?: Array<NDSLabel>;
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
     /**
     * Major MongoDB version of the cluster. MongoDB Cloud deploys the cluster with the latest stable release of the specified version.
     */
-    'mongoDBMajorVersion'?: LegacyClusterDescriptionMongoDBMajorVersionEnum;
+
+    'mongoDBMajorVersion'?: string;
     /**
     * Version of MongoDB that the cluster runs.
     */
+
     'mongoDBVersion'?: string;
     /**
     * Base connection string that you can use to connect to the cluster. MongoDB Cloud displays the string only after the cluster starts, not while it builds the cluster.
     */
+
     'mongoURI'?: string;
     /**
     * Date and time when someone last updated the connection string. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
     */
+
     'mongoURIUpdated'?: Date;
     /**
     * Connection string that you can use to connect to the cluster including the `replicaSet`, `ssl`, and `authSource` query parameters with values appropriate for the cluster. You may need to add MongoDB database users. The response returns this parameter once the cluster can receive requests, not while it builds the cluster.
     */
+
     'mongoURIWithOptions'?: string;
     /**
     * Human-readable label that identifies the cluster.
     */
+
     'name'?: string;
     /**
     * Number of shards up to 50 to deploy for a sharded cluster. The resource returns `1` to indicate a replica set and values of `2` and higher to indicate a sharded cluster. The returned value equals the number of shards in the cluster.
     */
+
     'numShards'?: number;
     /**
     * Flag that indicates whether the cluster is paused.
     */
+
     'paused'?: boolean;
     /**
     * Flag that indicates whether the cluster uses continuous cloud backups.
     */
+
     'pitEnabled'?: boolean;
     /**
     * Flag that indicates whether the M10 or higher cluster can perform Cloud Backups. If set to `true`, the cluster can perform backups. If this and **backupEnabled** are set to `false`, the cluster doesn't use MongoDB Cloud backups.
     */
+
     'providerBackupEnabled'?: boolean;
+
     'providerSettings'?: ClusterProviderSettings;
     /**
     * Number of members that belong to the replica set. Each member retains a copy of your databases, providing high availability and data redundancy. Use **replicationSpecs** instead.
     */
-    'replicationFactor'?: LegacyClusterDescriptionReplicationFactorEnum;
+
+    'replicationFactor'?: number;
     /**
     * Physical location where MongoDB Cloud provisions cluster nodes.
     */
+
     'replicationSpec'?: { [key: string]: RegionSpec; };
     /**
     * List of settings that configure your cluster regions.  - For Global Clusters, each object in the array represents one zone where MongoDB Cloud deploys your clusters nodes. - For non-Global sharded clusters and replica sets, the single object represents where MongoDB Cloud deploys your clusters nodes.
     */
+
     'replicationSpecs'?: Array<LegacyReplicationSpec>;
     /**
     * Root Certificate Authority that MongoDB Atlas clusters uses. MongoDB Cloud supports Internet Security Research Group.
     */
-    'rootCertType'?: LegacyClusterDescriptionRootCertTypeEnum;
+
+    'rootCertType'?: string;
     /**
     * Connection string that you can use to connect to the cluster. The `+srv` modifier forces the connection to use Transport Layer Security (TLS). The `mongoURI` parameter lists additional options.
     */
+
     'srvAddress'?: string;
     /**
     * Human-readable label that indicates the current operating condition of the cluster.
     */
-    'stateName'?: LegacyClusterDescriptionStateNameEnum;
+
+    'stateName'?: string;
     /**
     * Flag that indicates whether termination protection is enabled on the cluster. If set to `true`, MongoDB Cloud won't delete the cluster. If set to `false`, MongoDB Cloud will delete the cluster.
     */
+
     'terminationProtectionEnabled'?: boolean;
     /**
     * Method by which the cluster maintains the MongoDB versions. If value is `CONTINUOUS`, you must not specify **mongoDBMajorVersion**.
     */
-    'versionReleaseSystem'?: LegacyClusterDescriptionVersionReleaseSystemEnum;
+
+    'versionReleaseSystem'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -161,7 +192,7 @@ export class LegacyClusterDescription {
         {
             "name": "clusterType",
             "baseName": "clusterType",
-            "type": "LegacyClusterDescriptionClusterTypeEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -185,7 +216,7 @@ export class LegacyClusterDescription {
         {
             "name": "encryptionAtRestProvider",
             "baseName": "encryptionAtRestProvider",
-            "type": "LegacyClusterDescriptionEncryptionAtRestProviderEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -215,7 +246,7 @@ export class LegacyClusterDescription {
         {
             "name": "mongoDBMajorVersion",
             "baseName": "mongoDBMajorVersion",
-            "type": "LegacyClusterDescriptionMongoDBMajorVersionEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -281,7 +312,7 @@ export class LegacyClusterDescription {
         {
             "name": "replicationFactor",
             "baseName": "replicationFactor",
-            "type": "LegacyClusterDescriptionReplicationFactorEnum",
+            "type": "number",
             "format": "int32"
         },
         {
@@ -299,7 +330,7 @@ export class LegacyClusterDescription {
         {
             "name": "rootCertType",
             "baseName": "rootCertType",
-            "type": "LegacyClusterDescriptionRootCertTypeEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -311,7 +342,7 @@ export class LegacyClusterDescription {
         {
             "name": "stateName",
             "baseName": "stateName",
-            "type": "LegacyClusterDescriptionStateNameEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -323,7 +354,7 @@ export class LegacyClusterDescription {
         {
             "name": "versionReleaseSystem",
             "baseName": "versionReleaseSystem",
-            "type": "LegacyClusterDescriptionVersionReleaseSystemEnum",
+            "type": "string",
             "format": ""
         }    ];
 

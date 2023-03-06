@@ -19,14 +19,17 @@ export class DBResource {
     /**
     * Flag that indicates whether to grant the action on the cluster resource. If `true`, MongoDB Cloud ignores the **actions.resources.collection** and **actions.resources.db** parameters.
     */
+
     'cluster': boolean;
     /**
     * Human-readable label that identifies the collection on which you grant the action to one MongoDB user. If you don't set this parameter, you grant the action to all collections in the database specified in the **actions.resources.db** parameter. If you set `\"actions.resources.cluster\" : true`, MongoDB Cloud ignores this parameter.
     */
+
     'collection': string;
     /**
     * Human-readable label that identifies the database on which you grant the action to one MongoDB user. If you set `\"actions.resources.cluster\" : true`, MongoDB Cloud ignores this parameter.
     */
+
     'db': string;
 
     static readonly discriminator: string | undefined = undefined;

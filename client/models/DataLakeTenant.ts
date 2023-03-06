@@ -16,12 +16,16 @@ import { DataLakeStorage } from '../models/DataLakeStorage';
 import { HttpFile } from '../http/http';
 
 export class DataLakeTenant {
+
     'cloudProviderConfig'?: DataLakeCloudProviderConfig;
+
     'dataProcessRegion'?: DataLakeDataProcessRegion;
     /**
     * Human-readable label that identifies the data lake.
     */
+
     'name'?: string;
+
     'storage'?: DataLakeStorage;
 
     static readonly discriminator: string | undefined = undefined;

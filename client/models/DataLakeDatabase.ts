@@ -21,18 +21,22 @@ export class DataLakeDatabase {
     /**
     * Array of collections and data sources that map to a ``stores`` data store.
     */
+
     'collections'?: Array<DataLakeDatabaseCollection>;
     /**
     * Maximum number of wildcard collections in the database. This only applies to S3 data sources.
     */
+
     'maxWildcardCollections'?: number;
     /**
     * Human-readable label that identifies the database to which the data lake maps data.
     */
+
     'name'?: string;
     /**
     * Array of aggregation pipelines that apply to the collection. This only applies to S3 data sources.
     */
+
     'views'?: Array<DataLakeView>;
 
     static readonly discriminator: string | undefined = undefined;

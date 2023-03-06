@@ -19,18 +19,22 @@ export class PerformanceAdvisorOpStatsView {
     /**
     * Length of time expressed during which the query finds suggested indexes among the managed namespaces in the cluster. This parameter expresses its value in milliseconds. This parameter relates to the **duration** query parameter.
     */
+
     'ms'?: number;
     /**
     * Number of results that the query returns.
     */
+
     'nReturned'?: number;
     /**
     * Number of documents that the query read.
     */
+
     'nScanned'?: number;
     /**
     * Date and time from which the query retrieves the suggested indexes. This parameter expresses its value in the number of seconds that have elapsed since the [UNIX epoch](https://en.wikipedia.org/wiki/Unix_time). This parameter relates to the **since** query parameter.
     */
+
     'ts'?: number;
 
     static readonly discriminator: string | undefined = undefined;

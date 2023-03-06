@@ -19,23 +19,28 @@ export class OnDemandCpsSnapshotSource {
     /**
     * Human-readable name that identifies the cluster.
     */
+
     'clusterName'?: string;
     /**
     * Human-readable name that identifies the collection.
     */
+
     'collectionName'?: string;
     /**
     * Human-readable name that identifies the database.
     */
+
     'databaseName'?: string;
     /**
     * Unique 24-hexadecimal character string that identifies the project.
     */
+
     'groupId'?: string;
     /**
     * Type of ingestion source of this Data Lake Pipeline.
     */
-    'type'?: OnDemandCpsSnapshotSourceTypeEnum;
+
+    'type'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -67,7 +72,7 @@ export class OnDemandCpsSnapshotSource {
         {
             "name": "type",
             "baseName": "type",
-            "type": "OnDemandCpsSnapshotSourceTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

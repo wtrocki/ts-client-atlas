@@ -20,51 +20,63 @@ export class DatabaseUser {
     /**
     * Human-readable label that indicates whether the new database user authenticates with the Amazon Web Services (AWS) Identity and Access Management (IAM) credentials associated with the user or the user's role.
     */
-    'awsIAMType'?: DatabaseUserAwsIAMTypeEnum;
+
+    'awsIAMType'?: string;
     /**
     * Database against which the database user authenticates. Database users must provide both a username and authentication database to log into MongoDB.
     */
-    'databaseName': DatabaseUserDatabaseNameEnum;
+
+    'databaseName': string;
     /**
     * Date and time when MongoDB Cloud deletes the user. This parameter expresses its value in the ISO 8601 timestamp format in UTC and can include the time zone designation. You must specify a future date that falls within one week of making the Application Programming Interface (API) request.
     */
+
     'deleteAfterDate'?: Date;
     /**
     * Unique 24-hexadecimal digit string that identifies the project.
     */
+
     'groupId': string;
     /**
     * List that contains the key-value pairs for tagging and categorizing the MongoDB database user. The labels that you define do not appear in the console.
     */
+
     'labels'?: Array<NDSLabel>;
     /**
     * Part of the Lightweight Directory Access Protocol (LDAP) record that the database uses to authenticate this database user on the LDAP host.
     */
-    'ldapAuthType'?: DatabaseUserLdapAuthTypeEnum;
+
+    'ldapAuthType'?: string;
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
     /**
     * Alphanumeric string that authenticates this database user against the database specified in `databaseName`. To authenticate with SCRAM-SHA, you must specify this parameter. This parameter doesn't appear in this response.
     */
+
     'password'?: string;
     /**
     * List that provides the pairings of one role with one applicable database.
     */
+
     'roles'?: Array<Role>;
     /**
     * List that contains clusters and MongoDB Atlas Data Lakes that this database user can access. If omitted, MongoDB Cloud grants the database user access to all the clusters and MongoDB Atlas Data Lakes in the project.
     */
+
     'scopes'?: Array<UserScope>;
     /**
     * Human-readable label that represents the user that authenticates to MongoDB. The format of this label depends on the method of authentication:  | Authentication Method | Parameter Needed | Parameter Value | username Format | |---|---|---|---| | AWS IAM | awsType | ROLE | <abbr title=\"Amazon Resource Name\">ARN</abbr> | | AWS IAM | awsType | USER | <abbr title=\"Amazon Resource Name\">ARN</abbr> | | x.509 | x509Type | CUSTOMER | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | x.509 | x509Type | MANAGED | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | LDAP | ldapAuthType | USER | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | LDAP | ldapAuthType | GROUP | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | SCRAM-SHA | awsType, x509Type, ldapAuthType | NONE | Alphanumeric string | 
     */
+
     'username': string;
     /**
     * X.509 method that MongoDB Cloud uses to authenticate the database user.  - For application-managed X.509, specify `MANAGED`. - For self-managed X.509, specify `CUSTOMER`.  Users created with the `CUSTOMER` method require a Common Name (CN) in the **username** parameter. You must create externally authenticated users on the `$external` database.
     */
-    'x509Type'?: DatabaseUserX509TypeEnum;
+
+    'x509Type'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -72,13 +84,13 @@ export class DatabaseUser {
         {
             "name": "awsIAMType",
             "baseName": "awsIAMType",
-            "type": "DatabaseUserAwsIAMTypeEnum",
+            "type": "string",
             "format": ""
         },
         {
             "name": "databaseName",
             "baseName": "databaseName",
-            "type": "DatabaseUserDatabaseNameEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -102,7 +114,7 @@ export class DatabaseUser {
         {
             "name": "ldapAuthType",
             "baseName": "ldapAuthType",
-            "type": "DatabaseUserLdapAuthTypeEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -138,7 +150,7 @@ export class DatabaseUser {
         {
             "name": "x509Type",
             "baseName": "x509Type",
-            "type": "DatabaseUserX509TypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

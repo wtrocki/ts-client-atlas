@@ -16,6 +16,7 @@ import { HttpFile } from '../http/http';
 * Collection of settings that describe third-party integrations.
 */
 export class ApiIntegrationView {
+
     'type'?: string;
 
     static readonly discriminator: string | undefined = undefined;

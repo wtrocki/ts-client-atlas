@@ -19,10 +19,12 @@ export class ZoneMapping {
     /**
     * Code that represents a location that maps to a zone in your global cluster. MongoDB Cloud represents this location with a ISO 3166-2 location and subdivision codes when possible.
     */
+
     'location': string;
     /**
     * Human-readable label that identifies the zone in your global cluster. This zone maps to a location code.
     */
+
     'zone': string;
 
     static readonly discriminator: string | undefined = undefined;

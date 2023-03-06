@@ -19,23 +19,31 @@ import { HttpFile } from '../http/http';
 * Details that explain how MongoDB Cloud replicates data in one region on the specified MongoDB database.
 */
 export class GCPRegionConfig {
+
     'analyticsAutoScaling'?: AutoScalingV15;
+
     'analyticsSpecs'?: DedicatedHardwareSpec;
+
     'autoScaling'?: AutoScalingV15;
+
     'readOnlySpecs'?: DedicatedHardwareSpec;
+
     'electableSpecs'?: HardwareSpec;
     /**
     * Precedence is given to this region when a primary election occurs. If your **regionConfigs** has only **readOnlySpecs**, **analyticsSpecs**, or both, set this value to `0`. If you have multiple **regionConfigs** objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is `7`.  **Example:** If you have three regions, their priorities would be `7`, `6`, and `5` respectively. If you added two more regions for supporting electable nodes, the priorities of those regions would be `4` and `3` respectively.
     */
+
     'priority'?: number;
     /**
     * Cloud service provider on which MongoDB Cloud provisions the hosts. Set dedicated clusters to `AWS`, `GCP`, `AZURE` or `TENANT`.
     */
-    'providerName'?: GCPRegionConfigProviderNameEnum;
+
+    'providerName'?: string;
     /**
     * Physical location of your MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Cloud creates them as part of the deployment. It assigns the VPC a Classless Inter-Domain Routing (CIDR) block. To limit a new VPC peering connection to one Classless Inter-Domain Routing (CIDR) block and region, create the connection first. Deploy the cluster after the connection starts. GCP Clusters and Multi-region clusters require one VPC peering connection for each region. MongoDB nodes can use only the peering connection that resides in the same region as the nodes to communicate with the peered VPC.
     */
-    'regionName'?: GCPRegionConfigRegionNameEnum;
+
+    'regionName'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -79,13 +87,13 @@ export class GCPRegionConfig {
         {
             "name": "providerName",
             "baseName": "providerName",
-            "type": "GCPRegionConfigProviderNameEnum",
+            "type": "string",
             "format": ""
         },
         {
             "name": "regionName",
             "baseName": "regionName",
-            "type": "GCPRegionConfigRegionNameEnum",
+            "type": "string",
             "format": ""
         }    ];
 

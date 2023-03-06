@@ -19,6 +19,7 @@ export class SynonymSource {
     /**
     * Human-readable label that identifies the MongoDB collection that stores words and their applicable synonyms.
     */
+
     'collection': string;
 
     static readonly discriminator: string | undefined = undefined;

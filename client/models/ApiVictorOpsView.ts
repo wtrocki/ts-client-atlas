@@ -19,15 +19,18 @@ export class ApiVictorOpsView {
     /**
     * Key that allows MongoDB Cloud to access your VictorOps account.  **NOTE**: After you create a notification which requires an API or integration key, the key appears partially redacted when you:  * View or edit the alert through the Atlas UI.  * Query the alert for the notification through the Atlas Administration API.
     */
+
     'apiKey': string;
     /**
     * Routing key associated with your Splunk On-Call account.
     */
+
     'routingKey'?: string;
     /**
     * Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the third-party service integration type.
     */
-    'type'?: ApiVictorOpsViewTypeEnum;
+
+    'type'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -47,7 +50,7 @@ export class ApiVictorOpsView {
         {
             "name": "type",
             "baseName": "type",
-            "type": "ApiVictorOpsViewTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

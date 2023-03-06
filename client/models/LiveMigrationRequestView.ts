@@ -18,16 +18,21 @@ export class LiveMigrationRequestView {
     /**
     * Unique 24-hexadecimal digit string that identifies the migration request.
     */
+
     'id'?: string;
+
     'destination': Destination;
     /**
     * Flag that indicates whether the migration process drops all collections from the destination cluster before the migration starts.
     */
+
     'dropEnabled': boolean;
     /**
     * List of migration hosts used for this migration.
     */
+
     'migrationHosts'?: Array<string>;
+
     'source': Source;
 
     static readonly discriminator: string | undefined = undefined;

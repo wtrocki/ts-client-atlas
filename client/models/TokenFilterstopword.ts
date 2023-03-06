@@ -19,15 +19,18 @@ export class TokenFilterstopword {
     /**
     * Flag that indicates whether to ignore the case of stop words when filtering the tokens to remove.
     */
+
     'ignoreCase'?: boolean;
     /**
     * The stop words that correspond to the tokens to remove. Value must be one or more stop words.
     */
+
     'tokens': Array<string>;
     /**
     * Human-readable label that identifies this token filter type.
     */
-    'type': TokenFilterstopwordTypeEnum;
+
+    'type': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -47,7 +50,7 @@ export class TokenFilterstopword {
         {
             "name": "type",
             "baseName": "type",
-            "type": "TokenFilterstopwordTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

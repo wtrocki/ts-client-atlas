@@ -19,10 +19,12 @@ export class ApiMetricDataPointViewAtlas {
     /**
     * Date and time when this data point occurred. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     */
+
     'timestamp'?: Date;
     /**
     * Value that comprises this data point.
     */
+
     'value'?: number;
 
     static readonly discriminator: string | undefined = undefined;

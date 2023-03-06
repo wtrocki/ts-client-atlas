@@ -19,11 +19,13 @@ export class AutoExportPolicyView {
     /**
     * Unique 24-hexadecimal character string that identifies the AWS Bucket.
     */
+
     'exportBucketId'?: string;
     /**
     * Human-readable label that indicates the rate at which the export policy item occurs.
     */
-    'frequencyType'?: AutoExportPolicyViewFrequencyTypeEnum;
+
+    'frequencyType'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -37,7 +39,7 @@ export class AutoExportPolicyView {
         {
             "name": "frequencyType",
             "baseName": "frequencyType",
-            "type": "AutoExportPolicyViewFrequencyTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

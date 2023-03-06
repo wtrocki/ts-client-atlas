@@ -17,30 +17,37 @@ export class Group {
     /**
     * Quantity of MongoDB Cloud clusters deployed in this project.
     */
+
     'clusterCount': number;
     /**
     * Date and time when MongoDB Cloud created this project. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     */
+
     'created': Date;
     /**
     * Unique 24-hexadecimal digit string that identifies the MongoDB Cloud project.
     */
+
     'id'?: string;
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
     /**
     * Human-readable label that identifies the project included in the MongoDB Cloud organization.
     */
+
     'name': string;
     /**
     * Unique 24-hexadecimal digit string that identifies the MongoDB Cloud organization to which the project belongs.
     */
+
     'orgId': string;
     /**
     * Flag that indicates whether to create the project with default alert settings.
     */
+
     'withDefaultAlertsSettings'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;

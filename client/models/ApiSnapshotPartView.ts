@@ -19,43 +19,53 @@ export class ApiSnapshotPartView {
     /**
     * Unique 24-hexadecimal digit string that identifies the cluster with the snapshots you want to return.
     */
+
     'clusterId'?: string;
     /**
     * Human-readable label that identifies the method of compression for the snapshot.
     */
-    'compressionSetting'?: ApiSnapshotPartViewCompressionSettingEnum;
+
+    'compressionSetting'?: string;
     /**
     * Total size of the data stored on each node in the cluster. This parameter expresses its value in bytes.
     */
+
     'dataSizeBytes'?: number;
     /**
     * Flag that indicates whether someone encrypted this snapshot.
     */
+
     'encryptionEnabled'?: boolean;
     /**
     * Number that indicates the total size of the data files in bytes.
     */
+
     'fileSizeBytes'?: number;
     /**
     * Unique string that identifies the Key Management Interoperability (KMIP) master key used to encrypt the snapshot data. The resource returns this parameter when `\"parts.encryptionEnabled\" : true`.
     */
+
     'masterKeyUUID'?: string;
     /**
     * Number that indicates the version of MongoDB that the replica set primary ran when MongoDB Cloud created the snapshot.
     */
+
     'mongodVersion'?: string;
     /**
     * Human-readable label that identifies the replica set.
     */
+
     'replicaSetName'?: string;
     /**
     * Number that indicates the total size of space allocated for document storage.
     */
+
     'storageSizeBytes'?: number;
     /**
     * Human-readable label that identifies the type of server from which MongoDB Cloud took this snapshot.
     */
-    'typeName'?: ApiSnapshotPartViewTypeNameEnum;
+
+    'typeName'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -69,7 +79,7 @@ export class ApiSnapshotPartView {
         {
             "name": "compressionSetting",
             "baseName": "compressionSetting",
-            "type": "ApiSnapshotPartViewCompressionSettingEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -117,7 +127,7 @@ export class ApiSnapshotPartView {
         {
             "name": "typeName",
             "baseName": "typeName",
-            "type": "ApiSnapshotPartViewTypeNameEnum",
+            "type": "string",
             "format": ""
         }    ];
 

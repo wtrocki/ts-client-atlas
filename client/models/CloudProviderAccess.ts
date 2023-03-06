@@ -17,6 +17,7 @@ export class CloudProviderAccess {
     /**
     * List that contains the Amazon Web Services (AWS) IAM roles registered and authorized with MongoDB Cloud.
     */
+
     'awsIamRoles'?: Array<CloudProviderAccessAWSIAMRole>;
 
     static readonly discriminator: string | undefined = undefined;

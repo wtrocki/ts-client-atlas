@@ -20,7 +20,9 @@ export class DataMetricValueView {
     /**
     * Amount of the **metricName** recorded at the time of the event. This value triggered the alert.
     */
+
     'number'?: number;
+
     'units'?: DataMetricUnits;
 
     static readonly discriminator: string | undefined = undefined;

@@ -19,30 +19,37 @@ export class GCPCloudProviderContainer {
     /**
     * IP addresses expressed in Classless Inter-Domain Routing (CIDR) notation that MongoDB Cloud uses for the network peering containers in your project. MongoDB Cloud assigns all of the project's clusters deployed to this cloud provider an IP address from this range. MongoDB Cloud locks this value if an M10 or greater cluster or a network peering connection exists in this project.  These CIDR blocks must fall within the ranges reserved per RFC 1918. GCP further limits the block to a lower bound of the `/18` range.  To modify the CIDR block, the target project cannot have:  - Any M10 or greater clusters - Any other VPC peering connections   You can also create a new project and create a network peering connection to set the desired MongoDB Cloud network peering container CIDR block for that project. MongoDB Cloud limits the number of MongoDB nodes per network peering connection based on the CIDR block and the region selected for the project.   **Example:** A project in an Google Cloud (GCP) region supporting three availability zones and an MongoDB CIDR network peering container block of limit of `/24` equals 27 three-node replica sets.
     */
+
     'atlasCidrBlock': string;
     /**
     * Unique string that identifies the GCP project in which MongoDB Cloud clusters in this network peering container exist. The response returns **null** if no clusters exist in this network peering container.
     */
+
     'gcpProjectId'?: string;
     /**
     * Human-readable label that identifies the network in which MongoDB Cloud clusters in this network peering container exist. MongoDB Cloud returns **null** if no clusters exist in this network peering container.
     */
+
     'networkName'?: string;
     /**
     * List of GCP regions to which you want to deploy this MongoDB Cloud network peering container.  In this MongoDB Cloud project, you can deploy clusters only to the GCP regions in this list. To deploy MongoDB Cloud clusters to other GCP regions, create additional projects.
     */
-    'regions'?: Array<GCPCloudProviderContainerRegionsEnum>;
+
+    'regions'?: Array<string>;
     /**
     * Unique 24-hexadecimal digit string that identifies the network peering container.
     */
+
     'id'?: string;
     /**
     * Cloud service provider that serves the requested network peering containers.
     */
-    'providerName'?: GCPCloudProviderContainerProviderNameEnum;
+
+    'providerName'?: string;
     /**
     * Flag that indicates whether MongoDB Cloud clusters exist in the specified network peering container.
     */
+
     'provisioned'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;
@@ -69,7 +76,7 @@ export class GCPCloudProviderContainer {
         {
             "name": "regions",
             "baseName": "regions",
-            "type": "Array<GCPCloudProviderContainerRegionsEnum>",
+            "type": "Array<string>",
             "format": ""
         },
         {
@@ -81,7 +88,7 @@ export class GCPCloudProviderContainer {
         {
             "name": "providerName",
             "baseName": "providerName",
-            "type": "GCPCloudProviderContainerProviderNameEnum",
+            "type": "string",
             "format": ""
         },
         {

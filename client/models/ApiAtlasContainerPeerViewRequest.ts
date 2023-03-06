@@ -22,78 +22,97 @@ export class ApiAtlasContainerPeerViewRequest {
     /**
     * Unique 24-hexadecimal digit string that identifies the MongoDB Cloud network container that contains the specified network peering connection.
     */
+
     'containerId': string;
     /**
     * Cloud service provider that determines the needed settings to configure the network connection for a virtual private connection.
     */
-    'providerName': ApiAtlasContainerPeerViewRequestProviderNameEnum;
+
+    'providerName': string;
     /**
     * Amazon Web Services (AWS) region where the Virtual Peering Connection (VPC) that you peered with the MongoDB Cloud VPC resides. The resource returns `null` if your VPC and the MongoDB Cloud VPC reside in the same region.
     */
+
     'accepterRegionName': string;
     /**
     * Unique twelve-digit string that identifies the Amazon Web Services (AWS) account that owns the VPC that you peered with the MongoDB Cloud VPC.
     */
+
     'awsAccountId': string;
     /**
     * Unique string that identifies the peering connection on AWS.
     */
+
     'connectionId'?: string;
     /**
     * Type of error that can be returned when requesting an Amazon Web Services (AWS) peering connection. The resource returns `null` if the request succeeded.
     */
-    'errorStateName'?: ApiAtlasContainerPeerViewRequestErrorStateNameEnum;
+
+    'errorStateName'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the network peering connection.
     */
+
     'id'?: string;
     /**
     * Internet Protocol (IP) addresses expressed in Classless Inter-Domain Routing (CIDR) notation of the VPC's subnet that you want to peer with the MongoDB Cloud VPC.
     */
+
     'routeTableCidrBlock': string;
     /**
     * State of the network peering connection at the time you made the request.
     */
-    'statusName'?: ApiAtlasContainerPeerViewRequestStatusNameEnum;
+
+    'statusName'?: string;
     /**
     * Unique string that identifies the VPC on Amazon Web Services (AWS) that you want to peer with the MongoDB Cloud VPC.
     */
+
     'vpcId': string;
     /**
     * Unique string that identifies the Azure AD directory in which the VNet peered with the MongoDB Cloud VNet resides.
     */
+
     'azureDirectoryId': string;
     /**
     * Unique string that identifies the Azure subscription in which the VNet you peered with the MongoDB Cloud VNet resides.
     */
+
     'azureSubscriptionId': string;
     /**
     * Error message returned when a requested Azure network peering resource returns `\"status\" : \"FAILED\"`. The resource returns `null` if the request succeeded.
     */
+
     'errorState'?: string;
     /**
     * Human-readable label that identifies the resource group in which the VNet to peer with the MongoDB Cloud VNet resides.
     */
+
     'resourceGroupName': string;
     /**
     * State of the network peering connection at the time you made the request.
     */
-    'status'?: ApiAtlasContainerPeerViewRequestStatusEnum;
+
+    'status'?: string;
     /**
     * Human-readable label that identifies the VNet that you want to peer with the MongoDB Cloud VNet.
     */
+
     'vnetName': string;
     /**
     * Details of the error returned when requesting a GCP network peering resource. The resource returns `null` if the request succeeded.
     */
+
     'errorMessage'?: string;
     /**
     * Human-readable label that identifies the GCP project that contains the network that you want to peer with the MongoDB Cloud VPC.
     */
+
     'gcpProjectId': string;
     /**
     * Human-readable label that identifies the network to peer with the MongoDB Cloud VPC.
     */
+
     'networkName': string;
 
     static readonly discriminator: string | undefined = "providerName";
@@ -108,7 +127,7 @@ export class ApiAtlasContainerPeerViewRequest {
         {
             "name": "providerName",
             "baseName": "providerName",
-            "type": "ApiAtlasContainerPeerViewRequestProviderNameEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -132,7 +151,7 @@ export class ApiAtlasContainerPeerViewRequest {
         {
             "name": "errorStateName",
             "baseName": "errorStateName",
-            "type": "ApiAtlasContainerPeerViewRequestErrorStateNameEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -150,7 +169,7 @@ export class ApiAtlasContainerPeerViewRequest {
         {
             "name": "statusName",
             "baseName": "statusName",
-            "type": "ApiAtlasContainerPeerViewRequestStatusNameEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -186,7 +205,7 @@ export class ApiAtlasContainerPeerViewRequest {
         {
             "name": "status",
             "baseName": "status",
-            "type": "ApiAtlasContainerPeerViewRequestStatusEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -219,7 +238,6 @@ export class ApiAtlasContainerPeerViewRequest {
     }
 
     public constructor() {
-        this.providerName = "ApiAtlasContainerPeerViewRequest";
     }
 }
 

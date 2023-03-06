@@ -19,11 +19,13 @@ export class TokenFilterasciiFolding {
     /**
     * Value that indicates whether to include or omit the original tokens in the output of the token filter.  Choose `include` if you want to support queries on both the original tokens as well as the converted forms.   Choose `omit` if you want to query only on the converted forms of the original tokens.
     */
-    'originalTokens'?: TokenFilterasciiFoldingOriginalTokensEnum;
+
+    'originalTokens'?: string;
     /**
     * Human-readable label that identifies this token filter type.
     */
-    'type': TokenFilterasciiFoldingTypeEnum;
+
+    'type': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -31,13 +33,13 @@ export class TokenFilterasciiFolding {
         {
             "name": "originalTokens",
             "baseName": "originalTokens",
-            "type": "TokenFilterasciiFoldingOriginalTokensEnum",
+            "type": "string",
             "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "TokenFilterasciiFoldingTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

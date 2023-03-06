@@ -20,7 +20,9 @@ export class TimeMetricValueView {
     /**
     * Amount of the **metricName** recorded at the time of the event. This value triggered the alert.
     */
+
     'number'?: number;
+
     'units'?: TimeMetricUnits;
 
     static readonly discriminator: string | undefined = undefined;

@@ -17,27 +17,33 @@ export class ClusterOutageSimulation {
     /**
     * Human-readable label that identifies the cluster that undergoes outage simulation.
     */
+
     'clusterName'?: string;
     /**
     * Unique 24-hexadecimal character string that identifies the project that contains the cluster to undergo outage simulation.
     */
+
     'groupId'?: string;
     /**
     * Unique 24-hexadecimal character string that identifies the outage simulation.
     */
+
     'id'?: string;
     /**
     * List of settings that specify the type of cluster outage simulation.
     */
+
     'outageFilters'?: Array<ClusterOutageSimulationOutageFilter>;
     /**
     * Date and time when MongoDB Cloud started the regional outage simulation.
     */
+
     'startRequestDate'?: Date;
     /**
     * Phase of the outage simulation.  | State       | Indication | |-------------|------------| | `START_REQUESTED`    | User has requested cluster outage simulation.| | `STARTING`           | MongoDB Cloud is starting cluster outage simulation.| | `SIMULATING`         | MongoDB Cloud is simulating cluster outage.| | `RECOVERY_REQUESTED` | User has requested recovery from the simulated outage.| | `RECOVERING`         | MongoDB Cloud is recovering the cluster from the simulated outage.| | `COMPLETE`           | MongoDB Cloud has completed the cluster outage simulation.|
     */
-    'state'?: ClusterOutageSimulationStateEnum;
+
+    'state'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -75,7 +81,7 @@ export class ClusterOutageSimulation {
         {
             "name": "state",
             "baseName": "state",
-            "type": "ClusterOutageSimulationStateEnum",
+            "type": "string",
             "format": ""
         }    ];
 

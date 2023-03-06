@@ -21,11 +21,14 @@ export class ApiAtlasFTSAnalyzersViewManualCharFiltersInner {
     /**
     * The HTML tags that you want to exclude from filtering.
     */
+
     'ignoredTags'?: Array<string>;
     /**
     * Human-readable label that identifies this character filter type.
     */
-    'type': ApiAtlasFTSAnalyzersViewManualCharFiltersInnerTypeEnum;
+
+    'type': string;
+
     'mappings': CharFiltermappingMappings;
 
     static readonly discriminator: string | undefined = undefined;
@@ -40,7 +43,7 @@ export class ApiAtlasFTSAnalyzersViewManualCharFiltersInner {
         {
             "name": "type",
             "baseName": "type",
-            "type": "ApiAtlasFTSAnalyzersViewManualCharFiltersInnerTypeEnum",
+            "type": "string",
             "format": ""
         },
         {

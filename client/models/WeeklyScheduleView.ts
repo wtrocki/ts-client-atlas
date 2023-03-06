@@ -16,23 +16,29 @@ export class WeeklyScheduleView {
     /**
     * Day of the week when the scheduled archive starts. The week starts with Monday (`1`) and ends with Sunday (`7`).
     */
+
     'dayOfWeek'?: number;
     /**
     * Hour of the day when the scheduled window to run one online archive ends.
     */
+
     'endHour'?: number;
     /**
     * Minute of the hour when the scheduled window to run one online archive ends.
     */
+
     'endMinute'?: number;
     /**
     * Hour of the day when the when the scheduled window to run one online archive starts.
     */
+
     'startHour'?: number;
     /**
     * Minute of the hour when the scheduled window to run one online archive starts.
     */
+
     'startMinute'?: number;
+
     'type': string;
 
     static readonly discriminator: string | undefined = undefined;

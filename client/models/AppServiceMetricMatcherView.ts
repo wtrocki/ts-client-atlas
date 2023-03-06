@@ -17,14 +17,17 @@ import { HttpFile } from '../http/http';
 * Rules to apply when comparing an app service metric against this alert configuration.
 */
 export class AppServiceMetricMatcherView {
+
     'fieldName'?: AppServiceMetricMatcherField;
     /**
     * Comparison operator to apply when checking the current metric value against **matcher[n].value**.
     */
-    'operator'?: AppServiceMetricMatcherViewOperatorEnum;
+
+    'operator'?: string;
     /**
     * Value to match or exceed using the specified **matchers.operator**.
     */
+
     'value'?: string;
 
     static readonly discriminator: string | undefined = undefined;
@@ -39,7 +42,7 @@ export class AppServiceMetricMatcherView {
         {
             "name": "operator",
             "baseName": "operator",
-            "type": "AppServiceMetricMatcherViewOperatorEnum",
+            "type": "string",
             "format": ""
         },
         {

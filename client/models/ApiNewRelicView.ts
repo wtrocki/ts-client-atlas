@@ -19,22 +19,27 @@ export class ApiNewRelicView {
     /**
     * Unique 40-hexadecimal digit string that identifies your New Relic account.
     */
+
     'accountId': string;
     /**
     * Unique 40-hexadecimal digit string that identifies your New Relic license.  **IMPORTANT**: Effective Wednesday, June 16th, 2021, New Relic no longer supports the plugin-based integration with MongoDB. We do not recommend that you sign up for the plugin-based integration. To learn more, see the <a href=\"https://discuss.newrelic.com/t/new-relic-plugin-eol-wednesday-june-16th-2021/127267\" target=\"_blank\">New Relic Plugin EOL Statement</a> Consider configuring an alternative monitoring integration before June 16th to maintain visibility into your MongoDB deployments.
     */
+
     'licenseKey': string;
     /**
     * Query key used to access your New Relic account.
     */
+
     'readToken': string;
     /**
     * Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the third-party service integration type.
     */
-    'type'?: ApiNewRelicViewTypeEnum;
+
+    'type'?: string;
     /**
     * Insert key associated with your New Relic account.
     */
+
     'writeToken': string;
 
     static readonly discriminator: string | undefined = undefined;
@@ -61,7 +66,7 @@ export class ApiNewRelicView {
         {
             "name": "type",
             "baseName": "type",
-            "type": "ApiNewRelicViewTypeEnum",
+            "type": "string",
             "format": ""
         },
         {

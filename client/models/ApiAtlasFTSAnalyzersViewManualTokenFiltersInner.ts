@@ -30,66 +30,82 @@ export class ApiAtlasFTSAnalyzersViewManualTokenFiltersInner {
     /**
     * Value that indicates whether to include or omit the original tokens in the output of the token filter.  Choose `include` if you want to support queries on both the original tokens as well as the converted forms.   Choose `omit` if you want to query only on the converted forms of the original tokens.
     */
-    'originalTokens'?: ApiAtlasFTSAnalyzersViewManualTokenFiltersInnerOriginalTokensEnum;
+
+    'originalTokens'?: string;
     /**
     * Human-readable label that identifies this token filter type.
     */
-    'type': ApiAtlasFTSAnalyzersViewManualTokenFiltersInnerTypeEnum;
+
+    'type': string;
     /**
     * Value that specifies the maximum length of generated n-grams. This value must be greater than or equal to **minGram**.
     */
+
     'maxGram': number;
     /**
     * Value that specifies the minimum length of generated n-grams. This value must be less than or equal to **maxGram**.
     */
+
     'minGram': number;
     /**
     * Value that indicates whether to index tokens shorter than **minGram** or longer than **maxGram**.
     */
-    'termNotInBounds'?: ApiAtlasFTSAnalyzersViewManualTokenFiltersInnerTermNotInBoundsEnum;
+
+    'termNotInBounds'?: string;
     /**
     * Normalization form to apply.
     */
-    'normalizationForm'?: ApiAtlasFTSAnalyzersViewManualTokenFiltersInnerNormalizationFormEnum;
+
+    'normalizationForm'?: string;
     /**
     * Number that specifies the maximum length of a token. Value must be greater than or equal to **min**.
     */
+
     'max'?: number;
     /**
     * Number that specifies the minimum length of a token. This value must be less than or equal to **max**.
     */
+
     'min'?: number;
     /**
     * Value that indicates whether to replace only the first matching pattern or all matching patterns.
     */
-    'matches': ApiAtlasFTSAnalyzersViewManualTokenFiltersInnerMatchesEnum;
+
+    'matches': string;
     /**
     * Regular expression pattern to apply to each token.
     */
+
     'pattern': string;
     /**
     * Replacement string to substitute wherever a matching pattern occurs.
     */
+
     'replacement': string;
     /**
     * Value that specifies the maximum number of tokens per shingle. This value must be greater than or equal to **minShingleSize**.
     */
+
     'maxShingleSize': number;
     /**
     * Value that specifies the minimum number of tokens per shingle. This value must be less than or equal to **maxShingleSize**.
     */
+
     'minShingleSize': number;
     /**
     * Snowball-generated stemmer to use.
     */
-    'stemmerName': ApiAtlasFTSAnalyzersViewManualTokenFiltersInnerStemmerNameEnum;
+
+    'stemmerName': string;
     /**
     * Flag that indicates whether to ignore the case of stop words when filtering the tokens to remove.
     */
+
     'ignoreCase'?: boolean;
     /**
     * The stop words that correspond to the tokens to remove. Value must be one or more stop words.
     */
+
     'tokens': Array<string>;
 
     static readonly discriminator: string | undefined = undefined;
@@ -98,13 +114,13 @@ export class ApiAtlasFTSAnalyzersViewManualTokenFiltersInner {
         {
             "name": "originalTokens",
             "baseName": "originalTokens",
-            "type": "ApiAtlasFTSAnalyzersViewManualTokenFiltersInnerOriginalTokensEnum",
+            "type": "string",
             "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "ApiAtlasFTSAnalyzersViewManualTokenFiltersInnerTypeEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -122,13 +138,13 @@ export class ApiAtlasFTSAnalyzersViewManualTokenFiltersInner {
         {
             "name": "termNotInBounds",
             "baseName": "termNotInBounds",
-            "type": "ApiAtlasFTSAnalyzersViewManualTokenFiltersInnerTermNotInBoundsEnum",
+            "type": "string",
             "format": ""
         },
         {
             "name": "normalizationForm",
             "baseName": "normalizationForm",
-            "type": "ApiAtlasFTSAnalyzersViewManualTokenFiltersInnerNormalizationFormEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -146,7 +162,7 @@ export class ApiAtlasFTSAnalyzersViewManualTokenFiltersInner {
         {
             "name": "matches",
             "baseName": "matches",
-            "type": "ApiAtlasFTSAnalyzersViewManualTokenFiltersInnerMatchesEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -176,7 +192,7 @@ export class ApiAtlasFTSAnalyzersViewManualTokenFiltersInner {
         {
             "name": "stemmerName",
             "baseName": "stemmerName",
-            "type": "ApiAtlasFTSAnalyzersViewManualTokenFiltersInnerStemmerNameEnum",
+            "type": "string",
             "format": ""
         },
         {

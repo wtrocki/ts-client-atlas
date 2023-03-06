@@ -21,10 +21,12 @@ export class DataLakeStorage {
     /**
     * Array that contains the queryable databases and collections for this data lake.
     */
+
     'databases'?: Array<DataLakeDatabase>;
     /**
     * Array that contains the data stores for the data lake.
     */
+
     'stores'?: Array<DataLakeStore>;
 
     static readonly discriminator: string | undefined = undefined;

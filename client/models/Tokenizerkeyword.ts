@@ -19,7 +19,8 @@ export class Tokenizerkeyword {
     /**
     * Human-readable label that identifies this tokenizer type.
     */
-    'type': TokenizerkeywordTypeEnum;
+
+    'type': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -27,7 +28,7 @@ export class Tokenizerkeyword {
         {
             "name": "type",
             "baseName": "type",
-            "type": "TokenizerkeywordTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

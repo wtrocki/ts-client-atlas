@@ -20,10 +20,12 @@ export class DataLakeDatabaseCollection {
     /**
     * Array that contains the data stores that map to a collection for this data lake.
     */
+
     'dataSources'?: Array<DataLakeDatabaseDataSource>;
     /**
     * Human-readable label that identifies the collection to which MongoDB Cloud maps the data in the data stores.
     */
+
     'name'?: string;
 
     static readonly discriminator: string | undefined = undefined;

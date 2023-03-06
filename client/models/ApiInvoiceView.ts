@@ -20,78 +20,97 @@ export class ApiInvoiceView {
     /**
     * Sum of services that the specified organization consumed in the period covered in this invoice. This parameter expresses its value in cents (100ths of one US Dollar) and calculates its value as **subtotalCents** + **salesTaxCents** - **startingBalanceCents**.
     */
+
     'amountBilledCents'?: number;
     /**
     * Sum that the specified organization paid toward this invoice. This parameter expresses its value in cents (100ths of one US Dollar).
     */
+
     'amountPaidCents'?: number;
     /**
     * Date and time when MongoDB Cloud created this invoice. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     */
+
     'created'?: Date;
     /**
     * Sum that MongoDB credited the specified organization toward this invoice. This parameter expresses its value in cents (100ths of one US Dollar).
     */
+
     'creditsCents'?: number;
     /**
     * Date and time when MongoDB Cloud finished the billing period that this invoice covers. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     */
+
     'endDate'?: Date;
     /**
     * Unique 24-hexadecimal digit string that identifies the project associated to this invoice. This identifying string doesn't appear on all invoices.
     */
+
     'groupId'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the invoice submitted to the specified organization. Charges typically post the next day.
     */
+
     'id'?: string;
     /**
     * List that contains individual services included in this invoice.
     */
+
     'lineItems'?: Array<ApiLineItemView>;
     /**
     * List that contains the invoices for organizations linked to the paying organization.
     */
+
     'linkedInvoices'?: Array<ApiInvoiceView>;
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
     /**
     * Unique 24-hexadecimal digit string that identifies the organization charged for services consumed from MongoDB Cloud.
     */
+
     'orgId'?: string;
     /**
     * List that contains funds transferred to MongoDB to cover the specified service noted in this invoice.
     */
+
     'payments'?: Array<ApiPaymentView>;
     /**
     * List that contains payments that MongoDB returned to the organization for this invoice.
     */
+
     'refunds'?: Array<ApiRefundView>;
     /**
     * Sum of sales tax applied to this invoice. This parameter expresses its value in cents (100ths of one US Dollar).
     */
+
     'salesTaxCents'?: number;
     /**
     * Date and time when MongoDB Cloud began the billing period that this invoice covers. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     */
+
     'startDate'?: Date;
     /**
     * Sum that the specified organization owed to MongoDB when MongoDB issued this invoice. This parameter expresses its value in US Dollars.
     */
+
     'startingBalanceCents'?: number;
     /**
     * Phase of payment processing in which this invoice exists when you made this request. Accepted phases include:  | Phase Value | Reason | |---|---| | CLOSED | MongoDB finalized all charges in the billing cycle but has yet to charge the customer. | | FAILED | MongoDB attempted to charge the provided credit card but charge for that amount failed. | | FORGIVEN | Customer initiated payment which MongoDB later forgave. | | FREE | All charges totalled zero so the customer won't be charged. | | INVOICED | MongoDB handled these charges using elastic invoicing. | | PAID | MongoDB succeeded in charging the provided credit card. | | PENDING | Invoice includes charges for the current billing cycle. | | PREPAID | Customer has a pre-paid plan so they won't be charged. | 
     */
-    'statusName'?: ApiInvoiceViewStatusNameEnum;
+
+    'statusName'?: string;
     /**
     * Sum of all positive invoice line items contained in this invoice. This parameter expresses its value in cents (100ths of one US Dollar).
     */
+
     'subtotalCents'?: number;
     /**
     * Date and time when MongoDB Cloud last updated the value of this payment. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     */
+
     'updated'?: Date;
 
     static readonly discriminator: string | undefined = undefined;
@@ -196,7 +215,7 @@ export class ApiInvoiceView {
         {
             "name": "statusName",
             "baseName": "statusName",
-            "type": "ApiInvoiceViewStatusNameEnum",
+            "type": "string",
             "format": ""
         },
         {

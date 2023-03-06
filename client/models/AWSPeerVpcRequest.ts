@@ -16,42 +16,52 @@ export class AWSPeerVpcRequest {
     /**
     * Unique 24-hexadecimal digit string that identifies the MongoDB Cloud network container that contains the specified network peering connection.
     */
+
     'containerId': string;
     /**
     * Cloud service provider that determines the needed settings to configure the network connection for a virtual private connection.
     */
-    'providerName': AWSPeerVpcRequestProviderNameEnum;
+
+    'providerName': string;
     /**
     * Amazon Web Services (AWS) region where the Virtual Peering Connection (VPC) that you peered with the MongoDB Cloud VPC resides. The resource returns `null` if your VPC and the MongoDB Cloud VPC reside in the same region.
     */
+
     'accepterRegionName': string;
     /**
     * Unique twelve-digit string that identifies the Amazon Web Services (AWS) account that owns the VPC that you peered with the MongoDB Cloud VPC.
     */
+
     'awsAccountId': string;
     /**
     * Unique string that identifies the peering connection on AWS.
     */
+
     'connectionId'?: string;
     /**
     * Type of error that can be returned when requesting an Amazon Web Services (AWS) peering connection. The resource returns `null` if the request succeeded.
     */
-    'errorStateName'?: AWSPeerVpcRequestErrorStateNameEnum;
+
+    'errorStateName'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the network peering connection.
     */
+
     'id'?: string;
     /**
     * Internet Protocol (IP) addresses expressed in Classless Inter-Domain Routing (CIDR) notation of the VPC's subnet that you want to peer with the MongoDB Cloud VPC.
     */
+
     'routeTableCidrBlock': string;
     /**
     * State of the network peering connection at the time you made the request.
     */
-    'statusName'?: AWSPeerVpcRequestStatusNameEnum;
+
+    'statusName'?: string;
     /**
     * Unique string that identifies the VPC on Amazon Web Services (AWS) that you want to peer with the MongoDB Cloud VPC.
     */
+
     'vpcId': string;
 
     static readonly discriminator: string | undefined = undefined;
@@ -66,7 +76,7 @@ export class AWSPeerVpcRequest {
         {
             "name": "providerName",
             "baseName": "providerName",
-            "type": "AWSPeerVpcRequestProviderNameEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -90,7 +100,7 @@ export class AWSPeerVpcRequest {
         {
             "name": "errorStateName",
             "baseName": "errorStateName",
-            "type": "AWSPeerVpcRequestErrorStateNameEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -108,7 +118,7 @@ export class AWSPeerVpcRequest {
         {
             "name": "statusName",
             "baseName": "statusName",
-            "type": "AWSPeerVpcRequestStatusNameEnum",
+            "type": "string",
             "format": ""
         },
         {

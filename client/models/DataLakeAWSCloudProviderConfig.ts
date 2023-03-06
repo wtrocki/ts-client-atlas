@@ -19,22 +19,27 @@ export class DataLakeAWSCloudProviderConfig {
     /**
     * Unique identifier associated with the Identity and Access Management (IAM) role that the data lake assumes when accessing the data stores.
     */
+
     'externalId'?: string;
     /**
     * Amazon Resource Name (ARN) of the Identity and Access Management (IAM) role that the data lake assumes when accessing data stores.
     */
+
     'iamAssumedRoleARN'?: string;
     /**
     * Amazon Resource Name (ARN) of the user that the data lake assumes when accessing data stores.
     */
+
     'iamUserARN'?: string;
     /**
     * Unique identifier of the role that the data lake can use to access the data stores.Required if specifying cloudProviderConfig.
     */
+
     'roleId': string;
     /**
     * Name of the S3 data bucket that the provided role ID is authorized to access.Required if specifying cloudProviderConfig.
     */
+
     'testS3Bucket': string;
 
     static readonly discriminator: string | undefined = undefined;

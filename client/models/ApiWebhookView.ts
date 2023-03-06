@@ -19,14 +19,17 @@ export class ApiWebhookView {
     /**
     * An optional field returned if your webhook is configured with a secret.  **NOTE**: When you view or edit the alert for a webhook notification, the secret appears completely redacted.
     */
+
     'secret'?: string;
     /**
     * Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the third-party service integration type.
     */
-    'type'?: ApiWebhookViewTypeEnum;
+
+    'type'?: string;
     /**
     * Endpoint web address to which MongoDB Cloud sends notifications.  **NOTE**: When you view or edit the alert for a webhook notification, the URL appears partially redacted.
     */
+
     'url': string;
 
     static readonly discriminator: string | undefined = undefined;
@@ -41,7 +44,7 @@ export class ApiWebhookView {
         {
             "name": "type",
             "baseName": "type",
-            "type": "ApiWebhookViewTypeEnum",
+            "type": "string",
             "format": ""
         },
         {

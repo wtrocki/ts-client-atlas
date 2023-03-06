@@ -17,58 +17,72 @@ export class TenantRestore {
     /**
     * Human-readable label that identifies the source cluster.
     */
+
     'clusterName'?: string;
     /**
     * Means by which this resource returns the snapshot to the requesting MongoDB Cloud user.
     */
-    'deliveryType'?: TenantRestoreDeliveryTypeEnum;
+
+    'deliveryType'?: string;
     /**
     * Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     */
+
     'expirationDate'?: Date;
     /**
     * Unique 24-hexadecimal digit string that identifies the restore job.
     */
+
     'id'?: string;
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
     /**
     * Unique 24-hexadecimal digit string that identifies the project from which the restore job originated.
     */
+
     'projectId'?: string;
     /**
     * Date and time when MongoDB Cloud completed writing this snapshot. MongoDB Cloud changes the status of the restore job to `CLOSED`. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     */
+
     'restoreFinishedDate'?: Date;
     /**
     * Date and time when MongoDB Cloud will restore this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     */
+
     'restoreScheduledDate'?: Date;
     /**
     * Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     */
+
     'snapshotFinishedDate'?: Date;
     /**
     * Unique 24-hexadecimal digit string that identifies the snapshot to restore.
     */
+
     'snapshotId': string;
     /**
     * Internet address from which you can download the compressed snapshot files. The resource returns this parameter when  `\"deliveryType\" : \"DOWNLOAD\"`.
     */
+
     'snapshotUrl'?: string;
     /**
     * Phase of the restore workflow for this job at the time this resource made this request.
     */
-    'status'?: TenantRestoreStatusEnum;
+
+    'status'?: string;
     /**
     * Human-readable label that identifies the cluster on the target project to which you want to restore the snapshot. You can restore the snapshot to a cluster tier *M2* or greater.
     */
+
     'targetDeploymentItemName': string;
     /**
     * Unique 24-hexadecimal digit string that identifies the project that contains the cluster to which you want to restore the snapshot.
     */
+
     'targetProjectId'?: string;
 
     static readonly discriminator: string | undefined = undefined;
@@ -83,7 +97,7 @@ export class TenantRestore {
         {
             "name": "deliveryType",
             "baseName": "deliveryType",
-            "type": "TenantRestoreDeliveryTypeEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -143,7 +157,7 @@ export class TenantRestore {
         {
             "name": "status",
             "baseName": "status",
-            "type": "TenantRestoreStatusEnum",
+            "type": "string",
             "format": ""
         },
         {

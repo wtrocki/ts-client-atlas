@@ -14,19 +14,24 @@ import { AzureAutoScaling } from '../models/AzureAutoScaling';
 import { HttpFile } from '../http/http';
 
 export class AzureProviderSettings {
+
     'autoScaling'?: AzureAutoScaling;
     /**
     * Disk type that corresponds to the host's root volume for Azure instances. If omitted, the default disk type for the selected **providerSettings.instanceSizeName** applies.
     */
-    'diskTypeName'?: AzureProviderSettingsDiskTypeNameEnum;
+
+    'diskTypeName'?: string;
     /**
     * Cluster tier, with a default storage and memory capacity, that applies to all the data-bearing hosts in your cluster.
     */
-    'instanceSizeName'?: AzureProviderSettingsInstanceSizeNameEnum;
+
+    'instanceSizeName'?: string;
     /**
     * Microsoft Azure Regions.
     */
-    'regionName'?: AzureProviderSettingsRegionNameEnum;
+
+    'regionName'?: string;
+
     'providerName': string;
 
     static readonly discriminator: string | undefined = undefined;
@@ -41,19 +46,19 @@ export class AzureProviderSettings {
         {
             "name": "diskTypeName",
             "baseName": "diskTypeName",
-            "type": "AzureProviderSettingsDiskTypeNameEnum",
+            "type": "string",
             "format": ""
         },
         {
             "name": "instanceSizeName",
             "baseName": "instanceSizeName",
-            "type": "AzureProviderSettingsInstanceSizeNameEnum",
+            "type": "string",
             "format": ""
         },
         {
             "name": "regionName",
             "baseName": "regionName",
-            "type": "AzureProviderSettingsRegionNameEnum",
+            "type": "string",
             "format": ""
         },
         {

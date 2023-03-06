@@ -17,11 +17,13 @@ export class ProviderRegions {
     /**
     * List of instances sizes that this cloud provider supports.
     */
+
     'instanceSizes'?: Array<ApiInstanceSizeView>;
     /**
     * Human-readable label that identifies the Cloud provider.
     */
-    'provider'?: ProviderRegionsProviderEnum;
+
+    'provider'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -35,7 +37,7 @@ export class ProviderRegions {
         {
             "name": "provider",
             "baseName": "provider",
-            "type": "ProviderRegionsProviderEnum",
+            "type": "string",
             "format": ""
         }    ];
 

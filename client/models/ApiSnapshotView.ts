@@ -19,36 +19,46 @@ export class ApiSnapshotView {
     /**
     * Unique 24-hexadecimal digit string that identifies the cluster with the snapshots you want to return.
     */
+
     'clusterId'?: string;
     /**
     * Flag that indicates whether the snapshot exists. This flag returns `false` while MongoDB Cloud creates the snapshot.
     */
+
     'complete'?: boolean;
+
     'created'?: ApiBSONTimestampView;
     /**
     * Flag that indicates whether someone can delete this snapshot. You can't set `\"doNotDelete\" : true` and set a timestamp for **expires** in the same request.
     */
+
     'doNotDelete'?: boolean;
     /**
     * Date and time when MongoDB Cloud deletes the snapshot. If `\"doNotDelete\" : true`, MongoDB Cloud removes any value set for this parameter.
     */
+
     'expires'?: Date;
     /**
     * Unique 24-hexadecimal digit string that identifies the project that owns the snapshots.
     */
+
     'groupId'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the snapshot.
     */
+
     'id'?: string;
+
     'lastOplogAppliedTimestamp'?: ApiBSONTimestampView;
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
     /**
     * Metadata that describes the complete snapshot.  - For a replica set, this array contains a single document. - For a sharded cluster, this array contains one document for each shard plus one document for the config host.
     */
+
     'parts'?: Array<ApiSnapshotPartView>;
 
     static readonly discriminator: string | undefined = undefined;

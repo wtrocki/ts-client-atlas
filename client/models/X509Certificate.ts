@@ -13,8 +13,11 @@
 import { HttpFile } from '../http/http';
 
 export class X509Certificate {
+
     'content'?: string;
+
     'notAfter'?: Date;
+
     'notBefore'?: Date;
 
     static readonly discriminator: string | undefined = undefined;

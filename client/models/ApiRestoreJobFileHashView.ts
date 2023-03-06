@@ -20,19 +20,23 @@ export class ApiRestoreJobFileHashView {
     /**
     * Human-readable label that identifies the hashed file.
     */
+
     'fileName'?: string;
     /**
     * Hashed checksum that maps to the restore file.
     */
+
     'hash'?: string;
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
     /**
     * Human-readable label that identifies the hashing algorithm used to compute the hash value.
     */
-    'typeName'?: ApiRestoreJobFileHashViewTypeNameEnum;
+
+    'typeName'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -58,7 +62,7 @@ export class ApiRestoreJobFileHashView {
         {
             "name": "typeName",
             "baseName": "typeName",
-            "type": "ApiRestoreJobFileHashViewTypeNameEnum",
+            "type": "string",
             "format": ""
         }    ];
 

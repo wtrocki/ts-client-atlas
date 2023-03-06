@@ -17,6 +17,7 @@ import { HttpFile } from '../http/http';
 * Cloud provider linked to this data lake.
 */
 export class DataLakeCloudProviderConfig {
+
     'aws': DataLakeAWSCloudProviderConfig;
 
     static readonly discriminator: string | undefined = undefined;

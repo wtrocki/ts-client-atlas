@@ -20,20 +20,25 @@ export class ApiCheckpointPartView {
     /**
     * Human-readable label that identifies the replica set to which this checkpoint applies.
     */
+
     'replicaSetName'?: string;
     /**
     * Human-readable label that identifies the shard to which this checkpoint applies.
     */
+
     'shardName'?: string;
     /**
     * Flag that indicates whether the token exists.
     */
+
     'tokenDiscovered'?: boolean;
+
     'tokenTimestamp'?: ApiBSONTimestampView;
     /**
     * Human-readable label that identifies the type of host that the part represents.
     */
-    'typeName'?: ApiCheckpointPartViewTypeNameEnum;
+
+    'typeName'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -65,7 +70,7 @@ export class ApiCheckpointPartView {
         {
             "name": "typeName",
             "baseName": "typeName",
-            "type": "ApiCheckpointPartViewTypeNameEnum",
+            "type": "string",
             "format": ""
         }    ];
 

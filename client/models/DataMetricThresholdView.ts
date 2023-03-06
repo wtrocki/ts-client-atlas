@@ -18,16 +18,21 @@ export class DataMetricThresholdView {
     /**
     * Human-readable label that identifies the metric against which MongoDB Cloud checks the configured **metricThreshold.threshold**.
     */
+
     'metricName'?: string;
     /**
     * MongoDB Cloud computes the current metric value as an average.
     */
-    'mode'?: DataMetricThresholdViewModeEnum;
+
+    'mode'?: string;
+
     'operator'?: Operator;
     /**
     * Value of metric that, when exceeded, triggers an alert.
     */
+
     'threshold'?: number;
+
     'units'?: DataMetricUnits;
 
     static readonly discriminator: string | undefined = undefined;
@@ -42,7 +47,7 @@ export class DataMetricThresholdView {
         {
             "name": "mode",
             "baseName": "mode",
-            "type": "DataMetricThresholdViewModeEnum",
+            "type": "string",
             "format": ""
         },
         {

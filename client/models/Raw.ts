@@ -19,40 +19,50 @@ export class Raw {
     /**
     * Unique identifier of event type.
     */
+
     't'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the alert configuration related to the event.
     */
+
     'alertConfigId'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the project in which the event occurred.
     */
+
     'cid'?: string;
     /**
     * Date and time when this event occurred. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC.
     */
+
     'cre'?: Date;
     /**
     * Description of the event.
     */
+
     'description'?: string;
     /**
     * Human-readable label that identifies the project.
     */
+
     'gn'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the event.
     */
+
     'id'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the organization to which these events apply.
     */
+
     'orgId'?: string;
     /**
     * Human-readable label that identifies the organization that contains the project.
     */
+
     'orgName'?: string;
-    'severity'?: RawSeverityEnum;
+
+    'severity'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -114,7 +124,7 @@ export class Raw {
         {
             "name": "severity",
             "baseName": "severity",
-            "type": "RawSeverityEnum",
+            "type": "string",
             "format": ""
         }    ];
 

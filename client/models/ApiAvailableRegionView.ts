@@ -19,10 +19,12 @@ export class ApiAvailableRegionView {
     /**
     * Flag that indicates whether the cloud provider sets this region as its default. AWS defaults to US_EAST_1, GCP defaults to CENTRAL_US, and AZURE defaults to US_WEST_2.
     */
+
     '_default'?: boolean;
     /**
     * Human-readable label that identifies the supported region.
     */
+
     'name'?: string;
 
     static readonly discriminator: string | undefined = undefined;

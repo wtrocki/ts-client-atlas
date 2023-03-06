@@ -17,11 +17,13 @@ import { HttpFile } from '../http/http';
 * Filter that applies normalization mappings that you specify to characters.
 */
 export class CharFiltermapping {
+
     'mappings': CharFiltermappingMappings;
     /**
     * Human-readable label that identifies this character filter type.
     */
-    'type': CharFiltermappingTypeEnum;
+
+    'type': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -35,7 +37,7 @@ export class CharFiltermapping {
         {
             "name": "type",
             "baseName": "type",
-            "type": "CharFiltermappingTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

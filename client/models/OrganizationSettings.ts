@@ -19,14 +19,17 @@ export class OrganizationSettings {
     /**
     * Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
     */
+
     'apiAccessListRequired'?: boolean;
     /**
     * Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
     */
+
     'multiFactorAuthRequired'?: boolean;
     /**
     * Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
     */
+
     'restrictEmployeeAccess'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;

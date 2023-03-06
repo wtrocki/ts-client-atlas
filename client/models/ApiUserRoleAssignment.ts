@@ -16,11 +16,13 @@ export class ApiUserRoleAssignment {
     /**
     * Unique 24-hexadecimal digit string that identifies the organization API key.
     */
+
     'apiUserId'?: string;
     /**
     * List of roles to grant this API key. If you provide this list, provide a minimum of one role and ensure each role applies to this project.
     */
-    'roles'?: Array<ApiUserRoleAssignmentRolesEnum>;
+
+    'roles'?: Array<string>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -34,7 +36,7 @@ export class ApiUserRoleAssignment {
         {
             "name": "roles",
             "baseName": "roles",
-            "type": "Array<ApiUserRoleAssignmentRolesEnum>",
+            "type": "Array<string>",
             "format": ""
         }    ];
 

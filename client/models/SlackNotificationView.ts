@@ -19,23 +19,28 @@ export class SlackNotificationView {
     /**
     * Slack API token or Bot token that MongoDB Cloud needs to send alert notifications via Slack. The resource requires this parameter when `\"notifications.[n].typeName\" : \"SLACK\"`. If the token later becomes invalid, MongoDB Cloud sends an email to the project owners. If the token remains invalid, MongoDB Cloud removes the token.   **NOTE**: After you create a notification which requires an API or integration key, the key appears partially redacted when you:  * View or edit the alert through the Atlas UI.  * Query the alert for the notification through the Atlas Administration API.
     */
+
     'apiToken'?: string;
     /**
     * Name of the Slack channel to which MongoDB Cloud sends alert notifications. The resource requires this parameter when `\"notifications.[n].typeName\" : \"SLACK\"`.
     */
+
     'channelName'?: string;
     /**
     * Number of minutes that MongoDB Cloud waits after detecting an alert condition before it sends out the first notification.
     */
+
     'delayMin'?: number;
     /**
     * Number of minutes to wait between successive notifications. MongoDB Cloud sends notifications until someone acknowledges the unacknowledged alert.  PagerDuty, VictorOps, and OpsGenie notifications don't return this element. Configure and manage the notification interval within each of those services.
     */
+
     'intervalMin'?: number;
     /**
     * Human-readable label that displays the alert notification type.
     */
-    'typeName': SlackNotificationViewTypeNameEnum;
+
+    'typeName': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -67,7 +72,7 @@ export class SlackNotificationView {
         {
             "name": "typeName",
             "baseName": "typeName",
-            "type": "SlackNotificationViewTypeNameEnum",
+            "type": "string",
             "format": ""
         }    ];
 

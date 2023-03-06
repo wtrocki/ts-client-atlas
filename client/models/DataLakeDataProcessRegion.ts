@@ -20,7 +20,9 @@ export class DataLakeDataProcessRegion {
     /**
     * Name of the cloud service that hosts the data lake's data stores.
     */
-    'cloudProvider': DataLakeDataProcessRegionCloudProviderEnum;
+
+    'cloudProvider': string;
+
     'region': DataLakeRegion;
 
     static readonly discriminator: string | undefined = undefined;
@@ -29,7 +31,7 @@ export class DataLakeDataProcessRegion {
         {
             "name": "cloudProvider",
             "baseName": "cloudProvider",
-            "type": "DataLakeDataProcessRegionCloudProviderEnum",
+            "type": "string",
             "format": ""
         },
         {

@@ -16,6 +16,7 @@ export class TriggerIngestionRequest {
     /**
     * Unique 24-hexadecimal character string that identifies the snapshot.
     */
+
     'snapshotId': string;
 
     static readonly discriminator: string | undefined = undefined;

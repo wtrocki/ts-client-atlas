@@ -18,52 +18,65 @@ export class IdentityProviderView {
     /**
     * URL that points to where to send the SAML response.
     */
+
     'acsUrl'?: string;
     /**
     * List that contains the domains associated with the identity provider.
     */
+
     'associatedDomains'?: Set<string>;
     /**
     * List that contains the connected organization configurations associated with the identity provider.
     */
+
     'associatedOrgs'?: Set<ConnectedOrgConfigView>;
     /**
     * Unique string that identifies the intended audience of the SAML assertion.
     */
+
     'audienceUri'?: string;
     /**
     * Human-readable label that identifies the identity provider.
     */
+
     'displayName'?: string;
     /**
     * Unique string that identifies the issuer of the SAML Assertion.
     */
+
     'issuerUri'?: string;
     /**
     * Unique 20-hexadecimal digit string that identifies the identity provider.
     */
+
     'oktaIdpId': string;
+
     'pemFileInfo'?: PemFileInfoView;
     /**
     * SAML Authentication Request Protocol HTTP method binding (POST or REDIRECT) that Federated Authentication uses to send the authentication request.
     */
-    'requestBinding'?: IdentityProviderViewRequestBindingEnum;
+
+    'requestBinding'?: string;
     /**
     * Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.
     */
-    'responseSignatureAlgorithm'?: IdentityProviderViewResponseSignatureAlgorithmEnum;
+
+    'responseSignatureAlgorithm'?: string;
     /**
     * Flag that indicates whether the identity provider has SSO debug enabled.
     */
+
     'ssoDebugEnabled'?: boolean;
     /**
     * URL that points to the receiver of the SAML authentication request.
     */
+
     'ssoUrl'?: string;
     /**
     * String enum that indicates whether the identity provider is active.
     */
-    'status'?: IdentityProviderViewStatusEnum;
+
+    'status'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -119,13 +132,13 @@ export class IdentityProviderView {
         {
             "name": "requestBinding",
             "baseName": "requestBinding",
-            "type": "IdentityProviderViewRequestBindingEnum",
+            "type": "string",
             "format": ""
         },
         {
             "name": "responseSignatureAlgorithm",
             "baseName": "responseSignatureAlgorithm",
-            "type": "IdentityProviderViewResponseSignatureAlgorithmEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -143,7 +156,7 @@ export class IdentityProviderView {
         {
             "name": "status",
             "baseName": "status",
-            "type": "IdentityProviderViewStatusEnum",
+            "type": "string",
             "format": ""
         }    ];
 

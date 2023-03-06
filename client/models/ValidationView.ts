@@ -16,23 +16,28 @@ export class ValidationView {
     /**
     * Unique 24-hexadecimal digit string that identifies the validation.
     */
+
     'id'?: string;
     /**
     * Reason why the validation job failed.
     */
+
     'errorMessage'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the project to validate.
     */
+
     'groupId'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the source project.
     */
+
     'sourceGroupId'?: string;
     /**
     * State of the specified validation job returned at the time of the request.
     */
-    'status'?: ValidationViewStatusEnum;
+
+    'status'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -64,7 +69,7 @@ export class ValidationView {
         {
             "name": "status",
             "baseName": "status",
-            "type": "ValidationViewStatusEnum",
+            "type": "string",
             "format": ""
         }    ];
 

@@ -16,11 +16,13 @@ export class ApiCreateApiKeyView {
     /**
     * Purpose or explanation provided when someone created this organization API key.
     */
+
     'desc'?: string;
     /**
     * List of roles to grant this API key. If you provide this list, provide a minimum of one role and ensure each role applies to this organization or project.
     */
-    'roles'?: Array<ApiCreateApiKeyViewRolesEnum>;
+
+    'roles'?: Array<string>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -34,7 +36,7 @@ export class ApiCreateApiKeyView {
         {
             "name": "roles",
             "baseName": "roles",
-            "type": "Array<ApiCreateApiKeyViewRolesEnum>",
+            "type": "Array<string>",
             "format": ""
         }    ];
 

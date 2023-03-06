@@ -17,26 +17,32 @@ export class ApiPerformanceAdvisorShapeView {
     /**
     * Average duration in milliseconds for the queries examined that match this shape.
     */
+
     'avgMs'?: number;
     /**
     * Number of queries examined that match this shape.
     */
+
     'count'?: number;
     /**
     * Unique 24-hexadecimal digit string that identifies this shape. This string exists only for the duration of this API request.
     */
+
     'id'?: string;
     /**
     * Average number of documents read for every document that the query returns.
     */
+
     'inefficiencyScore'?: number;
     /**
     * Human-readable label that identifies the namespace on the specified host. The resource expresses this parameter value as `<database>.<collection>`.
     */
+
     'namespace'?: string;
     /**
     * List that contains specific about individual queries.
     */
+
     'operations'?: Array<PerformanceAdvisorOperationView>;
 
     static readonly discriminator: string | undefined = undefined;

@@ -20,22 +20,27 @@ export class CreatePrivateEndpointRequest {
     /**
     * Unique string that identifies the private endpoint's network interface that someone added to this private endpoint service.
     */
+
     'id'?: string;
     /**
     * IPv4 address of the private endpoint in your Azure VNet that someone added to this private endpoint service.
     */
+
     'privateEndpointIPAddress'?: string;
     /**
     * Human-readable label that identifies a set of endpoints.
     */
+
     'endpointGroupName'?: string;
     /**
     * List of individual private endpoints that comprise this endpoint group.
     */
+
     'endpoints'?: Array<CreateGCPForwardingRuleRequest>;
     /**
     * Unique string that identifies the Google Cloud project in which you created the endpoints.
     */
+
     'gcpProjectId'?: string;
 
     static readonly discriminator: string | undefined = undefined;

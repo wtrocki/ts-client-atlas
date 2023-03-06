@@ -19,14 +19,17 @@ export class DataLakeView {
     /**
     * Human-readable label that identifies the view, which corresponds to an aggregation pipeline on a collection.
     */
+
     'name'?: string;
     /**
     * Aggregation pipeline stages to apply to the source collection.
     */
+
     'pipeline'?: string;
     /**
     * Human-readable label that identifies the source collection for the view.
     */
+
     'source'?: string;
 
     static readonly discriminator: string | undefined = undefined;

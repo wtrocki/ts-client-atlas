@@ -17,35 +17,43 @@ export class TenantSnapshot {
     /**
     * Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     */
+
     'expiration'?: Date;
     /**
     * Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     */
+
     'finishTime'?: Date;
     /**
     * Unique 24-hexadecimal digit string that identifies the restore job.
     */
+
     'id'?: string;
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
     /**
     * MongoDB host version that the snapshot runs.
     */
+
     'mongoDBVersion'?: string;
     /**
     * Date and time when MongoDB Cloud will take the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     */
+
     'scheduledTime'?: Date;
     /**
     * Date and time when MongoDB Cloud began taking the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     */
+
     'startTime'?: Date;
     /**
     * Phase of the workflow for this snapshot at the time this resource made this request.
     */
-    'status'?: TenantSnapshotStatusEnum;
+
+    'status'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -95,7 +103,7 @@ export class TenantSnapshot {
         {
             "name": "status",
             "baseName": "status",
-            "type": "TenantSnapshotStatusEnum",
+            "type": "string",
             "format": ""
         }    ];
 

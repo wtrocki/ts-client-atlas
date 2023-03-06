@@ -19,31 +19,38 @@ export class AzurePrivateLinkConnection {
     /**
     * Error message returned when requesting private connection resource. The resource returns `null` if the request succeeded.
     */
+
     'errorMessage'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the Private Endpoint Service.
     */
+
     'id'?: string;
     /**
     * List of private endpoints assigned to this Azure Private Link Service.
     */
+
     'privateEndpoints'?: Array<string>;
     /**
     * Unique string that identifies the Azure Private Link Service that MongoDB Cloud manages.
     */
+
     'privateLinkServiceName'?: string;
     /**
     * Root-relative path that identifies of the Azure Private Link Service that MongoDB Cloud manages. Use this value to create a private endpoint connection to an Azure VNet.
     */
+
     'privateLinkServiceResourceId'?: string;
     /**
     * Cloud provider region that manages this Private Endpoint Service.
     */
+
     'regionName'?: string;
     /**
     * State of the Private Endpoint Service connection when MongoDB Cloud received this request.
     */
-    'status'?: AzurePrivateLinkConnectionStatusEnum;
+
+    'status'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -87,7 +94,7 @@ export class AzurePrivateLinkConnection {
         {
             "name": "status",
             "baseName": "status",
-            "type": "AzurePrivateLinkConnectionStatusEnum",
+            "type": "string",
             "format": ""
         }    ];
 

@@ -20,22 +20,27 @@ export class ApiLimitView {
     /**
     * Amount that indicates the current usage of the limit.
     */
+
     'currentUsage'?: number;
     /**
     * Default value of the limit.
     */
+
     'defaultLimit'?: number;
     /**
     * Maximum value of the limit.
     */
+
     'maximumLimit'?: number;
     /**
     * Human-readable label that identifies the user-managed limit to modify.
     */
+
     'name': string;
     /**
     * Amount to set the limit to.
     */
+
     'value': number;
 
     static readonly discriminator: string | undefined = "name";
@@ -77,7 +82,6 @@ export class ApiLimitView {
     }
 
     public constructor() {
-        this.name = "ApiLimitView";
     }
 }
 

@@ -18,16 +18,21 @@ export class TimeMetricThresholdView {
     /**
     * Human-readable label that identifies the metric against which MongoDB Cloud checks the configured **metricThreshold.threshold**.
     */
+
     'metricName'?: string;
     /**
     * MongoDB Cloud computes the current metric value as an average.
     */
-    'mode'?: TimeMetricThresholdViewModeEnum;
+
+    'mode'?: string;
+
     'operator'?: Operator;
     /**
     * Value of metric that, when exceeded, triggers an alert.
     */
+
     'threshold'?: number;
+
     'units'?: TimeMetricUnits;
 
     static readonly discriminator: string | undefined = undefined;
@@ -42,7 +47,7 @@ export class TimeMetricThresholdView {
         {
             "name": "mode",
             "baseName": "mode",
-            "type": "TimeMetricThresholdViewModeEnum",
+            "type": "string",
             "format": ""
         },
         {

@@ -19,19 +19,23 @@ export class TokenFilteredgeGram {
     /**
     * Value that specifies the maximum length of generated n-grams. This value must be greater than or equal to **minGram**.
     */
+
     'maxGram': number;
     /**
     * Value that specifies the minimum length of generated n-grams. This value must be less than or equal to **maxGram**.
     */
+
     'minGram': number;
     /**
     * Value that indicates whether to index tokens shorter than **minGram** or longer than **maxGram**.
     */
-    'termNotInBounds'?: TokenFilteredgeGramTermNotInBoundsEnum;
+
+    'termNotInBounds'?: string;
     /**
     * Human-readable label that identifies this token filter type.
     */
-    'type': TokenFilteredgeGramTypeEnum;
+
+    'type': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -51,13 +55,13 @@ export class TokenFilteredgeGram {
         {
             "name": "termNotInBounds",
             "baseName": "termNotInBounds",
-            "type": "TokenFilteredgeGramTermNotInBoundsEnum",
+            "type": "string",
             "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "TokenFilteredgeGramTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

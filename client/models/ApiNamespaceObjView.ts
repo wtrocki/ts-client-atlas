@@ -19,11 +19,13 @@ export class ApiNamespaceObjView {
     /**
     * Human-readable label that identifies the namespace on the specified host. The resource expresses this parameter value as `<database>.<collection>`.
     */
+
     'namespace'?: string;
     /**
     * Human-readable label that identifies the type of namespace.
     */
-    'type'?: ApiNamespaceObjViewTypeEnum;
+
+    'type'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -37,7 +39,7 @@ export class ApiNamespaceObjView {
         {
             "name": "type",
             "baseName": "type",
-            "type": "ApiNamespaceObjViewTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

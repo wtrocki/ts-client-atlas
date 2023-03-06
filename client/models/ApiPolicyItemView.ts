@@ -19,22 +19,27 @@ export class ApiPolicyItemView {
     /**
     * Number that indicates the frequency interval for a set of snapshots. A value of `1` specifies the first instance of the corresponding `frequencyType`.  - In a monthly policy item, `1` indicates that the monthly snapshot occurs on the first day of the month and `40` indicates the last day of the month.  - In a weekly policy item, `1` indicates that the weekly snapshot occurs on Monday and `7` indicates Sunday.  - In an hourly policy item, you can set the frequency interval to `1`, `2`, `4`, `6`, `8`, or `12`. For hourly policy items for NVMe clusters, MongoDB Cloud only accepts `12` as the frequency interval value.
     */
-    'frequencyInterval': ApiPolicyItemViewFrequencyIntervalEnum;
+
+    'frequencyInterval': number;
     /**
     * Human-readable label that identifies the frequency type associated with the backup policy.
     */
-    'frequencyType': ApiPolicyItemViewFrequencyTypeEnum;
+
+    'frequencyType': string;
     /**
     * Unique 24-hexadecimal digit string that identifies this backup policy item.
     */
+
     'id'?: string;
     /**
     * Unit of time in which MongoDB Cloud measures snapshot retention.
     */
-    'retentionUnit': ApiPolicyItemViewRetentionUnitEnum;
+
+    'retentionUnit': string;
     /**
     * Duration in days, weeks, or months that MongoDB Cloud retains the snapshot. For less frequent policy items, MongoDB Cloud requires that you specify a value greater than or equal to the value specified for more frequent policy items.  For example: If the hourly policy item specifies a retention of two days, you must specify two days or greater for the retention of the weekly policy item.
     */
+
     'retentionValue': number;
 
     static readonly discriminator: string | undefined = undefined;
@@ -43,13 +48,13 @@ export class ApiPolicyItemView {
         {
             "name": "frequencyInterval",
             "baseName": "frequencyInterval",
-            "type": "ApiPolicyItemViewFrequencyIntervalEnum",
+            "type": "number",
             "format": "int32"
         },
         {
             "name": "frequencyType",
             "baseName": "frequencyType",
-            "type": "ApiPolicyItemViewFrequencyTypeEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -61,7 +66,7 @@ export class ApiPolicyItemView {
         {
             "name": "retentionUnit",
             "baseName": "retentionUnit",
-            "type": "ApiPolicyItemViewRetentionUnitEnum",
+            "type": "string",
             "format": ""
         },
         {

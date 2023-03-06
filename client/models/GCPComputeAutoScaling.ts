@@ -19,11 +19,13 @@ export class GCPComputeAutoScaling {
     /**
     * Maximum instance size to which your cluster can automatically scale.
     */
-    'maxInstanceSize'?: GCPComputeAutoScalingMaxInstanceSizeEnum;
+
+    'maxInstanceSize'?: string;
     /**
     * Minimum instance size to which your cluster can automatically scale.
     */
-    'minInstanceSize'?: GCPComputeAutoScalingMinInstanceSizeEnum;
+
+    'minInstanceSize'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -31,13 +33,13 @@ export class GCPComputeAutoScaling {
         {
             "name": "maxInstanceSize",
             "baseName": "maxInstanceSize",
-            "type": "GCPComputeAutoScalingMaxInstanceSizeEnum",
+            "type": "string",
             "format": ""
         },
         {
             "name": "minInstanceSize",
             "baseName": "minInstanceSize",
-            "type": "GCPComputeAutoScalingMinInstanceSizeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

@@ -19,27 +19,33 @@ export class GCPPeerVpc {
     /**
     * Unique 24-hexadecimal digit string that identifies the MongoDB Cloud network container that contains the specified network peering connection.
     */
+
     'containerId': string;
     /**
     * Details of the error returned when requesting a GCP network peering resource. The resource returns `null` if the request succeeded.
     */
+
     'errorMessage'?: string;
     /**
     * Human-readable label that identifies the GCP project that contains the network that you want to peer with the MongoDB Cloud VPC.
     */
+
     'gcpProjectId': string;
     /**
     * Unique 24-hexadecimal digit string that identifies the network peering connection.
     */
+
     'id'?: string;
     /**
     * Human-readable label that identifies the network to peer with the MongoDB Cloud VPC.
     */
+
     'networkName': string;
     /**
     * State of the network peering connection at the time you made the request.
     */
-    'status'?: GCPPeerVpcStatusEnum;
+
+    'status'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -77,7 +83,7 @@ export class GCPPeerVpc {
         {
             "name": "status",
             "baseName": "status",
-            "type": "GCPPeerVpcStatusEnum",
+            "type": "string",
             "format": ""
         }    ];
 

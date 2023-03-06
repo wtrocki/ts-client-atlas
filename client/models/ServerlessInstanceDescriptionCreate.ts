@@ -21,16 +21,21 @@ export class ServerlessInstanceDescriptionCreate {
     /**
     * Human-readable label that identifies the serverless instance.
     */
+
     'name': string;
+
     'providerSettings': ServerlessProviderSettings;
+
     'serverlessBackupOptions'?: ServerlessBackupOptions;
     /**
     * Human-readable label that indicates the current operating condition of the serverless instance.
     */
-    'stateName'?: ServerlessInstanceDescriptionCreateStateNameEnum;
+
+    'stateName'?: string;
     /**
     * Flag that indicates whether termination protection is enabled on the serverless instance. If set to `true`, MongoDB Cloud won't delete the serverless instance. If set to `false`, MongoDB Cloud will delete the serverless instance.
     */
+
     'terminationProtectionEnabled'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;
@@ -57,7 +62,7 @@ export class ServerlessInstanceDescriptionCreate {
         {
             "name": "stateName",
             "baseName": "stateName",
-            "type": "ServerlessInstanceDescriptionCreateStateNameEnum",
+            "type": "string",
             "format": ""
         },
         {

@@ -19,7 +19,8 @@ export class CharFiltericuNormalize {
     /**
     * Human-readable label that identifies this character filter type.
     */
-    'type': CharFiltericuNormalizeTypeEnum;
+
+    'type': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -27,7 +28,7 @@ export class CharFiltericuNormalize {
         {
             "name": "type",
             "baseName": "type",
-            "type": "CharFiltericuNormalizeTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

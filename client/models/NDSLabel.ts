@@ -19,10 +19,12 @@ export class NDSLabel {
     /**
     * Key applied to tag and categorize this component.
     */
+
     'key'?: string;
     /**
     * Value set to the Key applied to tag and categorize this component.
     */
+
     'value'?: string;
 
     static readonly discriminator: string | undefined = undefined;

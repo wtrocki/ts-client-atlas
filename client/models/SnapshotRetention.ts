@@ -17,14 +17,17 @@ export class SnapshotRetention {
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
     /**
     * Quantity of time in which MongoDB Cloud measures snapshot retention.
     */
-    'retentionUnit': SnapshotRetentionRetentionUnitEnum;
+
+    'retentionUnit': string;
     /**
     * Number that indicates the amount of days, weeks, or months that MongoDB Cloud retains the snapshot. For less frequent policy items, MongoDB Cloud requires that you specify a value greater than or equal to the value specified for more frequent policy items. If the hourly policy item specifies a retention of two days, specify two days or greater for the retention of the weekly policy item.
     */
+
     'retentionValue': number;
 
     static readonly discriminator: string | undefined = undefined;
@@ -39,7 +42,7 @@ export class SnapshotRetention {
         {
             "name": "retentionUnit",
             "baseName": "retentionUnit",
-            "type": "SnapshotRetentionRetentionUnitEnum",
+            "type": "string",
             "format": ""
         },
         {

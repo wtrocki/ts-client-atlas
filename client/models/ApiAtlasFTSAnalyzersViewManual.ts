@@ -22,15 +22,19 @@ export class ApiAtlasFTSAnalyzersViewManual {
     /**
     * Filters that examine text one character at a time and perform filtering operations.
     */
+
     'charFilters'?: Array<ApiAtlasFTSAnalyzersViewManualCharFiltersInner>;
     /**
     * Human-readable name that identifies the custom analyzer. Names must be unique within an index, and must not start with any of the following strings: - `lucene.` - `builtin.` - `mongodb.`
     */
+
     'name': string;
     /**
     * Filter that performs operations such as:  - Stemming, which reduces related words, such as \"talking\", \"talked\", and \"talks\" to their root word \"talk\".  - Redaction, the removal of sensitive information from public documents.
     */
+
     'tokenFilters'?: Array<ApiAtlasFTSAnalyzersViewManualTokenFiltersInner>;
+
     'tokenizer': ApiAtlasFTSAnalyzersViewManualTokenizer;
 
     static readonly discriminator: string | undefined = undefined;

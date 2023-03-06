@@ -19,38 +19,47 @@ export class ApiMongoDBAccessLogsView {
     /**
     * Flag that indicates whether the response should return successful authentication attempts only.
     */
+
     'authResult'?: boolean;
     /**
     * Database against which someone attempted to authenticate.
     */
+
     'authSource'?: string;
     /**
     * Reason that the authentication failed. Null if authentication succeeded.
     */
+
     'failureReason'?: string;
     /**
     * Unique 24-hexadecimal character string that identifies the project.
     */
+
     'groupId'?: string;
     /**
     * Human-readable label that identifies the hostname of the target node that received the authentication attempt.
     */
+
     'hostname'?: string;
     /**
     * Internet Protocol address that attempted to authenticate with the database.
     */
+
     'ipAddress'?: string;
     /**
     * Text of the host log concerning the authentication attempt.
     */
+
     'logLine'?: string;
     /**
     * Date and time when someone made this authentication attempt. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
     */
+
     'timestamp'?: string;
     /**
     * Username used to authenticate against the database.
     */
+
     'username'?: string;
 
     static readonly discriminator: string | undefined = undefined;

@@ -21,59 +21,74 @@ export class ClusterAlertView {
     /**
     * Date and time until which this alert has been acknowledged. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC. The resource returns this parameter if a MongoDB User previously acknowledged this alert.  - To acknowledge this alert forever, set the parameter value to 100 years in the future.  - To unacknowledge a previously acknowledged alert, set the parameter value to a date in the past.
     */
+
     'acknowledgedUntil': Date;
     /**
     * Comment that a MongoDB Cloud user submitted when acknowledging the alert.
     */
+
     'acknowledgementComment'?: string;
     /**
     * MongoDB Cloud username of the person who acknowledged the alert. The response returns this parameter if a MongoDB Cloud user previously acknowledged this alert.
     */
+
     'acknowledgingUsername'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the alert configuration that sets this alert.
     */
+
     'alertConfigId': string;
     /**
     * Human-readable label that identifies the cluster to which this alert applies. This resource returns this parameter for alerts of events impacting backups, replica sets, or sharded clusters.
     */
+
     'clusterName'?: string;
     /**
     * Date and time when MongoDB Cloud created this alert. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC.
     */
+
     'created': Date;
+
     'eventTypeName': ClusterEventTypeViewAlertable;
     /**
     * Unique 24-hexadecimal digit string that identifies the project that owns this alert.
     */
+
     'groupId'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies this alert.
     */
+
     'id': string;
     /**
     * Date and time that any notifications were last sent for this alert. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC. The resource returns this parameter if MongoDB Cloud has sent notifications for this alert.
     */
+
     'lastNotified'?: Date;
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
     /**
     * Unique 24-hexadecimal character string that identifies the organization that owns the project to which this alert applies.
     */
+
     'orgId'?: string;
     /**
     * Date and time that this alert changed to `\"status\" : \"CLOSED\"`. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC. The resource returns this parameter once `\"status\" : \"CLOSED\"`.
     */
+
     'resolved'?: Date;
     /**
     * State of this alert at the time you requested its details.
     */
-    'status': ClusterAlertViewStatusEnum;
+
+    'status': string;
     /**
     * Date and time when someone last updated this alert. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC.
     */
+
     'updated': Date;
 
     static readonly discriminator: string | undefined = undefined;
@@ -160,7 +175,7 @@ export class ClusterAlertView {
         {
             "name": "status",
             "baseName": "status",
-            "type": "ClusterAlertViewStatusEnum",
+            "type": "string",
             "format": ""
         },
         {

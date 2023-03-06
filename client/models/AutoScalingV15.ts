@@ -18,7 +18,9 @@ import { HttpFile } from '../http/http';
 * Options that determine how this cluster handles resource scaling.
 */
 export class AutoScalingV15 {
+
     'compute'?: ComputeAutoScalingV15;
+
     'diskGB'?: DiskGBAutoScaling;
 
     static readonly discriminator: string | undefined = undefined;

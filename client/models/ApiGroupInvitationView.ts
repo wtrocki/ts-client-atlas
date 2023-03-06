@@ -17,38 +17,47 @@ export class ApiGroupInvitationView {
     /**
     * Date and time when MongoDB Cloud sent the invitation. This parameter expresses its value in ISO 8601 format in UTC.
     */
+
     'createdAt'?: Date;
     /**
     * Date and time when MongoDB Cloud expires the invitation. This parameter expresses its value in ISO 8601 format in UTC.
     */
+
     'expiresAt'?: Date;
     /**
     * Unique 24-hexadecimal character string that identifies the project.
     */
+
     'groupId'?: string;
     /**
     * Human-readable label that identifies the project to which you invited the MongoDB Cloud user.
     */
+
     'groupName'?: string;
     /**
     * Unique 24-hexadecimal character string that identifies the invitation.
     */
+
     'id'?: string;
     /**
     * Email address of the MongoDB Cloud user who sent the invitation.
     */
+
     'inviterUsername'?: string;
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
     /**
     * One or more organization or project level roles to assign to the MongoDB Cloud user.
     */
-    'roles'?: Set<ApiGroupInvitationViewRolesEnum>;
+
+    'roles'?: Set<string>;
     /**
     * Email address of the MongoDB Cloud user invited to join the project.
     */
+
     'username'?: string;
 
     static readonly discriminator: string | undefined = undefined;
@@ -99,7 +108,7 @@ export class ApiGroupInvitationView {
         {
             "name": "roles",
             "baseName": "roles",
-            "type": "Set<ApiGroupInvitationViewRolesEnum>",
+            "type": "Set<string>",
             "format": ""
         },
         {

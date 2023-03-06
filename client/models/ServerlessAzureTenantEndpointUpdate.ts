@@ -19,15 +19,19 @@ export class ServerlessAzureTenantEndpointUpdate {
     /**
     * Unique string that identifies the Azure private endpoint's network interface for this private endpoint service.
     */
+
     'cloudProviderEndpointId'?: string;
     /**
     * IPv4 address of the private endpoint in your Azure VNet that someone added to this private endpoint service.
     */
+
     'privateEndpointIpAddress'?: string;
     /**
     * Human-readable comment associated with the private endpoint.
     */
+
     'comment'?: string;
+
     'providerName': string;
 
     static readonly discriminator: string | undefined = undefined;

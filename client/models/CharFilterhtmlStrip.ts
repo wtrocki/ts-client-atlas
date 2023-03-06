@@ -19,11 +19,13 @@ export class CharFilterhtmlStrip {
     /**
     * The HTML tags that you want to exclude from filtering.
     */
+
     'ignoredTags'?: Array<string>;
     /**
     * Human-readable label that identifies this character filter type.
     */
-    'type': CharFilterhtmlStripTypeEnum;
+
+    'type': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -37,7 +39,7 @@ export class CharFilterhtmlStrip {
         {
             "name": "type",
             "baseName": "type",
-            "type": "CharFilterhtmlStripTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

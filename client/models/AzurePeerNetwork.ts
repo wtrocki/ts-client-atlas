@@ -19,34 +19,42 @@ export class AzurePeerNetwork {
     /**
     * Unique string that identifies the Azure AD directory in which the VNet peered with the MongoDB Cloud VNet resides.
     */
+
     'azureDirectoryId': string;
     /**
     * Unique string that identifies the Azure subscription in which the VNet you peered with the MongoDB Cloud VNet resides.
     */
+
     'azureSubscriptionId': string;
     /**
     * Unique 24-hexadecimal digit string that identifies the MongoDB Cloud network container that contains the specified network peering connection.
     */
+
     'containerId': string;
     /**
     * Error message returned when a requested Azure network peering resource returns `\"status\" : \"FAILED\"`. The resource returns `null` if the request succeeded.
     */
+
     'errorState'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the network peering connection.
     */
+
     'id'?: string;
     /**
     * Human-readable label that identifies the resource group in which the VNet to peer with the MongoDB Cloud VNet resides.
     */
+
     'resourceGroupName': string;
     /**
     * State of the network peering connection at the time you made the request.
     */
-    'status'?: AzurePeerNetworkStatusEnum;
+
+    'status'?: string;
     /**
     * Human-readable label that identifies the VNet that you want to peer with the MongoDB Cloud VNet.
     */
+
     'vnetName': string;
 
     static readonly discriminator: string | undefined = undefined;
@@ -91,7 +99,7 @@ export class AzurePeerNetwork {
         {
             "name": "status",
             "baseName": "status",
-            "type": "AzurePeerNetworkStatusEnum",
+            "type": "string",
             "format": ""
         },
         {

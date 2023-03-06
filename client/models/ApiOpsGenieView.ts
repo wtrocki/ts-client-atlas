@@ -19,15 +19,18 @@ export class ApiOpsGenieView {
     /**
     * Key that allows MongoDB Cloud to access your Opsgenie account.  **NOTE**: After you create a notification which requires an API or integration key, the key appears partially redacted when you:  * View or edit the alert through the Atlas UI.  * Query the alert for the notification through the Atlas Administration API.
     */
+
     'apiKey': string;
     /**
     * Two-letter code that indicates which regional URL MongoDB uses to access the Opsgenie API.
     */
-    'region'?: ApiOpsGenieViewRegionEnum;
+
+    'region'?: string;
     /**
     * Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the third-party service integration type.
     */
-    'type'?: ApiOpsGenieViewTypeEnum;
+
+    'type'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -41,13 +44,13 @@ export class ApiOpsGenieView {
         {
             "name": "region",
             "baseName": "region",
-            "type": "ApiOpsGenieViewRegionEnum",
+            "type": "string",
             "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "ApiOpsGenieViewTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

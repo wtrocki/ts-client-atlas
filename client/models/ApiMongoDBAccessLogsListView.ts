@@ -17,6 +17,7 @@ export class ApiMongoDBAccessLogsListView {
     /**
     * Authentication attempt, one per object, made against the cluster.
     */
+
     'accessLogs'?: Array<ApiMongoDBAccessLogsView>;
 
     static readonly discriminator: string | undefined = undefined;

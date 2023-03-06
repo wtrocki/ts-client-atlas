@@ -16,10 +16,12 @@ export class AzureHardwareSpec {
     /**
     * Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
     */
-    'instanceSize'?: AzureHardwareSpecInstanceSizeEnum;
+
+    'instanceSize'?: string;
     /**
     * Number of read-only nodes for MongoDB Cloud to deploy to the region. Read-only nodes can never become the primary, but can enable local reads.
     */
+
     'nodeCount'?: number;
 
     static readonly discriminator: string | undefined = undefined;
@@ -28,7 +30,7 @@ export class AzureHardwareSpec {
         {
             "name": "instanceSize",
             "baseName": "instanceSize",
-            "type": "AzureHardwareSpecInstanceSizeEnum",
+            "type": "string",
             "format": ""
         },
         {

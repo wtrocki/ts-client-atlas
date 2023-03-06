@@ -22,36 +22,46 @@ export class ForNdsGroup {
     /**
     * Date and time when this event occurred. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC.
     */
+
     'created': Date;
+
     'eventTypeName': ReplicaSetEventTypeViewForNdsGroup;
     /**
     * Unique 24-hexadecimal digit string that identifies the project in which the event occurred. The **eventId** identifies the specific event.
     */
+
     'groupId'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the event.
     */
+
     'id': string;
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
     /**
     * Unique 24-hexadecimal digit string that identifies the organization to which these events apply.
     */
+
     'orgId'?: string;
     /**
     * IANA port on which the MongoDB process listens for requests.
     */
+
     'port'?: number;
+
     'raw'?: Raw;
     /**
     * Human-readable label of the replica set associated with the event.
     */
+
     'replicaSetName'?: string;
     /**
     * Human-readable label of the shard associated with the event.
     */
+
     'shardName'?: string;
 
     static readonly discriminator: string | undefined = undefined;

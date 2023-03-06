@@ -19,11 +19,13 @@ export class CloudProviderAccessEncryptionAtRestFeatureUsage {
     /**
     * Object that contains the identifying characteristics of the Amazon Web Services (AWS) Key Management Service (KMS). This field always returns a null value.
     */
+
     'featureId'?: any;
     /**
     * Human-readable label that describes one MongoDB Cloud feature linked to this Amazon Web Services (AWS) Identity and Access Management (IAM) role.
     */
-    'featureType'?: CloudProviderAccessEncryptionAtRestFeatureUsageFeatureTypeEnum;
+
+    'featureType'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -37,7 +39,7 @@ export class CloudProviderAccessEncryptionAtRestFeatureUsage {
         {
             "name": "featureType",
             "baseName": "featureType",
-            "type": "CloudProviderAccessEncryptionAtRestFeatureUsageFeatureTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

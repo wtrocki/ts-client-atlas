@@ -18,34 +18,42 @@ export class ApiMeasurementsNonIndexView {
     /**
     * Date and time that specifies when to stop retrieving measurements. If you set **end**, you must set **start**. You can't set this parameter and **period** in the same request. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     */
+
     'end'?: Date;
     /**
     * Duration that specifies the interval between measurement data points. The parameter expresses its value in ISO 8601 timestamp format in UTC. If you set this parameter, you must set either **period** or **start** and **end**.
     */
-    'granularity'?: ApiMeasurementsNonIndexViewGranularityEnum;
+
+    'granularity'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the project. The project contains MongoDB processes that you want to return. The MongoDB process can be either the `mongod` or `mongos`.
     */
+
     'groupId'?: string;
     /**
     * List that contains the Atlas Search hardware measurements.
     */
+
     'hardwareMeasurements'?: Array<ApiMeasurementView>;
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
     /**
     * Combination of hostname and Internet Assigned Numbers Authority (IANA) port that serves the MongoDB process. The host must be the hostname, fully qualified domain name (FQDN), or Internet Protocol address (IPv4 or IPv6) of the host that runs the MongoDB process (`mongod` or `mongos`). The port must be the IANA port on which the MongoDB process listens for requests.
     */
+
     'processId'?: string;
     /**
     * Date and time that specifies when to start retrieving measurements. If you set **start**, you must set **end**. You can't set this parameter and **period** in the same request. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     */
+
     'start'?: Date;
     /**
     * List that contains the Atlas Search status measurements.
     */
+
     'statusMeasurements'?: Array<ApiMeasurementView>;
 
     static readonly discriminator: string | undefined = undefined;
@@ -60,7 +68,7 @@ export class ApiMeasurementsNonIndexView {
         {
             "name": "granularity",
             "baseName": "granularity",
-            "type": "ApiMeasurementsNonIndexViewGranularityEnum",
+            "type": "string",
             "format": ""
         },
         {

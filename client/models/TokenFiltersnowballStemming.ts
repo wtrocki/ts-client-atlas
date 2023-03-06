@@ -19,11 +19,13 @@ export class TokenFiltersnowballStemming {
     /**
     * Snowball-generated stemmer to use.
     */
-    'stemmerName': TokenFiltersnowballStemmingStemmerNameEnum;
+
+    'stemmerName': string;
     /**
     * Human-readable label that identifies this token filter type.
     */
-    'type': TokenFiltersnowballStemmingTypeEnum;
+
+    'type': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -31,13 +33,13 @@ export class TokenFiltersnowballStemming {
         {
             "name": "stemmerName",
             "baseName": "stemmerName",
-            "type": "TokenFiltersnowballStemmingStemmerNameEnum",
+            "type": "string",
             "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "TokenFiltersnowballStemmingTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

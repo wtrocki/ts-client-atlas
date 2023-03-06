@@ -19,10 +19,12 @@ export class ApiPerformanceAdvisorSlowQueryView {
     /**
     * Text of the MongoDB log related to this slow query.
     */
+
     'line'?: string;
     /**
     * Human-readable label that identifies the namespace on the specified host. The resource expresses this parameter value as `<database>.<collection>`.
     */
+
     'namespace'?: string;
 
     static readonly discriminator: string | undefined = undefined;

@@ -13,6 +13,7 @@
 import { HttpFile } from '../http/http';
 
 export class DefaultScheduleView {
+
     'type': string;
 
     static readonly discriminator: string | undefined = undefined;

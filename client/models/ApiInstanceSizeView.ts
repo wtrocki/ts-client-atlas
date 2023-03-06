@@ -20,10 +20,12 @@ export class ApiInstanceSizeView {
     /**
     * List of regions that this cloud provider supports for this instance size.
     */
+
     'availableRegions'?: Array<ApiAvailableRegionView>;
     /**
     * Human-readable label that identifies the instance size or cluster tier.
     */
+
     'name'?: string;
 
     static readonly discriminator: string | undefined = undefined;

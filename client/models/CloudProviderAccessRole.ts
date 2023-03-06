@@ -21,35 +21,43 @@ export class CloudProviderAccessRole {
     /**
     * Amazon Resource Name that identifies the Amazon Web Services (AWS) user account that MongoDB Cloud uses when it assumes the Identity and Access Management (IAM) role.
     */
+
     'atlasAWSAccountArn'?: string;
     /**
     * Unique external ID that MongoDB Cloud uses when it assumes the IAM role in your Amazon Web Services (AWS) account.
     */
+
     'atlasAssumedRoleExternalId'?: string;
     /**
     * Date and time when someone authorized this role for the specified cloud service provider. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     */
+
     'authorizedDate'?: Date;
     /**
     * Date and time when someone created this role for the specified cloud service provider. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     */
+
     'createdDate'?: Date;
     /**
     * List that contains application features associated with this Amazon Web Services (AWS) Identity and Access Management (IAM) role.
     */
+
     'featureUsages'?: Array<CloudProviderAccessFeatureUsage>;
     /**
     * Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
     */
+
     'iamAssumedRoleArn'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the role.
     */
+
     'roleId'?: string;
     /**
     * Human-readable label that identifies the cloud provider of the role.
     */
-    'providerName': CloudProviderAccessRoleProviderNameEnum;
+
+    'providerName': string;
 
     static readonly discriminator: string | undefined = "providerName";
 
@@ -99,7 +107,7 @@ export class CloudProviderAccessRole {
         {
             "name": "providerName",
             "baseName": "providerName",
-            "type": "CloudProviderAccessRoleProviderNameEnum",
+            "type": "string",
             "format": ""
         }    ];
 
@@ -108,7 +116,6 @@ export class CloudProviderAccessRole {
     }
 
     public constructor() {
-        this.providerName = "CloudProviderAccessRole";
     }
 }
 

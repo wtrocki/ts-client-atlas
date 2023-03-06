@@ -25,16 +25,21 @@ export class HostMetricThresholdView {
     /**
     * Human-readable label that identifies the metric against which MongoDB Cloud checks the configured **metricThreshold.threshold**.
     */
+
     'metricName'?: string;
     /**
     * MongoDB Cloud computes the current metric value as an average.
     */
-    'mode'?: HostMetricThresholdViewModeEnum;
+
+    'mode'?: string;
+
     'operator'?: Operator;
     /**
     * Value of metric that, when exceeded, triggers an alert.
     */
+
     'threshold'?: number;
+
     'units'?: NumberMetricUnits;
 
     static readonly discriminator: string | undefined = "metricName";
@@ -49,7 +54,7 @@ export class HostMetricThresholdView {
         {
             "name": "mode",
             "baseName": "mode",
-            "type": "HostMetricThresholdViewModeEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -76,7 +81,6 @@ export class HostMetricThresholdView {
     }
 
     public constructor() {
-        this.metricName = "HostMetricThresholdView";
     }
 }
 

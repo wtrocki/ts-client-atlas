@@ -19,7 +19,8 @@ export class CharFilterpersian {
     /**
     * Human-readable label that identifies this character filter type.
     */
-    'type': CharFilterpersianTypeEnum;
+
+    'type': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -27,7 +28,7 @@ export class CharFilterpersian {
         {
             "name": "type",
             "baseName": "type",
-            "type": "CharFilterpersianTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

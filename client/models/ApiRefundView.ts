@@ -19,18 +19,22 @@ export class ApiRefundView {
     /**
     * Sum of the funds returned to the specified organization expressed in cents (100th of US Dollar).
     */
+
     'amountCents'?: number;
     /**
     * Date and time when MongoDB Cloud created this refund. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     */
+
     'created'?: Date;
     /**
     * Unique 24-hexadecimal digit string that identifies the payment that the organization had made.
     */
+
     'paymentId'?: string;
     /**
     * Justification that MongoDB accepted to return funds to the organization.
     */
+
     'reason'?: string;
 
     static readonly discriminator: string | undefined = undefined;

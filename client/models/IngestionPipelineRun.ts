@@ -20,43 +20,54 @@ export class IngestionPipelineRun {
     /**
     * Unique 24-hexadecimal character string that identifies a Data Lake Pipeline run.
     */
+
     'id'?: string;
     /**
     * Backup schedule interval of the Data Lake Pipeline.
     */
-    'backupFrequencyType'?: IngestionPipelineRunBackupFrequencyTypeEnum;
+
+    'backupFrequencyType'?: string;
     /**
     * Timestamp that indicates when the pipeline run was created.
     */
+
     'createdDate'?: Date;
     /**
     * Human-readable label that identifies the dataset that Atlas generates during this pipeline run. You can use this dataset as a `dataSource` in a Federated Database collection.
     */
+
     'datasetName'?: string;
     /**
     * Unique 24-hexadecimal character string that identifies the project.
     */
+
     'groupId'?: string;
     /**
     * Timestamp that indicates the last time that the pipeline run was updated.
     */
+
     'lastUpdatedDate'?: Date;
     /**
     * Processing phase of the Data Lake Pipeline.
     */
-    'phase'?: IngestionPipelineRunPhaseEnum;
+
+    'phase'?: string;
     /**
     * Unique 24-hexadecimal character string that identifies a Data Lake Pipeline.
     */
+
     'pipelineId'?: string;
     /**
     * Unique 24-hexadecimal character string that identifies the snapshot of a cluster.
     */
+
     'snapshotId'?: string;
     /**
     * State of the pipeline run.
     */
-    'state'?: IngestionPipelineRunStateEnum;
+
+    'state'?: string;
+
     'stats'?: PipelineRunStats;
 
     static readonly discriminator: string | undefined = undefined;
@@ -71,7 +82,7 @@ export class IngestionPipelineRun {
         {
             "name": "backupFrequencyType",
             "baseName": "backupFrequencyType",
-            "type": "IngestionPipelineRunBackupFrequencyTypeEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -101,7 +112,7 @@ export class IngestionPipelineRun {
         {
             "name": "phase",
             "baseName": "phase",
-            "type": "IngestionPipelineRunPhaseEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -119,7 +130,7 @@ export class IngestionPipelineRun {
         {
             "name": "state",
             "baseName": "state",
-            "type": "IngestionPipelineRunStateEnum",
+            "type": "string",
             "format": ""
         },
         {

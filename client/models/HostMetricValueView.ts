@@ -19,8 +19,10 @@ export class HostMetricValueView {
     /**
     * Amount of the **metricName** recorded at the time of the event. This value triggered the alert.
     */
+
     'number'?: number;
-    'units'?: HostMetricValueViewUnitsEnum;
+
+    'units'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -34,7 +36,7 @@ export class HostMetricValueView {
         {
             "name": "units",
             "baseName": "units",
-            "type": "HostMetricValueViewUnitsEnum",
+            "type": "string",
             "format": ""
         }    ];
 

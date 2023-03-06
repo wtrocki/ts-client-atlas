@@ -19,11 +19,13 @@ export class NDSLDAPVerifyConnectivityJobRequestValidation {
     /**
     * Human-readable string that indicates the result of this verification test.
     */
-    'status'?: NDSLDAPVerifyConnectivityJobRequestValidationStatusEnum;
+
+    'status'?: string;
     /**
     * Human-readable label that identifies this verification test that MongoDB Cloud runs.
     */
-    'validationType'?: NDSLDAPVerifyConnectivityJobRequestValidationValidationTypeEnum;
+
+    'validationType'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -31,13 +33,13 @@ export class NDSLDAPVerifyConnectivityJobRequestValidation {
         {
             "name": "status",
             "baseName": "status",
-            "type": "NDSLDAPVerifyConnectivityJobRequestValidationStatusEnum",
+            "type": "string",
             "format": ""
         },
         {
             "name": "validationType",
             "baseName": "validationType",
-            "type": "NDSLDAPVerifyConnectivityJobRequestValidationValidationTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

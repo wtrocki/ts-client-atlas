@@ -19,46 +19,57 @@ export class ClusterView {
     /**
     * Whole number that indicates the quantity of alerts open on the cluster.
     */
+
     'alertCount'?: number;
     /**
     * Flag that indicates whether authentication is required to access the nodes in this cluster.
     */
+
     'authEnabled'?: boolean;
     /**
     * Term that expresses how many nodes of the cluster can be accessed when MongoDB Cloud receives this request. This parameter returns `available` when all nodes are accessible, `warning` only when some nodes in the cluster can be accessed, `unavailable` when the cluster can't be accessed, or `dead` when the cluster has been deactivated.
     */
-    'availability'?: ClusterViewAvailabilityEnum;
+
+    'availability'?: string;
     /**
     * Flag that indicates whether the cluster can perform backups. If set to `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters. Backup uses Cloud Backups for dedicated clusters and Shared Cluster Backups for tenant clusters. If set to `false`, the cluster doesn't use MongoDB Cloud backups.
     */
+
     'backupEnabled'?: boolean;
     /**
     * Unique 24-hexadecimal character string that identifies the cluster.
     */
+
     'clusterId'?: string;
     /**
     * Total size of the data stored on each node in the cluster. The resource expresses this value in bytes.
     */
+
     'dataSizeBytes'?: number;
     /**
     * Human-readable label that identifies the cluster.
     */
+
     'name'?: string;
     /**
     * Whole number that indicates the quantity of nodes that comprise the cluster.
     */
+
     'nodeCount'?: number;
     /**
     * Flag that indicates whether TLS authentication is required to access the nodes in this cluster.
     */
+
     'sslEnabled'?: boolean;
     /**
     * Human-readable label that indicates the cluster type.
     */
-    'type'?: ClusterViewTypeEnum;
+
+    'type'?: string;
     /**
     * List that contains the versions of MongoDB that each node in the cluster runs.
     */
+
     'versions'?: Set<string>;
 
     static readonly discriminator: string | undefined = undefined;
@@ -79,7 +90,7 @@ export class ClusterView {
         {
             "name": "availability",
             "baseName": "availability",
-            "type": "ClusterViewAvailabilityEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -121,7 +132,7 @@ export class ClusterView {
         {
             "name": "type",
             "baseName": "type",
-            "type": "ClusterViewTypeEnum",
+            "type": "string",
             "format": ""
         },
         {

@@ -16,11 +16,14 @@ import { NDSLDAP } from '../models/NDSLDAP';
 import { HttpFile } from '../http/http';
 
 export class UserSecurity {
+
     'customerX509'?: CustomerX509;
+
     'ldap'?: NDSLDAP;
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
 
     static readonly discriminator: string | undefined = undefined;

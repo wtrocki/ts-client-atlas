@@ -20,14 +20,17 @@ export class CreateGCPEndpointGroupRequest {
     /**
     * Human-readable label that identifies a set of endpoints.
     */
+
     'endpointGroupName'?: string;
     /**
     * List of individual private endpoints that comprise this endpoint group.
     */
+
     'endpoints'?: Array<CreateGCPForwardingRuleRequest>;
     /**
     * Unique string that identifies the Google Cloud project in which you created the endpoints.
     */
+
     'gcpProjectId'?: string;
 
     static readonly discriminator: string | undefined = undefined;

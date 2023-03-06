@@ -19,15 +19,18 @@ export class TokenFiltershingle {
     /**
     * Value that specifies the maximum number of tokens per shingle. This value must be greater than or equal to **minShingleSize**.
     */
+
     'maxShingleSize': number;
     /**
     * Value that specifies the minimum number of tokens per shingle. This value must be less than or equal to **maxShingleSize**.
     */
+
     'minShingleSize': number;
     /**
     * Human-readable label that identifies this token filter type.
     */
-    'type': TokenFiltershingleTypeEnum;
+
+    'type': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -47,7 +50,7 @@ export class TokenFiltershingle {
         {
             "name": "type",
             "baseName": "type",
-            "type": "TokenFiltershingleTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

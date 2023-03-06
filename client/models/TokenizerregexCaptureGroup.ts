@@ -19,15 +19,18 @@ export class TokenizerregexCaptureGroup {
     /**
     * Index of the character group within the matching expression to extract into tokens. Use `0` to extract all character groups.
     */
+
     'group': number;
     /**
     * Regular expression to match against.
     */
+
     'pattern': string;
     /**
     * Human-readable label that identifies this tokenizer type.
     */
-    'type': TokenizerregexCaptureGroupTypeEnum;
+
+    'type': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -47,7 +50,7 @@ export class TokenizerregexCaptureGroup {
         {
             "name": "type",
             "baseName": "type",
-            "type": "TokenizerregexCaptureGroupTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

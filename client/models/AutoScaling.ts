@@ -17,10 +17,12 @@ import { HttpFile } from '../http/http';
 * Range of instance sizes to which your cluster can scale.
 */
 export class AutoScaling {
+
     'compute'?: ComputeAutoScaling;
     /**
     * Flag that indicates whether someone enabled disk auto-scaling for this cluster.
     */
+
     'diskGBEnabled'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;

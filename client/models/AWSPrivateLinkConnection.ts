@@ -19,27 +19,33 @@ export class AWSPrivateLinkConnection {
     /**
     * Unique string that identifies the Amazon Web Services (AWS) PrivateLink endpoint service. MongoDB Cloud returns null while it creates the endpoint service.
     */
+
     'endpointServiceName'?: string;
     /**
     * Error message returned when requesting private connection resource. The resource returns `null` if the request succeeded.
     */
+
     'errorMessage'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the Private Endpoint Service.
     */
+
     'id'?: string;
     /**
     * List of strings that identify private endpoint interfaces applied to the specified project.
     */
+
     'interfaceEndpoints'?: Array<string>;
     /**
     * Cloud provider region that manages this Private Endpoint Service.
     */
+
     'regionName'?: string;
     /**
     * State of the Private Endpoint Service connection when MongoDB Cloud received this request.
     */
-    'status'?: AWSPrivateLinkConnectionStatusEnum;
+
+    'status'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -77,7 +83,7 @@ export class AWSPrivateLinkConnection {
         {
             "name": "status",
             "baseName": "status",
-            "type": "AWSPrivateLinkConnectionStatusEnum",
+            "type": "string",
             "format": ""
         }    ];
 

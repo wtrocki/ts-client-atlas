@@ -19,11 +19,13 @@ export class ApiFTSMetricView {
     /**
     * Human-readable label that identifies this Atlas Search hardware, status, or index measurement.
     */
-    'metricName': ApiFTSMetricViewMetricNameEnum;
+
+    'metricName': string;
     /**
     * Unit of measurement that applies to this Atlas Search metric.
     */
-    'units': ApiFTSMetricViewUnitsEnum;
+
+    'units': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -31,13 +33,13 @@ export class ApiFTSMetricView {
         {
             "name": "metricName",
             "baseName": "metricName",
-            "type": "ApiFTSMetricViewMetricNameEnum",
+            "type": "string",
             "format": ""
         },
         {
             "name": "units",
             "baseName": "units",
-            "type": "ApiFTSMetricViewUnitsEnum",
+            "type": "string",
             "format": ""
         }    ];
 

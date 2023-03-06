@@ -19,23 +19,28 @@ export class OrgFederationSettingsView {
     /**
     * List of domains associated with the organization's identity provider.
     */
+
     'federatedDomains'?: Set<string>;
     /**
     * Flag that indicates whether this organization has role mappings configured.
     */
+
     'hasRoleMappings'?: boolean;
     /**
     * Unique 24-hexadecimal digit string that identifies this federation.
     */
+
     'id'?: string;
     /**
     * Unique 20-hexadecimal digit string that identifies the identity provider connected to this organization.
     */
+
     'identityProviderId'?: string;
     /**
     * String enum that indicates whether the identity provider is active.
     */
-    'identityProviderStatus'?: OrgFederationSettingsViewIdentityProviderStatusEnum;
+
+    'identityProviderStatus'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -67,7 +72,7 @@ export class OrgFederationSettingsView {
         {
             "name": "identityProviderStatus",
             "baseName": "identityProviderStatus",
-            "type": "OrgFederationSettingsViewIdentityProviderStatusEnum",
+            "type": "string",
             "format": ""
         }    ];
 

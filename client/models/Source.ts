@@ -19,30 +19,37 @@ export class Source {
     /**
     * Path to the CA certificate that signed SSL certificates use to authenticate to the source cluster.
     */
+
     'caCertificatePath'?: string;
     /**
     * Label that identifies the source cluster name.
     */
+
     'clusterName': string;
     /**
     * Unique 24-hexadecimal digit string that identifies the source project.
     */
+
     'groupId': string;
     /**
     * Flag that indicates whether MongoDB Automation manages authentication to the source cluster. If true, do not provide values for username and password.
     */
+
     'managedAuthentication': boolean;
     /**
     * Password that authenticates the username to the source cluster.
     */
+
     'password'?: string;
     /**
     * Flag that indicates whether you have SSL enabled.
     */
+
     'ssl': boolean;
     /**
     * Label that identifies the SCRAM-SHA user that connects to the source cluster.
     */
+
     'username'?: string;
 
     static readonly discriminator: string | undefined = undefined;

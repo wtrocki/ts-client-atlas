@@ -16,6 +16,7 @@ export class DiskBackupBaseRestoreMember {
     /**
     * Human-readable label that identifies the replica set on the sharded cluster.
     */
+
     'replicaSetName'?: string;
 
     static readonly discriminator: string | undefined = undefined;

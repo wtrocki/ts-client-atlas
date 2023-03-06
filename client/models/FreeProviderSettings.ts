@@ -14,19 +14,24 @@ import { FreeAutoScaling } from '../models/FreeAutoScaling';
 import { HttpFile } from '../http/http';
 
 export class FreeProviderSettings {
+
     'autoScaling'?: FreeAutoScaling;
     /**
     * Cloud service provider on which MongoDB Cloud provisioned the multi-tenant host. The resource returns this parameter when **providerSettings.providerName** is `TENANT` and **providerSetting.instanceSizeName** is `M2` or `M5`.
     */
-    'backingProviderName'?: FreeProviderSettingsBackingProviderNameEnum;
+
+    'backingProviderName'?: string;
     /**
     * Cluster tier, with a default storage and memory capacity, that applies to all the data-bearing hosts in your cluster. You must set **providerSettings.providerName** to `TENANT` and specify the cloud service provider in **providerSettings.backingProviderName**.
     */
-    'instanceSizeName'?: FreeProviderSettingsInstanceSizeNameEnum;
+
+    'instanceSizeName'?: string;
     /**
     * Human-readable label that identifies the geographic location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). For multi-region clusters, see **replicationSpec.{region}**.
     */
+
     'regionName'?: string;
+
     'providerName': string;
 
     static readonly discriminator: string | undefined = undefined;
@@ -41,13 +46,13 @@ export class FreeProviderSettings {
         {
             "name": "backingProviderName",
             "baseName": "backingProviderName",
-            "type": "FreeProviderSettingsBackingProviderNameEnum",
+            "type": "string",
             "format": ""
         },
         {
             "name": "instanceSizeName",
             "baseName": "instanceSizeName",
-            "type": "FreeProviderSettingsInstanceSizeNameEnum",
+            "type": "string",
             "format": ""
         },
         {

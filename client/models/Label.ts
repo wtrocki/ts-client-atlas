@@ -19,10 +19,12 @@ export class Label {
     /**
     * Key for the metadata file that MongoDB Cloud uploads to the bucket when the export job finishes.
     */
+
     'key'?: string;
     /**
     * Value for the key to include in file that MongoDB Cloud uploads to the bucket when the export job finishes.
     */
+
     'value'?: string;
 
     static readonly discriminator: string | undefined = undefined;

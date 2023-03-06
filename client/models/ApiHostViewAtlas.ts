@@ -17,46 +17,57 @@ export class ApiHostViewAtlas {
     /**
     * Date and time when MongoDB Cloud created this MongoDB process. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     */
+
     'created'?: Date;
     /**
     * Unique 24-hexadecimal digit string that identifies the project. The project contains MongoDB processes that you want to return. The MongoDB process can be either the `mongod` or `mongos`.
     */
+
     'groupId'?: string;
     /**
     * Hostname, fully qualified domain name (FQDN), or Internet Protocol address (IPv4 or IPv6) of the host that runs the MongoDB process (`mongod` or `mongos`).
     */
+
     'hostname'?: string;
     /**
     * Combination of hostname and Internet Assigned Numbers Authority (IANA) port that serves the MongoDB process. The host must be the hostname, fully qualified domain name (FQDN), or Internet Protocol address (IPv4 or IPv6) of the host that runs the MongoDB process (`mongod` or `mongos`). The port must be the IANA port on which the MongoDB process listens for requests.
     */
+
     'id'?: string;
     /**
     * Date and time when MongoDB Cloud received the last ping for this MongoDB process. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     */
+
     'lastPing'?: Date;
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<LinkAtlas>;
     /**
     * Internet Assigned Numbers Authority (IANA) port on which the MongoDB process listens for requests.
     */
+
     'port'?: number;
     /**
     * Human-readable label that identifies the replica set that contains this process. This resource returns this parameter if this process belongs to a replica set.
     */
+
     'replicaSetName'?: string;
     /**
     * Type of MongoDB process that MongoDB Cloud tracks. MongoDB Cloud returns new processes as **NO_DATA** until MongoDB Cloud completes deploying the process.
     */
-    'typeName'?: ApiHostViewAtlasTypeNameEnum;
+
+    'typeName'?: string;
     /**
     * Human-readable label that identifies the cluster node. MongoDB Cloud sets this hostname usually to the standard hostname for the cluster node. It appears in the connection string for a cluster instead of the value of the hostname parameter.
     */
+
     'userAlias'?: string;
     /**
     * Version of MongoDB that this process runs.
     */
+
     'version'?: string;
 
     static readonly discriminator: string | undefined = undefined;
@@ -113,7 +124,7 @@ export class ApiHostViewAtlas {
         {
             "name": "typeName",
             "baseName": "typeName",
-            "type": "ApiHostViewAtlasTypeNameEnum",
+            "type": "string",
             "format": ""
         },
         {

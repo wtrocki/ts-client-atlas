@@ -20,14 +20,17 @@ export class DataLakeAtlasStoreReadPreference {
     /**
     * Maximum replication lag, or **staleness**, for reads from secondaries.
     */
+
     'maxStalenessSeconds'?: number;
     /**
     * [Read preference mode](https://docs.mongodb.com/manual/core/read-preference/#read-preference-modes) that specifies to which replica set member to route the read requests.
     */
-    'mode'?: DataLakeAtlasStoreReadPreferenceModeEnum;
+
+    'mode'?: string;
     /**
     * List that contains [tag sets](https://docs.mongodb.com/manual/core/read-preference-tags/) or tag specification documents. If specified, Atlas Data Lake routes read requests to replica set member or members that are associated with the specified tags.
     */
+
     'tagSets'?: Array<Array<DataLakeAtlasStoreReadPreferenceTag>>;
 
     static readonly discriminator: string | undefined = undefined;
@@ -42,7 +45,7 @@ export class DataLakeAtlasStoreReadPreference {
         {
             "name": "mode",
             "baseName": "mode",
-            "type": "DataLakeAtlasStoreReadPreferenceModeEnum",
+            "type": "string",
             "format": ""
         },
         {

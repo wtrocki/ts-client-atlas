@@ -19,10 +19,12 @@ export class DataLakeAtlasStoreReadPreferenceTag {
     /**
     * Human-readable label of the tag.
     */
+
     'name'?: string;
     /**
     * Value of the tag.
     */
+
     'value'?: string;
 
     static readonly discriminator: string | undefined = undefined;

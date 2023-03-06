@@ -19,15 +19,18 @@ export class Role {
     /**
     * Collection on which this role applies.
     */
+
     'collectionName': string;
     /**
     * Database against which the database user authenticates. Database users must provide both a username and authentication database to log into MongoDB.
     */
+
     'databaseName': string;
     /**
     * Human-readable label that identifies a group of privileges assigned to a database user. This value can either be a built-in role or a custom role.
     */
-    'roleName': RoleRoleNameEnum;
+
+    'roleName': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -47,7 +50,7 @@ export class Role {
         {
             "name": "roleName",
             "baseName": "roleName",
-            "type": "RoleRoleNameEnum",
+            "type": "string",
             "format": ""
         }    ];
 

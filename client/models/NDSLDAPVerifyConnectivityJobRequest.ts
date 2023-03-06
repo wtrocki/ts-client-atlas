@@ -19,23 +19,29 @@ export class NDSLDAPVerifyConnectivityJobRequest {
     /**
     * Unique 24-hexadecimal digit string that identifies the project associated with this Lightweight Directory Access Protocol (LDAP) over Transport Layer Security (TLS) configuration.
     */
+
     'groupId'?: string;
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
+
     'request'?: NDSLDAPVerifyConnectivityJobRequestParams;
     /**
     * Unique 24-hexadecimal digit string that identifies this request to verify an Lightweight Directory Access Protocol (LDAP) configuration.
     */
+
     'requestId'?: string;
     /**
     * Human-readable string that indicates the status of the Lightweight Directory Access Protocol (LDAP) over Transport Layer Security (TLS) configuration.
     */
-    'status'?: NDSLDAPVerifyConnectivityJobRequestStatusEnum;
+
+    'status'?: string;
     /**
     * List that contains the validation messages related to the verification of the provided Lightweight Directory Access Protocol (LDAP) over Transport Layer Security (TLS) configuration details. The list contains a document for each test that MongoDB Cloud runs. MongoDB Cloud stops running tests after the first failure.
     */
+
     'validations'?: Array<NDSLDAPVerifyConnectivityJobRequestValidation>;
 
     static readonly discriminator: string | undefined = undefined;
@@ -68,7 +74,7 @@ export class NDSLDAPVerifyConnectivityJobRequest {
         {
             "name": "status",
             "baseName": "status",
-            "type": "NDSLDAPVerifyConnectivityJobRequestStatusEnum",
+            "type": "string",
             "format": ""
         },
         {

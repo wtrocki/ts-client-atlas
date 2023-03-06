@@ -19,10 +19,12 @@ export class PartitionField {
     /**
     * Human-readable label that identifies the field name used to partition data.
     */
+
     'fieldName': string;
     /**
     * Sequence in which MongoDB Cloud slices the collection data to create partitions. The resource expresses this sequence starting with zero.
     */
+
     'order': number;
 
     static readonly discriminator: string | undefined = undefined;

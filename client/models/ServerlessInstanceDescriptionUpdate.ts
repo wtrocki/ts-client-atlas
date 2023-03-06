@@ -17,10 +17,12 @@ import { HttpFile } from '../http/http';
 * Settings that you can update when you request a serverless cluster update.
 */
 export class ServerlessInstanceDescriptionUpdate {
+
     'serverlessBackupOptions'?: ServerlessBackupOptions;
     /**
     * Flag that indicates whether termination protection is enabled on the serverless instance. If set to `true`, MongoDB Cloud won't delete the serverless instance. If set to `false`, MongoDB Cloud will delete the serverless instance.
     */
+
     'terminationProtectionEnabled'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;

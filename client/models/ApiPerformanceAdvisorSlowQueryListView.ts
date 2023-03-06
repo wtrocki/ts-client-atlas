@@ -17,6 +17,7 @@ export class ApiPerformanceAdvisorSlowQueryListView {
     /**
     * List of operations that the Performance Advisor detected that took longer to execute than a specified threshold.
     */
+
     'slowQueries'?: Array<ApiPerformanceAdvisorSlowQueryView>;
 
     static readonly discriminator: string | undefined = undefined;

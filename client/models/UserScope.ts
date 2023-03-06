@@ -19,11 +19,13 @@ export class UserScope {
     /**
     * Human-readable label that identifies the cluster or MongoDB Atlas Data Lake that this database user can access.
     */
+
     'name': string;
     /**
     * Category of resource that this database user can access.
     */
-    'type': UserScopeTypeEnum;
+
+    'type': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -37,7 +39,7 @@ export class UserScope {
         {
             "name": "type",
             "baseName": "type",
-            "type": "UserScopeTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

@@ -19,23 +19,28 @@ export class DatadogNotificationView {
     /**
     * Datadog API Key that MongoDB Cloud needs to send alert notifications to Datadog. You can find this API key in the Datadog dashboard. The resource requires this parameter when `\"notifications.[n].typeName\" : \"DATADOG\"`.  **NOTE**: After you create a notification which requires an API or integration key, the key appears partially redacted when you:  * View or edit the alert through the Atlas UI.  * Query the alert for the notification through the Atlas Administration API.
     */
+
     'datadogApiKey'?: string;
     /**
     * Datadog region that indicates which API Uniform Resource Locator (URL) to use. The resource requires this parameter when `\"notifications.[n].typeName\" : \"DATADOG\"`.  To learn more about Datadog's regions, see <a href=\"https://docs.datadoghq.com/getting_started/site/\" target=\"_blank\" rel=\"noopener noreferrer\">Datadog Sites</a>.
     */
-    'datadogRegion'?: DatadogNotificationViewDatadogRegionEnum;
+
+    'datadogRegion'?: string;
     /**
     * Number of minutes that MongoDB Cloud waits after detecting an alert condition before it sends out the first notification.
     */
+
     'delayMin'?: number;
     /**
     * Number of minutes to wait between successive notifications. MongoDB Cloud sends notifications until someone acknowledges the unacknowledged alert.  PagerDuty, VictorOps, and OpsGenie notifications don't return this element. Configure and manage the notification interval within each of those services.
     */
+
     'intervalMin'?: number;
     /**
     * Human-readable label that displays the alert notification type.
     */
-    'typeName': DatadogNotificationViewTypeNameEnum;
+
+    'typeName': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -49,7 +54,7 @@ export class DatadogNotificationView {
         {
             "name": "datadogRegion",
             "baseName": "datadogRegion",
-            "type": "DatadogNotificationViewDatadogRegionEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -67,7 +72,7 @@ export class DatadogNotificationView {
         {
             "name": "typeName",
             "baseName": "typeName",
-            "type": "DatadogNotificationViewTypeNameEnum",
+            "type": "string",
             "format": ""
         }    ];
 

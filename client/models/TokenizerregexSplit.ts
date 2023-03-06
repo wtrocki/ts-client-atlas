@@ -19,11 +19,13 @@ export class TokenizerregexSplit {
     /**
     * Regular expression to match against.
     */
+
     'pattern': string;
     /**
     * Human-readable label that identifies this tokenizer type.
     */
-    'type': TokenizerregexSplitTypeEnum;
+
+    'type': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -37,7 +39,7 @@ export class TokenizerregexSplit {
         {
             "name": "type",
             "baseName": "type",
-            "type": "TokenizerregexSplitTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

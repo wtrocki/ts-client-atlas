@@ -14,27 +14,34 @@ import { AWSAutoScaling } from '../models/AWSAutoScaling';
 import { HttpFile } from '../http/http';
 
 export class AWSProviderSettings {
+
     'autoScaling'?: AWSAutoScaling;
     /**
     * Maximum Disk Input/Output Operations per Second (IOPS) that the database host can perform.
     */
+
     'diskIOPS'?: number;
     /**
     * Flag that indicates whether the Amazon Elastic Block Store (EBS) encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Clusters always have this setting enabled.
     */
+
     'encryptEBSVolume'?: boolean;
     /**
     * Cluster tier, with a default storage and memory capacity, that applies to all the data-bearing hosts in your cluster.
     */
-    'instanceSizeName'?: AWSProviderSettingsInstanceSizeNameEnum;
+
+    'instanceSizeName'?: string;
     /**
     *  Physical location where MongoDB Cloud deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Cloud creates them as part of the deployment. MongoDB Cloud assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts.
     */
-    'regionName'?: AWSProviderSettingsRegionNameEnum;
+
+    'regionName'?: string;
     /**
     * Disk Input/Output Operations per Second (IOPS) setting for Amazon Web Services (AWS) storage that you configure only for abbr title=\"Amazon Web Services\">AWS</abbr>. Specify whether Disk Input/Output Operations per Second (IOPS) must not exceed the default Input/Output Operations per Second (IOPS) rate for the selected volume size (`STANDARD`), or must fall within the allowable Input/Output Operations per Second (IOPS) range for the selected volume size (`PROVISIONED`).
     */
-    'volumeType'?: AWSProviderSettingsVolumeTypeEnum;
+
+    'volumeType'?: string;
+
     'providerName': string;
 
     static readonly discriminator: string | undefined = undefined;
@@ -61,19 +68,19 @@ export class AWSProviderSettings {
         {
             "name": "instanceSizeName",
             "baseName": "instanceSizeName",
-            "type": "AWSProviderSettingsInstanceSizeNameEnum",
+            "type": "string",
             "format": ""
         },
         {
             "name": "regionName",
             "baseName": "regionName",
-            "type": "AWSProviderSettingsRegionNameEnum",
+            "type": "string",
             "format": ""
         },
         {
             "name": "volumeType",
             "baseName": "volumeType",
-            "type": "AWSProviderSettingsVolumeTypeEnum",
+            "type": "string",
             "format": ""
         },
         {

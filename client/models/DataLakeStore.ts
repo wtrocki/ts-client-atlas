@@ -24,60 +24,76 @@ export class DataLakeStore {
     /**
     * Collection of AWS S3 [storage classes](https://aws.amazon.com/s3/storage-classes/). Atlas Data Lake includes the files in these storage classes in the query results.
     */
-    'additionalStorageClasses'?: Array<DataLakeStoreAdditionalStorageClassesEnum>;
+
+    'additionalStorageClasses'?: Array<string>;
     /**
     * Human-readable label that identifies the AWS S3 bucket. This label must exactly match the name of an S3 bucket that the data lake can access with the configured AWS Identity and Access Management (IAM) credentials.
     */
+
     'bucket'?: string;
     /**
     * The delimiter that separates **databases.[n].collections.[n].dataSources.[n].path** segments in the data store. MongoDB Cloud uses the delimiter to efficiently traverse S3 buckets with a hierarchical directory structure. You can specify any character supported by the S3 object keys as the delimiter. For example, you can specify an underscore (_) or a plus sign (+) or multiple characters, such as double underscores (__) as the delimiter. If omitted, defaults to `/`.
     */
+
     'delimiter'?: string;
     /**
     * Flag that indicates whether to use S3 tags on the files in the given path as additional partition attributes. If set to `true`, data lake adds the S3 tags as additional partition attributes and adds new top-level BSON elements associating each tag to each document.
     */
+
     'includeTags'?: boolean;
     /**
     * Prefix that MongoDB Cloud applies when searching for files in the S3 bucket. The data store prepends the value of prefix to the **databases.[n].collections.[n].dataSources.[n].path** to create the full path for files to ingest. If omitted, MongoDB Cloud searches all files from the root of the S3 bucket.
     */
+
     'prefix'?: string;
     /**
     * Flag that indicates whether the bucket is public. If set to `true`, MongoDB Cloud doesn't use the configured AWS Identity and Access Management (IAM) role to access the S3 bucket. If set to `false`, the configured AWS IAM role must include permissions to access the S3 bucket.
     */
+
     '_public'?: boolean;
     /**
     *  Physical location where MongoDB Cloud deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Cloud creates them as part of the deployment. MongoDB Cloud assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts.
     */
-    'region'?: DataLakeStoreRegionEnum;
+
+    'region'?: string;
     /**
     * Human-readable label that identifies the data store. The **databases.[n].collections.[n].dataSources.[n].storeName** field references this values as part of the mapping configuration. To use MongoDB Cloud as a data store, the data lake requires a serverless instance or an `M10` or higher cluster.
     */
+
     'name'?: string;
+
     'provider': string;
     /**
     * ID of the Cluster the Online Archive belongs to.
     */
+
     'clusterId': string;
     /**
     * Human-readable label of the MongoDB Cloud cluster on which the store is based.
     */
+
     'clusterName': string;
     /**
     * Unique 24-hexadecimal digit string that identifies the project.
     */
+
     'projectId': string;
+
     'readPreference'?: DataLakeAtlasStoreReadPreference;
     /**
     * Flag that validates the scheme in the specified URLs. If `true`, allows insecure `HTTP` scheme, doesn't verify the server's certificate chain and hostname, and accepts any certificate with any hostname presented by the server. If `false`, allows secure `HTTPS` scheme only.
     */
+
     'allowInsecure'?: boolean;
     /**
     * Default format that Data Lake assumes if it encounters a file without an extension while searching the `storeName`. If omitted, Data Lake attempts to detect the file type by processing a few bytes of the file. The specified format only applies to the URLs specified in the **databases.[n].collections.[n].dataSources** object.
     */
+
     'defaultFormat'?: string;
     /**
     * Comma-separated list of publicly accessible HTTP URLs where data is stored. You can't specify URLs that require authentication.
     */
+
     'urls'?: Array<string>;
 
     static readonly discriminator: string | undefined = "provider";
@@ -86,7 +102,7 @@ export class DataLakeStore {
         {
             "name": "additionalStorageClasses",
             "baseName": "additionalStorageClasses",
-            "type": "Array<DataLakeStoreAdditionalStorageClassesEnum>",
+            "type": "Array<string>",
             "format": ""
         },
         {
@@ -122,7 +138,7 @@ export class DataLakeStore {
         {
             "name": "region",
             "baseName": "region",
-            "type": "DataLakeStoreRegionEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -185,7 +201,6 @@ export class DataLakeStore {
     }
 
     public constructor() {
-        this.provider = "DataLakeStore";
     }
 }
 

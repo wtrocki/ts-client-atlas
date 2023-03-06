@@ -21,18 +21,22 @@ export class ApiKeyView {
     /**
     * List of network addresses granted access to this API using this API key.
     */
+
     'accessList'?: Array<AccessListItemView>;
     /**
     * Unique 24-hexadecimal digit string that identifies this organization API key.
     */
+
     'id': string;
     /**
     * Public API key value set for the specified organization API key.
     */
+
     'publicKey': string;
     /**
     * List that contains roles that the API key needs to have. All roles you provide must be valid for the specified project or organization. Each request must include a minimum of one valid role. The resource returns all project and organization roles assigned to the Cloud user.
     */
+
     'roles'?: Array<ApiRoleAssignmentView>;
 
     static readonly discriminator: string | undefined = undefined;

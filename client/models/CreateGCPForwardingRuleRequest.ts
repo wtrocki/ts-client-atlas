@@ -16,10 +16,12 @@ export class CreateGCPForwardingRuleRequest {
     /**
     * Human-readable label that identifies the Google Cloud consumer forwarding rule that you created.
     */
+
     'endpointName'?: string;
     /**
     * One Private Internet Protocol version 4 (IPv4) address to which this Google Cloud consumer forwarding rule resolves.
     */
+
     'ipAddress'?: string;
 
     static readonly discriminator: string | undefined = undefined;

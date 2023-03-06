@@ -17,18 +17,22 @@ export class AvailableProjectView {
     /**
     * List of clusters that can be migrated to MongoDB Cloud.
     */
+
     'deployments'?: Array<AvailableDeploymentView>;
     /**
     * Hostname of MongoDB Agent list that you configured to perform a migration.
     */
+
     'migrationHosts'?: Array<string>;
     /**
     * Human-readable label that identifies this project.
     */
+
     'name': string;
     /**
     * Unique 24-hexadecimal digit string that identifies the project to be migrated.
     */
+
     'projectId': string;
 
     static readonly discriminator: string | undefined = undefined;

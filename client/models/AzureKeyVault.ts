@@ -19,42 +19,52 @@ export class AzureKeyVault {
     /**
     * Azure environment in which your account credentials reside.
     */
-    'azureEnvironment'?: AzureKeyVaultAzureEnvironmentEnum;
+
+    'azureEnvironment'?: string;
     /**
     * Unique 36-hexadecimal character string that identifies an Azure application associated with your Azure Active Directory tenant.
     */
+
     'clientID'?: string;
     /**
     * Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
     */
+
     'enabled'?: boolean;
     /**
     * Web address with a unique key that identifies for your Azure Key Vault.
     */
+
     'keyIdentifier'?: string;
     /**
     * Unique string that identifies the Azure Key Vault that contains your key.
     */
+
     'keyVaultName'?: string;
     /**
     * Name of the Azure resource group that contains your Azure Key Vault.
     */
+
     'resourceGroupName'?: string;
     /**
     * Private data that you need secured and that belongs to the specified Azure Key Vault (AKV) tenant (**azureKeyVault.tenantID**). This data can include any type of sensitive data such as passwords, database connection strings, API keys, and the like. AKV stores this information as encrypted binary data.
     */
+
     'secret'?: string;
     /**
     * Unique 36-hexadecimal character string that identifies your Azure subscription.
     */
+
     'subscriptionID'?: string;
     /**
     * Unique 36-hexadecimal character string that identifies the Azure Active Directory tenant within your Azure subscription.
     */
+
     'tenantID'?: string;
     /**
     * Flag that indicates whether the Azure encryption key can encrypt and decrypt data.
     */
+
     'valid'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;
@@ -63,7 +73,7 @@ export class AzureKeyVault {
         {
             "name": "azureEnvironment",
             "baseName": "azureEnvironment",
-            "type": "AzureKeyVaultAzureEnvironmentEnum",
+            "type": "string",
             "format": ""
         },
         {

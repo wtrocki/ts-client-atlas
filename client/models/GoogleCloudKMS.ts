@@ -19,18 +19,22 @@ export class GoogleCloudKMS {
     /**
     * Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
     */
+
     'enabled'?: boolean;
     /**
     * Resource path that displays the key version resource ID for your Google Cloud KMS.
     */
+
     'keyVersionResourceID'?: string;
     /**
     * JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
     */
+
     'serviceAccountKey'?: string;
     /**
     * Flag that indicates whether the Google Cloud Key Management Service (KMS) encryption key can encrypt and decrypt data.
     */
+
     'valid'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;

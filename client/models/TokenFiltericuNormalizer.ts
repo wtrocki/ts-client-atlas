@@ -19,11 +19,13 @@ export class TokenFiltericuNormalizer {
     /**
     * Normalization form to apply.
     */
-    'normalizationForm'?: TokenFiltericuNormalizerNormalizationFormEnum;
+
+    'normalizationForm'?: string;
     /**
     * Human-readable label that identifies this token filter type.
     */
-    'type': TokenFiltericuNormalizerTypeEnum;
+
+    'type': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -31,13 +33,13 @@ export class TokenFiltericuNormalizer {
         {
             "name": "normalizationForm",
             "baseName": "normalizationForm",
-            "type": "TokenFiltericuNormalizerNormalizationFormEnum",
+            "type": "string",
             "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "TokenFiltericuNormalizerTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

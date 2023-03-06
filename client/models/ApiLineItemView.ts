@@ -19,70 +19,87 @@ export class ApiLineItemView {
     /**
     * Human-readable label that identifies the cluster that incurred the charge.
     */
+
     'clusterName'?: string;
     /**
     * Date and time when MongoDB Cloud created this line item. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     */
+
     'created'?: Date;
     /**
     * Sum by which MongoDB discounted this line item. MongoDB Cloud expresses this value in cents (100ths of one US Dollar). The resource returns this parameter when a discount applies.
     */
+
     'discountCents'?: number;
     /**
     * Date and time when when MongoDB Cloud finished charging for this line item. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     */
+
     'endDate'?: Date;
     /**
     * Unique 24-hexadecimal digit string that identifies the project associated to this line item.
     */
+
     'groupId'?: string;
     /**
     * Human-readable label that identifies the project.
     */
+
     'groupName'?: string;
     /**
     * Comment that applies to this line item.
     */
+
     'note'?: string;
     /**
     * Percentage by which MongoDB discounted this line item. The resource returns this parameter when a discount applies.
     */
+
     'percentDiscount'?: number;
     /**
     * Number of units included for the line item. These can be expressions of storage (GB), time (hours), or other units.
     */
+
     'quantity'?: number;
     /**
     * Human-readable description of the service that this line item provided. This Stock Keeping Unit (SKU) could be the instance type, a support charge, advanced security, or another service.
     */
-    'sku'?: ApiLineItemViewSkuEnum;
+
+    'sku'?: string;
     /**
     * Date and time when MongoDB Cloud began charging for this line item. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     */
+
     'startDate'?: Date;
     /**
     * Human-readable label that identifies the Atlas App Services application associated with this line item.
     */
+
     'stitchAppName'?: string;
     /**
     * Lower bound for usage amount range in current SKU tier.   **NOTE**: **lineItems[n].tierLowerBound** appears only if your **lineItems[n].sku** is tiered.
     */
+
     'tierLowerBound'?: number;
     /**
     * Upper bound for usage amount range in current SKU tier.   **NOTE**: **lineItems[n].tierUpperBound** appears only if your **lineItems[n].sku** is tiered.
     */
+
     'tierUpperBound'?: number;
     /**
     * Sum of the cost set for this line item. MongoDB Cloud expresses this value in cents (100ths of one US Dollar) and calculates this value as **unitPriceDollars** × **quantity** × 100.
     */
+
     'totalPriceCents'?: number;
     /**
     * Element used to express what **quantity** this line item measures. This value can be elements of time, storage capacity, and the like.
     */
+
     'unit'?: string;
     /**
     * Value per **unit** for this line item expressed in US Dollars.
     */
+
     'unitPriceDollars'?: number;
 
     static readonly discriminator: string | undefined = undefined;
@@ -145,7 +162,7 @@ export class ApiLineItemView {
         {
             "name": "sku",
             "baseName": "sku",
-            "type": "ApiLineItemViewSkuEnum",
+            "type": "string",
             "format": ""
         },
         {

@@ -19,15 +19,18 @@ export class TokenizernGram {
     /**
     * Characters to include in the longest token that Atlas Search creates.
     */
+
     'maxGram': number;
     /**
     * Characters to include in the shortest token that Atlas Search creates.
     */
+
     'minGram': number;
     /**
     * Human-readable label that identifies this tokenizer type.
     */
-    'type': TokenizernGramTypeEnum;
+
+    'type': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -47,7 +50,7 @@ export class TokenizernGram {
         {
             "name": "type",
             "baseName": "type",
-            "type": "TokenizernGramTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

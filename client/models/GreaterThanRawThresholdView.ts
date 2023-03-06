@@ -20,11 +20,14 @@ export class GreaterThanRawThresholdView {
     /**
     * Comparison operator to apply when checking the current metric value.
     */
-    'operator'?: GreaterThanRawThresholdViewOperatorEnum;
+
+    'operator'?: string;
     /**
     * Value of metric that, when exceeded, triggers an alert.
     */
+
     'threshold'?: number;
+
     'units'?: RawMetricUnits;
 
     static readonly discriminator: string | undefined = undefined;
@@ -33,7 +36,7 @@ export class GreaterThanRawThresholdView {
         {
             "name": "operator",
             "baseName": "operator",
-            "type": "GreaterThanRawThresholdViewOperatorEnum",
+            "type": "string",
             "format": ""
         },
         {

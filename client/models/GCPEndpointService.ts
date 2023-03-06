@@ -19,27 +19,33 @@ export class GCPEndpointService {
     /**
     * List of Google Cloud network endpoint groups that corresponds to the Private Service Connect endpoint service.
     */
+
     'endpointGroupNames'?: Array<string>;
     /**
     * Error message returned when requesting private connection resource. The resource returns `null` if the request succeeded.
     */
+
     'errorMessage'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the Private Endpoint Service.
     */
+
     'id'?: string;
     /**
     * Cloud provider region that manages this Private Endpoint Service.
     */
+
     'regionName'?: string;
     /**
     * List of Uniform Resource Locators (URLs) that identifies endpoints that MongoDB Cloud can use to access one Google Cloud Service across a Google Cloud Virtual Private Connection (VPC) network.
     */
+
     'serviceAttachmentNames'?: Array<string>;
     /**
     * State of the Private Endpoint Service connection when MongoDB Cloud received this request.
     */
-    'status'?: GCPEndpointServiceStatusEnum;
+
+    'status'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -77,7 +83,7 @@ export class GCPEndpointService {
         {
             "name": "status",
             "baseName": "status",
-            "type": "GCPEndpointServiceStatusEnum",
+            "type": "string",
             "format": ""
         }    ];
 

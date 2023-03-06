@@ -18,30 +18,37 @@ export class ConnectedOrgConfigView {
     /**
     * Approved domains that restrict users who can join the organization based on their email address.
     */
+
     'domainAllowList'?: Set<string>;
     /**
     * Value that indicates whether domain restriction is enabled for this connected org.
     */
+
     'domainRestrictionEnabled': boolean;
     /**
     * Unique 20-hexadecimal digit string that identifies the identity provider that this connected org config is associated with.
     */
+
     'identityProviderId': string;
     /**
     * Unique 24-hexadecimal digit string that identifies the connected organization configuration.
     */
+
     'orgId': string;
     /**
     * Atlas roles that are granted to a user in this organization after authenticating.
     */
-    'postAuthRoleGrants'?: Set<ConnectedOrgConfigViewPostAuthRoleGrantsEnum>;
+
+    'postAuthRoleGrants'?: Set<string>;
     /**
     * Role mappings that are configured in this organization.
     */
+
     'roleMappings'?: Set<RoleMappingView>;
     /**
     * List that contains the users who have an email address that doesn't match any domain on the allowed list.
     */
+
     'userConflicts'?: Array<FederatedUserView>;
 
     static readonly discriminator: string | undefined = undefined;
@@ -74,7 +81,7 @@ export class ConnectedOrgConfigView {
         {
             "name": "postAuthRoleGrants",
             "baseName": "postAuthRoleGrants",
-            "type": "Set<ConnectedOrgConfigViewPostAuthRoleGrantsEnum>",
+            "type": "Set<string>",
             "format": ""
         },
         {

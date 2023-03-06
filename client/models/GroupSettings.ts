@@ -19,26 +19,32 @@ export class GroupSettings {
     /**
     * Flag that indicates whether to collect database-specific metrics  for the specified project.
     */
+
     'isCollectDatabaseSpecificsStatisticsEnabled'?: boolean;
     /**
     * Flag that indicates whether to enable the Data Explorer for the specified project.
     */
+
     'isDataExplorerEnabled'?: boolean;
     /**
     * Flag that indicates whether to enable extended storage sizes  for the specified project.
     */
+
     'isExtendedStorageSizesEnabled'?: boolean;
     /**
     * Flag that indicates whether to enable the Performance Advisor and Profiler  for the specified project.
     */
+
     'isPerformanceAdvisorEnabled'?: boolean;
     /**
     * Flag that indicates whether to enable the Real Time Performance Panel for the specified project.
     */
+
     'isRealtimePerformancePanelEnabled'?: boolean;
     /**
     * Flag that indicates whether to enable the Schema Advisor for the specified project.
     */
+
     'isSchemaAdvisorEnabled'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;

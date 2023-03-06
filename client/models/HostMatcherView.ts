@@ -18,11 +18,14 @@ import { HttpFile } from '../http/http';
 * Rules to apply when comparing an host against this alert configuration.
 */
 export class HostMatcherView {
+
     'fieldName'?: HostMatcherField;
     /**
     * Comparison operator to apply when checking the current metric value against **matcher[n].value**.
     */
-    'operator'?: HostMatcherViewOperatorEnum;
+
+    'operator'?: string;
+
     'value'?: MatcherHostType;
 
     static readonly discriminator: string | undefined = undefined;
@@ -37,7 +40,7 @@ export class HostMatcherView {
         {
             "name": "operator",
             "baseName": "operator",
-            "type": "HostMatcherViewOperatorEnum",
+            "type": "string",
             "format": ""
         },
         {

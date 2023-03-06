@@ -19,10 +19,12 @@ export class PipelineRunStats {
     /**
     * Total data size in bytes exported for this pipeline run.
     */
+
     'bytesExported'?: number;
     /**
     * Number of docs ingested for a this pipeline run.
     */
+
     'numDocs'?: number;
 
     static readonly discriminator: string | undefined = undefined;

@@ -19,6 +19,7 @@ export class ToggleView {
     /**
     * Flag that indicates whether to enable or disable the specified alert configuration in the specified project.
     */
+
     'enabled'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;

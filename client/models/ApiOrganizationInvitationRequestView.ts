@@ -16,14 +16,17 @@ export class ApiOrganizationInvitationRequestView {
     /**
     * One or more organization or project level roles to assign to the MongoDB Cloud user.
     */
-    'roles'?: Set<ApiOrganizationInvitationRequestViewRolesEnum>;
+
+    'roles'?: Set<string>;
     /**
     * List of teams to which you want to invite the desired MongoDB Cloud user.
     */
+
     'teamIds'?: Set<string>;
     /**
     * Email address that belongs to the desired MongoDB Cloud user.
     */
+
     'username'?: string;
 
     static readonly discriminator: string | undefined = undefined;
@@ -32,7 +35,7 @@ export class ApiOrganizationInvitationRequestView {
         {
             "name": "roles",
             "baseName": "roles",
-            "type": "Set<ApiOrganizationInvitationRequestViewRolesEnum>",
+            "type": "Set<string>",
             "format": ""
         },
         {

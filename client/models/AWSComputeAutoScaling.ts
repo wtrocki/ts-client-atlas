@@ -19,11 +19,13 @@ export class AWSComputeAutoScaling {
     /**
     * Maximum instance size to which your cluster can automatically scale.
     */
-    'maxInstanceSize'?: AWSComputeAutoScalingMaxInstanceSizeEnum;
+
+    'maxInstanceSize'?: string;
     /**
     * Minimum instance size to which your cluster can automatically scale.
     */
-    'minInstanceSize'?: AWSComputeAutoScalingMinInstanceSizeEnum;
+
+    'minInstanceSize'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -31,13 +33,13 @@ export class AWSComputeAutoScaling {
         {
             "name": "maxInstanceSize",
             "baseName": "maxInstanceSize",
-            "type": "AWSComputeAutoScalingMaxInstanceSizeEnum",
+            "type": "string",
             "format": ""
         },
         {
             "name": "minInstanceSize",
             "baseName": "minInstanceSize",
-            "type": "AWSComputeAutoScalingMinInstanceSizeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

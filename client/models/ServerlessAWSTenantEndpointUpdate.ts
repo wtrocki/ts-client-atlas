@@ -19,11 +19,14 @@ export class ServerlessAWSTenantEndpointUpdate {
     /**
     * Unique string that identifies the private endpoint's network interface.
     */
+
     'cloudProviderEndpointId'?: string;
     /**
     * Human-readable comment associated with the private endpoint.
     */
+
     'comment'?: string;
+
     'providerName': string;
 
     static readonly discriminator: string | undefined = undefined;

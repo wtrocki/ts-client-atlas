@@ -19,11 +19,13 @@ export class AzureComputeAutoScaling {
     /**
     * Maximum instance size to which your cluster can automatically scale.
     */
-    'maxInstanceSize'?: AzureComputeAutoScalingMaxInstanceSizeEnum;
+
+    'maxInstanceSize'?: string;
     /**
     * Minimum instance size to which your cluster can automatically scale.
     */
-    'minInstanceSize'?: AzureComputeAutoScalingMinInstanceSizeEnum;
+
+    'minInstanceSize'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -31,13 +33,13 @@ export class AzureComputeAutoScaling {
         {
             "name": "maxInstanceSize",
             "baseName": "maxInstanceSize",
-            "type": "AzureComputeAutoScalingMaxInstanceSizeEnum",
+            "type": "string",
             "format": ""
         },
         {
             "name": "minInstanceSize",
             "baseName": "minInstanceSize",
-            "type": "AzureComputeAutoScalingMinInstanceSizeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

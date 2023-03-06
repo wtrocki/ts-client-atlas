@@ -21,63 +21,78 @@ export class DiskBackupShardedClusterSnapshot {
     /**
     * Date and time when MongoDB Cloud took the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     */
+
     'createdAt'?: Date;
     /**
     * Human-readable phrase or sentence that explains the purpose of the snapshot. The resource returns this parameter when `\"status\": \"onDemand\"`.
     */
+
     'description'?: string;
     /**
     * Date and time when MongoDB Cloud deletes the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     */
+
     'expiresAt'?: Date;
     /**
     * Human-readable label that identifies how often this snapshot triggers.
     */
-    'frequencyType'?: DiskBackupShardedClusterSnapshotFrequencyTypeEnum;
+
+    'frequencyType'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the snapshot.
     */
+
     'id'?: string;
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
     /**
     * Unique string that identifies the Amazon Web Services (AWS) Key Management Service (KMS) Customer Master Key (CMK) used to encrypt the snapshot. The resource returns this value when `\"encryptionEnabled\" : true`.
     */
+
     'masterKeyUUID'?: string;
     /**
     * List that includes the snapshots and the cloud provider that stores the snapshots. The resource returns this parameter when `\"type\" : \"SHARDED_CLUSTER\"`.
     */
+
     'members'?: Array<DiskBackupShardedClusterSnapshotMember>;
     /**
     * Version of the MongoDB host that this snapshot backs up.
     */
+
     'mongodVersion'?: string;
     /**
     * List that contains unique identifiers for the policy items.
     */
+
     'policyItems'?: Array<string>;
     /**
     * List that contains the unique identifiers of the snapshots created for the shards and config host for a sharded cluster. The resource returns this parameter when `\"type\": \"SHARDED_CLUSTER\"`. These identifiers should match the ones specified in the **members[n].id** parameters. This allows you to map a snapshot to its shard or config host name.
     */
+
     'snapshotIds'?: Array<string>;
     /**
     * Human-readable label that identifies when this snapshot triggers.
     */
-    'snapshotType'?: DiskBackupShardedClusterSnapshotSnapshotTypeEnum;
+
+    'snapshotType'?: string;
     /**
     * Human-readable label that indicates the stage of the backup process for this snapshot.
     */
-    'status'?: DiskBackupShardedClusterSnapshotStatusEnum;
+
+    'status'?: string;
     /**
     * Number of bytes taken to store the backup snapshot.
     */
+
     'storageSizeBytes'?: number;
     /**
     * Human-readable label that categorizes the cluster as a replica set or sharded cluster.
     */
-    'type'?: DiskBackupShardedClusterSnapshotTypeEnum;
+
+    'type'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -103,7 +118,7 @@ export class DiskBackupShardedClusterSnapshot {
         {
             "name": "frequencyType",
             "baseName": "frequencyType",
-            "type": "DiskBackupShardedClusterSnapshotFrequencyTypeEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -151,13 +166,13 @@ export class DiskBackupShardedClusterSnapshot {
         {
             "name": "snapshotType",
             "baseName": "snapshotType",
-            "type": "DiskBackupShardedClusterSnapshotSnapshotTypeEnum",
+            "type": "string",
             "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "DiskBackupShardedClusterSnapshotStatusEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -169,7 +184,7 @@ export class DiskBackupShardedClusterSnapshot {
         {
             "name": "type",
             "baseName": "type",
-            "type": "DiskBackupShardedClusterSnapshotTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

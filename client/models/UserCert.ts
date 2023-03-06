@@ -17,30 +17,37 @@ export class UserCert {
     /**
     * Unique 24-hexadecimal character string that identifies this certificate.
     */
+
     'id'?: number;
     /**
     * Date and time when MongoDB Cloud created this certificate. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     */
+
     'createdAt'?: Date;
     /**
     * Unique 24-hexadecimal character string that identifies the project.
     */
+
     'groupId'?: string;
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
     /**
     * Number of months that the certificate remains valid until it expires.
     */
+
     'monthsUntilExpiration'?: number;
     /**
     * Date and time when this certificate expires. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     */
+
     'notAfter'?: Date;
     /**
     * Subject Alternative Name associated with this certificate. This parameter expresses its value as a distinguished name as defined in [RFC 2253](https://tools.ietf.org/html/2253).
     */
+
     'subject'?: string;
 
     static readonly discriminator: string | undefined = undefined;

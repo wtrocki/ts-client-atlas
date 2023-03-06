@@ -15,19 +15,24 @@ import { IndexOptions } from '../models/IndexOptions';
 import { HttpFile } from '../http/http';
 
 export class ApiIndexRequestView {
+
     'collation'?: Collation;
     /**
     * Human-readable label of the collection for which MongoDB Cloud creates an index.
     */
+
     'collection': string;
     /**
     * Human-readable label of the database that holds the collection on which MongoDB Cloud creates an index.
     */
+
     'db': string;
     /**
     * List that contains one or more objects that describe the parameters that you want to index.
     */
+
     'keys'?: Array<{ [key: string]: string; }>;
+
     'options'?: IndexOptions;
 
     static readonly discriminator: string | undefined = undefined;

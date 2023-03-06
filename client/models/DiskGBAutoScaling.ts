@@ -19,6 +19,7 @@ export class DiskGBAutoScaling {
     /**
     * Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling.
     */
+
     'enabled'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;

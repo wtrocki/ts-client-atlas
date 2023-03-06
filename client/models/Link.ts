@@ -16,10 +16,12 @@ export class Link {
     /**
     * Uniform Resource Locator (URL) that points another API resource to which this response has some relationship. This URL often begins with `https://cloud.mongodb.com/api/atlas`.
     */
+
     'href'?: string;
     /**
     * Uniform Resource Locator (URL) that defines the semantic relationship between this resource and another API resource. This URL often begins with `https://cloud.mongodb.com/api/atlas`.
     */
+
     'rel'?: string;
 
     static readonly discriminator: string | undefined = undefined;

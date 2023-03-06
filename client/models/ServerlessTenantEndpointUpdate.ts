@@ -21,15 +21,19 @@ export class ServerlessTenantEndpointUpdate {
     /**
     * Unique string that identifies the Azure private endpoint's network interface for this private endpoint service.
     */
+
     'cloudProviderEndpointId'?: string;
     /**
     * Human-readable comment associated with the private endpoint.
     */
+
     'comment'?: string;
+
     'providerName': string;
     /**
     * IPv4 address of the private endpoint in your Azure VNet that someone added to this private endpoint service.
     */
+
     'privateEndpointIpAddress'?: string;
 
     static readonly discriminator: string | undefined = "providerName";
@@ -65,7 +69,6 @@ export class ServerlessTenantEndpointUpdate {
     }
 
     public constructor() {
-        this.providerName = "ServerlessTenantEndpointUpdate";
     }
 }
 

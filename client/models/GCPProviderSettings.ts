@@ -14,15 +14,19 @@ import { GCPAutoScaling } from '../models/GCPAutoScaling';
 import { HttpFile } from '../http/http';
 
 export class GCPProviderSettings {
+
     'autoScaling'?: GCPAutoScaling;
     /**
     * Cluster tier, with a default storage and memory capacity, that applies to all the data-bearing hosts in your cluster.
     */
-    'instanceSizeName'?: GCPProviderSettingsInstanceSizeNameEnum;
+
+    'instanceSizeName'?: string;
     /**
     * Google Compute Regions.
     */
-    'regionName'?: GCPProviderSettingsRegionNameEnum;
+
+    'regionName'?: string;
+
     'providerName': string;
 
     static readonly discriminator: string | undefined = undefined;
@@ -37,13 +41,13 @@ export class GCPProviderSettings {
         {
             "name": "instanceSizeName",
             "baseName": "instanceSizeName",
-            "type": "GCPProviderSettingsInstanceSizeNameEnum",
+            "type": "string",
             "format": ""
         },
         {
             "name": "regionName",
             "baseName": "regionName",
-            "type": "GCPProviderSettingsRegionNameEnum",
+            "type": "string",
             "format": ""
         },
         {

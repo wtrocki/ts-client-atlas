@@ -19,46 +19,57 @@ export class EndpointService {
     /**
     * Unique string that identifies the Amazon Web Services (AWS) PrivateLink endpoint service. MongoDB Cloud returns null while it creates the endpoint service.
     */
+
     'endpointServiceName'?: string;
     /**
     * Error message returned when requesting private connection resource. The resource returns `null` if the request succeeded.
     */
+
     'errorMessage'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the Private Endpoint Service.
     */
+
     'id'?: string;
     /**
     * List of strings that identify private endpoint interfaces applied to the specified project.
     */
+
     'interfaceEndpoints'?: Array<string>;
     /**
     * Cloud provider region that manages this Private Endpoint Service.
     */
+
     'regionName'?: string;
     /**
     * State of the Private Endpoint Service connection when MongoDB Cloud received this request.
     */
-    'status'?: EndpointServiceStatusEnum;
+
+    'status'?: string;
     /**
     * List of private endpoints assigned to this Azure Private Link Service.
     */
+
     'privateEndpoints'?: Array<string>;
     /**
     * Unique string that identifies the Azure Private Link Service that MongoDB Cloud manages.
     */
+
     'privateLinkServiceName'?: string;
     /**
     * Root-relative path that identifies of the Azure Private Link Service that MongoDB Cloud manages. Use this value to create a private endpoint connection to an Azure VNet.
     */
+
     'privateLinkServiceResourceId'?: string;
     /**
     * List of Google Cloud network endpoint groups that corresponds to the Private Service Connect endpoint service.
     */
+
     'endpointGroupNames'?: Array<string>;
     /**
     * List of Uniform Resource Locators (URLs) that identifies endpoints that MongoDB Cloud can use to access one Google Cloud Service across a Google Cloud Virtual Private Connection (VPC) network.
     */
+
     'serviceAttachmentNames'?: Array<string>;
 
     static readonly discriminator: string | undefined = undefined;
@@ -97,7 +108,7 @@ export class EndpointService {
         {
             "name": "status",
             "baseName": "status",
-            "type": "EndpointServiceStatusEnum",
+            "type": "string",
             "format": ""
         },
         {

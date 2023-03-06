@@ -19,14 +19,17 @@ export class PartitionFieldView {
     /**
     * Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
     */
+
     'fieldName': string;
     /**
     * Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type [UUID](http://bsonspec.org/spec.html) must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3.
     */
-    'fieldType'?: PartitionFieldViewFieldTypeEnum;
+
+    'fieldType'?: string;
     /**
     * Sequence in which MongoDB Cloud slices the collection data to create partitions. The resource expresses this sequence starting with zero. The value of the **criteria.dateField** parameter defaults as the first item in the partition sequence.
     */
+
     'order': number;
 
     static readonly discriminator: string | undefined = undefined;
@@ -41,7 +44,7 @@ export class PartitionFieldView {
         {
             "name": "fieldType",
             "baseName": "fieldType",
-            "type": "PartitionFieldViewFieldTypeEnum",
+            "type": "string",
             "format": ""
         },
         {

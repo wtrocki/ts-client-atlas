@@ -16,19 +16,24 @@ export class DataLakeOnlineArchiveStore {
     /**
     * ID of the Cluster the Online Archive belongs to.
     */
+
     'clusterId': string;
     /**
     * Name of the Cluster the Online Archive belongs to.
     */
+
     'clusterName': string;
     /**
     * ID of the Project the Online Archive belongs to.
     */
+
     'projectId': string;
     /**
     * Human-readable label that identifies the data store. The **databases.[n].collections.[n].dataSources.[n].storeName** field references this values as part of the mapping configuration. To use MongoDB Cloud as a data store, the data lake requires a serverless instance or an `M10` or higher cluster.
     */
+
     'name'?: string;
+
     'provider': string;
 
     static readonly discriminator: string | undefined = undefined;

@@ -17,30 +17,37 @@ export class OrgGroupView {
     /**
     * Settings that describe the clusters in each project that the API key is authorized to view.
     */
+
     'clusters'?: Array<ClusterView>;
     /**
     * Unique 24-hexadecimal character string that identifies the project.
     */
+
     'groupId'?: string;
     /**
     * Human-readable label that identifies the project.
     */
+
     'groupName'?: string;
     /**
     * Unique 24-hexadecimal character string that identifies the organization that contains the project.
     */
+
     'orgId'?: string;
     /**
     * Human-readable label that identifies the organization that contains the project.
     */
+
     'orgName'?: string;
     /**
     * Human-readable label that indicates the plan type.
     */
+
     'planType'?: string;
     /**
     * List of human-readable labels that categorize the specified project. MongoDB Cloud returns an empty array.
     */
+
     'tags'?: Array<string>;
 
     static readonly discriminator: string | undefined = undefined;

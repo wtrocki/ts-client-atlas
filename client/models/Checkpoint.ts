@@ -18,38 +18,47 @@ export class Checkpoint {
     /**
     * Unique 24-hexadecimal digit string that identifies the cluster that contains the checkpoint.
     */
+
     'clusterId'?: string;
     /**
     * Date and time when the checkpoint completed and the balancer restarted. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     */
+
     'completed'?: Date;
     /**
     * Unique 24-hexadecimal digit string that identifies the project that owns the checkpoints.
     */
+
     'groupId'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies checkpoint.
     */
+
     'id'?: string;
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
     /**
     * Metadata that describes the complete snapshot.  - For a replica set, this array contains a single document. - For a sharded cluster, this array contains one document for each shard plus one document for the config host.
     */
+
     'parts'?: Array<ApiCheckpointPartView>;
     /**
     * Flag that indicates whether MongoDB Cloud can use the checkpoint for a restore.
     */
+
     'restorable'?: boolean;
     /**
     * Date and time when the balancer stopped and began the checkpoint. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     */
+
     'started'?: Date;
     /**
     * Date and time to which the checkpoint restores. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     */
+
     'timestamp'?: Date;
 
     static readonly discriminator: string | undefined = undefined;

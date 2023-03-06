@@ -17,11 +17,13 @@ import { HttpFile } from '../http/http';
 * Details that describe the Atlas Data Lakes linked to this Amazon Web Services (AWS) Identity and Access Management (IAM) role.
 */
 export class CloudProviderAccessDataLakeFeatureUsage {
+
     'featureId'?: CloudProviderAccessFeatureUsageDataLakeFeatureId;
     /**
     * Human-readable label that describes one MongoDB Cloud feature linked to this Amazon Web Services (AWS) Identity and Access Management (IAM) role.
     */
-    'featureType'?: CloudProviderAccessDataLakeFeatureUsageFeatureTypeEnum;
+
+    'featureType'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -35,7 +37,7 @@ export class CloudProviderAccessDataLakeFeatureUsage {
         {
             "name": "featureType",
             "baseName": "featureType",
-            "type": "CloudProviderAccessDataLakeFeatureUsageFeatureTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

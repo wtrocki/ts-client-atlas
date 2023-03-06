@@ -20,23 +20,28 @@ export class GCPEndpointGroup {
     /**
     * Flag that indicates whether MongoDB Cloud received a request to remove the specified private endpoint from the private endpoint service.
     */
+
     'deleteRequested'?: boolean;
     /**
     * Human-readable label that identifies a set of endpoints.
     */
+
     'endpointGroupName'?: string;
     /**
     * List of individual private endpoints that comprise this endpoint group.
     */
+
     'endpoints'?: Array<GCPConsumerForwardingRule>;
     /**
     * Error message returned when requesting private connection resource. The resource returns `null` if the request succeeded.
     */
+
     'errorMessage'?: string;
     /**
     * State of the Google Cloud network endpoint group when MongoDB Cloud received this request.
     */
-    'status'?: GCPEndpointGroupStatusEnum;
+
+    'status'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -68,7 +73,7 @@ export class GCPEndpointGroup {
         {
             "name": "status",
             "baseName": "status",
-            "type": "GCPEndpointGroupStatusEnum",
+            "type": "string",
             "format": ""
         }    ];
 

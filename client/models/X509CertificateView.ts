@@ -16,10 +16,12 @@ export class X509CertificateView {
     /**
     * Latest date that the certificate is valid.
     */
+
     'notAfter'?: Date;
     /**
     * Earliest date that the certificate is valid.
     */
+
     'notBefore'?: Date;
 
     static readonly discriminator: string | undefined = undefined;

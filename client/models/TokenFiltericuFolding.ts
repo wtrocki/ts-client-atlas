@@ -19,7 +19,8 @@ export class TokenFiltericuFolding {
     /**
     * Human-readable label that identifies this token filter type.
     */
-    'type': TokenFiltericuFoldingTypeEnum;
+
+    'type': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -27,7 +28,7 @@ export class TokenFiltericuFolding {
         {
             "name": "type",
             "baseName": "type",
-            "type": "TokenFiltericuFoldingTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

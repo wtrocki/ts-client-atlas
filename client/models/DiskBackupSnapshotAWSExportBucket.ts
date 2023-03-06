@@ -17,22 +17,27 @@ export class DiskBackupSnapshotAWSExportBucket {
     /**
     * Unique 24-hexadecimal character string that identifies the Amazon Web Services (AWS) Simple Storage Service (S3) export bucket.
     */
+
     'id'?: string;
     /**
     * Human-readable label that identifies the AWS bucket that the role is authorized to access.
     */
+
     'bucketName'?: string;
     /**
     * Human-readable label that identifies the cloud provider that stores this snapshot.
     */
-    'cloudProvider'?: DiskBackupSnapshotAWSExportBucketCloudProviderEnum;
+
+    'cloudProvider'?: string;
     /**
     * Unique 24-hexadecimal character string that identifies the AWS IAM role that MongoDB Cloud uses to access the AWS S3 bucket.
     */
+
     'iamRoleId'?: string;
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
 
     static readonly discriminator: string | undefined = undefined;
@@ -53,7 +58,7 @@ export class DiskBackupSnapshotAWSExportBucket {
         {
             "name": "cloudProvider",
             "baseName": "cloudProvider",
-            "type": "DiskBackupSnapshotAWSExportBucketCloudProviderEnum",
+            "type": "string",
             "format": ""
         },
         {

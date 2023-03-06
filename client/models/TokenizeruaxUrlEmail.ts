@@ -19,11 +19,13 @@ export class TokenizeruaxUrlEmail {
     /**
     * Maximum number of characters in a single token. Tokens greater than this length are split at this length into multiple tokens.
     */
+
     'maxTokenLength'?: number;
     /**
     * Human-readable label that identifies this tokenizer type.
     */
-    'type': TokenizeruaxUrlEmailTypeEnum;
+
+    'type': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -37,7 +39,7 @@ export class TokenizeruaxUrlEmail {
         {
             "name": "type",
             "baseName": "type",
-            "type": "TokenizeruaxUrlEmailTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

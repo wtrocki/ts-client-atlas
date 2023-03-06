@@ -16,11 +16,13 @@ export class ApiAtlasNetPeerRequestBase {
     /**
     * Unique 24-hexadecimal digit string that identifies the MongoDB Cloud network container that contains the specified network peering connection.
     */
+
     'containerId': string;
     /**
     * Cloud service provider that determines the needed settings to configure the network connection for a virtual private connection.
     */
-    'providerName': ApiAtlasNetPeerRequestBaseProviderNameEnum;
+
+    'providerName': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -34,7 +36,7 @@ export class ApiAtlasNetPeerRequestBase {
         {
             "name": "providerName",
             "baseName": "providerName",
-            "type": "ApiAtlasNetPeerRequestBaseProviderNameEnum",
+            "type": "string",
             "format": ""
         }    ];
 

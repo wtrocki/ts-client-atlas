@@ -27,26 +27,32 @@ export class ApiAtlasFTSAnalyzersViewManualTokenizer {
     /**
     * Characters to include in the longest token that Atlas Search creates.
     */
+
     'maxGram': number;
     /**
     * Characters to include in the shortest token that Atlas Search creates.
     */
+
     'minGram': number;
     /**
     * Human-readable label that identifies this tokenizer type.
     */
-    'type': ApiAtlasFTSAnalyzersViewManualTokenizerTypeEnum;
+
+    'type': string;
     /**
     * Index of the character group within the matching expression to extract into tokens. Use `0` to extract all character groups.
     */
+
     'group': number;
     /**
     * Regular expression to match against.
     */
+
     'pattern': string;
     /**
     * Maximum number of characters in a single token. Tokens greater than this length are split at this length into multiple tokens.
     */
+
     'maxTokenLength'?: number;
 
     static readonly discriminator: string | undefined = undefined;
@@ -67,7 +73,7 @@ export class ApiAtlasFTSAnalyzersViewManualTokenizer {
         {
             "name": "type",
             "baseName": "type",
-            "type": "ApiAtlasFTSAnalyzersViewManualTokenizerTypeEnum",
+            "type": "string",
             "format": ""
         },
         {

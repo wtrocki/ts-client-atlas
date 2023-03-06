@@ -16,8 +16,11 @@ import { GoogleCloudKMS } from '../models/GoogleCloudKMS';
 import { HttpFile } from '../http/http';
 
 export class EncryptionAtRest {
+
     'awsKms'?: AWSKMS;
+
     'azureKeyVault'?: AzureKeyVault;
+
     'googleCloudKms'?: GoogleCloudKMS;
 
     static readonly discriminator: string | undefined = undefined;

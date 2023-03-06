@@ -22,24 +22,31 @@ export class AppServiceEventView {
     /**
     * Date and time when this event occurred. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC.
     */
+
     'created': Date;
+
     'eventTypeName': AppServiceEventTypeView;
     /**
     * Unique 24-hexadecimal digit string that identifies the project in which the event occurred. The **eventId** identifies the specific event.
     */
+
     'groupId'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the event.
     */
+
     'id': string;
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
     /**
     * Unique 24-hexadecimal digit string that identifies the organization to which these events apply.
     */
+
     'orgId'?: string;
+
     'raw'?: Raw;
 
     static readonly discriminator: string | undefined = undefined;

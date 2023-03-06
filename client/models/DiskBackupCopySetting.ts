@@ -19,22 +19,27 @@ export class DiskBackupCopySetting {
     /**
     * Human-readable label that identifies the cloud provider that stores the snapshot copy.
     */
-    'cloudProvider'?: DiskBackupCopySettingCloudProviderEnum;
+
+    'cloudProvider'?: string;
     /**
     * List that describes which types of snapshots to copy.
     */
-    'frequencies'?: Array<DiskBackupCopySettingFrequenciesEnum>;
+
+    'frequencies'?: Array<string>;
     /**
     * Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under [Cloud Providers](https://www.mongodb.com/docs/atlas/reference/cloud-providers/) 'regions' link.
     */
+
     'regionName'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, do a GET request to Return One Cluster in One Project and consult the replicationSpecs array [Return One Cluster in One Project](#operation/getLegacyCluster).
     */
+
     'replicationSpecId'?: string;
     /**
     * Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
     */
+
     'shouldCopyOplogs'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;
@@ -43,13 +48,13 @@ export class DiskBackupCopySetting {
         {
             "name": "cloudProvider",
             "baseName": "cloudProvider",
-            "type": "DiskBackupCopySettingCloudProviderEnum",
+            "type": "string",
             "format": ""
         },
         {
             "name": "frequencies",
             "baseName": "frequencies",
-            "type": "Array<DiskBackupCopySettingFrequenciesEnum>",
+            "type": "Array<string>",
             "format": ""
         },
         {

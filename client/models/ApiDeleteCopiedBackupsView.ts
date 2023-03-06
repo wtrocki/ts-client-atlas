@@ -19,14 +19,17 @@ export class ApiDeleteCopiedBackupsView {
     /**
     * Human-readable label that identifies the cloud provider for the deleted copy setting whose backup copies you want to delete.
     */
-    'cloudProvider'?: ApiDeleteCopiedBackupsViewCloudProviderEnum;
+
+    'cloudProvider'?: string;
     /**
     * Target region for the deleted copy setting whose backup copies you want to delete. Please supply the 'Atlas Region' which can be found under [Cloud Providers](https://www.mongodb.com/docs/atlas/reference/cloud-providers/) 'regions' link.
     */
+
     'regionName'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica setclusters, there is only one zone in the cluster. To find the Replication Spec Id, do a GET request to Return One Cluster in One Project and consult the replicationSpecs array [Return One Cluster in One Project](#operation/getLegacyCluster).
     */
+
     'replicationSpecId'?: string;
 
     static readonly discriminator: string | undefined = undefined;
@@ -35,7 +38,7 @@ export class ApiDeleteCopiedBackupsView {
         {
             "name": "cloudProvider",
             "baseName": "cloudProvider",
-            "type": "ApiDeleteCopiedBackupsViewCloudProviderEnum",
+            "type": "string",
             "format": ""
         },
         {

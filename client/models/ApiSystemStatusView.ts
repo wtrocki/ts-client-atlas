@@ -15,22 +15,27 @@ import { Link } from '../models/Link';
 import { HttpFile } from '../http/http';
 
 export class ApiSystemStatusView {
+
     'apiKey': ApiKeyView;
     /**
     * Human-readable label that identifies the service from which you requested this response.
     */
-    'appName': ApiSystemStatusViewAppNameEnum;
+
+    'appName': string;
     /**
     * Unique 40-hexadecimal digit hash that identifies the latest git commit merged for this application.
     */
+
     'build': string;
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
     /**
     * Flag that indicates whether someone enabled throttling on this service.
     */
+
     'throttling': boolean;
 
     static readonly discriminator: string | undefined = undefined;
@@ -45,7 +50,7 @@ export class ApiSystemStatusView {
         {
             "name": "appName",
             "baseName": "appName",
-            "type": "ApiSystemStatusViewAppNameEnum",
+            "type": "string",
             "format": ""
         },
         {

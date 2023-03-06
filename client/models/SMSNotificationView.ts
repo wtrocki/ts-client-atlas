@@ -19,19 +19,23 @@ export class SMSNotificationView {
     /**
     * Number of minutes that MongoDB Cloud waits after detecting an alert condition before it sends out the first notification.
     */
+
     'delayMin'?: number;
     /**
     * Number of minutes to wait between successive notifications. MongoDB Cloud sends notifications until someone acknowledges the unacknowledged alert.  PagerDuty, VictorOps, and OpsGenie notifications don't return this element. Configure and manage the notification interval within each of those services.
     */
+
     'intervalMin'?: number;
     /**
     * Mobile phone number to which MongoDB Cloud sends alert notifications. The resource requires this parameter when `\"notifications.[n].typeName\" : \"SMS\"`.
     */
+
     'mobileNumber'?: string;
     /**
     * Human-readable label that displays the alert notification type.
     */
-    'typeName': SMSNotificationViewTypeNameEnum;
+
+    'typeName': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -57,7 +61,7 @@ export class SMSNotificationView {
         {
             "name": "typeName",
             "baseName": "typeName",
-            "type": "SMSNotificationViewTypeNameEnum",
+            "type": "string",
             "format": ""
         }    ];
 

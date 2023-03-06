@@ -21,72 +21,91 @@ export class ReplicaSetAlertViewForNdsGroup {
     /**
     * Date and time until which this alert has been acknowledged. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC. The resource returns this parameter if a MongoDB User previously acknowledged this alert.  - To acknowledge this alert forever, set the parameter value to 100 years in the future.  - To unacknowledge a previously acknowledged alert, set the parameter value to a date in the past.
     */
+
     'acknowledgedUntil': Date;
     /**
     * Comment that a MongoDB Cloud user submitted when acknowledging the alert.
     */
+
     'acknowledgementComment'?: string;
     /**
     * MongoDB Cloud username of the person who acknowledged the alert. The response returns this parameter if a MongoDB Cloud user previously acknowledged this alert.
     */
+
     'acknowledgingUsername'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the alert configuration that sets this alert.
     */
+
     'alertConfigId': string;
     /**
     * Human-readable label that identifies the cluster to which this alert applies. This resource returns this parameter for alerts of events impacting backups, replica sets, or sharded clusters.
     */
+
     'clusterName'?: string;
     /**
     * Date and time when MongoDB Cloud created this alert. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC.
     */
+
     'created': Date;
+
     'eventTypeName': ReplicaSetEventTypeViewForNdsGroupAlertable;
     /**
     * Unique 24-hexadecimal digit string that identifies the project that owns this alert.
     */
+
     'groupId'?: string;
     /**
     * Hostname and port of the host to which this alert applies. The resource returns this parameter for alerts of events impacting hosts or replica sets.
     */
+
     'hostnameAndPort'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies this alert.
     */
+
     'id': string;
     /**
     * Date and time that any notifications were last sent for this alert. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC. The resource returns this parameter if MongoDB Cloud has sent notifications for this alert.
     */
+
     'lastNotified'?: Date;
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
+
     'nonRunningHostIds'?: Array<string>;
     /**
     * Unique 24-hexadecimal character string that identifies the organization that owns the project to which this alert applies.
     */
+
     'orgId'?: string;
     /**
     * Unique 24-hexadecimal character string that identifies the parent cluster to which this alert applies. The parent cluster contains the sharded nodes. MongoDB Cloud returns this parameter only for alerts of events impacting sharded clusters.
     */
+
     'parentClusterId'?: string;
     /**
     * Name of the replica set to which this alert applies. The response returns this parameter for alerts of events impacting backups, hosts, or replica sets.
     */
+
     'replicaSetName'?: string;
     /**
     * Date and time that this alert changed to `\"status\" : \"CLOSED\"`. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC. The resource returns this parameter once `\"status\" : \"CLOSED\"`.
     */
+
     'resolved'?: Date;
     /**
     * State of this alert at the time you requested its details.
     */
-    'status': ReplicaSetAlertViewForNdsGroupStatusEnum;
+
+    'status': string;
     /**
     * Date and time when someone last updated this alert. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC.
     */
+
     'updated': Date;
 
     static readonly discriminator: string | undefined = undefined;
@@ -197,7 +216,7 @@ export class ReplicaSetAlertViewForNdsGroup {
         {
             "name": "status",
             "baseName": "status",
-            "type": "ReplicaSetAlertViewForNdsGroupStatusEnum",
+            "type": "string",
             "format": ""
         },
         {

@@ -19,15 +19,18 @@ export class TokenFilterlength {
     /**
     * Number that specifies the maximum length of a token. Value must be greater than or equal to **min**.
     */
+
     'max'?: number;
     /**
     * Number that specifies the minimum length of a token. This value must be less than or equal to **max**.
     */
+
     'min'?: number;
     /**
     * Human-readable label that identifies this token filter type.
     */
-    'type': TokenFilterlengthTypeEnum;
+
+    'type': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -47,7 +50,7 @@ export class TokenFilterlength {
         {
             "name": "type",
             "baseName": "type",
-            "type": "TokenFilterlengthTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

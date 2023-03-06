@@ -19,11 +19,13 @@ export class ApiMicrosoftTeamsView {
     /**
     * Endpoint web address of the Microsoft Teams webhook to which MongoDB Cloud sends notifications.  **NOTE**: When you view or edit the alert for a Microsoft Teams notification, the URL appears partially redacted.
     */
+
     'microsoftTeamsWebhookUrl': string;
     /**
     * Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the third-party service integration type.
     */
-    'type'?: ApiMicrosoftTeamsViewTypeEnum;
+
+    'type'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -37,7 +39,7 @@ export class ApiMicrosoftTeamsView {
         {
             "name": "type",
             "baseName": "type",
-            "type": "ApiMicrosoftTeamsViewTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

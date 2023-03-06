@@ -19,39 +19,48 @@ export class ServerlessAzureTenantEndpoint {
     /**
     * Unique 24-hexadecimal digit string that identifies the private endpoint.
     */
+
     'id'?: string;
     /**
     * Unique string that identifies the Azure private endpoint's network interface that someone added to this private endpoint service.
     */
+
     'cloudProviderEndpointId'?: string;
     /**
     * Human-readable comment associated with the private endpoint.
     */
+
     'comment'?: string;
     /**
     * Unique string that identifies the Azure private endpoint service. MongoDB Cloud returns null while it creates the endpoint service.
     */
+
     'endpointServiceName'?: string;
     /**
     * Human-readable error message that indicates error condition associated with establishing the private endpoint connection.
     */
+
     'errorMessage'?: string;
     /**
     * IPv4 address of the private endpoint in your Azure VNet that someone added to this private endpoint service.
     */
+
     'privateEndpointIpAddress'?: string;
     /**
     * Root-relative path that identifies the Azure Private Link Service that MongoDB Cloud manages. MongoDB Cloud returns null while it creates the endpoint service.
     */
+
     'privateLinkServiceResourceId'?: string;
     /**
     * Human-readable label that identifies the cloud service provider.
     */
-    'providerName'?: ServerlessAzureTenantEndpointProviderNameEnum;
+
+    'providerName'?: string;
     /**
     * Human-readable label that indicates the current operating status of the private endpoint.
     */
-    'status'?: ServerlessAzureTenantEndpointStatusEnum;
+
+    'status'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -101,13 +110,13 @@ export class ServerlessAzureTenantEndpoint {
         {
             "name": "providerName",
             "baseName": "providerName",
-            "type": "ServerlessAzureTenantEndpointProviderNameEnum",
+            "type": "string",
             "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "ServerlessAzureTenantEndpointStatusEnum",
+            "type": "string",
             "format": ""
         }    ];
 

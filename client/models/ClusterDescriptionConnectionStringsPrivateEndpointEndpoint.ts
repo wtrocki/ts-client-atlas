@@ -19,14 +19,17 @@ export class ClusterDescriptionConnectionStringsPrivateEndpointEndpoint {
     /**
     * Unique string that the cloud provider uses to identify the private endpoint.
     */
+
     'endpointId'?: string;
     /**
     * Cloud provider in which MongoDB Cloud deploys the private endpoint.
     */
-    'providerName'?: ClusterDescriptionConnectionStringsPrivateEndpointEndpointProviderNameEnum;
+
+    'providerName'?: string;
     /**
     * Region where the private endpoint is deployed.
     */
+
     'region'?: string;
 
     static readonly discriminator: string | undefined = undefined;
@@ -41,7 +44,7 @@ export class ClusterDescriptionConnectionStringsPrivateEndpointEndpoint {
         {
             "name": "providerName",
             "baseName": "providerName",
-            "type": "ClusterDescriptionConnectionStringsPrivateEndpointEndpointProviderNameEnum",
+            "type": "string",
             "format": ""
         },
         {

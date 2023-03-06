@@ -18,18 +18,22 @@ export class DiskBackupExportJobRequest {
     /**
     * Collection of key-value pairs that represent custom data to add to the metadata file that MongoDB Cloud uploads to the bucket when the export job finishes.
     */
+
     'customData'?: Array<Label>;
     /**
     * Unique 24-hexadecimal character string that identifies the AWS bucket to which MongoDB Cloud exports the Cloud Backup snapshot.
     */
+
     'exportBucketId': string;
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
     /**
     * Unique 24-hexadecimal character string that identifies the Cloud Backup snasphot to export.
     */
+
     'snapshotId': string;
 
     static readonly discriminator: string | undefined = undefined;

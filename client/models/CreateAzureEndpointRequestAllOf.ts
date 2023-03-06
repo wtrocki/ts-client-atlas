@@ -16,10 +16,12 @@ export class CreateAzureEndpointRequestAllOf {
     /**
     * Unique string that identifies the private endpoint's network interface that someone added to this private endpoint service.
     */
+
     'id'?: string;
     /**
     * IPv4 address of the private endpoint in your Azure VNet that someone added to this private endpoint service.
     */
+
     'privateEndpointIPAddress'?: string;
 
     static readonly discriminator: string | undefined = undefined;

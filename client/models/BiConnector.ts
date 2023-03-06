@@ -19,11 +19,13 @@ export class BiConnector {
     /**
     * Flag that indicates whether MongoDB Connector for Business Intelligence is enabled on the specified cluster.
     */
+
     'enabled'?: boolean;
     /**
     * Data source node designated for the MongoDB Connector for Business Intelligence on MongoDB Cloud. The MongoDB Connector for Business Intelligence on MongoDB Cloud reads data from the primary, secondary, or analytics node based on your read preferences. Defaults to `ANALYTICS` node, or `SECONDARY` if there are no `ANALYTICS` nodes.
     */
-    'readPreference'?: BiConnectorReadPreferenceEnum;
+
+    'readPreference'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -37,7 +39,7 @@ export class BiConnector {
         {
             "name": "readPreference",
             "baseName": "readPreference",
-            "type": "BiConnectorReadPreferenceEnum",
+            "type": "string",
             "format": ""
         }    ];
 

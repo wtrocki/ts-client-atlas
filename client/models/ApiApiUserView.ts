@@ -18,26 +18,32 @@ export class ApiApiUserView {
     /**
     * Purpose or explanation provided when someone created this organization API key.
     */
+
     'desc'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies this organization API key assigned to this project.
     */
+
     'id'?: string;
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
     /**
     * Redacted private key returned for this organization API key. This key displays unredacted when first created.
     */
+
     'privateKey'?: string;
     /**
     * Public API key value set for the specified organization API key.
     */
+
     'publicKey'?: string;
     /**
     * List that contains the roles that the API key needs to have. All roles you provide must be valid for the specified project or organization. Each request must include a minimum of one valid role. The resource returns all project and organization roles assigned to the API key.
     */
+
     'roles'?: Array<ApiRoleAssignmentView>;
 
     static readonly discriminator: string | undefined = undefined;

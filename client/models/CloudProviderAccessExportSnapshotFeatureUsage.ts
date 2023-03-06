@@ -17,11 +17,13 @@ import { HttpFile } from '../http/http';
 * Details that describe the Amazon Web Services (AWS) Simple Storage Service (S3) export buckets linked to this AWS Identity and Access Management (IAM) role.
 */
 export class CloudProviderAccessExportSnapshotFeatureUsage {
+
     'featureId'?: CloudProviderAccessFeatureUsageExportSnapshotFeatureId;
     /**
     * Human-readable label that describes one MongoDB Cloud feature linked to this Amazon Web Services (AWS) Identity and Access Management (IAM) role.
     */
-    'featureType'?: CloudProviderAccessExportSnapshotFeatureUsageFeatureTypeEnum;
+
+    'featureType'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -35,7 +37,7 @@ export class CloudProviderAccessExportSnapshotFeatureUsage {
         {
             "name": "featureType",
             "baseName": "featureType",
-            "type": "CloudProviderAccessExportSnapshotFeatureUsageFeatureTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

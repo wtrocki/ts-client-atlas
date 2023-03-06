@@ -25,16 +25,21 @@ export class ServerlessMetricThresholdView {
     /**
     * Human-readable label that identifies the metric against which MongoDB Cloud checks the configured **metricThreshold.threshold**.
     */
+
     'metricName'?: string;
     /**
     * MongoDB Cloud computes the current metric value as an average.
     */
-    'mode'?: ServerlessMetricThresholdViewModeEnum;
+
+    'mode'?: string;
+
     'operator'?: Operator;
     /**
     * Value of metric that, when exceeded, triggers an alert.
     */
+
     'threshold'?: number;
+
     'units'?: ServerlessMetricUnits;
 
     static readonly discriminator: string | undefined = "metricName";
@@ -49,7 +54,7 @@ export class ServerlessMetricThresholdView {
         {
             "name": "mode",
             "baseName": "mode",
-            "type": "ServerlessMetricThresholdViewModeEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -76,7 +81,6 @@ export class ServerlessMetricThresholdView {
     }
 
     public constructor() {
-        this.metricName = "ServerlessMetricThresholdView";
     }
 }
 

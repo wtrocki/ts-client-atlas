@@ -21,19 +21,23 @@ export class IngestionSink {
     /**
     * Target cloud provider for this Data Lake Pipeline.
     */
-    'metadataProvider'?: IngestionSinkMetadataProviderEnum;
+
+    'metadataProvider'?: string;
     /**
     * Target cloud provider region for this Data Lake Pipeline.
     */
+
     'metadataRegion'?: string;
     /**
     * Ordered fields used to physically organize data in the destination.
     */
+
     'partitionFields'?: Array<PartitionField>;
     /**
     * Type of ingestion destination of this Data Lake Pipeline.
     */
-    'type'?: IngestionSinkTypeEnum;
+
+    'type'?: string;
 
     static readonly discriminator: string | undefined = "type";
 
@@ -41,7 +45,7 @@ export class IngestionSink {
         {
             "name": "metadataProvider",
             "baseName": "metadataProvider",
-            "type": "IngestionSinkMetadataProviderEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -59,7 +63,7 @@ export class IngestionSink {
         {
             "name": "type",
             "baseName": "type",
-            "type": "IngestionSinkTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 
@@ -68,7 +72,6 @@ export class IngestionSink {
     }
 
     public constructor() {
-        this.type = "IngestionSink";
     }
 }
 

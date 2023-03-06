@@ -17,14 +17,17 @@ export class ApiTeamRoleView {
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
     /**
     * One or more organization- or project-level roles to assign to the MongoDB Cloud user.
     */
-    'roleNames'?: Set<ApiTeamRoleViewRoleNamesEnum>;
+
+    'roleNames'?: Set<string>;
     /**
     * Unique 24-hexadecimal character string that identifies the team.
     */
+
     'teamId'?: string;
 
     static readonly discriminator: string | undefined = undefined;
@@ -39,7 +42,7 @@ export class ApiTeamRoleView {
         {
             "name": "roleNames",
             "baseName": "roleNames",
-            "type": "Set<ApiTeamRoleViewRoleNamesEnum>",
+            "type": "Set<string>",
             "format": ""
         },
         {

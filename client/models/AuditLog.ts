@@ -16,18 +16,22 @@ export class AuditLog {
     /**
     * Flag that indicates whether someone set auditing to track successful authentications. This only applies to the `\"atype\" : \"authCheck\"` audit filter. Setting this parameter to `true` degrades cluster performance.
     */
+
     'auditAuthorizationSuccess': boolean;
     /**
     * JSON document that specifies which events to record. Escape any characters that may prevent parsing, such as single or double quotes, using a backslash (`\\`).
     */
+
     'auditFilter': string;
     /**
     * Human-readable label that displays how to configure the audit filter.
     */
-    'configurationType'?: AuditLogConfigurationTypeEnum;
+
+    'configurationType'?: string;
     /**
     * Flag that indicates whether someone enabled database auditing for the specified project.
     */
+
     'enabled': boolean;
 
     static readonly discriminator: string | undefined = undefined;
@@ -48,7 +52,7 @@ export class AuditLog {
         {
             "name": "configurationType",
             "baseName": "configurationType",
-            "type": "AuditLogConfigurationTypeEnum",
+            "type": "string",
             "format": ""
         },
         {

@@ -17,6 +17,7 @@ import { HttpFile } from '../http/http';
 * Range of instance sizes to which your cluster can scale.
 */
 export class GCPAutoScaling {
+
     'compute'?: GCPComputeAutoScaling;
 
     static readonly discriminator: string | undefined = undefined;

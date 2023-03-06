@@ -20,11 +20,14 @@ export class FTSSynonymMappingDefinition {
     /**
     * Specific pre-defined method chosen to apply to the synonyms to be searched.
     */
-    'analyzer': FTSSynonymMappingDefinitionAnalyzerEnum;
+
+    'analyzer': string;
     /**
     * Human-readable label that identifies the synonym definition. Each **synonym.name** must be unique within the same index definition.
     */
+
     'name': string;
+
     'source': SynonymSource;
 
     static readonly discriminator: string | undefined = undefined;
@@ -33,7 +36,7 @@ export class FTSSynonymMappingDefinition {
         {
             "name": "analyzer",
             "baseName": "analyzer",
-            "type": "FTSSynonymMappingDefinitionAnalyzerEnum",
+            "type": "string",
             "format": ""
         },
         {

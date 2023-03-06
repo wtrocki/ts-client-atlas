@@ -20,67 +20,83 @@ export class DiskBackupReplicaSet {
     /**
     * Human-readable label that identifies the cloud provider that stores this snapshot. The resource returns this parameter when `\"type\": \"replicaSet\"`.
     */
-    'cloudProvider'?: DiskBackupReplicaSetCloudProviderEnum;
+
+    'cloudProvider'?: string;
     /**
     * List that identifies the regions to which MongoDB Cloud copies the snapshot.
     */
+
     'copyRegions'?: Array<string>;
     /**
     * Date and time when MongoDB Cloud took the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     */
+
     'createdAt'?: Date;
     /**
     * Human-readable phrase or sentence that explains the purpose of the snapshot. The resource returns this parameter when `\"status\": \"onDemand\"`.
     */
+
     'description'?: string;
     /**
     * Date and time when MongoDB Cloud deletes the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     */
+
     'expiresAt'?: Date;
     /**
     * Human-readable label that identifies how often this snapshot triggers.
     */
-    'frequencyType'?: DiskBackupReplicaSetFrequencyTypeEnum;
+
+    'frequencyType'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the snapshot.
     */
+
     'id'?: string;
     /**
     * List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
     */
+
     'links'?: Array<Link>;
     /**
     * Unique string that identifies the Amazon Web Services (AWS) Key Management Service (KMS) Customer Master Key (CMK) used to encrypt the snapshot. The resource returns this value when `\"encryptionEnabled\" : true`.
     */
+
     'masterKeyUUID'?: string;
     /**
     * Version of the MongoDB host that this snapshot backs up.
     */
+
     'mongodVersion'?: string;
     /**
     * List that contains unique identifiers for the policy items.
     */
+
     'policyItems'?: Array<string>;
     /**
     * Human-readable label that identifies the replica set from which MongoDB Cloud took this snapshot. The resource returns this parameter when `\"type\": \"replicaSet\"`.
     */
+
     'replicaSetName'?: string;
     /**
     * Human-readable label that identifies when this snapshot triggers.
     */
-    'snapshotType'?: DiskBackupReplicaSetSnapshotTypeEnum;
+
+    'snapshotType'?: string;
     /**
     * Human-readable label that indicates the stage of the backup process for this snapshot.
     */
-    'status'?: DiskBackupReplicaSetStatusEnum;
+
+    'status'?: string;
     /**
     * Number of bytes taken to store the backup snapshot.
     */
+
     'storageSizeBytes'?: number;
     /**
     * Human-readable label that categorizes the cluster as a replica set or sharded cluster.
     */
-    'type'?: DiskBackupReplicaSetTypeEnum;
+
+    'type'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -88,7 +104,7 @@ export class DiskBackupReplicaSet {
         {
             "name": "cloudProvider",
             "baseName": "cloudProvider",
-            "type": "DiskBackupReplicaSetCloudProviderEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -118,7 +134,7 @@ export class DiskBackupReplicaSet {
         {
             "name": "frequencyType",
             "baseName": "frequencyType",
-            "type": "DiskBackupReplicaSetFrequencyTypeEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -160,13 +176,13 @@ export class DiskBackupReplicaSet {
         {
             "name": "snapshotType",
             "baseName": "snapshotType",
-            "type": "DiskBackupReplicaSetSnapshotTypeEnum",
+            "type": "string",
             "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "DiskBackupReplicaSetStatusEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -178,7 +194,7 @@ export class DiskBackupReplicaSet {
         {
             "name": "type",
             "baseName": "type",
-            "type": "DiskBackupReplicaSetTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

@@ -19,31 +19,38 @@ export class ServerlessAWSTenantEndpoint {
     /**
     * Unique 24-hexadecimal digit string that identifies the private endpoint.
     */
+
     'id'?: string;
     /**
     * Unique string that identifies the private endpoint's network interface.
     */
+
     'cloudProviderEndpointId'?: string;
     /**
     * Human-readable comment associated with the private endpoint.
     */
+
     'comment'?: string;
     /**
     * Unique string that identifies the Amazon Web Services (AWS) PrivateLink endpoint service. MongoDB Cloud returns null while it creates the endpoint service.
     */
+
     'endpointServiceName'?: string;
     /**
     * Human-readable error message that indicates error condition associated with establishing the private endpoint connection.
     */
+
     'errorMessage'?: string;
     /**
     * Human-readable label that identifies the cloud service provider.
     */
-    'providerName'?: ServerlessAWSTenantEndpointProviderNameEnum;
+
+    'providerName'?: string;
     /**
     * Human-readable label that indicates the current operating status of the private endpoint.
     */
-    'status'?: ServerlessAWSTenantEndpointStatusEnum;
+
+    'status'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -81,13 +88,13 @@ export class ServerlessAWSTenantEndpoint {
         {
             "name": "providerName",
             "baseName": "providerName",
-            "type": "ServerlessAWSTenantEndpointProviderNameEnum",
+            "type": "string",
             "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "ServerlessAWSTenantEndpointStatusEnum",
+            "type": "string",
             "format": ""
         }    ];
 

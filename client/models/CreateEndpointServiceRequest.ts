@@ -16,10 +16,12 @@ export class CreateEndpointServiceRequest {
     /**
     * Human-readable label that identifies the cloud service provider for which you want to create the private endpoint service.
     */
-    'providerName': CreateEndpointServiceRequestProviderNameEnum;
+
+    'providerName': string;
     /**
     * Cloud provider region in which you want to create the private endpoint service. Regions accepted as values differ for [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/), [Google Cloud Platform](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Microsoft Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
     */
+
     'region': string;
 
     static readonly discriminator: string | undefined = undefined;
@@ -28,7 +30,7 @@ export class CreateEndpointServiceRequest {
         {
             "name": "providerName",
             "baseName": "providerName",
-            "type": "CreateEndpointServiceRequestProviderNameEnum",
+            "type": "string",
             "format": ""
         },
         {

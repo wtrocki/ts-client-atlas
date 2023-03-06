@@ -19,15 +19,18 @@ export class ApiPagerDutyView {
     /**
     * PagerDuty region that indicates the API Uniform Resource Locator (URL) to use.
     */
-    'region'?: ApiPagerDutyViewRegionEnum;
+
+    'region'?: string;
     /**
     * Service key associated with your PagerDuty account.  **NOTE**: After you create a notification which requires an API or integration key, the key appears partially redacted when you:  * View or edit the alert through the Atlas UI.  * Query the alert for the notification through the Atlas Administration API.
     */
+
     'serviceKey': string;
     /**
     * Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the third-party service integration type.
     */
-    'type'?: ApiPagerDutyViewTypeEnum;
+
+    'type'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -35,7 +38,7 @@ export class ApiPagerDutyView {
         {
             "name": "region",
             "baseName": "region",
-            "type": "ApiPagerDutyViewRegionEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -47,7 +50,7 @@ export class ApiPagerDutyView {
         {
             "name": "type",
             "baseName": "type",
-            "type": "ApiPagerDutyViewTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

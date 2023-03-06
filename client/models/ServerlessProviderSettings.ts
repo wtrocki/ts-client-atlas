@@ -19,14 +19,17 @@ export class ServerlessProviderSettings {
     /**
     * Cloud service provider on which MongoDB Cloud provisioned the serverless instance.
     */
-    'backingProviderName': ServerlessProviderSettingsBackingProviderNameEnum;
+
+    'backingProviderName': string;
     /**
     * Human-readable label that identifies the cloud service provider.
     */
-    'providerName'?: ServerlessProviderSettingsProviderNameEnum;
+
+    'providerName'?: string;
     /**
     * Human-readable label that identifies the geographic location of your MongoDB serverless instance. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
     */
+
     'regionName': string;
 
     static readonly discriminator: string | undefined = undefined;
@@ -35,13 +38,13 @@ export class ServerlessProviderSettings {
         {
             "name": "backingProviderName",
             "baseName": "backingProviderName",
-            "type": "ServerlessProviderSettingsBackingProviderNameEnum",
+            "type": "string",
             "format": ""
         },
         {
             "name": "providerName",
             "baseName": "providerName",
-            "type": "ServerlessProviderSettingsProviderNameEnum",
+            "type": "string",
             "format": ""
         },
         {

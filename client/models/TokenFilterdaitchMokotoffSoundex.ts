@@ -19,11 +19,13 @@ export class TokenFilterdaitchMokotoffSoundex {
     /**
     * Value that indicates whether to include or omit the original tokens in the output of the token filter.  Choose `include` if you want to support queries on both the original tokens as well as the converted forms.   Choose `omit` if you want to query only on the converted forms of the original tokens.
     */
-    'originalTokens'?: TokenFilterdaitchMokotoffSoundexOriginalTokensEnum;
+
+    'originalTokens'?: string;
     /**
     * Human-readable label that identifies this token filter type.
     */
-    'type': TokenFilterdaitchMokotoffSoundexTypeEnum;
+
+    'type': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -31,13 +33,13 @@ export class TokenFilterdaitchMokotoffSoundex {
         {
             "name": "originalTokens",
             "baseName": "originalTokens",
-            "type": "TokenFilterdaitchMokotoffSoundexOriginalTokensEnum",
+            "type": "string",
             "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "TokenFilterdaitchMokotoffSoundexTypeEnum",
+            "type": "string",
             "format": ""
         }    ];
 

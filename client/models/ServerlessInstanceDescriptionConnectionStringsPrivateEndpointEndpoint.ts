@@ -19,14 +19,17 @@ export class ServerlessInstanceDescriptionConnectionStringsPrivateEndpointEndpoi
     /**
     * Unique string that the cloud provider uses to identify the private endpoint.
     */
+
     'endpointId'?: string;
     /**
     * Cloud provider where the private endpoint is deployed.
     */
-    'providerName'?: ServerlessInstanceDescriptionConnectionStringsPrivateEndpointEndpointProviderNameEnum;
+
+    'providerName'?: string;
     /**
     * Region where the private endpoint is deployed.
     */
+
     'region'?: string;
 
     static readonly discriminator: string | undefined = undefined;
@@ -41,7 +44,7 @@ export class ServerlessInstanceDescriptionConnectionStringsPrivateEndpointEndpoi
         {
             "name": "providerName",
             "baseName": "providerName",
-            "type": "ServerlessInstanceDescriptionConnectionStringsPrivateEndpointEndpointProviderNameEnum",
+            "type": "string",
             "format": ""
         },
         {
