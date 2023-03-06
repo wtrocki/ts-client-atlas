@@ -41632,7 +41632,4 @@ components:
         - location
         - zone
       title: Global Cluster Zone
-  securitySchemes:
-    DigestAuth:
-      scheme: digest
-      type: http
+  securitySchemes: {}
