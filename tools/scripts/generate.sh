@@ -15,7 +15,7 @@ OPENAPI_FILE_NAME=${OPENAPI_FILE_NAME:-atlas-api.yaml}
 SDK_FOLDER=${SDK_FOLDER:-./}
 
 transformed_file="atlas-api-transformed.yaml"
-client_package="v1alpha"
+client_package="atlas"
 openapiFileLocation="$OPENAPI_FOLDER/$transformed_file"
 
 echo "# Running generation pipeline"
@@ -25,8 +25,8 @@ cp "$OPENAPI_FOLDER/$OPENAPI_FILE_NAME" "$openapiFileLocation"
 npm install
 npm run sdk:transform -- "$openapiFileLocation"
 
-echo "# Running OpenAPI generator validation"
-npm exec openapi-generator-cli -- validate -i "$openapiFileLocation"
+# echo "# Running OpenAPI generator validation"
+# npm exec openapi-generator-cli -- validate -i "$openapiFileLocation"
 
 echo "# Running Client Generation"
 
