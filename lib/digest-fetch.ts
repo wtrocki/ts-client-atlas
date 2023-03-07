@@ -1,9 +1,13 @@
 import {HttpLibrary, RequestContext, ResponseContext} from '../client/http/http';
 import { from, Observable } from '../client/rxjsStub';
+const DigestFetch = require('digest-fetch')
 
 export class DigestFetchHttpLibrary implements HttpLibrary {
     // Digest fetch is missing types
-    constructor(private client: any){
+    private client: any; 
+
+    constructor(apiKey: string, apiSecret: string){
+      this.client = new DigestFetch(apiKey, apiSecret, { algorithm: "MD5" })
     }  
     public send(request: RequestContext): Observable<ResponseContext> {
         let method = request.getHttpMethod().toString();
