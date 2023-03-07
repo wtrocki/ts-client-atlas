@@ -13,16 +13,18 @@
      "noFallthroughCasesInSwitch": true,    /* Report errors for fallthrough cases in switch statement. */
 
     "removeComments": true,
-    "sourceMap": true,
+    "sourceMap": false,
     "outDir": "./dist",
     "noLib": false,
     "lib": [ "es6", "dom" ],
   },
   "exclude": [
     "dist",
-    "node_modules"
+    "node_modules",
+    "example"
   ],
   "filesGlob": [
-    "./**/*.ts",
+    "client/**/*.ts",
+    "lib/**/*.ts",
   ]
 }
