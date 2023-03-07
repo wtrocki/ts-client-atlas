@@ -27,3 +27,11 @@ To build and compile the typescript sources to javascript use:
 npm install
 npm run build
 ```
+
+## Example
+
+```
+npm run example
+```
+
+See [example](./example) folder for more information
