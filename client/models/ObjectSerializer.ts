@@ -2193,7 +2193,7 @@ export class ObjectSerializer {
         if (!mediaTypes) {
             return "application/json";
         }
-        // Hack for versioned API custom media type
+        //  Hack for versioned API custom media type
         if(mediaTypes.length == 1 && mediaTypes[0].startsWith("application/vnd.atlas.")){
             return mediaTypes[0];
         }
