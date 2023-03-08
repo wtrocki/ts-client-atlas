@@ -16,7 +16,7 @@ jobs:
           registry-url: "https://registry.npmjs.org"
       - run: yarn install
       - name: Inject slug/short variables
-        uses: rlespinasse/github-slug-action
+        uses: rlespinasse/github-slug-action@v4
       - name: Update versions of packages
         run: npm version $GITHUB_REF_SLUG
       - name: Publish packages
