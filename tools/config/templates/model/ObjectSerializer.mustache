@@ -199,9 +199,9 @@ export class ObjectSerializer {
         if (!mediaTypes) {
             return "application/json";
         }
-        // Hack for versioned API custom media type
-        if(mediatypes.length == 1 && mediatypes[0].startsWith("application/vnd.atlas."")){
-            return mediatypes[0];
+        // {{!XGEN-MODIFIED}} Hack for versioned API custom media type
+        if(mediaTypes.length == 1 && mediaTypes[0].startsWith("application/vnd.atlas.")){
+            return mediaTypes[0];
         }
 
         const normalMediaTypes = mediaTypes.map(this.normalizeMediaType);

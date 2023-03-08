@@ -2193,6 +2193,10 @@ export class ObjectSerializer {
         if (!mediaTypes) {
             return "application/json";
         }
+        // Hack for versioned API custom media type
+        if(mediaTypes.length == 1 && mediaTypes[0].startsWith("application/vnd.atlas.")){
+            return mediaTypes[0];
+        }
 
         const normalMediaTypes = mediaTypes.map(this.normalizeMediaType);
         let selectedMediaType: string | undefined = undefined;
@@ -2245,9 +2249,9 @@ export class ObjectSerializer {
         if (mediaType === "text/html") {
             return rawData;
         }
-        try{
+        try {
              return JSON.parse(rawData);
-        }catch(e){
+        } catch(e){
             throw new Error("The mediaType " + mediaType + " is not supported by ObjectSerializer.parse.");
         } 
     }
