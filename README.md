@@ -20,6 +20,21 @@ See [tools](./tools) for more info.
 npm install --save wtr-cloud-api-client
 ```
 
+## Examples
+
+Go to [./examples](./examples) folder
+
+
+For more advanced examples please check github action:
+https://github.com/wtrocki/atlas-github-action/blob/main/src/create/createCluster.js
+
+## Limitations
+
+1. Library relies on Digest-fetch community library for authentication.
+For production usage we recomend to build your own digest provider
+https://github.com/wtrocki/ts-client-atlas/blob/main/lib/digest-fetch.ts
+2. Not all endpoints in client have been verified. Use at your own risks. 
+
 ### Building
 
 To build and compile the typescript sources to javascript use:
