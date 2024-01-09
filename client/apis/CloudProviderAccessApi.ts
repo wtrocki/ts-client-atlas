@@ -9,8 +9,8 @@ import {SecurityAuthentication} from '../auth/auth';
 
 
 import { ApiError } from '../models/ApiError';
-import { CloudProviderAccess } from '../models/CloudProviderAccess';
 import { CloudProviderAccessRole } from '../models/CloudProviderAccessRole';
+import { CloudProviderAccessRoles } from '../models/CloudProviderAccessRoles';
 
 /**
  * no description
@@ -18,15 +18,13 @@ import { CloudProviderAccessRole } from '../models/CloudProviderAccessRole';
 export class CloudProviderAccessApiRequestFactory extends BaseAPIRequestFactory {
 
     /**
-     * Grants access to the specified project for the specified Amazon Web Services (AWS) Identity and Access Management (IAM) role. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List. This API endpoint is one step in a procedure to create unified AWS access for MongoDB Cloud services.
+     * Grants access to the specified project for the specified access role. To use this resource, the requesting API Key must have the Project Owner role. This API endpoint is one step in a procedure to create unified access for MongoDB Cloud services.
      * Authorize One Cloud Provider Access Role
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
      * @param roleId Unique 24-hexadecimal digit string that identifies the role.
-     * @param cloudProviderAccessRole Grants access to the specified project for the specified AWS IAM role.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+     * @param cloudProviderAccessRole Grants access to the specified project for the specified access role.
      */
-    public async authorizeCloudProviderAccessRole(groupId: string, roleId: string, cloudProviderAccessRole: CloudProviderAccessRole, envelope?: boolean, pretty?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async authorizeCloudProviderAccessRole(groupId: string, roleId: string, cloudProviderAccessRole: CloudProviderAccessRole, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
@@ -47,8 +45,6 @@ export class CloudProviderAccessApiRequestFactory extends BaseAPIRequestFactory 
         }
 
 
-
-
         // Path Params
         const localVarPath = '/api/atlas/v2/groups/{groupId}/cloudProviderAccess/{roleId}'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
@@ -57,16 +53,6 @@ export class CloudProviderAccessApiRequestFactory extends BaseAPIRequestFactory 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
-
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
 
 
         // Body Params
@@ -90,14 +76,12 @@ export class CloudProviderAccessApiRequestFactory extends BaseAPIRequestFactory 
     }
 
     /**
-     * Creates one Amazon Web Services (AWS) Identity and Access Management (IAM) role. Some MongoDB Cloud features use AWS IAM roles for authentication. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.  After a successful request to this API endpoint, you can add the **atlasAWSAccountArn** and **atlasAssumedRoleExternalId** values to the trust policy in your AWS console to create an IAM Assumed Amazon Resource Name (ARN).
+     * Creates one access role for the specified cloud provider. Some MongoDB Cloud features use these cloud provider access roles for authentication. To use this resource, the requesting API Key must have the Project Owner role.
      * Create One Cloud Provider Access Role
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-     * @param cloudProviderAccessRole Creates one AWS IAM role.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+     * @param cloudProviderAccessRole Creates one role for the specified cloud provider.
      */
-    public async createCloudProviderAccessRole(groupId: string, cloudProviderAccessRole: CloudProviderAccessRole, envelope?: boolean, pretty?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async createCloudProviderAccessRole(groupId: string, cloudProviderAccessRole: CloudProviderAccessRole, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
@@ -112,8 +96,6 @@ export class CloudProviderAccessApiRequestFactory extends BaseAPIRequestFactory 
         }
 
 
-
-
         // Path Params
         const localVarPath = '/api/atlas/v2/groups/{groupId}/cloudProviderAccess'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)));
@@ -121,16 +103,6 @@ export class CloudProviderAccessApiRequestFactory extends BaseAPIRequestFactory 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
-
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
 
 
         // Body Params
@@ -154,15 +126,13 @@ export class CloudProviderAccessApiRequestFactory extends BaseAPIRequestFactory 
     }
 
     /**
-     * Revokes access to the specified project for the specified AWS IAM role. To use this resource,the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Revokes access to the specified project for the specified access role. To use this resource, the requesting API Key must have the Project Owner role.
      * Deauthorize One Cloud Provider Access Role
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
      * @param cloudProvider Human-readable label that identifies the cloud provider of the role to deauthorize.
      * @param roleId Unique 24-hexadecimal digit string that identifies the role.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
      */
-    public async deauthorizeCloudProviderAccessRole(groupId: string, cloudProvider: 'AWS', roleId: string, envelope?: boolean, pretty?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async deauthorizeCloudProviderAccessRole(groupId: string, cloudProvider: string, roleId: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
@@ -183,8 +153,6 @@ export class CloudProviderAccessApiRequestFactory extends BaseAPIRequestFactory 
         }
 
 
-
-
         // Path Params
         const localVarPath = '/api/atlas/v2/groups/{groupId}/cloudProviderAccess/{cloudProvider}/{roleId}'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
@@ -194,16 +162,6 @@ export class CloudProviderAccessApiRequestFactory extends BaseAPIRequestFactory 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
-
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
 
 
         
@@ -216,14 +174,12 @@ export class CloudProviderAccessApiRequestFactory extends BaseAPIRequestFactory 
     }
 
     /**
-     * Returns the Amazon Web Services (AWS) Identity and Access Management (IAM) role with the specified id and with access to the specified project. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Returns the access role with the specified id and with access to the specified project. To use this resource, the requesting API Key must have the Project Owner role.
      * Return specified Cloud Provider Access Role
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
      * @param roleId Unique 24-hexadecimal digit string that identifies the role.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
      */
-    public async getCloudProviderAccessRole(groupId: string, roleId: string, envelope?: boolean, pretty?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async getCloudProviderAccessRole(groupId: string, roleId: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
@@ -238,8 +194,6 @@ export class CloudProviderAccessApiRequestFactory extends BaseAPIRequestFactory 
         }
 
 
-
-
         // Path Params
         const localVarPath = '/api/atlas/v2/groups/{groupId}/cloudProviderAccess/{roleId}'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
@@ -248,16 +202,6 @@ export class CloudProviderAccessApiRequestFactory extends BaseAPIRequestFactory 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
-
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
 
 
         
@@ -270,21 +214,17 @@ export class CloudProviderAccessApiRequestFactory extends BaseAPIRequestFactory 
     }
 
     /**
-     * Returns all Amazon Web Services (AWS) Identity and Access Management (IAM) roles with access to the specified project. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Returns all cloud provider access roles with access to the specified project. To use this resource, the requesting API Key must have the Project Owner role.
      * Return All Cloud Provider Access Roles
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
      */
-    public async listCloudProviderAccessRoles(groupId: string, envelope?: boolean, pretty?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async listCloudProviderAccessRoles(groupId: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
         if (groupId === null || groupId === undefined) {
             throw new RequiredError("CloudProviderAccessApi", "listCloudProviderAccessRoles", "groupId");
         }
-
-
 
 
         // Path Params
@@ -294,16 +234,6 @@ export class CloudProviderAccessApiRequestFactory extends BaseAPIRequestFactory 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
-
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
 
 
         
@@ -340,28 +270,28 @@ export class CloudProviderAccessApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request.", body, response.headers);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found.", body, response.headers);
         }
         if (isCodeInRange("409", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Conflict", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Conflict.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -397,14 +327,14 @@ export class CloudProviderAccessApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -436,21 +366,21 @@ export class CloudProviderAccessApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request.", body, response.headers);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -472,13 +402,13 @@ export class CloudProviderAccessApiResponseProcessor {
      * @params response Response returned by the server for a request to getCloudProviderAccessRole
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getCloudProviderAccessRole(response: ResponseContext): Promise<CloudProviderAccess > {
+     public async getCloudProviderAccessRole(response: ResponseContext): Promise<CloudProviderAccessRole > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: CloudProviderAccess = ObjectSerializer.deserialize(
+            const body: CloudProviderAccessRole = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "CloudProviderAccess", ""
-            ) as CloudProviderAccess;
+                "CloudProviderAccessRole", ""
+            ) as CloudProviderAccessRole;
             return body;
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
@@ -486,22 +416,22 @@ export class CloudProviderAccessApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: CloudProviderAccess = ObjectSerializer.deserialize(
+            const body: CloudProviderAccessRole = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "CloudProviderAccess", ""
-            ) as CloudProviderAccess;
+                "CloudProviderAccessRole", ""
+            ) as CloudProviderAccessRole;
             return body;
         }
 
@@ -515,13 +445,13 @@ export class CloudProviderAccessApiResponseProcessor {
      * @params response Response returned by the server for a request to listCloudProviderAccessRoles
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listCloudProviderAccessRoles(response: ResponseContext): Promise<CloudProviderAccess > {
+     public async listCloudProviderAccessRoles(response: ResponseContext): Promise<CloudProviderAccessRoles > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: CloudProviderAccess = ObjectSerializer.deserialize(
+            const body: CloudProviderAccessRoles = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "CloudProviderAccess", ""
-            ) as CloudProviderAccess;
+                "CloudProviderAccessRoles", ""
+            ) as CloudProviderAccessRoles;
             return body;
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
@@ -529,22 +459,22 @@ export class CloudProviderAccessApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: CloudProviderAccess = ObjectSerializer.deserialize(
+            const body: CloudProviderAccessRoles = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "CloudProviderAccess", ""
-            ) as CloudProviderAccess;
+                "CloudProviderAccessRoles", ""
+            ) as CloudProviderAccessRoles;
             return body;
         }
 

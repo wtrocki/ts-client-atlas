@@ -9,7 +9,7 @@ Method | HTTP request | Description
 [**deleteRoleMapping**](FederatedAuthenticationApi.md#deleteRoleMapping) | **DELETE** /api/atlas/v2/federationSettings/{federationSettingsId}/connectedOrgConfigs/{orgId}/roleMappings/{id} | Remove One Role Mapping from One Organization
 [**getConnectedOrgConfig**](FederatedAuthenticationApi.md#getConnectedOrgConfig) | **GET** /api/atlas/v2/federationSettings/{federationSettingsId}/connectedOrgConfigs/{orgId} | Return One Org Config Connected to One Federation
 [**getFederationSettings**](FederatedAuthenticationApi.md#getFederationSettings) | **GET** /api/atlas/v2/orgs/{orgId}/federationSettings | Return Federation Settings for One Organization
-[**getIdentityProvider**](FederatedAuthenticationApi.md#getIdentityProvider) | **GET** /api/atlas/v2/federationSettings/{federationSettingsId}/identityProviders/{identityProviderId} | Return one identity provider from the specified federation.
+[**getIdentityProvider**](FederatedAuthenticationApi.md#getIdentityProvider) | **GET** /api/atlas/v2/federationSettings/{federationSettingsId}/identityProviders/{identityProviderId} | Return one identity provider from the specified federation by id.
 [**getIdentityProviderMetadata**](FederatedAuthenticationApi.md#getIdentityProviderMetadata) | **GET** /api/atlas/v2/federationSettings/{federationSettingsId}/identityProviders/{identityProviderId}/metadata.xml | Return the metadata of one identity provider in the specified federation.
 [**getRoleMapping**](FederatedAuthenticationApi.md#getRoleMapping) | **GET** /api/atlas/v2/federationSettings/{federationSettingsId}/connectedOrgConfigs/{orgId}/roleMappings/{id} | Return One Role Mapping from One Organization
 [**listConnectedOrgConfigs**](FederatedAuthenticationApi.md#listConnectedOrgConfigs) | **GET** /api/atlas/v2/federationSettings/{federationSettingsId}/connectedOrgConfigs | Return All Connected Org Configs from the Federation
@@ -22,9 +22,9 @@ Method | HTTP request | Description
 
 
 # **createRoleMapping**
-> RoleMappingView createRoleMapping(roleMappingView)
+> AuthFederationRoleMapping createRoleMapping(authFederationRoleMapping)
 
-Adds one role mapping to the specified organization in the specified federation. To use this resource, the requesting API Key must have the Organization Owner role. This resource doesn't require the API Key to have an Access List.
+Adds one role mapping to the specified organization in the specified federation. To use this resource, the requesting API Key must have the Organization Owner role.
 
 ### Example
 
@@ -41,19 +41,17 @@ let body:.FederatedAuthenticationApiCreateRoleMappingRequest = {
   federationSettingsId: "55fa922fb343282757d9554e",
   // string | Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
   orgId: "4888442a3354817a7320eb61",
-  // RoleMappingView | The role mapping that you want to create.
-  roleMappingView: {
+  // AuthFederationRoleMapping | The role mapping that you want to create.
+  authFederationRoleMapping: {
     externalGroupName: "externalGroupName_example",
     roleAssignments: [
       {
         groupId: "32b6e34b3d91647abb20e7b8",
         orgId: "32b6e34b3d91647abb20e7b8",
-        role: "ORG_OWNER",
+        role: "role_example",
       },
     ],
   },
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
 };
 
 apiInstance.createRoleMapping(body).then((data:any) => {
@@ -66,15 +64,14 @@ apiInstance.createRoleMapping(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **roleMappingView** | **RoleMappingView**| The role mapping that you want to create. |
+ **authFederationRoleMapping** | **AuthFederationRoleMapping**| The role mapping that you want to create. |
  **federationSettingsId** | [**string**] | Unique 24-hexadecimal digit string that identifies your federation. | defaults to undefined
  **orgId** | [**string**] | Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
 
 
 ### Return type
 
-**RoleMappingView**
+**AuthFederationRoleMapping**
 
 ### Authorization
 
@@ -90,17 +87,17 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**401** | Unauthorized. |  -  |
+**404** | Not Found. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **deleteFederationApp**
 > void deleteFederationApp()
 
-Deletes the federation settings instance and all associated data, including identity providers and domains. To use this resource, the requesting API Key must have the Organization Owner role in the last remaining connected organization. This resource doesn't require the API Key to have an Access List. **Note**: requests to this resource will fail if there is more than one connected organization in the federation.
+Deletes the federation settings instance and all associated data, including identity providers and domains. To use this resource, the requesting API Key must have the Organization Owner role in the last remaining connected organization. **Note**: requests to this resource will fail if there is more than one connected organization in the federation.
 
 ### Example
 
@@ -148,17 +145,17 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**401** | Unauthorized. |  -  |
+**404** | Not Found. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **deleteRoleMapping**
 > void deleteRoleMapping()
 
-Removes one role mapping in the specified organization from the specified federation. To use this resource, the requesting API Key must have the Organization Owner role. This resource doesn't require the API Key to have an Access List.
+Removes one role mapping in the specified organization from the specified federation. To use this resource, the requesting API Key must have the Organization Owner role.
 
 ### Example
 
@@ -177,8 +174,6 @@ let body:.FederatedAuthenticationApiDeleteRoleMappingRequest = {
   id: "32b6e34b3d91647abb20e7b8",
   // string | Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
   orgId: "4888442a3354817a7320eb61",
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
 };
 
 apiInstance.deleteRoleMapping(body).then((data:any) => {
@@ -194,7 +189,6 @@ Name | Type | Description  | Notes
  **federationSettingsId** | [**string**] | Unique 24-hexadecimal digit string that identifies your federation. | defaults to undefined
  **id** | [**string**] | Unique 24-hexadecimal digit string that identifies the role mapping that you want to remove. | defaults to undefined
  **orgId** | [**string**] | Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
 
 
 ### Return type
@@ -215,17 +209,17 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**401** | Unauthorized. |  -  |
+**404** | Not Found. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **getConnectedOrgConfig**
-> ConnectedOrgConfigView getConnectedOrgConfig()
+> ConnectedOrgConfig getConnectedOrgConfig()
 
-Returns the specified connected org config from the specified federation. To use this resource, the requesting API Key must have the Organization Owner role in the connected org. This resource doesn't require the API Key to have an Access List.
+Returns the specified connected org config from the specified federation. To use this resource, the requesting API Key must have the Organization Owner role in the connected org.
 
 ### Example
 
@@ -242,8 +236,6 @@ let body:.FederatedAuthenticationApiGetConnectedOrgConfigRequest = {
   federationSettingsId: "55fa922fb343282757d9554e",
   // string | Unique 24-hexadecimal digit string that identifies the connected organization configuration to return.
   orgId: "32b6e34b3d91647abb20e7b8",
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
 };
 
 apiInstance.getConnectedOrgConfig(body).then((data:any) => {
@@ -258,12 +250,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **federationSettingsId** | [**string**] | Unique 24-hexadecimal digit string that identifies your federation. | defaults to undefined
  **orgId** | [**string**] | Unique 24-hexadecimal digit string that identifies the connected organization configuration to return. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
 
 
 ### Return type
 
-**ConnectedOrgConfigView**
+**ConnectedOrgConfig**
 
 ### Authorization
 
@@ -279,17 +270,17 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**401** | Unauthorized. |  -  |
+**404** | Not Found. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **getFederationSettings**
-> OrgFederationSettingsView getFederationSettings()
+> OrgFederationSettings getFederationSettings()
 
-Returns information about the federation settings for the specified organization. To use this resource, the requesting API Key must have the Organization Owner role in the connected org. This resource doesn't require the API Key to have an Access List.
+Returns information about the federation settings for the specified organization. To use this resource, the requesting API Key must have the Organization Owner role in the connected org.
 
 ### Example
 
@@ -304,10 +295,6 @@ const apiInstance = new .FederatedAuthenticationApi(configuration);
 let body:.FederatedAuthenticationApiGetFederationSettingsRequest = {
   // string | Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
   orgId: "4888442a3354817a7320eb61",
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
-  // boolean | Flag that indicates whether the response body should be in the <a href=\"https://en.wikipedia.org/wiki/Prettyprint\" target=\"_blank\" rel=\"noopener noreferrer\">prettyprint</a> format. (optional)
-  pretty: false,
 };
 
 apiInstance.getFederationSettings(body).then((data:any) => {
@@ -321,13 +308,11 @@ apiInstance.getFederationSettings(body).then((data:any) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **orgId** | [**string**] | Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
- **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
 
 
 ### Return type
 
-**OrgFederationSettingsView**
+**OrgFederationSettings**
 
 ### Authorization
 
@@ -343,17 +328,17 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**401** | Unauthorized. |  -  |
+**404** | Not Found. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **getIdentityProvider**
-> IdentityProviderView getIdentityProvider()
+> FederationIdentityProvider getIdentityProvider()
 
-Returns one identity provider from the specified federation. To use this resource, the requesting API Key must have the Organization Owner role in one of the connected organizations. This resource doesn't require the API Key to have an Access List.
+Returns one identity provider in the specified federation by the identity provider's id. To use this resource, the requesting API Key must have the Organization Owner role in one of the connected organizations. Deprecated versions: v2-{2023-01-01}
 
 ### Example
 
@@ -370,8 +355,6 @@ let body:.FederatedAuthenticationApiGetIdentityProviderRequest = {
   federationSettingsId: "55fa922fb343282757d9554e",
   // string | Unique 20-hexadecimal digit string that identifies the identity provider.
   identityProviderId: "c2777a9eca931f29fc2f",
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
 };
 
 apiInstance.getIdentityProvider(body).then((data:any) => {
@@ -386,12 +369,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **federationSettingsId** | [**string**] | Unique 24-hexadecimal digit string that identifies your federation. | defaults to undefined
  **identityProviderId** | [**string**] | Unique 20-hexadecimal digit string that identifies the identity provider. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
 
 
 ### Return type
 
-**IdentityProviderView**
+**FederationIdentityProvider**
 
 ### Authorization
 
@@ -400,24 +382,25 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.atlas.2023-01-01+json, application/json
+ - **Accept**: application/vnd.atlas.2023-11-15+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**401** | Unauthorized. |  -  |
+**403** | Forbidden. |  -  |
+**404** | Not Found. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **getIdentityProviderMetadata**
 > string getIdentityProviderMetadata()
 
-Returns the metadata of one identity provider in the specified federation. To use this resource, the requesting API Key must have the Organization Owner role in one of the connected organizations. This resource doesn't require the API Key to have an Access List.
+Returns the metadata of one identity provider in the specified federation. To use this resource, the requesting API Key must have the Organization Owner role in one of the connected organizations.
 
 ### Example
 
@@ -468,17 +451,17 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**401** | Unauthorized. |  -  |
+**404** | Not Found. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **getRoleMapping**
-> RoleMappingView getRoleMapping()
+> AuthFederationRoleMapping getRoleMapping()
 
-Returns one role mapping from the specified organization in the specified federation. To use this resource, the requesting API Key must have the Organization Owner role. This resource doesn't require the API Key to have an Access List.
+Returns one role mapping from the specified organization in the specified federation. To use this resource, the requesting API Key must have the Organization Owner role.
 
 ### Example
 
@@ -497,8 +480,6 @@ let body:.FederatedAuthenticationApiGetRoleMappingRequest = {
   id: "32b6e34b3d91647abb20e7b8",
   // string | Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
   orgId: "4888442a3354817a7320eb61",
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
 };
 
 apiInstance.getRoleMapping(body).then((data:any) => {
@@ -514,12 +495,11 @@ Name | Type | Description  | Notes
  **federationSettingsId** | [**string**] | Unique 24-hexadecimal digit string that identifies your federation. | defaults to undefined
  **id** | [**string**] | Unique 24-hexadecimal digit string that identifies the role mapping that you want to return. | defaults to undefined
  **orgId** | [**string**] | Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
 
 
 ### Return type
 
-**RoleMappingView**
+**AuthFederationRoleMapping**
 
 ### Authorization
 
@@ -535,17 +515,17 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**401** | Unauthorized. |  -  |
+**404** | Not Found. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **listConnectedOrgConfigs**
-> Array<ConnectedOrgConfigView> listConnectedOrgConfigs()
+> Array<ConnectedOrgConfig> listConnectedOrgConfigs()
 
-Returns all connected org configs in the specified federation. To use this resource, the requesting API Key must have the Organization Owner role in one of the connected orgs. This resource doesn't require the API Key to have an Access List.
+Returns all connected org configs in the specified federation. To use this resource, the requesting API Key must have the Organization Owner role in one of the connected orgs.
 
 ### Example
 
@@ -560,8 +540,6 @@ const apiInstance = new .FederatedAuthenticationApi(configuration);
 let body:.FederatedAuthenticationApiListConnectedOrgConfigsRequest = {
   // string | Unique 24-hexadecimal digit string that identifies your federation.
   federationSettingsId: "55fa922fb343282757d9554e",
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
 };
 
 apiInstance.listConnectedOrgConfigs(body).then((data:any) => {
@@ -575,12 +553,11 @@ apiInstance.listConnectedOrgConfigs(body).then((data:any) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **federationSettingsId** | [**string**] | Unique 24-hexadecimal digit string that identifies your federation. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
 
 
 ### Return type
 
-**Array<ConnectedOrgConfigView>**
+**Array<ConnectedOrgConfig>**
 
 ### Authorization
 
@@ -596,17 +573,17 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**401** | Unauthorized. |  -  |
+**404** | Not Found. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **listIdentityProviders**
-> Array<IdentityProviderView> listIdentityProviders()
+> Array<FederationIdentityProvider> listIdentityProviders()
 
-Returns all identity providers in the specified federation. To use this resource, the requesting API Key must have the Organization Owner role in one of the connected organizations. This resource doesn't require the API Key to have an Access List.
+Returns all identity providers with the provided protocol in the specified federation. If no protocol is specified, only SAML identity providers will be returned. To use this resource, the requesting API Key must have the Organization Owner role in one of the connected organizations.
 
 ### Example
 
@@ -621,8 +598,8 @@ const apiInstance = new .FederatedAuthenticationApi(configuration);
 let body:.FederatedAuthenticationApiListIdentityProvidersRequest = {
   // string | Unique 24-hexadecimal digit string that identifies your federation.
   federationSettingsId: "55fa922fb343282757d9554e",
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
+  // string | The protocols of the target identity providers. (optional)
+  protocol: "protocol_example",
 };
 
 apiInstance.listIdentityProviders(body).then((data:any) => {
@@ -636,12 +613,12 @@ apiInstance.listIdentityProviders(body).then((data:any) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **federationSettingsId** | [**string**] | Unique 24-hexadecimal digit string that identifies your federation. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
+ **protocol** | [**string**] | The protocols of the target identity providers. | (optional) defaults to undefined
 
 
 ### Return type
 
-**Array<IdentityProviderView>**
+**Array<FederationIdentityProvider>**
 
 ### Authorization
 
@@ -657,17 +634,17 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**401** | Unauthorized. |  -  |
+**404** | Not Found. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **listRoleMappings**
-> Array<RoleMappingView> listRoleMappings()
+> PaginatedRoleMapping listRoleMappings()
 
-Returns all role mappings from the specified organization in the specified federation. To use this resource, the requesting API Key must have the Organization Owner role. This resource doesn't require the API Key to have an Access List.
+Returns all role mappings from the specified organization in the specified federation. To use this resource, the requesting API Key must have the Organization Owner role.
 
 ### Example
 
@@ -684,8 +661,6 @@ let body:.FederatedAuthenticationApiListRoleMappingsRequest = {
   federationSettingsId: "55fa922fb343282757d9554e",
   // string | Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
   orgId: "4888442a3354817a7320eb61",
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
 };
 
 apiInstance.listRoleMappings(body).then((data:any) => {
@@ -700,12 +675,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **federationSettingsId** | [**string**] | Unique 24-hexadecimal digit string that identifies your federation. | defaults to undefined
  **orgId** | [**string**] | Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
 
 
 ### Return type
 
-**Array<RoleMappingView>**
+**PaginatedRoleMapping**
 
 ### Authorization
 
@@ -721,17 +695,17 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**401** | Unauthorized. |  -  |
+**404** | Not Found. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **removeConnectedOrgConfig**
-> void removeConnectedOrgConfig()
+> any removeConnectedOrgConfig()
 
-Removes one connected organization configuration from the specified federation. To use this resource, the requesting API Key must have the Organization Owner role. This resource doesn't require the API Key to have an Access List. Note: This request fails if only one connected organization exists in the federation.
+Removes one connected organization configuration from the specified federation. To use this resource, the requesting API Key must have the Organization Owner role. Note: This request fails if only one connected organization exists in the federation.
 
 ### Example
 
@@ -748,8 +722,6 @@ let body:.FederatedAuthenticationApiRemoveConnectedOrgConfigRequest = {
   federationSettingsId: "55fa922fb343282757d9554e",
   // string | Unique 24-hexadecimal digit string that identifies the connected organization configuration to remove.
   orgId: "32b6e34b3d91647abb20e7b8",
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
 };
 
 apiInstance.removeConnectedOrgConfig(body).then((data:any) => {
@@ -764,12 +736,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **federationSettingsId** | [**string**] | Unique 24-hexadecimal digit string that identifies your federation. | defaults to undefined
  **orgId** | [**string**] | Unique 24-hexadecimal digit string that identifies the connected organization configuration to remove. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
 
 
 ### Return type
 
-**void**
+**any**
 
 ### Authorization
 
@@ -778,24 +749,24 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.atlas.2023-01-01+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | This endpoint does not return a response body. |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**401** | Unauthorized. |  -  |
+**404** | Not Found. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **updateConnectedOrgConfig**
-> ConnectedOrgConfigView updateConnectedOrgConfig(connectedOrgConfigView)
+> ConnectedOrgConfig updateConnectedOrgConfig(connectedOrgConfig)
 
-Updates one connected organization configuration from the specified federation. To use this resource, the requesting API Key must have the Organization Owner role. This resource doesn't require the API Key to have an Access List.   **Note** If the organization configuration has no associated identity provider, you can't use this resource to update role mappings or post authorization role grants.    **Note**: The domainRestrictionEnabled field defaults to false if not provided in the request.   **Note**: If the identityProviderId field is not provided, you will disconnect the organization and the identity provider.
+Updates one connected organization configuration from the specified federation. To use this resource, the requesting API Key must have the Organization Owner role.   **Note** If the organization configuration has no associated identity provider, you can't use this resource to update role mappings or post authorization role grants.    **Note**: The domainRestrictionEnabled field defaults to false if not provided in the request.   **Note**: If the identityProviderId field is not provided, you will disconnect the organization and the identity provider.
 
 ### Example
 
@@ -812,15 +783,18 @@ let body:.FederatedAuthenticationApiUpdateConnectedOrgConfigRequest = {
   federationSettingsId: "55fa922fb343282757d9554e",
   // string | Unique 24-hexadecimal digit string that identifies the connected organization configuration to update.
   orgId: "32b6e34b3d91647abb20e7b8",
-  // ConnectedOrgConfigView | The connected organization configuration that you want to update.
-  connectedOrgConfigView: {
+  // ConnectedOrgConfig | The connected organization configuration that you want to update.
+  connectedOrgConfig: {
+    dataAccessIdentityProviderIds: [
+      "32b6e34b3d91647abb20e7b8",
+    ],
     domainAllowList: [
       "domainAllowList_example",
     ],
     domainRestrictionEnabled: true,
     identityProviderId: "bf325375e030fccba009",
     postAuthRoleGrants: [
-      "GLOBAL_AUTOMATION_ADMIN",
+      "postAuthRoleGrants_example",
     ],
     roleMappings: [
       {
@@ -829,7 +803,7 @@ let body:.FederatedAuthenticationApiUpdateConnectedOrgConfigRequest = {
           {
             groupId: "32b6e34b3d91647abb20e7b8",
             orgId: "32b6e34b3d91647abb20e7b8",
-            role: "ORG_OWNER",
+            role: "role_example",
           },
         ],
       },
@@ -843,8 +817,6 @@ let body:.FederatedAuthenticationApiUpdateConnectedOrgConfigRequest = {
       },
     ],
   },
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
 };
 
 apiInstance.updateConnectedOrgConfig(body).then((data:any) => {
@@ -857,15 +829,14 @@ apiInstance.updateConnectedOrgConfig(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **connectedOrgConfigView** | **ConnectedOrgConfigView**| The connected organization configuration that you want to update. |
+ **connectedOrgConfig** | **ConnectedOrgConfig**| The connected organization configuration that you want to update. |
  **federationSettingsId** | [**string**] | Unique 24-hexadecimal digit string that identifies your federation. | defaults to undefined
  **orgId** | [**string**] | Unique 24-hexadecimal digit string that identifies the connected organization configuration to update. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
 
 
 ### Return type
 
-**ConnectedOrgConfigView**
+**ConnectedOrgConfig**
 
 ### Authorization
 
@@ -881,17 +852,17 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**401** | Unauthorized. |  -  |
+**404** | Not Found. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **updateIdentityProvider**
-> IdentityProviderView updateIdentityProvider(identityProviderUpdate)
+> FederationIdentityProvider updateIdentityProvider(identityProviderUpdate)
 
-Updates one identity provider in the specified federation. To use this resource, the requesting API Key must have the Organization Owner role in one of the connected organizations. This resource doesn't require the API Key to have an Access List.
+Updates one identity provider in the specified federation. To use this resource, the requesting API Key must have the Organization Owner role in one of the connected organizations. Deprecated versions: v2-{2023-01-01}
 
 ### Example
 
@@ -913,8 +884,19 @@ let body:.FederatedAuthenticationApiUpdateIdentityProviderRequest = {
     associatedDomains: [
       "associatedDomains_example",
     ],
+    description: "description_example",
     displayName: "displayName_example",
     issuerUri: "urn:idp:default",
+    protocol: "protocol_example",
+    audienceClaim: [
+      "audienceClaim_example",
+    ],
+    clientId: "clientId_example",
+    groupsClaim: "groupsClaim_example",
+    requestedScopes: [
+      "requestedScopes_example",
+    ],
+    userClaim: "userClaim_example",
     pemFileInfo: {
       certificates: [
         {
@@ -925,14 +907,13 @@ let body:.FederatedAuthenticationApiUpdateIdentityProviderRequest = {
       ],
       fileName: "fileName_example",
     },
-    requestBinding: "HTTP-POST",
-    responseSignatureAlgorithm: "SHA-1",
+    requestBinding: "requestBinding_example",
+    responseSignatureAlgorithm: "responseSignatureAlgorithm_example",
+    slug: "slug_example",
     ssoDebugEnabled: true,
     ssoUrl: "https://example.com",
-    status: "ACTIVE",
+    status: "status_example",
   },
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
 };
 
 apiInstance.updateIdentityProvider(body).then((data:any) => {
@@ -948,12 +929,11 @@ Name | Type | Description  | Notes
  **identityProviderUpdate** | **IdentityProviderUpdate**| The identity provider that you want to update. |
  **federationSettingsId** | [**string**] | Unique 24-hexadecimal digit string that identifies your federation. | defaults to undefined
  **identityProviderId** | [**string**] | Unique 20-hexadecimal digit string that identifies the identity provider. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
 
 
 ### Return type
 
-**IdentityProviderView**
+**FederationIdentityProvider**
 
 ### Authorization
 
@@ -961,25 +941,25 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/vnd.atlas.2023-01-01+json
- - **Accept**: application/vnd.atlas.2023-01-01+json, application/json
+ - **Content-Type**: application/vnd.atlas.2023-11-15+json
+ - **Accept**: application/vnd.atlas.2023-11-15+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**400** | Bad Request |  -  |
-**403** | Forbidden |  -  |
-**404** | Not Found |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**403** | Forbidden. |  -  |
+**404** | Not Found. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **updateRoleMapping**
-> RoleMappingView updateRoleMapping(roleMappingView)
+> AuthFederationRoleMapping updateRoleMapping(authFederationRoleMapping)
 
-Updates one role mapping in the specified organization in the specified federation. To use this resource, the requesting API Key must have the Organization Owner role. This resource doesn't require the API Key to have an Access List.
+Updates one role mapping in the specified organization in the specified federation. To use this resource, the requesting API Key must have the Organization Owner role.
 
 ### Example
 
@@ -998,19 +978,17 @@ let body:.FederatedAuthenticationApiUpdateRoleMappingRequest = {
   id: "32b6e34b3d91647abb20e7b8",
   // string | Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
   orgId: "4888442a3354817a7320eb61",
-  // RoleMappingView | The role mapping that you want to update.
-  roleMappingView: {
+  // AuthFederationRoleMapping | The role mapping that you want to update.
+  authFederationRoleMapping: {
     externalGroupName: "externalGroupName_example",
     roleAssignments: [
       {
         groupId: "32b6e34b3d91647abb20e7b8",
         orgId: "32b6e34b3d91647abb20e7b8",
-        role: "ORG_OWNER",
+        role: "role_example",
       },
     ],
   },
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
 };
 
 apiInstance.updateRoleMapping(body).then((data:any) => {
@@ -1023,16 +1001,15 @@ apiInstance.updateRoleMapping(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **roleMappingView** | **RoleMappingView**| The role mapping that you want to update. |
+ **authFederationRoleMapping** | **AuthFederationRoleMapping**| The role mapping that you want to update. |
  **federationSettingsId** | [**string**] | Unique 24-hexadecimal digit string that identifies your federation. | defaults to undefined
  **id** | [**string**] | Unique 24-hexadecimal digit string that identifies the role mapping that you want to update. | defaults to undefined
  **orgId** | [**string**] | Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
 
 
 ### Return type
 
-**RoleMappingView**
+**AuthFederationRoleMapping**
 
 ### Authorization
 
@@ -1048,10 +1025,10 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**401** | Unauthorized. |  -  |
+**404** | Not Found. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 

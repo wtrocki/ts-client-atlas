@@ -20,18 +20,14 @@ export class EncryptionAtRestUsingCustomerKeyManagementApiRequestFactory extends
      * Returns the configuration for encryption at rest using the keys you manage through your cloud provider. MongoDB Cloud encrypts all storage even if you don't use your own key management. This resource requires the requesting API Key to have the Project Owner role.  **LIMITED TO M10 OR GREATER:** MongoDB Cloud limits this feature to dedicated cluster tiers of M10 and greater.
      * Return One Configuration for Encryption at Rest using Customer-Managed Keys for One Project
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
      */
-    public async returnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProject(groupId: string, envelope?: boolean, pretty?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async getEncryptionAtRest(groupId: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
         if (groupId === null || groupId === undefined) {
-            throw new RequiredError("EncryptionAtRestUsingCustomerKeyManagementApi", "returnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProject", "groupId");
+            throw new RequiredError("EncryptionAtRestUsingCustomerKeyManagementApi", "getEncryptionAtRest", "groupId");
         }
-
-
 
 
         // Path Params
@@ -41,16 +37,6 @@ export class EncryptionAtRestUsingCustomerKeyManagementApiRequestFactory extends
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
-
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
 
 
         
@@ -63,14 +49,12 @@ export class EncryptionAtRestUsingCustomerKeyManagementApiRequestFactory extends
     }
 
     /**
-     * Updates the configuration for encryption at rest using the keys you manage through your cloud provider. MongoDB Cloud encrypts all storage even if you don't use your own key management. This resource requires the requesting API Key to have the Project Atlas Admin role.  **LIMITED TO M10 OR GREATER:** MongoDB Cloud limits this feature to dedicated cluster tiers of M10 and greater.
+     * Updates the configuration for encryption at rest using the keys you manage through your cloud provider. MongoDB Cloud encrypts all storage even if you don't use your own key management. This resource requires the requesting API Key to have the Project Owner role. This feature isn't available for `M0` free clusters, `M2`, `M5`, or serverless clusters.   After you configure at least one Encryption at Rest using a Customer Key Management provider for the MongoDB Cloud project, Project Owners can enable Encryption at Rest using Customer Key Management for each MongoDB Cloud cluster for which they require encryption. The Encryption at Rest using Customer Key Management provider doesn't have to match the cluster cloud service provider. MongoDB Cloud doesn't automatically rotate user-managed encryption keys. Defer to your preferred Encryption at Rest using Customer Key Management provider's documentation and guidance for best practices on key rotation. MongoDB Cloud automatically creates a 90-day key rotation alert when you configure Encryption at Rest using Customer Key Management using your Key Management in an MongoDB Cloud project. MongoDB Cloud encrypts all storage whether or not you use your own key management.
      * Update Configuration for Encryption at Rest using Customer-Managed Keys for One Project
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
      * @param encryptionAtRest Required parameters depend on whether someone has enabled Encryption at Rest using Customer Key Management:  If you have enabled Encryption at Rest using Customer Key Management (CMK), Atlas requires all of the parameters for the desired encryption provider.  - To use AWS Key Management Service (KMS), MongoDB Cloud requires all the fields in the **awsKms** object. - To use Azure Key Vault, MongoDB Cloud requires all the fields in the **azureKeyVault** object. - To use Google Cloud Key Management Service (KMS), MongoDB Cloud requires all the fields in the **googleCloudKms** object.  If you enabled Encryption at Rest using Customer Key  Management, administrators can pass only the changed fields for the **awsKms**, **azureKeyVault**, or **googleCloudKms** object to update the configuration to this endpoint.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
      */
-    public async updateEncryptionAtRest(groupId: string, encryptionAtRest: EncryptionAtRest, envelope?: boolean, pretty?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async updateEncryptionAtRest(groupId: string, encryptionAtRest: EncryptionAtRest, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
@@ -85,8 +69,6 @@ export class EncryptionAtRestUsingCustomerKeyManagementApiRequestFactory extends
         }
 
 
-
-
         // Path Params
         const localVarPath = '/api/atlas/v2/groups/{groupId}/encryptionAtRest'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)));
@@ -94,16 +76,6 @@ export class EncryptionAtRestUsingCustomerKeyManagementApiRequestFactory extends
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
-
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
 
 
         // Body Params
@@ -134,10 +106,10 @@ export class EncryptionAtRestUsingCustomerKeyManagementApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to returnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProject
+     * @params response Response returned by the server for a request to getEncryptionAtRest
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async returnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProject(response: ResponseContext): Promise<EncryptionAtRest > {
+     public async getEncryptionAtRest(response: ResponseContext): Promise<EncryptionAtRest > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: EncryptionAtRest = ObjectSerializer.deserialize(
@@ -151,14 +123,14 @@ export class EncryptionAtRestUsingCustomerKeyManagementApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -194,35 +166,35 @@ export class EncryptionAtRestUsingCustomerKeyManagementApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request.", body, response.headers);
         }
         if (isCodeInRange("403", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Forbidden", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Forbidden.", body, response.headers);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found.", body, response.headers);
         }
         if (isCodeInRange("409", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Conflict", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Conflict.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml

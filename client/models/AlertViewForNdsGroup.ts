@@ -1,6 +1,6 @@
 /**
  * MongoDB Atlas Administration API
- * The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas. To learn more, review the [Administration API overview](https://www.mongodb.com/docs/atlas/api/atlas-admin-api/). This OpenAPI specification covers all of the collections with the exception of Alerts, Alert Configurations, and Events. Refer to the [legacy documentation](https://www.mongodb.com/docs/atlas/reference/api-resources/) for the specifications of these resources.
+ * The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas.  The Atlas Administration API uses HTTP Digest Authentication to authenticate requests. Provide a programmatic API public key and corresponding private key as the username and password when constructing the HTTP request. For example, to [return database access history](#tag/Access-Tracking/operation/listAccessLogsByClusterName) with [cURL](https://en.wikipedia.org/wiki/CURL), run the following command in the terminal:  ``` curl --user \"{PUBLIC-KEY}:{PRIVATE-KEY}\" \\   --digest \\   --header \"Accept: application/vnd.atlas.2023-02-01+json\" \\   GET \"https://cloud.mongodb.com/api/atlas/v2/groups/{groupId}/dbAccessHistory/clusters/{clusterName}?pretty=true\" ```  To learn more, see [Get Started with the Atlas Administration API](https://www.mongodb.com/docs/atlas/configure-api-access/). For support, see [MongoDB Support](https://www.mongodb.com/support/get-started).
  *
  * OpenAPI spec version: 2.0
  * 
@@ -10,9 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { HostMetricValueView } from '../models/HostMetricValueView';
 import { Link } from '../models/Link';
-import { ReplicaSetEventTypeViewForNdsGroupAlertable } from '../models/ReplicaSetEventTypeViewForNdsGroupAlertable';
+import { NumberMetricValue } from '../models/NumberMetricValue';
 import { HttpFile } from '../http/http';
 
 export class AlertViewForNdsGroup {
@@ -41,8 +40,11 @@ export class AlertViewForNdsGroup {
     */
 
     'created'?: Date;
+    /**
+    * Incident that triggered this alert.
+    */
 
-    'eventTypeName'?: ReplicaSetEventTypeViewForNdsGroupAlertable;
+    'eventTypeName'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the project that owns this alert.
     */
@@ -99,12 +101,15 @@ export class AlertViewForNdsGroup {
 
     'replicaSetName'?: string;
 
-    'currentValue'?: HostMetricValueView;
+    'currentValue'?: NumberMetricValue;
     /**
     * Name of the metric against which Atlas checks the configured `metricThreshold.threshold`.  To learn more about the available metrics, see <a href=\"https://www.mongodb.com/docs/atlas/reference/alert-host-metrics/#std-label-measurement-types\" target=\"_blank\">Host Metrics</a>.  **NOTE**: If you set eventTypeName to OUTSIDE_SERVERLESS_METRIC_THRESHOLD, you can specify only metrics available for serverless. To learn more, see <a href=\"https://dochub.mongodb.org/core/alert-config-serverless-measurements\" target=\"_blank\">Serverless Measurements</a>.
     */
 
     'metricName'?: string;
+    /**
+    * List of unique 24-hexadecimal character strings that identify the replica set members that are not in PRIMARY nor SECONDARY state.
+    */
 
     'nonRunningHostIds'?: Array<string>;
     /**
@@ -149,7 +154,7 @@ export class AlertViewForNdsGroup {
         {
             "name": "eventTypeName",
             "baseName": "eventTypeName",
-            "type": "ReplicaSetEventTypeViewForNdsGroupAlertable",
+            "type": "string",
             "format": ""
         },
         {
@@ -221,7 +226,7 @@ export class AlertViewForNdsGroup {
         {
             "name": "currentValue",
             "baseName": "currentValue",
-            "type": "HostMetricValueView",
+            "type": "NumberMetricValue",
             "format": ""
         },
         {
@@ -250,7 +255,4 @@ export class AlertViewForNdsGroup {
     public constructor() {
     }
 }
-
-
-export type AlertViewForNdsGroupStatusEnum = "CANCELLED" | "CLOSED" | "OPEN" | "TRACKING" ;
 

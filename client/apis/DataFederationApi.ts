@@ -11,6 +11,7 @@ import {SecurityAuthentication} from '../auth/auth';
 import { ApiError } from '../models/ApiError';
 import { DataFederationTenantQueryLimit } from '../models/DataFederationTenantQueryLimit';
 import { DataLakeTenant } from '../models/DataLakeTenant';
+import { PaginatedPrivateNetworkEndpointIdEntry } from '../models/PaginatedPrivateNetworkEndpointIdEntry';
 import { PrivateNetworkEndpointIdEntry } from '../models/PrivateNetworkEndpointIdEntry';
 
 /**
@@ -19,14 +20,12 @@ import { PrivateNetworkEndpointIdEntry } from '../models/PrivateNetworkEndpointI
 export class DataFederationApiRequestFactory extends BaseAPIRequestFactory {
 
     /**
-     * Adds one private endpoint for Federated Database Instances and Online Archives to the specified projects. To use this resource, the requesting API Key must have the Project Atlas Admin or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List.
+     * Adds one private endpoint for Federated Database Instances and Online Archives to the specified projects. If the endpoint ID already exists and the associated comment is unchanged, Atlas Data Federation makes no change to the endpoint ID list. If the endpoint ID already exists and the associated comment is changed, Atlas Data Federation updates the comment value only in the endpoint ID list. If the endpoint ID doesn't exist, Atlas Data Federation appends the new endpoint to the list of endpoints in the endpoint ID list. Each region has an associated service name for the various endpoints in each region.   `us-east-1` is `com.amazonaws.vpce.us-east-1.vpce-svc-00e311695874992b4`.   `us-west-1` is `com.amazonaws.vpce.us-west-2.vpce-svc-09d86b19e59d1b4bb`.   `eu-west-1` is `com.amazonaws.vpce.eu-west-1.vpce-svc-0824460b72e1a420e`.   `eu-west-2` is `com.amazonaws.vpce.eu-west-2.vpce-svc-052f1840aa0c4f1f9`.   `eu-central-1` is `com.amazonaws.vpce.eu-central-1.vpce-svc-0ac8ce91871138c0d`.   `sa-east-1` is `com.amazonaws.vpce.sa-east-1.vpce-svc-0b56e75e8cdf50044`.   `ap-southeast-2` is `com.amazonaws.vpce.ap-southeast-2.vpce-svc-036f1de74d761706e`.   `ap-south-1` is `com.amazonaws.vpce.ap-south-1.vpce-svc-03eb8a541f96d356d`.   To use this resource, the requesting API Key must have the Project Owner or Project Charts Admin roles.
      * Create One Federated Database Instance and Online Archive Private Endpoint for One Project
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
      * @param privateNetworkEndpointIdEntry Private endpoint for Federated Database Instances and Online Archives to add to the specified project.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
      */
-    public async createDataFederationPrivateEndpoint(groupId: string, privateNetworkEndpointIdEntry: PrivateNetworkEndpointIdEntry, envelope?: boolean, pretty?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async createDataFederationPrivateEndpoint(groupId: string, privateNetworkEndpointIdEntry: PrivateNetworkEndpointIdEntry, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
@@ -41,8 +40,6 @@ export class DataFederationApiRequestFactory extends BaseAPIRequestFactory {
         }
 
 
-
-
         // Path Params
         const localVarPath = '/api/atlas/v2/groups/{groupId}/privateNetworkSettings/endpointIds'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)));
@@ -50,16 +47,6 @@ export class DataFederationApiRequestFactory extends BaseAPIRequestFactory {
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
-
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
 
 
         // Body Params
@@ -83,15 +70,13 @@ export class DataFederationApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * Creates one federated database instance in the specified project. To use this resource, the requesting API Key must have the Project Owner or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List.
+     * Creates one federated database instance in the specified project. To use this resource, the requesting API Key must have the Project Owner or Project Charts Admin roles.
      * Create One Federated Database Instance in One Project
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
      * @param dataLakeTenant Details to create one federated database instance in the specified project.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
      * @param skipRoleValidation Flag that indicates whether this request should check if the requesting IAM role can read from the S3 bucket. AWS checks if the role can list the objects in the bucket before writing to it. Some IAM roles only need write permissions. This flag allows you to skip that check.
      */
-    public async createFederatedDatabase(groupId: string, dataLakeTenant: DataLakeTenant, envelope?: boolean, pretty?: boolean, skipRoleValidation?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async createFederatedDatabase(groupId: string, dataLakeTenant: DataLakeTenant, skipRoleValidation?: boolean, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
@@ -107,8 +92,6 @@ export class DataFederationApiRequestFactory extends BaseAPIRequestFactory {
 
 
 
-
-
         // Path Params
         const localVarPath = '/api/atlas/v2/groups/{groupId}/dataFederation'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)));
@@ -116,16 +99,6 @@ export class DataFederationApiRequestFactory extends BaseAPIRequestFactory {
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
-
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
 
         // Query Params
         if (skipRoleValidation !== undefined) {
@@ -154,15 +127,14 @@ export class DataFederationApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * Creates or updates one query limit for one federated database instance. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Creates or updates one query limit for one federated database instance. To use this resource, the requesting API Key must have the Project Owner role.
      * Configure One Query Limit for One Federated Database Instance
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
      * @param tenantName Human-readable label that identifies the federated database instance to which the query limit applies.
      * @param limitName Human-readable label that identifies this data federation instance limit.  | Limit Name | Description | Default | | --- | --- | --- | | bytesProcessed.query | Limit on the number of bytes processed during a single data federation query | N/A | | bytesProcessed.daily | Limit on the number of bytes processed for the data federation instance for the current day | N/A | | bytesProcessed.weekly | Limit on the number of bytes processed for the data federation instance for the current week | N/A | | bytesProcessed.monthly | Limit on the number of bytes processed for the data federation instance for the current month | N/A | 
      * @param dataFederationTenantQueryLimit Creates or updates one query limit for one federated database instance.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
      */
-    public async createOneDataFederationQueryLimit(groupId: string, tenantName: string, limitName: 'bytesProcessed.query' | 'bytesProcessed.daily' | 'bytesProcessed.weekly' | 'bytesProcessed.monthly', dataFederationTenantQueryLimit: DataFederationTenantQueryLimit, envelope?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async createOneDataFederationQueryLimit(groupId: string, tenantName: string, limitName: string, dataFederationTenantQueryLimit: DataFederationTenantQueryLimit, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
@@ -189,7 +161,6 @@ export class DataFederationApiRequestFactory extends BaseAPIRequestFactory {
         }
 
 
-
         // Path Params
         const localVarPath = '/api/atlas/v2/groups/{groupId}/dataFederation/{tenantName}/limits/{limitName}'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
@@ -199,11 +170,6 @@ export class DataFederationApiRequestFactory extends BaseAPIRequestFactory {
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
-
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
 
 
         // Body Params
@@ -227,14 +193,12 @@ export class DataFederationApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * Removes one private endpoint for Federated Database Instances and Online Archives in the specified project. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Removes one private endpoint for Federated Database Instances and Online Archives in the specified project. To use this resource, the requesting API Key must have the Project Owner role.
      * Remove One Federated Database Instance and Online Archive Private Endpoint from One Project
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
      * @param endpointId Unique 22-character alphanumeric string that identifies the private endpoint to remove. Atlas Data Federation supports AWS private endpoints using the AWS PrivateLink feature.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
      */
-    public async deleteDataFederationPrivateEndpoint(groupId: string, endpointId: string, envelope?: boolean, pretty?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async deleteDataFederationPrivateEndpoint(groupId: string, endpointId: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
@@ -249,8 +213,6 @@ export class DataFederationApiRequestFactory extends BaseAPIRequestFactory {
         }
 
 
-
-
         // Path Params
         const localVarPath = '/api/atlas/v2/groups/{groupId}/privateNetworkSettings/endpointIds/{endpointId}'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
@@ -258,17 +220,7 @@ export class DataFederationApiRequestFactory extends BaseAPIRequestFactory {
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
-        requestContext.setHeaderParam("Accept","application/json")
-
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
+        requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
 
 
         
@@ -281,14 +233,12 @@ export class DataFederationApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * Removes one federated database instance from the specified project. To use this resource, the requesting API Key must have the Project Owner or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List.
+     * Removes one federated database instance from the specified project. To use this resource, the requesting API Key must have the Project Owner or Project Charts Admin roles.
      * Remove One Federated Database Instance from One Project
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
      * @param tenantName Human-readable label that identifies the federated database instance to remove.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
      */
-    public async deleteFederatedDatabase(groupId: string, tenantName: string, envelope?: boolean, pretty?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async deleteFederatedDatabase(groupId: string, tenantName: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
@@ -303,8 +253,6 @@ export class DataFederationApiRequestFactory extends BaseAPIRequestFactory {
         }
 
 
-
-
         // Path Params
         const localVarPath = '/api/atlas/v2/groups/{groupId}/dataFederation/{tenantName}'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
@@ -312,17 +260,7 @@ export class DataFederationApiRequestFactory extends BaseAPIRequestFactory {
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
-        requestContext.setHeaderParam("Accept","application/json")
-
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
+        requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
 
 
         
@@ -335,14 +273,13 @@ export class DataFederationApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * Deletes one query limit for one federated database instance. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Deletes one query limit for one federated database instance. To use this resource, the requesting API Key must have the Project Owner role.
      * Delete One Query Limit For One Federated Database Instance
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
      * @param tenantName Human-readable label that identifies the federated database instance to which the query limit applies.
      * @param limitName Human-readable label that identifies this data federation instance limit.  | Limit Name | Description | Default | | --- | --- | --- | | bytesProcessed.query | Limit on the number of bytes processed during a single data federation query | N/A | | bytesProcessed.daily | Limit on the number of bytes processed for the data federation instance for the current day | N/A | | bytesProcessed.weekly | Limit on the number of bytes processed for the data federation instance for the current week | N/A | | bytesProcessed.monthly | Limit on the number of bytes processed for the data federation instance for the current month | N/A | 
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
      */
-    public async deleteOneDataFederationInstanceQueryLimit(groupId: string, tenantName: string, limitName: 'bytesProcessed.query' | 'bytesProcessed.daily' | 'bytesProcessed.weekly' | 'bytesProcessed.monthly', envelope?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async deleteOneDataFederationInstanceQueryLimit(groupId: string, tenantName: string, limitName: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
@@ -363,7 +300,6 @@ export class DataFederationApiRequestFactory extends BaseAPIRequestFactory {
         }
 
 
-
         // Path Params
         const localVarPath = '/api/atlas/v2/groups/{groupId}/dataFederation/{tenantName}/limits/{limitName}'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
@@ -372,12 +308,7 @@ export class DataFederationApiRequestFactory extends BaseAPIRequestFactory {
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
-        requestContext.setHeaderParam("Accept","application/json")
-
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
+        requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
 
 
         
@@ -390,7 +321,7 @@ export class DataFederationApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * Downloads the query logs for the specified federated database instance. To use this resource, the requesting API Key must have the Project Owner or Project Data Access Read Write roles. This resource doesn't require the API Key to have an Access List.
+     * Downloads the query logs for the specified federated database instance. To use this resource, the requesting API Key must have the Project Owner or Project Data Access Read Write roles.
      * Download Query Logs for One Federated Database Instance
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
      * @param tenantName Human-readable label that identifies the federated database instance for which you want to download query logs.
@@ -444,14 +375,12 @@ export class DataFederationApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * Returns the specified private endpoint for Federated Database Instances or Online Archives in the specified project. To use this resource, the requesting API Key must have the Project Read Only or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List.
+     * Returns the specified private endpoint for Federated Database Instances or Online Archives in the specified project. To use this resource, the requesting API Key must have the Project Read Only or Project Charts Admin roles.
      * Return One Federated Database Instance and Online Archive Private Endpoint in One Project
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
      * @param endpointId Unique 22-character alphanumeric string that identifies the private endpoint to return. Atlas Data Federation supports AWS private endpoints using the AWS PrivateLink feature.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
      */
-    public async getDataFederationPrivateEndpoint(groupId: string, endpointId: string, envelope?: boolean, pretty?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async getDataFederationPrivateEndpoint(groupId: string, endpointId: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
@@ -466,8 +395,6 @@ export class DataFederationApiRequestFactory extends BaseAPIRequestFactory {
         }
 
 
-
-
         // Path Params
         const localVarPath = '/api/atlas/v2/groups/{groupId}/privateNetworkSettings/endpointIds/{endpointId}'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
@@ -476,16 +403,6 @@ export class DataFederationApiRequestFactory extends BaseAPIRequestFactory {
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
-
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
 
 
         
@@ -498,13 +415,12 @@ export class DataFederationApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * Returns the details of one federated database instance within the specified project. To use this resource, the requesting API Key must have the Project Read Only or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List.
+     * Returns the details of one federated database instance within the specified project. To use this resource, the requesting API Key must have the Project Read Only or Project Charts Admin roles.
      * Return One Federated Database Instance in One Project
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
      * @param tenantName Human-readable label that identifies the Federated Database to return.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
      */
-    public async getFederatedDatabase(groupId: string, tenantName: string, envelope?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async getFederatedDatabase(groupId: string, tenantName: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
@@ -519,7 +435,6 @@ export class DataFederationApiRequestFactory extends BaseAPIRequestFactory {
         }
 
 
-
         // Path Params
         const localVarPath = '/api/atlas/v2/groups/{groupId}/dataFederation/{tenantName}'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
@@ -528,11 +443,6 @@ export class DataFederationApiRequestFactory extends BaseAPIRequestFactory {
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
-
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
 
 
         
@@ -545,19 +455,21 @@ export class DataFederationApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * Returns all private endpoints for Federated Database Instances and Online Archives in the specified project. To use this resource, the requesting API Key must have the Project Read Only or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List.
+     * Returns all private endpoints for Federated Database Instances and Online Archives in the specified project. To use this resource, the requesting API Key must have the Project Read Only or Project Charts Admin roles.
      * Return All Federated Database Instance and Online Archive Private Endpoints in One Project
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+     * @param includeCount Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
+     * @param itemsPerPage Number of items that the response returns per page.
+     * @param pageNum Number of the page that displays the current set of the total objects that the response returns.
      */
-    public async listDataFederationPrivateEndpoints(groupId: string, envelope?: boolean, pretty?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async listDataFederationPrivateEndpoints(groupId: string, includeCount?: boolean, itemsPerPage?: number, pageNum?: number, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
         if (groupId === null || groupId === undefined) {
             throw new RequiredError("DataFederationApi", "listDataFederationPrivateEndpoints", "groupId");
         }
+
 
 
 
@@ -571,13 +483,18 @@ export class DataFederationApiRequestFactory extends BaseAPIRequestFactory {
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
 
         // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
+        if (includeCount !== undefined) {
+            requestContext.setQueryParam("includeCount", ObjectSerializer.serialize(includeCount, "boolean", ""));
         }
 
         // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
+        if (itemsPerPage !== undefined) {
+            requestContext.setQueryParam("itemsPerPage", ObjectSerializer.serialize(itemsPerPage, "number", ""));
+        }
+
+        // Query Params
+        if (pageNum !== undefined) {
+            requestContext.setQueryParam("pageNum", ObjectSerializer.serialize(pageNum, "number", ""));
         }
 
 
@@ -591,22 +508,18 @@ export class DataFederationApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * Returns the details of all federated database instances in the specified project. To use this resource, the requesting API Key must have the Project Read Only or higher role. This resource doesn't require the API Key to have an Access List.
+     * Returns the details of all federated database instances in the specified project. To use this resource, the requesting API Key must have the Project Read Only or higher role.
      * Return All Federated Database Instances in One Project
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
      * @param type Type of Federated Database Instances to return.
      */
-    public async listFederatedDatabases(groupId: string, envelope?: boolean, pretty?: boolean, type?: 'USER' | 'ONLINE_ARCHIVE', _options?: Configuration): Promise<RequestContext> {
+    public async listFederatedDatabases(groupId: string, type?: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
         if (groupId === null || groupId === undefined) {
             throw new RequiredError("DataFederationApi", "listFederatedDatabases", "groupId");
         }
-
-
 
 
 
@@ -619,18 +532,8 @@ export class DataFederationApiRequestFactory extends BaseAPIRequestFactory {
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
 
         // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
-
-        // Query Params
         if (type !== undefined) {
-            requestContext.setQueryParam("type", ObjectSerializer.serialize(type, "'USER' | 'ONLINE_ARCHIVE'", ""));
+            requestContext.setQueryParam("type", ObjectSerializer.serialize(type, "string", ""));
         }
 
 
@@ -644,15 +547,13 @@ export class DataFederationApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * Returns the details of one query limit for the specified federated database instance in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns the details of one query limit for the specified federated database instance in the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return One Federated Database Instance Query Limit for One Project
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
      * @param tenantName Human-readable label that identifies the federated database instance to which the query limit applies.
      * @param limitName Human-readable label that identifies this data federation instance limit.  | Limit Name | Description | Default | | --- | --- | --- | | bytesProcessed.query | Limit on the number of bytes processed during a single data federation query | N/A | | bytesProcessed.daily | Limit on the number of bytes processed for the data federation instance for the current day | N/A | | bytesProcessed.weekly | Limit on the number of bytes processed for the data federation instance for the current week | N/A | | bytesProcessed.monthly | Limit on the number of bytes processed for the data federation instance for the current month | N/A | 
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
      */
-    public async returnFederatedDatabaseQueryLimit(groupId: string, tenantName: string, limitName: 'bytesProcessed.query' | 'bytesProcessed.daily' | 'bytesProcessed.weekly' | 'bytesProcessed.monthly', envelope?: boolean, pretty?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async returnFederatedDatabaseQueryLimit(groupId: string, tenantName: string, limitName: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
@@ -673,8 +574,6 @@ export class DataFederationApiRequestFactory extends BaseAPIRequestFactory {
         }
 
 
-
-
         // Path Params
         const localVarPath = '/api/atlas/v2/groups/{groupId}/dataFederation/{tenantName}/limits/{limitName}'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
@@ -684,16 +583,6 @@ export class DataFederationApiRequestFactory extends BaseAPIRequestFactory {
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
-
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
 
 
         
@@ -706,14 +595,12 @@ export class DataFederationApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * Returns query limits for a federated databases instance in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns query limits for a federated databases instance in the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return All Query Limits for One Federated Database Instance
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
      * @param tenantName Human-readable label that identifies the federated database instance for which you want to retrieve query limits.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
      */
-    public async returnFederatedDatabaseQueryLimits(groupId: string, tenantName: string, envelope?: boolean, pretty?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async returnFederatedDatabaseQueryLimits(groupId: string, tenantName: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
@@ -728,8 +615,6 @@ export class DataFederationApiRequestFactory extends BaseAPIRequestFactory {
         }
 
 
-
-
         // Path Params
         const localVarPath = '/api/atlas/v2/groups/{groupId}/dataFederation/{tenantName}/limits'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
@@ -738,16 +623,6 @@ export class DataFederationApiRequestFactory extends BaseAPIRequestFactory {
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
-
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
 
 
         
@@ -760,16 +635,14 @@ export class DataFederationApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * Updates the details of one federated database instance in the specified project. To use this resource, the requesting API Key must have the Project Owner or higher role. This resource doesn't require the API Key to have an Access List.
+     * Updates the details of one federated database instance in the specified project. To use this resource, the requesting API Key must have the Project Owner or higher role.
      * Update One Federated Database Instance in One Project
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
      * @param tenantName Human-readable label that identifies the federated database instance to update.
      * @param skipRoleValidation Flag that indicates whether this request should check if the requesting IAM role can read from the S3 bucket. AWS checks if the role can list the objects in the bucket before writing to it. Some IAM roles only need write permissions. This flag allows you to skip that check.
      * @param dataLakeTenant Details of one Federated Database to update in the specified project.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
      */
-    public async updateFederatedDatabase(groupId: string, tenantName: string, skipRoleValidation: boolean, dataLakeTenant: DataLakeTenant, envelope?: boolean, pretty?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async updateFederatedDatabase(groupId: string, tenantName: string, skipRoleValidation: boolean, dataLakeTenant: DataLakeTenant, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
@@ -796,8 +669,6 @@ export class DataFederationApiRequestFactory extends BaseAPIRequestFactory {
         }
 
 
-
-
         // Path Params
         const localVarPath = '/api/atlas/v2/groups/{groupId}/dataFederation/{tenantName}'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
@@ -806,16 +677,6 @@ export class DataFederationApiRequestFactory extends BaseAPIRequestFactory {
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
-
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
 
         // Query Params
         if (skipRoleValidation !== undefined) {
@@ -854,13 +715,13 @@ export class DataFederationApiResponseProcessor {
      * @params response Response returned by the server for a request to createDataFederationPrivateEndpoint
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createDataFederationPrivateEndpoint(response: ResponseContext): Promise<Array<PrivateNetworkEndpointIdEntry> > {
+     public async createDataFederationPrivateEndpoint(response: ResponseContext): Promise<PaginatedPrivateNetworkEndpointIdEntry > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("201", response.httpStatusCode)) {
-            const body: Array<PrivateNetworkEndpointIdEntry> = ObjectSerializer.deserialize(
+            const body: PaginatedPrivateNetworkEndpointIdEntry = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "Array<PrivateNetworkEndpointIdEntry>", ""
-            ) as Array<PrivateNetworkEndpointIdEntry>;
+                "PaginatedPrivateNetworkEndpointIdEntry", ""
+            ) as PaginatedPrivateNetworkEndpointIdEntry;
             return body;
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
@@ -868,29 +729,29 @@ export class DataFederationApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request.", body, response.headers);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: Array<PrivateNetworkEndpointIdEntry> = ObjectSerializer.deserialize(
+            const body: PaginatedPrivateNetworkEndpointIdEntry = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "Array<PrivateNetworkEndpointIdEntry>", ""
-            ) as Array<PrivateNetworkEndpointIdEntry>;
+                "PaginatedPrivateNetworkEndpointIdEntry", ""
+            ) as PaginatedPrivateNetworkEndpointIdEntry;
             return body;
         }
 
@@ -918,14 +779,14 @@ export class DataFederationApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -947,13 +808,13 @@ export class DataFederationApiResponseProcessor {
      * @params response Response returned by the server for a request to createOneDataFederationQueryLimit
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createOneDataFederationQueryLimit(response: ResponseContext): Promise<Array<DataFederationTenantQueryLimit> > {
+     public async createOneDataFederationQueryLimit(response: ResponseContext): Promise<DataFederationTenantQueryLimit > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: Array<DataFederationTenantQueryLimit> = ObjectSerializer.deserialize(
+            const body: DataFederationTenantQueryLimit = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "Array<DataFederationTenantQueryLimit>", ""
-            ) as Array<DataFederationTenantQueryLimit>;
+                "DataFederationTenantQueryLimit", ""
+            ) as DataFederationTenantQueryLimit;
             return body;
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
@@ -961,36 +822,36 @@ export class DataFederationApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request.", body, response.headers);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized.", body, response.headers);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: Array<DataFederationTenantQueryLimit> = ObjectSerializer.deserialize(
+            const body: DataFederationTenantQueryLimit = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "Array<DataFederationTenantQueryLimit>", ""
-            ) as Array<DataFederationTenantQueryLimit>;
+                "DataFederationTenantQueryLimit", ""
+            ) as DataFederationTenantQueryLimit;
             return body;
         }
 
@@ -1004,39 +865,43 @@ export class DataFederationApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteDataFederationPrivateEndpoint
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteDataFederationPrivateEndpoint(response: ResponseContext): Promise<void > {
+     public async deleteDataFederationPrivateEndpoint(response: ResponseContext): Promise<any > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("204", response.httpStatusCode)) {
-            return;
+            const body: any = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "any", ""
+            ) as any;
+            return body;
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized.", body, response.headers);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: void = ObjectSerializer.deserialize(
+            const body: any = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "void", ""
-            ) as void;
+                "any", ""
+            ) as any;
             return body;
         }
 
@@ -1050,32 +915,36 @@ export class DataFederationApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteFederatedDatabase
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteFederatedDatabase(response: ResponseContext): Promise<void > {
+     public async deleteFederatedDatabase(response: ResponseContext): Promise<any > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("204", response.httpStatusCode)) {
-            return;
+            const body: any = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "any", ""
+            ) as any;
+            return body;
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: void = ObjectSerializer.deserialize(
+            const body: any = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "void", ""
-            ) as void;
+                "any", ""
+            ) as any;
             return body;
         }
 
@@ -1089,32 +958,36 @@ export class DataFederationApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteOneDataFederationInstanceQueryLimit
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteOneDataFederationInstanceQueryLimit(response: ResponseContext): Promise<void > {
+     public async deleteOneDataFederationInstanceQueryLimit(response: ResponseContext): Promise<any > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("204", response.httpStatusCode)) {
-            return;
+            const body: any = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "any", ""
+            ) as any;
+            return body;
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: void = ObjectSerializer.deserialize(
+            const body: any = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "void", ""
-            ) as void;
+                "any", ""
+            ) as any;
             return body;
         }
 
@@ -1139,42 +1012,42 @@ export class DataFederationApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", "binary"
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request.", body, response.headers);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", "binary"
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized.", body, response.headers);
         }
         if (isCodeInRange("403", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", "binary"
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Forbidden", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Forbidden.", body, response.headers);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", "binary"
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found.", body, response.headers);
         }
         if (isCodeInRange("409", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", "binary"
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Conflict", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Conflict.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", "binary"
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -1210,28 +1083,28 @@ export class DataFederationApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request.", body, response.headers);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized.", body, response.headers);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -1267,28 +1140,28 @@ export class DataFederationApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request.", body, response.headers);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized.", body, response.headers);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -1310,13 +1183,13 @@ export class DataFederationApiResponseProcessor {
      * @params response Response returned by the server for a request to listDataFederationPrivateEndpoints
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listDataFederationPrivateEndpoints(response: ResponseContext): Promise<Array<PrivateNetworkEndpointIdEntry> > {
+     public async listDataFederationPrivateEndpoints(response: ResponseContext): Promise<PaginatedPrivateNetworkEndpointIdEntry > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: Array<PrivateNetworkEndpointIdEntry> = ObjectSerializer.deserialize(
+            const body: PaginatedPrivateNetworkEndpointIdEntry = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "Array<PrivateNetworkEndpointIdEntry>", ""
-            ) as Array<PrivateNetworkEndpointIdEntry>;
+                "PaginatedPrivateNetworkEndpointIdEntry", ""
+            ) as PaginatedPrivateNetworkEndpointIdEntry;
             return body;
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
@@ -1324,36 +1197,36 @@ export class DataFederationApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request.", body, response.headers);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized.", body, response.headers);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: Array<PrivateNetworkEndpointIdEntry> = ObjectSerializer.deserialize(
+            const body: PaginatedPrivateNetworkEndpointIdEntry = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "Array<PrivateNetworkEndpointIdEntry>", ""
-            ) as Array<PrivateNetworkEndpointIdEntry>;
+                "PaginatedPrivateNetworkEndpointIdEntry", ""
+            ) as PaginatedPrivateNetworkEndpointIdEntry;
             return body;
         }
 
@@ -1381,14 +1254,14 @@ export class DataFederationApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -1410,13 +1283,13 @@ export class DataFederationApiResponseProcessor {
      * @params response Response returned by the server for a request to returnFederatedDatabaseQueryLimit
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async returnFederatedDatabaseQueryLimit(response: ResponseContext): Promise<Array<DataFederationTenantQueryLimit> > {
+     public async returnFederatedDatabaseQueryLimit(response: ResponseContext): Promise<DataFederationTenantQueryLimit > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: Array<DataFederationTenantQueryLimit> = ObjectSerializer.deserialize(
+            const body: DataFederationTenantQueryLimit = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "Array<DataFederationTenantQueryLimit>", ""
-            ) as Array<DataFederationTenantQueryLimit>;
+                "DataFederationTenantQueryLimit", ""
+            ) as DataFederationTenantQueryLimit;
             return body;
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
@@ -1424,22 +1297,22 @@ export class DataFederationApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: Array<DataFederationTenantQueryLimit> = ObjectSerializer.deserialize(
+            const body: DataFederationTenantQueryLimit = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "Array<DataFederationTenantQueryLimit>", ""
-            ) as Array<DataFederationTenantQueryLimit>;
+                "DataFederationTenantQueryLimit", ""
+            ) as DataFederationTenantQueryLimit;
             return body;
         }
 
@@ -1467,21 +1340,21 @@ export class DataFederationApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized.", body, response.headers);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -1517,21 +1390,21 @@ export class DataFederationApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request.", body, response.headers);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml

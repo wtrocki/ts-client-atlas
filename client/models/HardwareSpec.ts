@@ -1,6 +1,6 @@
 /**
  * MongoDB Atlas Administration API
- * The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas. To learn more, review the [Administration API overview](https://www.mongodb.com/docs/atlas/api/atlas-admin-api/). This OpenAPI specification covers all of the collections with the exception of Alerts, Alert Configurations, and Events. Refer to the [legacy documentation](https://www.mongodb.com/docs/atlas/reference/api-resources/) for the specifications of these resources.
+ * The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas.  The Atlas Administration API uses HTTP Digest Authentication to authenticate requests. Provide a programmatic API public key and corresponding private key as the username and password when constructing the HTTP request. For example, to [return database access history](#tag/Access-Tracking/operation/listAccessLogsByClusterName) with [cURL](https://en.wikipedia.org/wiki/CURL), run the following command in the terminal:  ``` curl --user \"{PUBLIC-KEY}:{PRIVATE-KEY}\" \\   --digest \\   --header \"Accept: application/vnd.atlas.2023-02-01+json\" \\   GET \"https://cloud.mongodb.com/api/atlas/v2/groups/{groupId}/dbAccessHistory/clusters/{clusterName}?pretty=true\" ```  To learn more, see [Get Started with the Atlas Administration API](https://www.mongodb.com/docs/atlas/configure-api-access/). For support, see [MongoDB Support](https://www.mongodb.com/support/get-started).
  *
  * OpenAPI spec version: 2.0
  * 
@@ -22,7 +22,7 @@ export class HardwareSpec {
 
     'diskIOPS'?: number;
     /**
-    * Type of storage you want to attach to your AWS-provisioned cluster.  - `STANDARD` volume types can't exceed the default input/output operations per second (IOPS) rate for the selected volume size.   - `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+    * Type of storage you want to attach to your AWS-provisioned cluster.  - `STANDARD` volume types can't exceed the default input/output operations per second (IOPS) rate for the selected volume size.   - `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size. You must set this value to (`PROVISIONED`) for NVMe clusters.
     */
 
     'ebsVolumeType'?: string;
@@ -32,7 +32,7 @@ export class HardwareSpec {
 
     'instanceSize'?: string;
     /**
-    * Number of read-only nodes for MongoDB Cloud to deploy to the region. Read-only nodes can never become the primary, but can enable local reads.
+    * Number of nodes of the given type for MongoDB Cloud to deploy to the region.
     */
 
     'nodeCount'?: number;
@@ -72,8 +72,4 @@ export class HardwareSpec {
     public constructor() {
     }
 }
-
-
-export type HardwareSpecEbsVolumeTypeEnum = "STANDARD" | "PROVISIONED" ;
-export type HardwareSpecInstanceSizeEnum = "M0" | "M2" | "M5" ;
 

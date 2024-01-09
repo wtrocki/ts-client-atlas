@@ -1,6 +1,6 @@
 /**
  * MongoDB Atlas Administration API
- * The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas. To learn more, review the [Administration API overview](https://www.mongodb.com/docs/atlas/api/atlas-admin-api/). This OpenAPI specification covers all of the collections with the exception of Alerts, Alert Configurations, and Events. Refer to the [legacy documentation](https://www.mongodb.com/docs/atlas/reference/api-resources/) for the specifications of these resources.
+ * The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas.  The Atlas Administration API uses HTTP Digest Authentication to authenticate requests. Provide a programmatic API public key and corresponding private key as the username and password when constructing the HTTP request. For example, to [return database access history](#tag/Access-Tracking/operation/listAccessLogsByClusterName) with [cURL](https://en.wikipedia.org/wiki/CURL), run the following command in the terminal:  ``` curl --user \"{PUBLIC-KEY}:{PRIVATE-KEY}\" \\   --digest \\   --header \"Accept: application/vnd.atlas.2023-02-01+json\" \\   GET \"https://cloud.mongodb.com/api/atlas/v2/groups/{groupId}/dbAccessHistory/clusters/{clusterName}?pretty=true\" ```  To learn more, see [Get Started with the Atlas Administration API](https://www.mongodb.com/docs/atlas/configure-api-access/). For support, see [MongoDB Support](https://www.mongodb.com/support/get-started).
  *
  * OpenAPI spec version: 2.0
  * 
@@ -10,23 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { DiskBackupReplicaSet } from '../models/DiskBackupReplicaSet';
-import { DiskBackupShardedClusterSnapshot } from '../models/DiskBackupShardedClusterSnapshot';
 import { DiskBackupShardedClusterSnapshotMember } from '../models/DiskBackupShardedClusterSnapshotMember';
 import { Link } from '../models/Link';
 import { HttpFile } from '../http/http';
 
 export class DiskBackupSnapshot {
-    /**
-    * Human-readable label that identifies the cloud provider that stores this snapshot. The resource returns this parameter when `\"type\": \"replicaSet\"`.
-    */
-
-    'cloudProvider'?: string;
-    /**
-    * List that identifies the regions to which MongoDB Cloud copies the snapshot.
-    */
-
-    'copyRegions'?: Array<string>;
     /**
     * Date and time when MongoDB Cloud took the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     */
@@ -73,11 +61,6 @@ export class DiskBackupSnapshot {
 
     'policyItems'?: Array<string>;
     /**
-    * Human-readable label that identifies the replica set from which MongoDB Cloud took this snapshot. The resource returns this parameter when `\"type\": \"replicaSet\"`.
-    */
-
-    'replicaSetName'?: string;
-    /**
     * Human-readable label that identifies when this snapshot triggers.
     */
 
@@ -88,7 +71,7 @@ export class DiskBackupSnapshot {
 
     'status'?: string;
     /**
-    * Number of bytes taken to store the backup snapshot.
+    * Number of bytes taken to store the backup at time of snapshot.
     */
 
     'storageSizeBytes'?: number;
@@ -97,6 +80,21 @@ export class DiskBackupSnapshot {
     */
 
     'type'?: string;
+    /**
+    * Human-readable label that identifies the cloud provider that stores this snapshot. The resource returns this parameter when `\"type\": \"replicaSet\"`.
+    */
+
+    'cloudProvider'?: string;
+    /**
+    * List that identifies the regions to which MongoDB Cloud copies the snapshot.
+    */
+
+    'copyRegions'?: Array<string>;
+    /**
+    * Human-readable label that identifies the replica set from which MongoDB Cloud took this snapshot. The resource returns this parameter when `\"type\": \"replicaSet\"`.
+    */
+
+    'replicaSetName'?: string;
     /**
     * List that includes the snapshots and the cloud provider that stores the snapshots. The resource returns this parameter when `\"type\" : \"SHARDED_CLUSTER\"`.
     */
@@ -108,21 +106,9 @@ export class DiskBackupSnapshot {
 
     'snapshotIds'?: Array<string>;
 
-    static readonly discriminator: string | undefined = "type";
+    static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
-        {
-            "name": "cloudProvider",
-            "baseName": "cloudProvider",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "copyRegions",
-            "baseName": "copyRegions",
-            "type": "Array<string>",
-            "format": ""
-        },
         {
             "name": "createdAt",
             "baseName": "createdAt",
@@ -178,12 +164,6 @@ export class DiskBackupSnapshot {
             "format": ""
         },
         {
-            "name": "replicaSetName",
-            "baseName": "replicaSetName",
-            "type": "string",
-            "format": ""
-        },
-        {
             "name": "snapshotType",
             "baseName": "snapshotType",
             "type": "string",
@@ -208,6 +188,24 @@ export class DiskBackupSnapshot {
             "format": ""
         },
         {
+            "name": "cloudProvider",
+            "baseName": "cloudProvider",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "copyRegions",
+            "baseName": "copyRegions",
+            "type": "Array<string>",
+            "format": ""
+        },
+        {
+            "name": "replicaSetName",
+            "baseName": "replicaSetName",
+            "type": "string",
+            "format": ""
+        },
+        {
             "name": "members",
             "baseName": "members",
             "type": "Array<DiskBackupShardedClusterSnapshotMember>",
@@ -227,11 +225,4 @@ export class DiskBackupSnapshot {
     public constructor() {
     }
 }
-
-
-export type DiskBackupSnapshotCloudProviderEnum = "AWS" | "AZURE" | "GCP" ;
-export type DiskBackupSnapshotFrequencyTypeEnum = "hourly" | "daily" | "weekly" | "monthly" ;
-export type DiskBackupSnapshotSnapshotTypeEnum = "onDemand" | "scheduled" ;
-export type DiskBackupSnapshotStatusEnum = "queued" | "inProgress" | "completed" | "failed" ;
-export type DiskBackupSnapshotTypeEnum = "REPLICA_SET" | "SHARDED_CLUSTER" ;
 

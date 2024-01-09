@@ -8,14 +8,14 @@ import {canConsumeForm, isCodeInRange} from '../util';
 import {SecurityAuthentication} from '../auth/auth';
 
 
+import { ApiAtlasCheckpoint } from '../models/ApiAtlasCheckpoint';
+import { ApiAtlasSnapshotSchedule } from '../models/ApiAtlasSnapshotSchedule';
 import { ApiError } from '../models/ApiError';
-import { ApiRestoreJobView } from '../models/ApiRestoreJobView';
-import { ApiSnapshotView } from '../models/ApiSnapshotView';
-import { Checkpoint } from '../models/Checkpoint';
-import { PaginatedApiAtlasCheckpointView } from '../models/PaginatedApiAtlasCheckpointView';
-import { PaginatedRestoreJobView } from '../models/PaginatedRestoreJobView';
-import { PaginatedSnapshotView } from '../models/PaginatedSnapshotView';
-import { SnapshotSchedule } from '../models/SnapshotSchedule';
+import { BackupRestoreJob } from '../models/BackupRestoreJob';
+import { BackupSnapshot } from '../models/BackupSnapshot';
+import { PaginatedApiAtlasCheckpoint } from '../models/PaginatedApiAtlasCheckpoint';
+import { PaginatedRestoreJob } from '../models/PaginatedRestoreJob';
+import { PaginatedSnapshot } from '../models/PaginatedSnapshot';
 
 /**
  * no description
@@ -23,15 +23,13 @@ import { SnapshotSchedule } from '../models/SnapshotSchedule';
 export class LegacyBackupApiRequestFactory extends BaseAPIRequestFactory {
 
     /**
-     * Removes one legacy backup snapshot for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Owner role and an entry for the project access list.
+     * Removes one legacy backup snapshot for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Owner role. Effective 23 March 2020, all new clusters can use only Cloud Backups. When you upgrade to 4.2, your backup system upgrades to cloud backup if it is currently set to legacy backup. After this upgrade, all your existing legacy backup snapshots remain available. They expire over time in accordance with your retention policy. Your backup policy resets to the default schedule. If you had a custom backup policy in place with legacy backups, you must re-create it with the procedure outlined in the [Cloud Backup documentation](https://www.mongodb.com/docs/atlas/backup/cloud-backup/scheduling/#std-label-cloud-provider-backup-schedule).
      * Remove One Legacy Backup Snapshot
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
      * @param clusterName Human-readable label that identifies the cluster.
      * @param snapshotId Unique 24-hexadecimal digit string that identifies the desired snapshot.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
      */
-    public async deleteLegacySnapshot(groupId: string, clusterName: string, snapshotId: string, envelope?: boolean, pretty?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async deleteLegacySnapshot(groupId: string, clusterName: string, snapshotId: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
@@ -52,8 +50,6 @@ export class LegacyBackupApiRequestFactory extends BaseAPIRequestFactory {
         }
 
 
-
-
         // Path Params
         const localVarPath = '/api/atlas/v2/groups/{groupId}/clusters/{clusterName}/snapshots/{snapshotId}'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
@@ -62,17 +58,7 @@ export class LegacyBackupApiRequestFactory extends BaseAPIRequestFactory {
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
-        requestContext.setHeaderParam("Accept","application/json")
-
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
+        requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
 
 
         
@@ -85,15 +71,13 @@ export class LegacyBackupApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * Returns one legacy backup checkpoint for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns one legacy backup checkpoint for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return One Legacy Backup Checkpoint
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
      * @param checkpointId Unique 24-hexadecimal digit string that identifies the checkpoint.
      * @param clusterName Human-readable label that identifies the cluster that contains the checkpoints that you want to return.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
      */
-    public async getLegacyBackupCheckpoint(groupId: string, checkpointId: string, clusterName: string, envelope?: boolean, pretty?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async getLegacyBackupCheckpoint(groupId: string, checkpointId: string, clusterName: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
@@ -114,8 +98,6 @@ export class LegacyBackupApiRequestFactory extends BaseAPIRequestFactory {
         }
 
 
-
-
         // Path Params
         const localVarPath = '/api/atlas/v2/groups/{groupId}/clusters/{clusterName}/backupCheckpoints/{checkpointId}'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
@@ -125,16 +107,6 @@ export class LegacyBackupApiRequestFactory extends BaseAPIRequestFactory {
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
-
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
 
 
         
@@ -147,15 +119,13 @@ export class LegacyBackupApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * Returns one legacy backup restore job for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns one legacy backup restore job for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role.   Effective 23 March 2020, all new clusters can use only Cloud Backups. When you upgrade to 4.2, your backup system upgrades to cloud backup if it is currently set to legacy backup. After this upgrade, all your existing legacy backup snapshots remain available. They expire over time in accordance with your retention policy. Your backup policy resets to the default schedule. If you had a custom backup policy in place with legacy backups, you must re-create it with the procedure outlined in the [Cloud Backup documentation](https://www.mongodb.com/docs/atlas/backup/cloud-backup/scheduling/#std-label-cloud-provider-backup-schedule).
      * Return One Legacy Backup Restore Job
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
      * @param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
      * @param jobId Unique 24-hexadecimal digit string that identifies the restore job.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
      */
-    public async getLegacyBackupRestoreJob(groupId: string, clusterName: string, jobId: string, envelope?: boolean, pretty?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async getLegacyBackupRestoreJob(groupId: string, clusterName: string, jobId: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
@@ -176,8 +146,6 @@ export class LegacyBackupApiRequestFactory extends BaseAPIRequestFactory {
         }
 
 
-
-
         // Path Params
         const localVarPath = '/api/atlas/v2/groups/{groupId}/clusters/{clusterName}/restoreJobs/{jobId}'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
@@ -187,16 +155,6 @@ export class LegacyBackupApiRequestFactory extends BaseAPIRequestFactory {
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
-
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
 
 
         
@@ -209,15 +167,13 @@ export class LegacyBackupApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * Returns one legacy backup snapshot for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns one legacy backup snapshot for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. Effective 23 March 2020, all new clusters can use only Cloud Backups. When you upgrade to 4.2, your backup system upgrades to cloud backup if it is currently set to legacy backup. After this upgrade, all your existing legacy backup snapshots remain available. They expire over time in accordance with your retention policy. Your backup policy resets to the default schedule. If you had a custom backup policy in place with legacy backups, you must re-create it with the procedure outlined in the [Cloud Backup documentation](https://www.mongodb.com/docs/atlas/backup/cloud-backup/scheduling/#std-label-cloud-provider-backup-schedule).
      * Return One Legacy Backup Snapshot
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
      * @param clusterName Human-readable label that identifies the cluster.
      * @param snapshotId Unique 24-hexadecimal digit string that identifies the desired snapshot.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
      */
-    public async getLegacySnapshot(groupId: string, clusterName: string, snapshotId: string, envelope?: boolean, pretty?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async getLegacySnapshot(groupId: string, clusterName: string, snapshotId: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
@@ -238,8 +194,6 @@ export class LegacyBackupApiRequestFactory extends BaseAPIRequestFactory {
         }
 
 
-
-
         // Path Params
         const localVarPath = '/api/atlas/v2/groups/{groupId}/clusters/{clusterName}/snapshots/{snapshotId}'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
@@ -249,16 +203,6 @@ export class LegacyBackupApiRequestFactory extends BaseAPIRequestFactory {
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
-
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
 
 
         
@@ -271,14 +215,12 @@ export class LegacyBackupApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * Returns the snapshot schedule for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
+     * Returns the snapshot schedule for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role.   Effective 23 March 2020, all new clusters can use only Cloud Backups. When you upgrade to 4.2, your backup system upgrades to cloud backup if it is currently set to legacy backup. After this upgrade, all your existing legacy backup snapshots remain available. They expire over time in accordance with your retention policy. Your backup policy resets to the default schedule. If you had a custom backup policy in place with legacy backups, you must re-create it with the procedure outlined in the [Cloud Backup documentation](https://www.mongodb.com/docs/atlas/backup/cloud-backup/scheduling/#std-label-cloud-provider-backup-schedule).
      * Return One Snapshot Schedule
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
      * @param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
      */
-    public async getLegacySnapshotSchedule(groupId: string, clusterName: string, envelope?: boolean, pretty?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async getLegacySnapshotSchedule(groupId: string, clusterName: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
@@ -293,8 +235,6 @@ export class LegacyBackupApiRequestFactory extends BaseAPIRequestFactory {
         }
 
 
-
-
         // Path Params
         const localVarPath = '/api/atlas/v2/groups/{groupId}/clusters/{clusterName}/snapshotSchedule'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
@@ -303,16 +243,6 @@ export class LegacyBackupApiRequestFactory extends BaseAPIRequestFactory {
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
-
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
 
 
         
@@ -325,17 +255,15 @@ export class LegacyBackupApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * Returns all legacy backup checkpoints for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns all legacy backup checkpoints for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return All Legacy Backup Checkpoints
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
      * @param clusterName Human-readable label that identifies the cluster that contains the checkpoints that you want to return.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
      * @param includeCount Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @param itemsPerPage Number of items that the response returns per page.
      * @param pageNum Number of the page that displays the current set of the total objects that the response returns.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
      */
-    public async listLegacyBackupCheckpoints(groupId: string, clusterName: string, envelope?: boolean, includeCount?: boolean, itemsPerPage?: number, pageNum?: number, pretty?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async listLegacyBackupCheckpoints(groupId: string, clusterName: string, includeCount?: boolean, itemsPerPage?: number, pageNum?: number, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
@@ -353,8 +281,6 @@ export class LegacyBackupApiRequestFactory extends BaseAPIRequestFactory {
 
 
 
-
-
         // Path Params
         const localVarPath = '/api/atlas/v2/groups/{groupId}/clusters/{clusterName}/backupCheckpoints'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
@@ -363,11 +289,6 @@ export class LegacyBackupApiRequestFactory extends BaseAPIRequestFactory {
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
-
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
 
         // Query Params
         if (includeCount !== undefined) {
@@ -384,11 +305,6 @@ export class LegacyBackupApiRequestFactory extends BaseAPIRequestFactory {
             requestContext.setQueryParam("pageNum", ObjectSerializer.serialize(pageNum, "number", ""));
         }
 
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
-
 
         
         const defaultAuth: SecurityAuthentication | undefined = _options?.authMethods?.default || this.configuration?.authMethods?.default
@@ -400,18 +316,16 @@ export class LegacyBackupApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * Returns all legacy backup restore jobs for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns all legacy backup restore jobs for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role.   Effective 23 March 2020, all new clusters can use only Cloud Backups. When you upgrade to 4.2, your backup system upgrades to cloud backup if it is currently set to legacy backup. After this upgrade, all your existing legacy backup snapshots remain available. They expire over time in accordance with your retention policy. Your backup policy resets to the default schedule. If you had a custom backup policy in place with legacy backups, you must re-create it with the procedure outlined in the [Cloud Backup documentation](https://www.mongodb.com/docs/atlas/backup/cloud-backup/scheduling/#std-label-cloud-provider-backup-schedule). If you use the `BATCH-ID` query parameter, you can retrieve all restore jobs in the specified batch. When creating a restore job for a sharded cluster, MongoDB Cloud creates a separate job for each shard, plus another for the config server. Each of those jobs are part of a batch. However, a batch can't include a restore job for a replica set.
      * Return All Legacy Backup Restore Jobs
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
      * @param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
      * @param includeCount Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @param itemsPerPage Number of items that the response returns per page.
      * @param pageNum Number of the page that displays the current set of the total objects that the response returns.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
      * @param batchId Unique 24-hexadecimal digit string that identifies the batch of restore jobs to return. Timestamp in ISO 8601 date and time format in UTC when creating a restore job for a sharded cluster, Application creates a separate job for each shard, plus another for the config host. Each of these jobs comprise one batch. A restore job for a replica set can&#39;t be part of a batch.
      */
-    public async listLegacyBackupRestoreJobs(groupId: string, clusterName: string, envelope?: boolean, includeCount?: boolean, itemsPerPage?: number, pageNum?: number, pretty?: boolean, batchId?: string, _options?: Configuration): Promise<RequestContext> {
+    public async listLegacyBackupRestoreJobs(groupId: string, clusterName: string, includeCount?: boolean, itemsPerPage?: number, pageNum?: number, batchId?: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
@@ -430,8 +344,6 @@ export class LegacyBackupApiRequestFactory extends BaseAPIRequestFactory {
 
 
 
-
-
         // Path Params
         const localVarPath = '/api/atlas/v2/groups/{groupId}/clusters/{clusterName}/restoreJobs'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
@@ -440,11 +352,6 @@ export class LegacyBackupApiRequestFactory extends BaseAPIRequestFactory {
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
-
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
 
         // Query Params
         if (includeCount !== undefined) {
@@ -459,11 +366,6 @@ export class LegacyBackupApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (pageNum !== undefined) {
             requestContext.setQueryParam("pageNum", ObjectSerializer.serialize(pageNum, "number", ""));
-        }
-
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
         }
 
         // Query Params
@@ -482,18 +384,16 @@ export class LegacyBackupApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * Returns all legacy backup snapshots for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns all legacy backup snapshots for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. Effective 23 March 2020, all new clusters can use only Cloud Backups. When you upgrade to 4.2, your backup system upgrades to cloud backup if it is currently set to legacy backup. After this upgrade, all your existing legacy backup snapshots remain available. They expire over time in accordance with your retention policy. Your backup policy resets to the default schedule. If you had a custom backup policy in place with legacy backups, you must re-create it with the procedure outlined in the [Cloud Backup documentation](https://www.mongodb.com/docs/atlas/backup/cloud-backup/scheduling/#std-label-cloud-provider-backup-schedule).
      * Return All Legacy Backup Snapshots
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
      * @param clusterName Human-readable label that identifies the cluster.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
      * @param includeCount Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @param itemsPerPage Number of items that the response returns per page.
      * @param pageNum Number of the page that displays the current set of the total objects that the response returns.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
      * @param completed Human-readable label that specifies whether to return only completed, incomplete, or all snapshots. By default, MongoDB Cloud only returns completed snapshots.
      */
-    public async listLegacySnapshots(groupId: string, clusterName: string, envelope?: boolean, includeCount?: boolean, itemsPerPage?: number, pageNum?: number, pretty?: boolean, completed?: 'all' | 'true' | 'false', _options?: Configuration): Promise<RequestContext> {
+    public async listLegacySnapshots(groupId: string, clusterName: string, includeCount?: boolean, itemsPerPage?: number, pageNum?: number, completed?: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
@@ -512,8 +412,6 @@ export class LegacyBackupApiRequestFactory extends BaseAPIRequestFactory {
 
 
 
-
-
         // Path Params
         const localVarPath = '/api/atlas/v2/groups/{groupId}/clusters/{clusterName}/snapshots'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
@@ -522,11 +420,6 @@ export class LegacyBackupApiRequestFactory extends BaseAPIRequestFactory {
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
-
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
 
         // Query Params
         if (includeCount !== undefined) {
@@ -544,13 +437,8 @@ export class LegacyBackupApiRequestFactory extends BaseAPIRequestFactory {
         }
 
         // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
-
-        // Query Params
         if (completed !== undefined) {
-            requestContext.setQueryParam("completed", ObjectSerializer.serialize(completed, "'all' | 'true' | 'false'", ""));
+            requestContext.setQueryParam("completed", ObjectSerializer.serialize(completed, "string", ""));
         }
 
 
@@ -564,16 +452,14 @@ export class LegacyBackupApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * Changes the expiration date for one legacy backup snapshot for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
+     * Changes the expiration date for one legacy backup snapshot for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Owner role. Effective 23 March 2020, all new clusters can use only Cloud Backups. When you upgrade to 4.2, your backup system upgrades to cloud backup if it is currently set to legacy backup. After this upgrade, all your existing legacy backup snapshots remain available. They expire over time in accordance with your retention policy. Your backup policy resets to the default schedule. If you had a custom backup policy in place with legacy backups, you must re-create it with the procedure outlined in the [Cloud Backup documentation](https://www.mongodb.com/docs/atlas/backup/cloud-backup/scheduling/#std-label-cloud-provider-backup-schedule).
      * Change One Legacy Backup Snapshot Expiration
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
      * @param clusterName Human-readable label that identifies the cluster.
      * @param snapshotId Unique 24-hexadecimal digit string that identifies the desired snapshot.
-     * @param apiSnapshotView Changes One Legacy Backup Snapshot Expiration.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+     * @param backupSnapshot Changes One Legacy Backup Snapshot Expiration.
      */
-    public async updateLegacySnapshotRetention(groupId: string, clusterName: string, snapshotId: string, apiSnapshotView: ApiSnapshotView, envelope?: boolean, pretty?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async updateLegacySnapshotRetention(groupId: string, clusterName: string, snapshotId: string, backupSnapshot: BackupSnapshot, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
@@ -594,12 +480,10 @@ export class LegacyBackupApiRequestFactory extends BaseAPIRequestFactory {
         }
 
 
-        // verify required parameter 'apiSnapshotView' is not null or undefined
-        if (apiSnapshotView === null || apiSnapshotView === undefined) {
-            throw new RequiredError("LegacyBackupApi", "updateLegacySnapshotRetention", "apiSnapshotView");
+        // verify required parameter 'backupSnapshot' is not null or undefined
+        if (backupSnapshot === null || backupSnapshot === undefined) {
+            throw new RequiredError("LegacyBackupApi", "updateLegacySnapshotRetention", "backupSnapshot");
         }
-
-
 
 
         // Path Params
@@ -612,16 +496,6 @@ export class LegacyBackupApiRequestFactory extends BaseAPIRequestFactory {
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
 
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
-
 
         // Body Params
         const contentType = ObjectSerializer.getPreferredMediaType([
@@ -629,7 +503,7 @@ export class LegacyBackupApiRequestFactory extends BaseAPIRequestFactory {
         ]);
         requestContext.setHeaderParam("Content-Type", contentType);
         const serializedBody = ObjectSerializer.stringify(
-            ObjectSerializer.serialize(apiSnapshotView, "ApiSnapshotView", ""),
+            ObjectSerializer.serialize(backupSnapshot, "BackupSnapshot", ""),
             contentType
         );
         requestContext.setBody(serializedBody);
@@ -644,15 +518,13 @@ export class LegacyBackupApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * Update the snapshot schedule for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role.
+     * Updates the snapshot schedule for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Owner role.   Effective 23 March 2020, all new clusters can use only Cloud Backups. When you upgrade to 4.2, your backup system upgrades to cloud backup if it is currently set to legacy backup. After this upgrade, all your existing legacy backup snapshots remain available. They expire over time in accordance with your retention policy. Your backup policy resets to the default schedule. If you had a custom backup policy in place with legacy backups, you must re-create it with the procedure outlined in the [Cloud Backup documentation](https://www.mongodb.com/docs/atlas/backup/cloud-backup/scheduling/#std-label-cloud-provider-backup-schedule).
      * Update Snapshot Schedule for One Cluster
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
      * @param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
-     * @param snapshotSchedule Update the snapshot schedule for one cluster in the specified project.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+     * @param apiAtlasSnapshotSchedule Update the snapshot schedule for one cluster in the specified project.
      */
-    public async updateLegacySnapshotSchedule(groupId: string, clusterName: string, snapshotSchedule: SnapshotSchedule, envelope?: boolean, pretty?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async updateLegacySnapshotSchedule(groupId: string, clusterName: string, apiAtlasSnapshotSchedule: ApiAtlasSnapshotSchedule, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
@@ -667,12 +539,10 @@ export class LegacyBackupApiRequestFactory extends BaseAPIRequestFactory {
         }
 
 
-        // verify required parameter 'snapshotSchedule' is not null or undefined
-        if (snapshotSchedule === null || snapshotSchedule === undefined) {
-            throw new RequiredError("LegacyBackupApi", "updateLegacySnapshotSchedule", "snapshotSchedule");
+        // verify required parameter 'apiAtlasSnapshotSchedule' is not null or undefined
+        if (apiAtlasSnapshotSchedule === null || apiAtlasSnapshotSchedule === undefined) {
+            throw new RequiredError("LegacyBackupApi", "updateLegacySnapshotSchedule", "apiAtlasSnapshotSchedule");
         }
-
-
 
 
         // Path Params
@@ -684,16 +554,6 @@ export class LegacyBackupApiRequestFactory extends BaseAPIRequestFactory {
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
 
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
-
 
         // Body Params
         const contentType = ObjectSerializer.getPreferredMediaType([
@@ -701,7 +561,7 @@ export class LegacyBackupApiRequestFactory extends BaseAPIRequestFactory {
         ]);
         requestContext.setHeaderParam("Content-Type", contentType);
         const serializedBody = ObjectSerializer.stringify(
-            ObjectSerializer.serialize(snapshotSchedule, "SnapshotSchedule", ""),
+            ObjectSerializer.serialize(apiAtlasSnapshotSchedule, "ApiAtlasSnapshotSchedule", ""),
             contentType
         );
         requestContext.setBody(serializedBody);
@@ -726,39 +586,43 @@ export class LegacyBackupApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteLegacySnapshot
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteLegacySnapshot(response: ResponseContext): Promise<void > {
+     public async deleteLegacySnapshot(response: ResponseContext): Promise<any > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("204", response.httpStatusCode)) {
-            return;
+            const body: any = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "any", ""
+            ) as any;
+            return body;
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request.", body, response.headers);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: void = ObjectSerializer.deserialize(
+            const body: any = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "void", ""
-            ) as void;
+                "any", ""
+            ) as any;
             return body;
         }
 
@@ -772,13 +636,13 @@ export class LegacyBackupApiResponseProcessor {
      * @params response Response returned by the server for a request to getLegacyBackupCheckpoint
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getLegacyBackupCheckpoint(response: ResponseContext): Promise<Checkpoint > {
+     public async getLegacyBackupCheckpoint(response: ResponseContext): Promise<ApiAtlasCheckpoint > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: Checkpoint = ObjectSerializer.deserialize(
+            const body: ApiAtlasCheckpoint = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "Checkpoint", ""
-            ) as Checkpoint;
+                "ApiAtlasCheckpoint", ""
+            ) as ApiAtlasCheckpoint;
             return body;
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
@@ -786,36 +650,36 @@ export class LegacyBackupApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request.", body, response.headers);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized.", body, response.headers);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: Checkpoint = ObjectSerializer.deserialize(
+            const body: ApiAtlasCheckpoint = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "Checkpoint", ""
-            ) as Checkpoint;
+                "ApiAtlasCheckpoint", ""
+            ) as ApiAtlasCheckpoint;
             return body;
         }
 
@@ -829,13 +693,13 @@ export class LegacyBackupApiResponseProcessor {
      * @params response Response returned by the server for a request to getLegacyBackupRestoreJob
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getLegacyBackupRestoreJob(response: ResponseContext): Promise<ApiRestoreJobView > {
+     public async getLegacyBackupRestoreJob(response: ResponseContext): Promise<BackupRestoreJob > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: ApiRestoreJobView = ObjectSerializer.deserialize(
+            const body: BackupRestoreJob = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "ApiRestoreJobView", ""
-            ) as ApiRestoreJobView;
+                "BackupRestoreJob", ""
+            ) as BackupRestoreJob;
             return body;
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
@@ -843,29 +707,29 @@ export class LegacyBackupApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request.", body, response.headers);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: ApiRestoreJobView = ObjectSerializer.deserialize(
+            const body: BackupRestoreJob = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "ApiRestoreJobView", ""
-            ) as ApiRestoreJobView;
+                "BackupRestoreJob", ""
+            ) as BackupRestoreJob;
             return body;
         }
 
@@ -879,13 +743,13 @@ export class LegacyBackupApiResponseProcessor {
      * @params response Response returned by the server for a request to getLegacySnapshot
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getLegacySnapshot(response: ResponseContext): Promise<ApiSnapshotView > {
+     public async getLegacySnapshot(response: ResponseContext): Promise<BackupSnapshot > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: ApiSnapshotView = ObjectSerializer.deserialize(
+            const body: BackupSnapshot = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "ApiSnapshotView", ""
-            ) as ApiSnapshotView;
+                "BackupSnapshot", ""
+            ) as BackupSnapshot;
             return body;
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
@@ -893,22 +757,22 @@ export class LegacyBackupApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: ApiSnapshotView = ObjectSerializer.deserialize(
+            const body: BackupSnapshot = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "ApiSnapshotView", ""
-            ) as ApiSnapshotView;
+                "BackupSnapshot", ""
+            ) as BackupSnapshot;
             return body;
         }
 
@@ -922,13 +786,13 @@ export class LegacyBackupApiResponseProcessor {
      * @params response Response returned by the server for a request to getLegacySnapshotSchedule
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getLegacySnapshotSchedule(response: ResponseContext): Promise<SnapshotSchedule > {
+     public async getLegacySnapshotSchedule(response: ResponseContext): Promise<ApiAtlasSnapshotSchedule > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: SnapshotSchedule = ObjectSerializer.deserialize(
+            const body: ApiAtlasSnapshotSchedule = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "SnapshotSchedule", ""
-            ) as SnapshotSchedule;
+                "ApiAtlasSnapshotSchedule", ""
+            ) as ApiAtlasSnapshotSchedule;
             return body;
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
@@ -936,22 +800,22 @@ export class LegacyBackupApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: SnapshotSchedule = ObjectSerializer.deserialize(
+            const body: ApiAtlasSnapshotSchedule = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "SnapshotSchedule", ""
-            ) as SnapshotSchedule;
+                "ApiAtlasSnapshotSchedule", ""
+            ) as ApiAtlasSnapshotSchedule;
             return body;
         }
 
@@ -965,13 +829,13 @@ export class LegacyBackupApiResponseProcessor {
      * @params response Response returned by the server for a request to listLegacyBackupCheckpoints
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listLegacyBackupCheckpoints(response: ResponseContext): Promise<PaginatedApiAtlasCheckpointView > {
+     public async listLegacyBackupCheckpoints(response: ResponseContext): Promise<PaginatedApiAtlasCheckpoint > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: PaginatedApiAtlasCheckpointView = ObjectSerializer.deserialize(
+            const body: PaginatedApiAtlasCheckpoint = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "PaginatedApiAtlasCheckpointView", ""
-            ) as PaginatedApiAtlasCheckpointView;
+                "PaginatedApiAtlasCheckpoint", ""
+            ) as PaginatedApiAtlasCheckpoint;
             return body;
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
@@ -979,22 +843,22 @@ export class LegacyBackupApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: PaginatedApiAtlasCheckpointView = ObjectSerializer.deserialize(
+            const body: PaginatedApiAtlasCheckpoint = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "PaginatedApiAtlasCheckpointView", ""
-            ) as PaginatedApiAtlasCheckpointView;
+                "PaginatedApiAtlasCheckpoint", ""
+            ) as PaginatedApiAtlasCheckpoint;
             return body;
         }
 
@@ -1008,13 +872,13 @@ export class LegacyBackupApiResponseProcessor {
      * @params response Response returned by the server for a request to listLegacyBackupRestoreJobs
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listLegacyBackupRestoreJobs(response: ResponseContext): Promise<PaginatedRestoreJobView > {
+     public async listLegacyBackupRestoreJobs(response: ResponseContext): Promise<PaginatedRestoreJob > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: PaginatedRestoreJobView = ObjectSerializer.deserialize(
+            const body: PaginatedRestoreJob = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "PaginatedRestoreJobView", ""
-            ) as PaginatedRestoreJobView;
+                "PaginatedRestoreJob", ""
+            ) as PaginatedRestoreJob;
             return body;
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
@@ -1022,29 +886,29 @@ export class LegacyBackupApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request.", body, response.headers);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: PaginatedRestoreJobView = ObjectSerializer.deserialize(
+            const body: PaginatedRestoreJob = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "PaginatedRestoreJobView", ""
-            ) as PaginatedRestoreJobView;
+                "PaginatedRestoreJob", ""
+            ) as PaginatedRestoreJob;
             return body;
         }
 
@@ -1058,13 +922,13 @@ export class LegacyBackupApiResponseProcessor {
      * @params response Response returned by the server for a request to listLegacySnapshots
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listLegacySnapshots(response: ResponseContext): Promise<PaginatedSnapshotView > {
+     public async listLegacySnapshots(response: ResponseContext): Promise<PaginatedSnapshot > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: PaginatedSnapshotView = ObjectSerializer.deserialize(
+            const body: PaginatedSnapshot = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "PaginatedSnapshotView", ""
-            ) as PaginatedSnapshotView;
+                "PaginatedSnapshot", ""
+            ) as PaginatedSnapshot;
             return body;
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
@@ -1072,22 +936,22 @@ export class LegacyBackupApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: PaginatedSnapshotView = ObjectSerializer.deserialize(
+            const body: PaginatedSnapshot = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "PaginatedSnapshotView", ""
-            ) as PaginatedSnapshotView;
+                "PaginatedSnapshot", ""
+            ) as PaginatedSnapshot;
             return body;
         }
 
@@ -1101,13 +965,13 @@ export class LegacyBackupApiResponseProcessor {
      * @params response Response returned by the server for a request to updateLegacySnapshotRetention
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async updateLegacySnapshotRetention(response: ResponseContext): Promise<ApiSnapshotView > {
+     public async updateLegacySnapshotRetention(response: ResponseContext): Promise<BackupSnapshot > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: ApiSnapshotView = ObjectSerializer.deserialize(
+            const body: BackupSnapshot = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "ApiSnapshotView", ""
-            ) as ApiSnapshotView;
+                "BackupSnapshot", ""
+            ) as BackupSnapshot;
             return body;
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
@@ -1115,22 +979,22 @@ export class LegacyBackupApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: ApiSnapshotView = ObjectSerializer.deserialize(
+            const body: BackupSnapshot = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "ApiSnapshotView", ""
-            ) as ApiSnapshotView;
+                "BackupSnapshot", ""
+            ) as BackupSnapshot;
             return body;
         }
 
@@ -1144,13 +1008,13 @@ export class LegacyBackupApiResponseProcessor {
      * @params response Response returned by the server for a request to updateLegacySnapshotSchedule
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async updateLegacySnapshotSchedule(response: ResponseContext): Promise<SnapshotSchedule > {
+     public async updateLegacySnapshotSchedule(response: ResponseContext): Promise<ApiAtlasSnapshotSchedule > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: SnapshotSchedule = ObjectSerializer.deserialize(
+            const body: ApiAtlasSnapshotSchedule = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "SnapshotSchedule", ""
-            ) as SnapshotSchedule;
+                "ApiAtlasSnapshotSchedule", ""
+            ) as ApiAtlasSnapshotSchedule;
             return body;
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
@@ -1158,22 +1022,22 @@ export class LegacyBackupApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: SnapshotSchedule = ObjectSerializer.deserialize(
+            const body: ApiAtlasSnapshotSchedule = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "SnapshotSchedule", ""
-            ) as SnapshotSchedule;
+                "ApiAtlasSnapshotSchedule", ""
+            ) as ApiAtlasSnapshotSchedule;
             return body;
         }
 

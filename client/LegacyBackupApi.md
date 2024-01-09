@@ -17,9 +17,9 @@ Method | HTTP request | Description
 
 
 # **deleteLegacySnapshot**
-> void deleteLegacySnapshot()
+> any deleteLegacySnapshot()
 
-Removes one legacy backup snapshot for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Owner role and an entry for the project access list.
+Removes one legacy backup snapshot for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Owner role. Effective 23 March 2020, all new clusters can use only Cloud Backups. When you upgrade to 4.2, your backup system upgrades to cloud backup if it is currently set to legacy backup. After this upgrade, all your existing legacy backup snapshots remain available. They expire over time in accordance with your retention policy. Your backup policy resets to the default schedule. If you had a custom backup policy in place with legacy backups, you must re-create it with the procedure outlined in the [Cloud Backup documentation](https://www.mongodb.com/docs/atlas/backup/cloud-backup/scheduling/#std-label-cloud-provider-backup-schedule).
 
 ### Example
 
@@ -35,13 +35,9 @@ let body:.LegacyBackupApiDeleteLegacySnapshotRequest = {
   // string | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
   groupId: "32b6e34b3d91647abb20e7b8",
   // string | Human-readable label that identifies the cluster.
-  clusterName: "gqW,C",
+  clusterName: "gqWzyBAw2ZuufUOHOEhA8IcFQXnua",
   // string | Unique 24-hexadecimal digit string that identifies the desired snapshot.
   snapshotId: "bf325375e030fccba0091731",
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
-  // boolean | Flag that indicates whether the response body should be in the <a href=\"https://en.wikipedia.org/wiki/Prettyprint\" target=\"_blank\" rel=\"noopener noreferrer\">prettyprint</a> format. (optional)
-  pretty: false,
 };
 
 apiInstance.deleteLegacySnapshot(body).then((data:any) => {
@@ -57,13 +53,11 @@ Name | Type | Description  | Notes
  **groupId** | [**string**] | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. | defaults to undefined
  **clusterName** | [**string**] | Human-readable label that identifies the cluster. | defaults to undefined
  **snapshotId** | [**string**] | Unique 24-hexadecimal digit string that identifies the desired snapshot. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
- **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
 
 
 ### Return type
 
-**void**
+**any**
 
 ### Authorization
 
@@ -72,23 +66,23 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.atlas.2023-01-01+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | This endpoint does not return a response body. |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**401** | Unauthorized. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **getLegacyBackupCheckpoint**
-> Checkpoint getLegacyBackupCheckpoint()
+> ApiAtlasCheckpoint getLegacyBackupCheckpoint()
 
-Returns one legacy backup checkpoint for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+Returns one legacy backup checkpoint for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
 
 ### Example
 
@@ -106,11 +100,7 @@ let body:.LegacyBackupApiGetLegacyBackupCheckpointRequest = {
   // string | Unique 24-hexadecimal digit string that identifies the checkpoint.
   checkpointId: "bf325375e030fccba0091731",
   // string | Human-readable label that identifies the cluster that contains the checkpoints that you want to return.
-  clusterName: "gqW,C",
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
-  // boolean | Flag that indicates whether the response body should be in the <a href=\"https://en.wikipedia.org/wiki/Prettyprint\" target=\"_blank\" rel=\"noopener noreferrer\">prettyprint</a> format. (optional)
-  pretty: false,
+  clusterName: "gqWzyBAw2ZuufUOHOEhA8IcFQXnua",
 };
 
 apiInstance.getLegacyBackupCheckpoint(body).then((data:any) => {
@@ -126,13 +116,11 @@ Name | Type | Description  | Notes
  **groupId** | [**string**] | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. | defaults to undefined
  **checkpointId** | [**string**] | Unique 24-hexadecimal digit string that identifies the checkpoint. | defaults to undefined
  **clusterName** | [**string**] | Human-readable label that identifies the cluster that contains the checkpoints that you want to return. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
- **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
 
 
 ### Return type
 
-**Checkpoint**
+**ApiAtlasCheckpoint**
 
 ### Authorization
 
@@ -148,17 +136,17 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**401** | Unauthorized. |  -  |
+**404** | Not Found. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **getLegacyBackupRestoreJob**
-> ApiRestoreJobView getLegacyBackupRestoreJob()
+> BackupRestoreJob getLegacyBackupRestoreJob()
 
-Returns one legacy backup restore job for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+Returns one legacy backup restore job for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role.   Effective 23 March 2020, all new clusters can use only Cloud Backups. When you upgrade to 4.2, your backup system upgrades to cloud backup if it is currently set to legacy backup. After this upgrade, all your existing legacy backup snapshots remain available. They expire over time in accordance with your retention policy. Your backup policy resets to the default schedule. If you had a custom backup policy in place with legacy backups, you must re-create it with the procedure outlined in the [Cloud Backup documentation](https://www.mongodb.com/docs/atlas/backup/cloud-backup/scheduling/#std-label-cloud-provider-backup-schedule).
 
 ### Example
 
@@ -174,13 +162,9 @@ let body:.LegacyBackupApiGetLegacyBackupRestoreJobRequest = {
   // string | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
   groupId: "32b6e34b3d91647abb20e7b8",
   // string | Human-readable label that identifies the cluster with the snapshot you want to return.
-  clusterName: "gqW,C",
+  clusterName: "gqWzyBAw2ZuufUOHOEhA8IcFQXnua",
   // string | Unique 24-hexadecimal digit string that identifies the restore job.
   jobId: "bf325375e030fccba0091731",
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
-  // boolean | Flag that indicates whether the response body should be in the <a href=\"https://en.wikipedia.org/wiki/Prettyprint\" target=\"_blank\" rel=\"noopener noreferrer\">prettyprint</a> format. (optional)
-  pretty: false,
 };
 
 apiInstance.getLegacyBackupRestoreJob(body).then((data:any) => {
@@ -196,13 +180,11 @@ Name | Type | Description  | Notes
  **groupId** | [**string**] | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. | defaults to undefined
  **clusterName** | [**string**] | Human-readable label that identifies the cluster with the snapshot you want to return. | defaults to undefined
  **jobId** | [**string**] | Unique 24-hexadecimal digit string that identifies the restore job. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
- **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
 
 
 ### Return type
 
-**ApiRestoreJobView**
+**BackupRestoreJob**
 
 ### Authorization
 
@@ -218,16 +200,16 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**400** | Bad Request |  -  |
-**404** | Not Found |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**404** | Not Found. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **getLegacySnapshot**
-> ApiSnapshotView getLegacySnapshot()
+> BackupSnapshot getLegacySnapshot()
 
-Returns one legacy backup snapshot for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+Returns one legacy backup snapshot for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. Effective 23 March 2020, all new clusters can use only Cloud Backups. When you upgrade to 4.2, your backup system upgrades to cloud backup if it is currently set to legacy backup. After this upgrade, all your existing legacy backup snapshots remain available. They expire over time in accordance with your retention policy. Your backup policy resets to the default schedule. If you had a custom backup policy in place with legacy backups, you must re-create it with the procedure outlined in the [Cloud Backup documentation](https://www.mongodb.com/docs/atlas/backup/cloud-backup/scheduling/#std-label-cloud-provider-backup-schedule).
 
 ### Example
 
@@ -243,13 +225,9 @@ let body:.LegacyBackupApiGetLegacySnapshotRequest = {
   // string | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
   groupId: "32b6e34b3d91647abb20e7b8",
   // string | Human-readable label that identifies the cluster.
-  clusterName: "gqW,C",
+  clusterName: "gqWzyBAw2ZuufUOHOEhA8IcFQXnua",
   // string | Unique 24-hexadecimal digit string that identifies the desired snapshot.
   snapshotId: "bf325375e030fccba0091731",
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
-  // boolean | Flag that indicates whether the response body should be in the <a href=\"https://en.wikipedia.org/wiki/Prettyprint\" target=\"_blank\" rel=\"noopener noreferrer\">prettyprint</a> format. (optional)
-  pretty: false,
 };
 
 apiInstance.getLegacySnapshot(body).then((data:any) => {
@@ -265,13 +243,11 @@ Name | Type | Description  | Notes
  **groupId** | [**string**] | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. | defaults to undefined
  **clusterName** | [**string**] | Human-readable label that identifies the cluster. | defaults to undefined
  **snapshotId** | [**string**] | Unique 24-hexadecimal digit string that identifies the desired snapshot. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
- **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
 
 
 ### Return type
 
-**ApiSnapshotView**
+**BackupSnapshot**
 
 ### Authorization
 
@@ -287,15 +263,15 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**401** | Unauthorized |  -  |
-**500** | Internal Server Error |  -  |
+**401** | Unauthorized. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **getLegacySnapshotSchedule**
-> SnapshotSchedule getLegacySnapshotSchedule()
+> ApiAtlasSnapshotSchedule getLegacySnapshotSchedule()
 
-Returns the snapshot schedule for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
+Returns the snapshot schedule for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role.   Effective 23 March 2020, all new clusters can use only Cloud Backups. When you upgrade to 4.2, your backup system upgrades to cloud backup if it is currently set to legacy backup. After this upgrade, all your existing legacy backup snapshots remain available. They expire over time in accordance with your retention policy. Your backup policy resets to the default schedule. If you had a custom backup policy in place with legacy backups, you must re-create it with the procedure outlined in the [Cloud Backup documentation](https://www.mongodb.com/docs/atlas/backup/cloud-backup/scheduling/#std-label-cloud-provider-backup-schedule).
 
 ### Example
 
@@ -311,11 +287,7 @@ let body:.LegacyBackupApiGetLegacySnapshotScheduleRequest = {
   // string | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
   groupId: "32b6e34b3d91647abb20e7b8",
   // string | Human-readable label that identifies the cluster with the snapshot you want to return.
-  clusterName: "gqW,C",
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
-  // boolean | Flag that indicates whether the response body should be in the <a href=\"https://en.wikipedia.org/wiki/Prettyprint\" target=\"_blank\" rel=\"noopener noreferrer\">prettyprint</a> format. (optional)
-  pretty: false,
+  clusterName: "gqWzyBAw2ZuufUOHOEhA8IcFQXnua",
 };
 
 apiInstance.getLegacySnapshotSchedule(body).then((data:any) => {
@@ -330,13 +302,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **groupId** | [**string**] | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. | defaults to undefined
  **clusterName** | [**string**] | Human-readable label that identifies the cluster with the snapshot you want to return. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
- **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
 
 
 ### Return type
 
-**SnapshotSchedule**
+**ApiAtlasSnapshotSchedule**
 
 ### Authorization
 
@@ -352,15 +322,15 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**404** | Not Found |  -  |
-**500** | Internal Server Error |  -  |
+**404** | Not Found. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **listLegacyBackupCheckpoints**
-> PaginatedApiAtlasCheckpointView listLegacyBackupCheckpoints()
+> PaginatedApiAtlasCheckpoint listLegacyBackupCheckpoints()
 
-Returns all legacy backup checkpoints for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+Returns all legacy backup checkpoints for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
 
 ### Example
 
@@ -376,17 +346,13 @@ let body:.LegacyBackupApiListLegacyBackupCheckpointsRequest = {
   // string | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
   groupId: "32b6e34b3d91647abb20e7b8",
   // string | Human-readable label that identifies the cluster that contains the checkpoints that you want to return.
-  clusterName: "gqW,C",
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
+  clusterName: "gqWzyBAw2ZuufUOHOEhA8IcFQXnua",
   // boolean | Flag that indicates whether the response returns the total number of items (**totalCount**) in the response. (optional)
   includeCount: true,
   // number | Number of items that the response returns per page. (optional)
   itemsPerPage: 100,
   // number | Number of the page that displays the current set of the total objects that the response returns. (optional)
   pageNum: 1,
-  // boolean | Flag that indicates whether the response body should be in the <a href=\"https://en.wikipedia.org/wiki/Prettyprint\" target=\"_blank\" rel=\"noopener noreferrer\">prettyprint</a> format. (optional)
-  pretty: false,
 };
 
 apiInstance.listLegacyBackupCheckpoints(body).then((data:any) => {
@@ -401,16 +367,14 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **groupId** | [**string**] | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. | defaults to undefined
  **clusterName** | [**string**] | Human-readable label that identifies the cluster that contains the checkpoints that you want to return. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
  **includeCount** | [**boolean**] | Flag that indicates whether the response returns the total number of items (**totalCount**) in the response. | (optional) defaults to undefined
  **itemsPerPage** | [**number**] | Number of items that the response returns per page. | (optional) defaults to 100
  **pageNum** | [**number**] | Number of the page that displays the current set of the total objects that the response returns. | (optional) defaults to 1
- **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
 
 
 ### Return type
 
-**PaginatedApiAtlasCheckpointView**
+**PaginatedApiAtlasCheckpoint**
 
 ### Authorization
 
@@ -426,15 +390,15 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**401** | Unauthorized |  -  |
-**500** | Internal Server Error |  -  |
+**401** | Unauthorized. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **listLegacyBackupRestoreJobs**
-> PaginatedRestoreJobView listLegacyBackupRestoreJobs()
+> PaginatedRestoreJob listLegacyBackupRestoreJobs()
 
-Returns all legacy backup restore jobs for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+Returns all legacy backup restore jobs for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role.   Effective 23 March 2020, all new clusters can use only Cloud Backups. When you upgrade to 4.2, your backup system upgrades to cloud backup if it is currently set to legacy backup. After this upgrade, all your existing legacy backup snapshots remain available. They expire over time in accordance with your retention policy. Your backup policy resets to the default schedule. If you had a custom backup policy in place with legacy backups, you must re-create it with the procedure outlined in the [Cloud Backup documentation](https://www.mongodb.com/docs/atlas/backup/cloud-backup/scheduling/#std-label-cloud-provider-backup-schedule). If you use the `BATCH-ID` query parameter, you can retrieve all restore jobs in the specified batch. When creating a restore job for a sharded cluster, MongoDB Cloud creates a separate job for each shard, plus another for the config server. Each of those jobs are part of a batch. However, a batch can't include a restore job for a replica set.
 
 ### Example
 
@@ -450,17 +414,13 @@ let body:.LegacyBackupApiListLegacyBackupRestoreJobsRequest = {
   // string | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
   groupId: "32b6e34b3d91647abb20e7b8",
   // string | Human-readable label that identifies the cluster with the snapshot you want to return.
-  clusterName: "gqW,C",
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
+  clusterName: "gqWzyBAw2ZuufUOHOEhA8IcFQXnua",
   // boolean | Flag that indicates whether the response returns the total number of items (**totalCount**) in the response. (optional)
   includeCount: true,
   // number | Number of items that the response returns per page. (optional)
   itemsPerPage: 100,
   // number | Number of the page that displays the current set of the total objects that the response returns. (optional)
   pageNum: 1,
-  // boolean | Flag that indicates whether the response body should be in the <a href=\"https://en.wikipedia.org/wiki/Prettyprint\" target=\"_blank\" rel=\"noopener noreferrer\">prettyprint</a> format. (optional)
-  pretty: false,
   // string | Unique 24-hexadecimal digit string that identifies the batch of restore jobs to return. Timestamp in ISO 8601 date and time format in UTC when creating a restore job for a sharded cluster, Application creates a separate job for each shard, plus another for the config host. Each of these jobs comprise one batch. A restore job for a replica set can't be part of a batch. (optional)
   batchId: "bf325375e030fccba0091731",
 };
@@ -477,17 +437,15 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **groupId** | [**string**] | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. | defaults to undefined
  **clusterName** | [**string**] | Human-readable label that identifies the cluster with the snapshot you want to return. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
  **includeCount** | [**boolean**] | Flag that indicates whether the response returns the total number of items (**totalCount**) in the response. | (optional) defaults to undefined
  **itemsPerPage** | [**number**] | Number of items that the response returns per page. | (optional) defaults to 100
  **pageNum** | [**number**] | Number of the page that displays the current set of the total objects that the response returns. | (optional) defaults to 1
- **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
  **batchId** | [**string**] | Unique 24-hexadecimal digit string that identifies the batch of restore jobs to return. Timestamp in ISO 8601 date and time format in UTC when creating a restore job for a sharded cluster, Application creates a separate job for each shard, plus another for the config host. Each of these jobs comprise one batch. A restore job for a replica set can&#39;t be part of a batch. | (optional) defaults to undefined
 
 
 ### Return type
 
-**PaginatedRestoreJobView**
+**PaginatedRestoreJob**
 
 ### Authorization
 
@@ -503,16 +461,16 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**400** | Bad Request |  -  |
-**404** | Not Found |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**404** | Not Found. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **listLegacySnapshots**
-> PaginatedSnapshotView listLegacySnapshots()
+> PaginatedSnapshot listLegacySnapshots()
 
-Returns all legacy backup snapshots for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+Returns all legacy backup snapshots for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. Effective 23 March 2020, all new clusters can use only Cloud Backups. When you upgrade to 4.2, your backup system upgrades to cloud backup if it is currently set to legacy backup. After this upgrade, all your existing legacy backup snapshots remain available. They expire over time in accordance with your retention policy. Your backup policy resets to the default schedule. If you had a custom backup policy in place with legacy backups, you must re-create it with the procedure outlined in the [Cloud Backup documentation](https://www.mongodb.com/docs/atlas/backup/cloud-backup/scheduling/#std-label-cloud-provider-backup-schedule).
 
 ### Example
 
@@ -528,18 +486,14 @@ let body:.LegacyBackupApiListLegacySnapshotsRequest = {
   // string | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
   groupId: "32b6e34b3d91647abb20e7b8",
   // string | Human-readable label that identifies the cluster.
-  clusterName: "gqW,C",
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
+  clusterName: "gqWzyBAw2ZuufUOHOEhA8IcFQXnua",
   // boolean | Flag that indicates whether the response returns the total number of items (**totalCount**) in the response. (optional)
   includeCount: true,
   // number | Number of items that the response returns per page. (optional)
   itemsPerPage: 100,
   // number | Number of the page that displays the current set of the total objects that the response returns. (optional)
   pageNum: 1,
-  // boolean | Flag that indicates whether the response body should be in the <a href=\"https://en.wikipedia.org/wiki/Prettyprint\" target=\"_blank\" rel=\"noopener noreferrer\">prettyprint</a> format. (optional)
-  pretty: false,
-  // 'all' | 'true' | 'false' | Human-readable label that specifies whether to return only completed, incomplete, or all snapshots. By default, MongoDB Cloud only returns completed snapshots. (optional)
+  // string | Human-readable label that specifies whether to return only completed, incomplete, or all snapshots. By default, MongoDB Cloud only returns completed snapshots. (optional)
   completed: "true",
 };
 
@@ -555,17 +509,15 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **groupId** | [**string**] | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. | defaults to undefined
  **clusterName** | [**string**] | Human-readable label that identifies the cluster. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
  **includeCount** | [**boolean**] | Flag that indicates whether the response returns the total number of items (**totalCount**) in the response. | (optional) defaults to undefined
  **itemsPerPage** | [**number**] | Number of items that the response returns per page. | (optional) defaults to 100
  **pageNum** | [**number**] | Number of the page that displays the current set of the total objects that the response returns. | (optional) defaults to 1
- **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
- **completed** | [**&#39;all&#39; | &#39;true&#39; | &#39;false&#39;**]**Array<&#39;all&#39; &#124; &#39;true&#39; &#124; &#39;false&#39; &#124; &#39;11184809&#39;>** | Human-readable label that specifies whether to return only completed, incomplete, or all snapshots. By default, MongoDB Cloud only returns completed snapshots. | (optional) defaults to 'true'
+ **completed** | [**string**] | Human-readable label that specifies whether to return only completed, incomplete, or all snapshots. By default, MongoDB Cloud only returns completed snapshots. | (optional) defaults to 'true'
 
 
 ### Return type
 
-**PaginatedSnapshotView**
+**PaginatedSnapshot**
 
 ### Authorization
 
@@ -581,15 +533,15 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**401** | Unauthorized |  -  |
-**500** | Internal Server Error |  -  |
+**401** | Unauthorized. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **updateLegacySnapshotRetention**
-> ApiSnapshotView updateLegacySnapshotRetention(apiSnapshotView)
+> BackupSnapshot updateLegacySnapshotRetention(backupSnapshot)
 
-Changes the expiration date for one legacy backup snapshot for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
+Changes the expiration date for one legacy backup snapshot for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Owner role. Effective 23 March 2020, all new clusters can use only Cloud Backups. When you upgrade to 4.2, your backup system upgrades to cloud backup if it is currently set to legacy backup. After this upgrade, all your existing legacy backup snapshots remain available. They expire over time in accordance with your retention policy. Your backup policy resets to the default schedule. If you had a custom backup policy in place with legacy backups, you must re-create it with the procedure outlined in the [Cloud Backup documentation](https://www.mongodb.com/docs/atlas/backup/cloud-backup/scheduling/#std-label-cloud-provider-backup-schedule).
 
 ### Example
 
@@ -605,18 +557,14 @@ let body:.LegacyBackupApiUpdateLegacySnapshotRetentionRequest = {
   // string | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
   groupId: "32b6e34b3d91647abb20e7b8",
   // string | Human-readable label that identifies the cluster.
-  clusterName: "gqW,C",
+  clusterName: "gqWzyBAw2ZuufUOHOEhA8IcFQXnua",
   // string | Unique 24-hexadecimal digit string that identifies the desired snapshot.
   snapshotId: "bf325375e030fccba0091731",
-  // ApiSnapshotView | Changes One Legacy Backup Snapshot Expiration.
-  apiSnapshotView: {
+  // BackupSnapshot | Changes One Legacy Backup Snapshot Expiration.
+  backupSnapshot: {
     doNotDelete: true,
     expires: new Date('1970-01-01T00:00:00.00Z'),
   },
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
-  // boolean | Flag that indicates whether the response body should be in the <a href=\"https://en.wikipedia.org/wiki/Prettyprint\" target=\"_blank\" rel=\"noopener noreferrer\">prettyprint</a> format. (optional)
-  pretty: false,
 };
 
 apiInstance.updateLegacySnapshotRetention(body).then((data:any) => {
@@ -629,17 +577,15 @@ apiInstance.updateLegacySnapshotRetention(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **apiSnapshotView** | **ApiSnapshotView**| Changes One Legacy Backup Snapshot Expiration. |
+ **backupSnapshot** | **BackupSnapshot**| Changes One Legacy Backup Snapshot Expiration. |
  **groupId** | [**string**] | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. | defaults to undefined
  **clusterName** | [**string**] | Human-readable label that identifies the cluster. | defaults to undefined
  **snapshotId** | [**string**] | Unique 24-hexadecimal digit string that identifies the desired snapshot. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
- **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
 
 
 ### Return type
 
-**ApiSnapshotView**
+**BackupSnapshot**
 
 ### Authorization
 
@@ -655,15 +601,15 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**401** | Unauthorized |  -  |
-**500** | Internal Server Error |  -  |
+**401** | Unauthorized. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **updateLegacySnapshotSchedule**
-> SnapshotSchedule updateLegacySnapshotSchedule(snapshotSchedule)
+> ApiAtlasSnapshotSchedule updateLegacySnapshotSchedule(apiAtlasSnapshotSchedule)
 
-Update the snapshot schedule for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role.
+Updates the snapshot schedule for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Owner role.   Effective 23 March 2020, all new clusters can use only Cloud Backups. When you upgrade to 4.2, your backup system upgrades to cloud backup if it is currently set to legacy backup. After this upgrade, all your existing legacy backup snapshots remain available. They expire over time in accordance with your retention policy. Your backup policy resets to the default schedule. If you had a custom backup policy in place with legacy backups, you must re-create it with the procedure outlined in the [Cloud Backup documentation](https://www.mongodb.com/docs/atlas/backup/cloud-backup/scheduling/#std-label-cloud-provider-backup-schedule).
 
 ### Example
 
@@ -679,22 +625,18 @@ let body:.LegacyBackupApiUpdateLegacySnapshotScheduleRequest = {
   // string | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
   groupId: "32b6e34b3d91647abb20e7b8",
   // string | Human-readable label that identifies the cluster with the snapshot you want to return.
-  clusterName: "gqW,C",
-  // SnapshotSchedule | Update the snapshot schedule for one cluster in the specified project.
-  snapshotSchedule: {
-    clusterCheckpointIntervalMin: 15,
+  clusterName: "gqWzyBAw2ZuufUOHOEhA8IcFQXnua",
+  // ApiAtlasSnapshotSchedule | Update the snapshot schedule for one cluster in the specified project.
+  apiAtlasSnapshotSchedule: {
+    clusterCheckpointIntervalMin: 1,
     clusterId: "32b6e34b3d91647abb20e7b8",
-    dailySnapshotRetentionDays: 0,
-    monthlySnapshotRetentionMonths: 0,
+    dailySnapshotRetentionDays: 1,
+    monthlySnapshotRetentionMonths: 1,
     pointInTimeWindowHours: 1,
-    snapshotIntervalHours: 6,
-    snapshotRetentionDays: 2,
-    weeklySnapshotRetentionWeeks: 0,
+    snapshotIntervalHours: 1,
+    snapshotRetentionDays: 1,
+    weeklySnapshotRetentionWeeks: 1,
   },
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
-  // boolean | Flag that indicates whether the response body should be in the <a href=\"https://en.wikipedia.org/wiki/Prettyprint\" target=\"_blank\" rel=\"noopener noreferrer\">prettyprint</a> format. (optional)
-  pretty: false,
 };
 
 apiInstance.updateLegacySnapshotSchedule(body).then((data:any) => {
@@ -707,16 +649,14 @@ apiInstance.updateLegacySnapshotSchedule(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **snapshotSchedule** | **SnapshotSchedule**| Update the snapshot schedule for one cluster in the specified project. |
+ **apiAtlasSnapshotSchedule** | **ApiAtlasSnapshotSchedule**| Update the snapshot schedule for one cluster in the specified project. |
  **groupId** | [**string**] | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. | defaults to undefined
  **clusterName** | [**string**] | Human-readable label that identifies the cluster with the snapshot you want to return. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
- **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
 
 
 ### Return type
 
-**SnapshotSchedule**
+**ApiAtlasSnapshotSchedule**
 
 ### Authorization
 
@@ -732,8 +672,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**400** | Bad Request |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 

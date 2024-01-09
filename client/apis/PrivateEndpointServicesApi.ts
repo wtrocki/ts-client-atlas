@@ -9,12 +9,11 @@ import {SecurityAuthentication} from '../auth/auth';
 
 
 import { ApiError } from '../models/ApiError';
-import { CreateEndpointServiceRequest } from '../models/CreateEndpointServiceRequest';
-import { CreatePrivateEndpointRequest } from '../models/CreatePrivateEndpointRequest';
-import { Endpoint } from '../models/Endpoint';
+import { CloudProviderEndpointServiceRequest } from '../models/CloudProviderEndpointServiceRequest';
+import { CreateEndpointRequest } from '../models/CreateEndpointRequest';
 import { EndpointService } from '../models/EndpointService';
-import { PaginatedPrivateLinkConnectionView } from '../models/PaginatedPrivateLinkConnectionView';
-import { ProjectSettingItemView } from '../models/ProjectSettingItemView';
+import { PrivateLinkEndpoint } from '../models/PrivateLinkEndpoint';
+import { ProjectSettingItem } from '../models/ProjectSettingItem';
 
 /**
  * no description
@@ -22,16 +21,14 @@ import { ProjectSettingItemView } from '../models/ProjectSettingItemView';
 export class PrivateEndpointServicesApiRequestFactory extends BaseAPIRequestFactory {
 
     /**
-     * Creates one private resource in the specified private resource service hosted from one cloud service provider. This cloud service provider manages the private resource service for the project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
+     * Creates one private endpoint for the specified cloud service provider. This cloud service provider manages the private endpoint service, which in turn manages the private endpoints for the project. To use this resource, the requesting API Key must have the Project Owner role. To learn more about considerations, limitations, and prerequisites, see the MongoDB documentation for setting up a private endpoint.
      * Create One Private Endpoint for One Provider
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
      * @param cloudProvider Cloud service provider that manages this private endpoint.
      * @param endpointServiceId Unique 24-hexadecimal digit string that identifies the private endpoint service for which you want to create a private endpoint.
-     * @param createPrivateEndpointRequest Creates one private resource endpoint for the specified cloud service provider.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+     * @param createEndpointRequest Creates one private endpoint for the specified cloud service provider.
      */
-    public async createPrivateEndpoint(groupId: string, cloudProvider: 'AWS' | 'AZURE' | 'GCP', endpointServiceId: string, createPrivateEndpointRequest: CreatePrivateEndpointRequest, envelope?: boolean, pretty?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async createPrivateEndpoint(groupId: string, cloudProvider: string, endpointServiceId: string, createEndpointRequest: CreateEndpointRequest, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
@@ -52,12 +49,10 @@ export class PrivateEndpointServicesApiRequestFactory extends BaseAPIRequestFact
         }
 
 
-        // verify required parameter 'createPrivateEndpointRequest' is not null or undefined
-        if (createPrivateEndpointRequest === null || createPrivateEndpointRequest === undefined) {
-            throw new RequiredError("PrivateEndpointServicesApi", "createPrivateEndpoint", "createPrivateEndpointRequest");
+        // verify required parameter 'createEndpointRequest' is not null or undefined
+        if (createEndpointRequest === null || createEndpointRequest === undefined) {
+            throw new RequiredError("PrivateEndpointServicesApi", "createPrivateEndpoint", "createEndpointRequest");
         }
-
-
 
 
         // Path Params
@@ -70,16 +65,6 @@ export class PrivateEndpointServicesApiRequestFactory extends BaseAPIRequestFact
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
 
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
-
 
         // Body Params
         const contentType = ObjectSerializer.getPreferredMediaType([
@@ -87,7 +72,7 @@ export class PrivateEndpointServicesApiRequestFactory extends BaseAPIRequestFact
         ]);
         requestContext.setHeaderParam("Content-Type", contentType);
         const serializedBody = ObjectSerializer.stringify(
-            ObjectSerializer.serialize(createPrivateEndpointRequest, "CreatePrivateEndpointRequest", ""),
+            ObjectSerializer.serialize(createEndpointRequest, "CreateEndpointRequest", ""),
             contentType
         );
         requestContext.setBody(serializedBody);
@@ -102,14 +87,12 @@ export class PrivateEndpointServicesApiRequestFactory extends BaseAPIRequestFact
     }
 
     /**
-     * Creates one private resource service for the specified cloud service provider. This cloud service provider manages the private resource service for the project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
+     * Creates one private endpoint service for the specified cloud service provider. This cloud service provider manages the private endpoint service for the project. When you create a private endpoint service, MongoDB Cloud creates a network container in the project for the cloud provider for which you create the private endpoint service if one doesn't already exist. To use this resource, the requesting API Key must have the Project Owner role.
      * Create One Private Endpoint Service for One Provider
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-     * @param createEndpointServiceRequest Creates one private resource service for the specified cloud service provider.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+     * @param cloudProviderEndpointServiceRequest Creates one private endpoint for the specified cloud service provider.
      */
-    public async createPrivateEndpointService(groupId: string, createEndpointServiceRequest: CreateEndpointServiceRequest, envelope?: boolean, pretty?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async createPrivateEndpointService(groupId: string, cloudProviderEndpointServiceRequest: CloudProviderEndpointServiceRequest, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
@@ -118,12 +101,10 @@ export class PrivateEndpointServicesApiRequestFactory extends BaseAPIRequestFact
         }
 
 
-        // verify required parameter 'createEndpointServiceRequest' is not null or undefined
-        if (createEndpointServiceRequest === null || createEndpointServiceRequest === undefined) {
-            throw new RequiredError("PrivateEndpointServicesApi", "createPrivateEndpointService", "createEndpointServiceRequest");
+        // verify required parameter 'cloudProviderEndpointServiceRequest' is not null or undefined
+        if (cloudProviderEndpointServiceRequest === null || cloudProviderEndpointServiceRequest === undefined) {
+            throw new RequiredError("PrivateEndpointServicesApi", "createPrivateEndpointService", "cloudProviderEndpointServiceRequest");
         }
-
-
 
 
         // Path Params
@@ -134,16 +115,6 @@ export class PrivateEndpointServicesApiRequestFactory extends BaseAPIRequestFact
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
 
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
-
 
         // Body Params
         const contentType = ObjectSerializer.getPreferredMediaType([
@@ -151,7 +122,7 @@ export class PrivateEndpointServicesApiRequestFactory extends BaseAPIRequestFact
         ]);
         requestContext.setHeaderParam("Content-Type", contentType);
         const serializedBody = ObjectSerializer.stringify(
-            ObjectSerializer.serialize(createEndpointServiceRequest, "CreateEndpointServiceRequest", ""),
+            ObjectSerializer.serialize(cloudProviderEndpointServiceRequest, "CloudProviderEndpointServiceRequest", ""),
             contentType
         );
         requestContext.setBody(serializedBody);
@@ -166,16 +137,14 @@ export class PrivateEndpointServicesApiRequestFactory extends BaseAPIRequestFact
     }
 
     /**
-     * Removes one private resource from the specified project. This cloud service provider manages the private resource service that manages the private resource that belongs to the project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
+     * Removes one private endpoint from the specified project and private endpoint service, as managed by the specified cloud service provider. When the last private endpoint is removed from a given private endpoint service, that private endpoint service is also removed. To use this resource, the requesting API Key must have the Project Owner role.
      * Remove One Private Endpoint for One Provider
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
      * @param cloudProvider Cloud service provider that manages this private endpoint.
      * @param endpointId Unique string that identifies the private endpoint you want to delete. The format of the **endpointId** parameter differs for AWS and Azure. You must URL encode the **endpointId** for Azure private endpoints.
      * @param endpointServiceId Unique 24-hexadecimal digit string that identifies the private endpoint service from which you want to delete a private endpoint.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
      */
-    public async deletePrivateEndpoint(groupId: string, cloudProvider: 'AWS' | 'AZURE' | 'GCP', endpointId: string, endpointServiceId: string, envelope?: boolean, pretty?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async deletePrivateEndpoint(groupId: string, cloudProvider: string, endpointId: string, endpointServiceId: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
@@ -202,8 +171,6 @@ export class PrivateEndpointServicesApiRequestFactory extends BaseAPIRequestFact
         }
 
 
-
-
         // Path Params
         const localVarPath = '/api/atlas/v2/groups/{groupId}/privateEndpoint/{cloudProvider}/endpointService/{endpointServiceId}/endpoint/{endpointId}'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
@@ -213,17 +180,7 @@ export class PrivateEndpointServicesApiRequestFactory extends BaseAPIRequestFact
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
-        requestContext.setHeaderParam("Accept","application/json")
-
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
+        requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
 
 
         
@@ -236,15 +193,13 @@ export class PrivateEndpointServicesApiRequestFactory extends BaseAPIRequestFact
     }
 
     /**
-     * Removes one private resource service from the specified project. This cloud service provider manages the private resource service that belongs to the project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
+     * Removes one private endpoint service from the specified project. This cloud service provider manages the private endpoint service that belongs to the project. To use this resource, the requesting API Key must have the Project Owner role.
      * Remove One Private Endpoint Service for One Provider
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
      * @param cloudProvider Cloud service provider that manages this private endpoint service.
      * @param endpointServiceId Unique 24-hexadecimal digit string that identifies the private endpoint service that you want to delete.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
      */
-    public async deletePrivateEndpointService(groupId: string, cloudProvider: 'AWS' | 'AZURE' | 'GCP', endpointServiceId: string, envelope?: boolean, pretty?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async deletePrivateEndpointService(groupId: string, cloudProvider: string, endpointServiceId: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
@@ -265,8 +220,6 @@ export class PrivateEndpointServicesApiRequestFactory extends BaseAPIRequestFact
         }
 
 
-
-
         // Path Params
         const localVarPath = '/api/atlas/v2/groups/{groupId}/privateEndpoint/{cloudProvider}/endpointService/{endpointServiceId}'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
@@ -275,17 +228,7 @@ export class PrivateEndpointServicesApiRequestFactory extends BaseAPIRequestFact
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
-        requestContext.setHeaderParam("Accept","application/json")
-
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
+        requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
 
 
         
@@ -298,16 +241,14 @@ export class PrivateEndpointServicesApiRequestFactory extends BaseAPIRequestFact
     }
 
     /**
-     * Returns the connection state of the specified private resource. The private resource service manages this private resource which belongs to one project hosted from one cloud service provider. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns the connection state of the specified private endpoint. The private endpoint service manages this private endpoint which belongs to one project hosted from one cloud service provider. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return One Private Endpoint for One Provider
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
      * @param cloudProvider Cloud service provider that manages this private endpoint.
      * @param endpointId Unique string that identifies the private endpoint you want to return. The format of the **endpointId** parameter differs for AWS and Azure. You must URL encode the **endpointId** for Azure private endpoints.
      * @param endpointServiceId Unique 24-hexadecimal digit string that identifies the private endpoint service for which you want to return a private endpoint.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
      */
-    public async getPrivateEndpoint(groupId: string, cloudProvider: 'AWS' | 'AZURE' | 'GCP', endpointId: string, endpointServiceId: string, envelope?: boolean, pretty?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async getPrivateEndpoint(groupId: string, cloudProvider: string, endpointId: string, endpointServiceId: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
@@ -334,8 +275,6 @@ export class PrivateEndpointServicesApiRequestFactory extends BaseAPIRequestFact
         }
 
 
-
-
         // Path Params
         const localVarPath = '/api/atlas/v2/groups/{groupId}/privateEndpoint/{cloudProvider}/endpointService/{endpointServiceId}/endpoint/{endpointId}'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
@@ -346,16 +285,6 @@ export class PrivateEndpointServicesApiRequestFactory extends BaseAPIRequestFact
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
-
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
 
 
         
@@ -368,15 +297,13 @@ export class PrivateEndpointServicesApiRequestFactory extends BaseAPIRequestFact
     }
 
     /**
-     * Returns the name, interfaces, and state of the specified private resource service from one project. The cloud service provider hosted this private resource service that belongs to the project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns the name, interfaces, and state of the specified private endpoint service from one project. The cloud service provider hosted this private endpoint service that belongs to the project. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return One Private Endpoint Service for One Provider
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
      * @param cloudProvider Cloud service provider that manages this private endpoint service.
      * @param endpointServiceId Unique 24-hexadecimal digit string that identifies the private endpoint service that you want to return.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
      */
-    public async getPrivateEndpointService(groupId: string, cloudProvider: 'AWS' | 'AZURE' | 'GCP', endpointServiceId: string, envelope?: boolean, pretty?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async getPrivateEndpointService(groupId: string, cloudProvider: string, endpointServiceId: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
@@ -397,8 +324,6 @@ export class PrivateEndpointServicesApiRequestFactory extends BaseAPIRequestFact
         }
 
 
-
-
         // Path Params
         const localVarPath = '/api/atlas/v2/groups/{groupId}/privateEndpoint/{cloudProvider}/endpointService/{endpointServiceId}'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
@@ -409,16 +334,6 @@ export class PrivateEndpointServicesApiRequestFactory extends BaseAPIRequestFact
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
 
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
-
 
         
         const defaultAuth: SecurityAuthentication | undefined = _options?.authMethods?.default || this.configuration?.authMethods?.default
@@ -430,21 +345,17 @@ export class PrivateEndpointServicesApiRequestFactory extends BaseAPIRequestFact
     }
 
     /**
-     * Checks whether each region in the specified cloud service provider can create multiple private resources per region. The cloud service provider manages the private resource for the project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Checks whether each region in the specified cloud service provider can create multiple private endpoints per region. The cloud service provider manages the private endpoint for the project. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return Regionalized Private Endpoint Status
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
      */
-    public async getRegionalizedPrivateEndpointSetting(groupId: string, envelope?: boolean, pretty?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async getRegionalizedPrivateEndpointSetting(groupId: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
         if (groupId === null || groupId === undefined) {
             throw new RequiredError("PrivateEndpointServicesApi", "getRegionalizedPrivateEndpointSetting", "groupId");
         }
-
-
 
 
         // Path Params
@@ -455,16 +366,6 @@ export class PrivateEndpointServicesApiRequestFactory extends BaseAPIRequestFact
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
 
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
-
 
         
         const defaultAuth: SecurityAuthentication | undefined = _options?.authMethods?.default || this.configuration?.authMethods?.default
@@ -476,14 +377,12 @@ export class PrivateEndpointServicesApiRequestFactory extends BaseAPIRequestFact
     }
 
     /**
-     * Returns the name, interfaces, and state of all private resource services for the specified cloud service provider. This cloud service provider manages the private resource service for the project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns the name, interfaces, and state of all private endpoint services for the specified cloud service provider. This cloud service provider manages the private endpoint service for the project. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return All Private Endpoint Services for One Provider
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
      * @param cloudProvider Cloud service provider that manages this private endpoint service.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
      */
-    public async listPrivateEndpointServices(groupId: string, cloudProvider: 'AWS' | 'AZURE' | 'GCP', envelope?: boolean, pretty?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async listPrivateEndpointServices(groupId: string, cloudProvider: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
@@ -498,8 +397,6 @@ export class PrivateEndpointServicesApiRequestFactory extends BaseAPIRequestFact
         }
 
 
-
-
         // Path Params
         const localVarPath = '/api/atlas/v2/groups/{groupId}/privateEndpoint/{cloudProvider}/endpointService'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
@@ -508,16 +405,6 @@ export class PrivateEndpointServicesApiRequestFactory extends BaseAPIRequestFact
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
-
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
 
 
         
@@ -530,14 +417,12 @@ export class PrivateEndpointServicesApiRequestFactory extends BaseAPIRequestFact
     }
 
     /**
-     * Enables or disables the ability can create multiple private resources per region in all cloud service providers in one project. The cloud service provider manages the private resource for the project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
+     * Enables or disables the ability to create multiple private endpoints per region in all cloud service providers in one project. The cloud service provider manages the private endpoints for the project. Connection strings to existing multi-region and global sharded clusters change when you enable this setting. You must update your applications to use the new connection strings. This might cause downtime. To use this resource, the requesting API Key must have the Project Owner role and all clusters in the deployment must be sharded clusters. Once enabled, you cannot create replica sets.
      * Toggle Regionalized Private Endpoint Status
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-     * @param projectSettingItemView Enables or disables the ability can create multiple private resources per region in all cloud service providers in one project.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+     * @param projectSettingItem Enables or disables the ability to create multiple private endpoints per region in all cloud service providers in one project.
      */
-    public async toggleRegionalizedPrivateEndpointSetting(groupId: string, projectSettingItemView: ProjectSettingItemView, envelope?: boolean, pretty?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async toggleRegionalizedPrivateEndpointSetting(groupId: string, projectSettingItem: ProjectSettingItem, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
@@ -546,12 +431,10 @@ export class PrivateEndpointServicesApiRequestFactory extends BaseAPIRequestFact
         }
 
 
-        // verify required parameter 'projectSettingItemView' is not null or undefined
-        if (projectSettingItemView === null || projectSettingItemView === undefined) {
-            throw new RequiredError("PrivateEndpointServicesApi", "toggleRegionalizedPrivateEndpointSetting", "projectSettingItemView");
+        // verify required parameter 'projectSettingItem' is not null or undefined
+        if (projectSettingItem === null || projectSettingItem === undefined) {
+            throw new RequiredError("PrivateEndpointServicesApi", "toggleRegionalizedPrivateEndpointSetting", "projectSettingItem");
         }
-
-
 
 
         // Path Params
@@ -562,16 +445,6 @@ export class PrivateEndpointServicesApiRequestFactory extends BaseAPIRequestFact
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
 
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
-
 
         // Body Params
         const contentType = ObjectSerializer.getPreferredMediaType([
@@ -579,7 +452,7 @@ export class PrivateEndpointServicesApiRequestFactory extends BaseAPIRequestFact
         ]);
         requestContext.setHeaderParam("Content-Type", contentType);
         const serializedBody = ObjectSerializer.stringify(
-            ObjectSerializer.serialize(projectSettingItemView, "ProjectSettingItemView", ""),
+            ObjectSerializer.serialize(projectSettingItem, "ProjectSettingItem", ""),
             contentType
         );
         requestContext.setBody(serializedBody);
@@ -604,13 +477,13 @@ export class PrivateEndpointServicesApiResponseProcessor {
      * @params response Response returned by the server for a request to createPrivateEndpoint
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createPrivateEndpoint(response: ResponseContext): Promise<Endpoint > {
+     public async createPrivateEndpoint(response: ResponseContext): Promise<PrivateLinkEndpoint > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: Endpoint = ObjectSerializer.deserialize(
+            const body: PrivateLinkEndpoint = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "Endpoint", ""
-            ) as Endpoint;
+                "PrivateLinkEndpoint", ""
+            ) as PrivateLinkEndpoint;
             return body;
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
@@ -618,43 +491,43 @@ export class PrivateEndpointServicesApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request.", body, response.headers);
         }
         if (isCodeInRange("402", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Payment Required", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Payment Required.", body, response.headers);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found.", body, response.headers);
         }
         if (isCodeInRange("409", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Conflict", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Conflict.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: Endpoint = ObjectSerializer.deserialize(
+            const body: PrivateLinkEndpoint = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "Endpoint", ""
-            ) as Endpoint;
+                "PrivateLinkEndpoint", ""
+            ) as PrivateLinkEndpoint;
             return body;
         }
 
@@ -682,14 +555,14 @@ export class PrivateEndpointServicesApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -711,32 +584,36 @@ export class PrivateEndpointServicesApiResponseProcessor {
      * @params response Response returned by the server for a request to deletePrivateEndpoint
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deletePrivateEndpoint(response: ResponseContext): Promise<void > {
+     public async deletePrivateEndpoint(response: ResponseContext): Promise<any > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("204", response.httpStatusCode)) {
-            return;
+            const body: any = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "any", ""
+            ) as any;
+            return body;
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: void = ObjectSerializer.deserialize(
+            const body: any = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "void", ""
-            ) as void;
+                "any", ""
+            ) as any;
             return body;
         }
 
@@ -750,32 +627,36 @@ export class PrivateEndpointServicesApiResponseProcessor {
      * @params response Response returned by the server for a request to deletePrivateEndpointService
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deletePrivateEndpointService(response: ResponseContext): Promise<void > {
+     public async deletePrivateEndpointService(response: ResponseContext): Promise<any > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("204", response.httpStatusCode)) {
-            return;
+            const body: any = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "any", ""
+            ) as any;
+            return body;
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: void = ObjectSerializer.deserialize(
+            const body: any = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "void", ""
-            ) as void;
+                "any", ""
+            ) as any;
             return body;
         }
 
@@ -789,13 +670,13 @@ export class PrivateEndpointServicesApiResponseProcessor {
      * @params response Response returned by the server for a request to getPrivateEndpoint
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getPrivateEndpoint(response: ResponseContext): Promise<Endpoint > {
+     public async getPrivateEndpoint(response: ResponseContext): Promise<PrivateLinkEndpoint > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: Endpoint = ObjectSerializer.deserialize(
+            const body: PrivateLinkEndpoint = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "Endpoint", ""
-            ) as Endpoint;
+                "PrivateLinkEndpoint", ""
+            ) as PrivateLinkEndpoint;
             return body;
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
@@ -803,29 +684,29 @@ export class PrivateEndpointServicesApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request.", body, response.headers);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: Endpoint = ObjectSerializer.deserialize(
+            const body: PrivateLinkEndpoint = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "Endpoint", ""
-            ) as Endpoint;
+                "PrivateLinkEndpoint", ""
+            ) as PrivateLinkEndpoint;
             return body;
         }
 
@@ -853,21 +734,21 @@ export class PrivateEndpointServicesApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request.", body, response.headers);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -889,13 +770,13 @@ export class PrivateEndpointServicesApiResponseProcessor {
      * @params response Response returned by the server for a request to getRegionalizedPrivateEndpointSetting
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getRegionalizedPrivateEndpointSetting(response: ResponseContext): Promise<ProjectSettingItemView > {
+     public async getRegionalizedPrivateEndpointSetting(response: ResponseContext): Promise<ProjectSettingItem > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: ProjectSettingItemView = ObjectSerializer.deserialize(
+            const body: ProjectSettingItem = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "ProjectSettingItemView", ""
-            ) as ProjectSettingItemView;
+                "ProjectSettingItem", ""
+            ) as ProjectSettingItem;
             return body;
         }
         if (isCodeInRange("403", response.httpStatusCode)) {
@@ -903,29 +784,29 @@ export class PrivateEndpointServicesApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Forbidden", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Forbidden.", body, response.headers);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: ProjectSettingItemView = ObjectSerializer.deserialize(
+            const body: ProjectSettingItem = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "ProjectSettingItemView", ""
-            ) as ProjectSettingItemView;
+                "ProjectSettingItem", ""
+            ) as ProjectSettingItem;
             return body;
         }
 
@@ -939,13 +820,13 @@ export class PrivateEndpointServicesApiResponseProcessor {
      * @params response Response returned by the server for a request to listPrivateEndpointServices
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listPrivateEndpointServices(response: ResponseContext): Promise<PaginatedPrivateLinkConnectionView > {
+     public async listPrivateEndpointServices(response: ResponseContext): Promise<Array<EndpointService> > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: PaginatedPrivateLinkConnectionView = ObjectSerializer.deserialize(
+            const body: Array<EndpointService> = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "PaginatedPrivateLinkConnectionView", ""
-            ) as PaginatedPrivateLinkConnectionView;
+                "Array<EndpointService>", ""
+            ) as Array<EndpointService>;
             return body;
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
@@ -953,22 +834,22 @@ export class PrivateEndpointServicesApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: PaginatedPrivateLinkConnectionView = ObjectSerializer.deserialize(
+            const body: Array<EndpointService> = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "PaginatedPrivateLinkConnectionView", ""
-            ) as PaginatedPrivateLinkConnectionView;
+                "Array<EndpointService>", ""
+            ) as Array<EndpointService>;
             return body;
         }
 
@@ -982,13 +863,13 @@ export class PrivateEndpointServicesApiResponseProcessor {
      * @params response Response returned by the server for a request to toggleRegionalizedPrivateEndpointSetting
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async toggleRegionalizedPrivateEndpointSetting(response: ResponseContext): Promise<ProjectSettingItemView > {
+     public async toggleRegionalizedPrivateEndpointSetting(response: ResponseContext): Promise<ProjectSettingItem > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: ProjectSettingItemView = ObjectSerializer.deserialize(
+            const body: ProjectSettingItem = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "ProjectSettingItemView", ""
-            ) as ProjectSettingItemView;
+                "ProjectSettingItem", ""
+            ) as ProjectSettingItem;
             return body;
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
@@ -996,29 +877,29 @@ export class PrivateEndpointServicesApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found.", body, response.headers);
         }
         if (isCodeInRange("409", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Conflict", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Conflict.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: ProjectSettingItemView = ObjectSerializer.deserialize(
+            const body: ProjectSettingItem = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "ProjectSettingItemView", ""
-            ) as ProjectSettingItemView;
+                "ProjectSettingItem", ""
+            ) as ProjectSettingItem;
             return body;
         }
 

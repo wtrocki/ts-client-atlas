@@ -18,9 +18,9 @@ transformed_file="atlas-api-transformed.yaml"
 client_package="atlas"
 openapiFileLocation="$OPENAPI_FOLDER/$transformed_file"
 
-echo "# Running generation pipeline"
-echo "# Running transformation from $transformed_file OpenAPI from $OPENAPI_FILE_NAME"
-cp "$OPENAPI_FOLDER/$OPENAPI_FILE_NAME" "$openapiFileLocation"
+# echo "# Running generation pipeline"
+# echo "# Running transformation from $transformed_file OpenAPI from $OPENAPI_FILE_NAME"
+# cp "$OPENAPI_FOLDER/$OPENAPI_FILE_NAME" "$openapiFileLocation"
 
 npm install
 npm run sdk:transform -- "$openapiFileLocation"

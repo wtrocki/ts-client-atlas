@@ -1,6 +1,6 @@
 /**
  * MongoDB Atlas Administration API
- * The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas. To learn more, review the [Administration API overview](https://www.mongodb.com/docs/atlas/api/atlas-admin-api/). This OpenAPI specification covers all of the collections with the exception of Alerts, Alert Configurations, and Events. Refer to the [legacy documentation](https://www.mongodb.com/docs/atlas/reference/api-resources/) for the specifications of these resources.
+ * The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas.  The Atlas Administration API uses HTTP Digest Authentication to authenticate requests. Provide a programmatic API public key and corresponding private key as the username and password when constructing the HTTP request. For example, to [return database access history](#tag/Access-Tracking/operation/listAccessLogsByClusterName) with [cURL](https://en.wikipedia.org/wiki/CURL), run the following command in the terminal:  ``` curl --user \"{PUBLIC-KEY}:{PRIVATE-KEY}\" \\   --digest \\   --header \"Accept: application/vnd.atlas.2023-02-01+json\" \\   GET \"https://cloud.mongodb.com/api/atlas/v2/groups/{groupId}/dbAccessHistory/clusters/{clusterName}?pretty=true\" ```  To learn more, see [Get Started with the Atlas Administration API](https://www.mongodb.com/docs/atlas/configure-api-access/). For support, see [MongoDB Support](https://www.mongodb.com/support/get-started).
  *
  * OpenAPI spec version: 2.0
  * 
@@ -14,17 +14,22 @@ import { HttpFile } from '../http/http';
 
 export class ClusterDescriptionProcessArgs {
     /**
-    * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster.  MongoDB 4.4 clusters default to `available`. MongoDB 5.0 and later clusters default to `local`.
+    * Number of threads on the source shard and the receiving shard for chunk migration. The number of threads should not exceed the half the total number of CPU cores in the sharded cluster.
+    */
+
+    'chunkMigrationConcurrency'?: number;
+    /**
+    * Default level of acknowledgment requested from MongoDB for read operations set for this cluster.  MongoDB 4.4 clusters default to `available`. MongoDB 5.0 and later clusters default to `local`.
     */
 
     'defaultReadConcern'?: string;
     /**
-    * [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster.  MongoDB 4.4 clusters default to `1`. MongoDB 5.0 and later clusters default to `majority`.
+    * Default level of acknowledgment requested from MongoDB for write operations set for this cluster.  MongoDB 4.4 clusters default to `1`. MongoDB 5.0 and later clusters default to `majority`.
     */
 
     'defaultWriteConcern'?: string;
     /**
-    * Flag that indicates whether you can insert or update documents where all indexed entries don't exceed 1024 bytes. If you set this to false, [mongod](https://docs.mongodb.com/upcoming/reference/program/mongod/#mongodb-binary-bin.mongod) writes documents that exceed this limit but doesn't index them.
+    * Flag that indicates whether you can insert or update documents where all indexed entries don't exceed 1024 bytes. If you set this to false, [mongod](https://docs.mongodb.com/upcoming/reference/program/mongod/#mongodb-binary-bin.mongod) writes documents that exceed this limit but doesn't index them. This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
     */
 
     'failIndexKeyTooLong'?: boolean;
@@ -54,6 +59,11 @@ export class ClusterDescriptionProcessArgs {
 
     'oplogSizeMB'?: number;
     /**
+    * May be set to 1 (disabled) or 3 (enabled). When set to 3, Atlas will include redacted and anonymized $queryStats output in MongoDB logs. $queryStats output does not contain literals or field values. Enabling this setting might impact the performance of your cluster.
+    */
+
+    'queryStatsLogVerbosity'?: number;
+    /**
     * Interval in seconds at which the mongosqld process re-samples data to create its relational schema.
     */
 
@@ -63,10 +73,21 @@ export class ClusterDescriptionProcessArgs {
     */
 
     'sampleSizeBIConnector'?: number;
+    /**
+    * Lifetime, in seconds, of multi-document transactions. Atlas considers the transactions that exceed this limit as expired and so aborts them through a periodic cleanup process.
+    */
+
+    'transactionLifetimeLimitSeconds'?: number;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "chunkMigrationConcurrency",
+            "baseName": "chunkMigrationConcurrency",
+            "type": "number",
+            "format": "int32"
+        },
         {
             "name": "defaultReadConcern",
             "baseName": "defaultReadConcern",
@@ -116,6 +137,12 @@ export class ClusterDescriptionProcessArgs {
             "format": "int32"
         },
         {
+            "name": "queryStatsLogVerbosity",
+            "baseName": "queryStatsLogVerbosity",
+            "type": "number",
+            "format": "int32"
+        },
+        {
             "name": "sampleRefreshIntervalBIConnector",
             "baseName": "sampleRefreshIntervalBIConnector",
             "type": "number",
@@ -126,6 +153,12 @@ export class ClusterDescriptionProcessArgs {
             "baseName": "sampleSizeBIConnector",
             "type": "number",
             "format": "int32"
+        },
+        {
+            "name": "transactionLifetimeLimitSeconds",
+            "baseName": "transactionLifetimeLimitSeconds",
+            "type": "number",
+            "format": "int64"
         }    ];
 
     static getAttributeTypeMap() {
@@ -135,8 +168,4 @@ export class ClusterDescriptionProcessArgs {
     public constructor() {
     }
 }
-
-
-export type ClusterDescriptionProcessArgsDefaultReadConcernEnum = "local" | "available" | "majority" | "linearizable" | "snapshot" ;
-export type ClusterDescriptionProcessArgsMinimumEnabledTlsProtocolEnum = "TLS1_0" | "TLS1_1" | "TLS1_2" ;
 

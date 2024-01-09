@@ -20,9 +20,9 @@ Method | HTTP request | Description
 
 
 # **addAllTeamsToProject**
-> PaginatedTeamRoleView addAllTeamsToProject(apiTeamRoleView)
+> PaginatedTeamRole addAllTeamsToProject(teamRole)
 
-Adds one team to the specified project. All members of the team share the same project access. MongoDB Cloud limits the number of users to a maximum of 100 teams per project and a maximum of 250 teams per organization. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+Adds one team to the specified project. All members of the team share the same project access. MongoDB Cloud limits the number of users to a maximum of 100 teams per project and a maximum of 250 teams per organization. To use this resource, the requesting API Key must have the Project Owner role.
 
 ### Example
 
@@ -37,19 +37,15 @@ const apiInstance = new .TeamsApi(configuration);
 let body:.TeamsApiAddAllTeamsToProjectRequest = {
   // string | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
   groupId: "32b6e34b3d91647abb20e7b8",
-  // Array<ApiTeamRoleView> | Team to add to the specified project.
-  apiTeamRoleView: [
+  // Array<TeamRole> | Team to add to the specified project.
+  teamRole: [
     {
       roleNames: [
-        "GROUP_CLUSTER_MANAGER",
+        "roleNames_example",
       ],
       teamId: "32b6e34b3d91647abb20e7b8",
     },
   ],
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
-  // boolean | Flag that indicates whether the response body should be in the <a href=\"https://en.wikipedia.org/wiki/Prettyprint\" target=\"_blank\" rel=\"noopener noreferrer\">prettyprint</a> format. (optional)
-  pretty: false,
 };
 
 apiInstance.addAllTeamsToProject(body).then((data:any) => {
@@ -62,15 +58,13 @@ apiInstance.addAllTeamsToProject(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **apiTeamRoleView** | **Array<ApiTeamRoleView>**| Team to add to the specified project. |
+ **teamRole** | **Array<TeamRole>**| Team to add to the specified project. |
  **groupId** | [**string**] | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
- **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
 
 
 ### Return type
 
-**PaginatedTeamRoleView**
+**PaginatedTeamRole**
 
 ### Authorization
 
@@ -86,18 +80,18 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not Found |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**401** | Unauthorized. |  -  |
+**403** | Forbidden. |  -  |
+**404** | Not Found. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **addTeamUser**
-> PaginatedApiAppUserView addTeamUser(apiAddUserToTeamView)
+> PaginatedApiAppUser addTeamUser(addUserToTeam)
 
-Adds one or more MongoDB Cloud users from the specified organization to the specified team. Teams enable you to grant project access roles to MongoDB Cloud users. You can assign up to 250 MongoDB Cloud users from one organization to one team. To use this resource, the requesting API Key must have the Organization User Admin role. This resource doesn't require the API Key to have an Access List.
+Adds one or more MongoDB Cloud users from the specified organization to the specified team. Teams enable you to grant project access roles to MongoDB Cloud users. You can assign up to 250 MongoDB Cloud users from one organization to one team. To use this resource, the requesting API Key must have the Organization Owner role.
 
 ### Example
 
@@ -114,16 +108,12 @@ let body:.TeamsApiAddTeamUserRequest = {
   orgId: "4888442a3354817a7320eb61",
   // string | Unique 24-hexadecimal character string that identifies the team to which you want to add MongoDB Cloud users.
   teamId: "bf325375e030fccba0091731",
-  // Array<ApiAddUserToTeamView> | One or more MongoDB Cloud users that you want to add to the specified team.
-  apiAddUserToTeamView: [
+  // Array<AddUserToTeam> | One or more MongoDB Cloud users that you want to add to the specified team.
+  addUserToTeam: [
     {
       id: "32b6e34b3d91647abb20e7b8",
     },
   ],
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
-  // boolean | Flag that indicates whether the response body should be in the <a href=\"https://en.wikipedia.org/wiki/Prettyprint\" target=\"_blank\" rel=\"noopener noreferrer\">prettyprint</a> format. (optional)
-  pretty: false,
 };
 
 apiInstance.addTeamUser(body).then((data:any) => {
@@ -136,16 +126,14 @@ apiInstance.addTeamUser(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **apiAddUserToTeamView** | **Array<ApiAddUserToTeamView>**| One or more MongoDB Cloud users that you want to add to the specified team. |
+ **addUserToTeam** | **Array<AddUserToTeam>**| One or more MongoDB Cloud users that you want to add to the specified team. |
  **orgId** | [**string**] | Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access. | defaults to undefined
  **teamId** | [**string**] | Unique 24-hexadecimal character string that identifies the team to which you want to add MongoDB Cloud users. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
- **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
 
 
 ### Return type
 
-**PaginatedApiAppUserView**
+**PaginatedApiAppUser**
 
 ### Authorization
 
@@ -161,18 +149,18 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
-**409** | Conflict |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**401** | Unauthorized. |  -  |
+**404** | Not Found. |  -  |
+**409** | Conflict. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **createTeam**
-> ApiTeamView createTeam(apiTeamView)
+> Team createTeam(team)
 
-Creates one team in the specified organization. Teams enable you to grant project access roles to MongoDB Cloud users. MongoDB Cloud limits the number of teams to a maximum of 250 teams per organization. To use this resource, the requesting API Key must have the Organization Owner role. This resource doesn't require the API Key to have an Access List.
+Creates one team in the specified organization. Teams enable you to grant project access roles to MongoDB Cloud users. MongoDB Cloud limits the number of teams to a maximum of 250 teams per organization. To use this resource, the requesting API Key must have the Organization Owner role.
 
 ### Example
 
@@ -187,17 +175,13 @@ const apiInstance = new .TeamsApi(configuration);
 let body:.TeamsApiCreateTeamRequest = {
   // string | Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
   orgId: "4888442a3354817a7320eb61",
-  // ApiTeamView | Team that you want to create in the specified organization.
-  apiTeamView: {
+  // Team | Team that you want to create in the specified organization.
+  team: {
     name: "name_example",
     usernames: [
       "usernames_example",
     ],
   },
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
-  // boolean | Flag that indicates whether the response body should be in the <a href=\"https://en.wikipedia.org/wiki/Prettyprint\" target=\"_blank\" rel=\"noopener noreferrer\">prettyprint</a> format. (optional)
-  pretty: false,
 };
 
 apiInstance.createTeam(body).then((data:any) => {
@@ -210,15 +194,13 @@ apiInstance.createTeam(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **apiTeamView** | **ApiTeamView**| Team that you want to create in the specified organization. |
+ **team** | **Team**| Team that you want to create in the specified organization. |
  **orgId** | [**string**] | Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
- **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
 
 
 ### Return type
 
-**ApiTeamView**
+**Team**
 
 ### Authorization
 
@@ -234,18 +216,18 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
-**409** | Conflict |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**401** | Unauthorized. |  -  |
+**404** | Not Found. |  -  |
+**409** | Conflict. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **deleteTeam**
-> void deleteTeam()
+> any deleteTeam()
 
-Removes one team specified using its unique 24-hexadecimal digit identifier from the organization specified using its unique 24-hexadecimal digit identifier. To use this resource, the requesting API Key must have the Organization User Admin role. This resource doesn't require the API Key to have an Access List.
+Removes one team specified using its unique 24-hexadecimal digit identifier from the organization specified using its unique 24-hexadecimal digit identifier. To use this resource, the requesting API Key must have the Organization Owner role.
 
 ### Example
 
@@ -262,10 +244,6 @@ let body:.TeamsApiDeleteTeamRequest = {
   orgId: "4888442a3354817a7320eb61",
   // string | Unique 24-hexadecimal digit string that identifies the team that you want to delete.
   teamId: "bf325375e030fccba0091731",
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
-  // boolean | Flag that indicates whether the response body should be in the <a href=\"https://en.wikipedia.org/wiki/Prettyprint\" target=\"_blank\" rel=\"noopener noreferrer\">prettyprint</a> format. (optional)
-  pretty: false,
 };
 
 apiInstance.deleteTeam(body).then((data:any) => {
@@ -280,13 +258,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **orgId** | [**string**] | Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access. | defaults to undefined
  **teamId** | [**string**] | Unique 24-hexadecimal digit string that identifies the team that you want to delete. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
- **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
 
 
 ### Return type
 
-**void**
+**any**
 
 ### Authorization
 
@@ -295,24 +271,24 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.atlas.2023-01-01+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | This endpoint does not return a response body. |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**401** | Unauthorized. |  -  |
+**404** | Not Found. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **getTeamById**
-> ApiTeamResponseView getTeamById()
+> TeamResponse getTeamById()
 
-Returns one team that you identified using its unique 24-hexadecimal digit ID. This team belongs to one organization. Teams enable you to grant project access roles to MongoDB Cloud users. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an  Access List.
+Returns one team that you identified using its unique 24-hexadecimal digit ID. This team belongs to one organization. Teams enable you to grant project access roles to MongoDB Cloud users. To use this resource, the requesting API Key must have the Organization Member role.
 
 ### Example
 
@@ -329,10 +305,6 @@ let body:.TeamsApiGetTeamByIdRequest = {
   orgId: "4888442a3354817a7320eb61",
   // string | Unique 24-hexadecimal digit string that identifies the team whose information you want to return.
   teamId: "bf325375e030fccba0091731",
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
-  // boolean | Flag that indicates whether the response body should be in the <a href=\"https://en.wikipedia.org/wiki/Prettyprint\" target=\"_blank\" rel=\"noopener noreferrer\">prettyprint</a> format. (optional)
-  pretty: false,
 };
 
 apiInstance.getTeamById(body).then((data:any) => {
@@ -347,13 +319,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **orgId** | [**string**] | Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access. | defaults to undefined
  **teamId** | [**string**] | Unique 24-hexadecimal digit string that identifies the team whose information you want to return. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
- **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
 
 
 ### Return type
 
-**ApiTeamResponseView**
+**TeamResponse**
 
 ### Authorization
 
@@ -369,17 +339,17 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**401** | Unauthorized. |  -  |
+**404** | Not Found. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **getTeamByName**
-> ApiTeamResponseView getTeamByName()
+> TeamResponse getTeamByName()
 
-Returns one team that you identified using its human-readable name. This team belongs to one organization. Teams enable you to grant project access roles to MongoDB Cloud users. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an Access List.
+Returns one team that you identified using its human-readable name. This team belongs to one organization. Teams enable you to grant project access roles to MongoDB Cloud users. To use this resource, the requesting API Key must have the Organization Member role.
 
 ### Example
 
@@ -396,10 +366,6 @@ let body:.TeamsApiGetTeamByNameRequest = {
   orgId: "4888442a3354817a7320eb61",
   // string | Name of the team whose information you want to return.
   teamName: "teamName_example",
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
-  // boolean | Flag that indicates whether the response body should be in the <a href=\"https://en.wikipedia.org/wiki/Prettyprint\" target=\"_blank\" rel=\"noopener noreferrer\">prettyprint</a> format. (optional)
-  pretty: false,
 };
 
 apiInstance.getTeamByName(body).then((data:any) => {
@@ -414,13 +380,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **orgId** | [**string**] | Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access. | defaults to undefined
  **teamName** | [**string**] | Name of the team whose information you want to return. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
- **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
 
 
 ### Return type
 
-**ApiTeamResponseView**
+**TeamResponse**
 
 ### Authorization
 
@@ -436,17 +400,17 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**401** | Unauthorized. |  -  |
+**404** | Not Found. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **listOrganizationTeams**
-> PaginatedTeamView listOrganizationTeams()
+> PaginatedTeam listOrganizationTeams()
 
-Returns all teams that belong to the specified organization. Teams enable you to grant project access roles to MongoDB Cloud users. MongoDB Cloud only returns teams for which you have access. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an Access List.
+Returns all teams that belong to the specified organization. Teams enable you to grant project access roles to MongoDB Cloud users. MongoDB Cloud only returns teams for which you have access. To use this resource, the requesting API Key must have the Organization Member role.
 
 ### Example
 
@@ -461,16 +425,12 @@ const apiInstance = new .TeamsApi(configuration);
 let body:.TeamsApiListOrganizationTeamsRequest = {
   // string | Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
   orgId: "4888442a3354817a7320eb61",
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
   // number | Number of items that the response returns per page. (optional)
   itemsPerPage: 100,
   // boolean | Flag that indicates whether the response returns the total number of items (**totalCount**) in the response. (optional)
   includeCount: true,
   // number | Number of the page that displays the current set of the total objects that the response returns. (optional)
   pageNum: 1,
-  // boolean | Flag that indicates whether the response body should be in the <a href=\"https://en.wikipedia.org/wiki/Prettyprint\" target=\"_blank\" rel=\"noopener noreferrer\">prettyprint</a> format. (optional)
-  pretty: false,
 };
 
 apiInstance.listOrganizationTeams(body).then((data:any) => {
@@ -484,16 +444,14 @@ apiInstance.listOrganizationTeams(body).then((data:any) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **orgId** | [**string**] | Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
  **itemsPerPage** | [**number**] | Number of items that the response returns per page. | (optional) defaults to 100
  **includeCount** | [**boolean**] | Flag that indicates whether the response returns the total number of items (**totalCount**) in the response. | (optional) defaults to undefined
  **pageNum** | [**number**] | Number of the page that displays the current set of the total objects that the response returns. | (optional) defaults to 1
- **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
 
 
 ### Return type
 
-**PaginatedTeamView**
+**PaginatedTeam**
 
 ### Authorization
 
@@ -509,17 +467,17 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**401** | Unauthorized. |  -  |
+**404** | Not Found. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **listProjectTeams**
-> PaginatedTeamRoleView listProjectTeams()
+> PaginatedTeamRole listProjectTeams()
 
-Returns all teams to which the authenticated user has access in the project specified using its unique 24-hexadecimal digit identifier. All members of the team share the same project access. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+Returns all teams to which the authenticated user has access in the project specified using its unique 24-hexadecimal digit identifier. All members of the team share the same project access. To use this resource, the requesting API Key must have the Project Read Only role.
 
 ### Example
 
@@ -534,10 +492,6 @@ const apiInstance = new .TeamsApi(configuration);
 let body:.TeamsApiListProjectTeamsRequest = {
   // string | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
   groupId: "32b6e34b3d91647abb20e7b8",
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
-  // boolean | Flag that indicates whether the response body should be in the <a href=\"https://en.wikipedia.org/wiki/Prettyprint\" target=\"_blank\" rel=\"noopener noreferrer\">prettyprint</a> format. (optional)
-  pretty: false,
   // boolean | Flag that indicates whether the response returns the total number of items (**totalCount**) in the response. (optional)
   includeCount: true,
   // number | Number of items that the response returns per page. (optional)
@@ -557,8 +511,6 @@ apiInstance.listProjectTeams(body).then((data:any) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **groupId** | [**string**] | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
- **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
  **includeCount** | [**boolean**] | Flag that indicates whether the response returns the total number of items (**totalCount**) in the response. | (optional) defaults to undefined
  **itemsPerPage** | [**number**] | Number of items that the response returns per page. | (optional) defaults to 100
  **pageNum** | [**number**] | Number of the page that displays the current set of the total objects that the response returns. | (optional) defaults to 1
@@ -566,7 +518,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**PaginatedTeamRoleView**
+**PaginatedTeamRole**
 
 ### Authorization
 
@@ -582,18 +534,18 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not Found |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**401** | Unauthorized. |  -  |
+**403** | Forbidden. |  -  |
+**404** | Not Found. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **listTeamUsers**
-> PaginatedApiAppUserView listTeamUsers()
+> PaginatedApiAppUser listTeamUsers()
 
-Returns all MongoDB Cloud users assigned to the team specified using its unique 24-hexadecimal digit identifier. This team belongs to one organization. Teams enable you to grant project access roles to MongoDB Cloud users. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an Access List.
+Returns all MongoDB Cloud users assigned to the team specified using its unique 24-hexadecimal digit identifier. This team belongs to one organization. Teams enable you to grant project access roles to MongoDB Cloud users. To use this resource, the requesting API Key must have the Organization Member role.
 
 ### Example
 
@@ -610,14 +562,10 @@ let body:.TeamsApiListTeamUsersRequest = {
   orgId: "4888442a3354817a7320eb61",
   // string | Unique 24-hexadecimal digit string that identifies the team whose application users you want to return.
   teamId: "bf325375e030fccba0091731",
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
   // number | Number of items that the response returns per page. (optional)
   itemsPerPage: 100,
   // number | Number of the page that displays the current set of the total objects that the response returns. (optional)
   pageNum: 1,
-  // boolean | Flag that indicates whether the response body should be in the <a href=\"https://en.wikipedia.org/wiki/Prettyprint\" target=\"_blank\" rel=\"noopener noreferrer\">prettyprint</a> format. (optional)
-  pretty: false,
 };
 
 apiInstance.listTeamUsers(body).then((data:any) => {
@@ -632,15 +580,13 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **orgId** | [**string**] | Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access. | defaults to undefined
  **teamId** | [**string**] | Unique 24-hexadecimal digit string that identifies the team whose application users you want to return. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
  **itemsPerPage** | [**number**] | Number of items that the response returns per page. | (optional) defaults to 100
  **pageNum** | [**number**] | Number of the page that displays the current set of the total objects that the response returns. | (optional) defaults to 1
- **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
 
 
 ### Return type
 
-**PaginatedApiAppUserView**
+**PaginatedApiAppUser**
 
 ### Authorization
 
@@ -656,18 +602,18 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
-**409** | Conflict |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**401** | Unauthorized. |  -  |
+**404** | Not Found. |  -  |
+**409** | Conflict. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **removeProjectTeam**
 > void removeProjectTeam()
 
-Removes one team specified using its unique 24-hexadecimal digit identifier from the project specified using its unique 24-hexadecimal digit identifier. To use this resource, the requesting API Key must have the Project User Admin role.
+Removes one team specified using its unique 24-hexadecimal digit identifier from the project specified using its unique 24-hexadecimal digit identifier. To use this resource, the requesting API Key must have the Project Owner role.
 
 ### Example
 
@@ -684,8 +630,6 @@ let body:.TeamsApiRemoveProjectTeamRequest = {
   groupId: "32b6e34b3d91647abb20e7b8",
   // string | Unique 24-hexadecimal digit string that identifies the team that you want to remove from the specified project.
   teamId: "bf325375e030fccba0091731",
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
 };
 
 apiInstance.removeProjectTeam(body).then((data:any) => {
@@ -700,7 +644,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **groupId** | [**string**] | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. | defaults to undefined
  **teamId** | [**string**] | Unique 24-hexadecimal digit string that identifies the team that you want to remove from the specified project. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
 
 
 ### Return type
@@ -714,25 +657,25 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.atlas.2023-01-01+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | This endpoint does not return a response body. |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not Found |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**401** | Unauthorized. |  -  |
+**403** | Forbidden. |  -  |
+**404** | Not Found. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **removeTeamUser**
 > void removeTeamUser()
 
-Removes one MongoDB Cloud user from the specified team. This team belongs to one organization. Teams enable you to grant project access roles to MongoDB Cloud users. To use this resource, the requesting API Key must have the Organization User Admin role. This resource doesn't require the API Key to have an Access List.
+Removes one MongoDB Cloud user from the specified team. This team belongs to one organization. Teams enable you to grant project access roles to MongoDB Cloud users. To use this resource, the requesting API Key must have the Organization Owner role.
 
 ### Example
 
@@ -751,10 +694,6 @@ let body:.TeamsApiRemoveTeamUserRequest = {
   teamId: "bf325375e030fccba0091731",
   // string | Unique 24-hexadecimal digit string that identifies MongoDB Cloud user that you want to remove from the specified team.
   userId: "bf325375e030fccba0091731",
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
-  // boolean | Flag that indicates whether the response body should be in the <a href=\"https://en.wikipedia.org/wiki/Prettyprint\" target=\"_blank\" rel=\"noopener noreferrer\">prettyprint</a> format. (optional)
-  pretty: false,
 };
 
 apiInstance.removeTeamUser(body).then((data:any) => {
@@ -770,8 +709,6 @@ Name | Type | Description  | Notes
  **orgId** | [**string**] | Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access. | defaults to undefined
  **teamId** | [**string**] | Unique 24-hexadecimal digit string that identifies the team from which you want to remove one database application user. | defaults to undefined
  **userId** | [**string**] | Unique 24-hexadecimal digit string that identifies MongoDB Cloud user that you want to remove from the specified team. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
- **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
 
 
 ### Return type
@@ -792,17 +729,17 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | This endpoint does not return a response body. |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**401** | Unauthorized. |  -  |
+**404** | Not Found. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **renameTeam**
-> ApiTeamResponseView renameTeam(apiTeamView)
+> TeamResponse renameTeam(team)
 
-Renames one team in the specified organization. Teams enable you to grant project access roles to MongoDB Cloud users. To use this resource, the requesting API Key must have the Organization User Admin role. This resource doesn't require the API Key to have an Access List.
+Renames one team in the specified organization. Teams enable you to grant project access roles to MongoDB Cloud users. To use this resource, the requesting API Key must have the Organization Owner role.
 
 ### Example
 
@@ -819,17 +756,13 @@ let body:.TeamsApiRenameTeamRequest = {
   orgId: "4888442a3354817a7320eb61",
   // string | Unique 24-hexadecimal digit string that identifies the team that you want to rename.
   teamId: "bf325375e030fccba0091731",
-  // ApiTeamView | Details to update on the specified team.
-  apiTeamView: {
+  // Team | Details to update on the specified team.
+  team: {
     name: "name_example",
     usernames: [
       "usernames_example",
     ],
   },
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
-  // boolean | Flag that indicates whether the response body should be in the <a href=\"https://en.wikipedia.org/wiki/Prettyprint\" target=\"_blank\" rel=\"noopener noreferrer\">prettyprint</a> format. (optional)
-  pretty: false,
 };
 
 apiInstance.renameTeam(body).then((data:any) => {
@@ -842,16 +775,14 @@ apiInstance.renameTeam(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **apiTeamView** | **ApiTeamView**| Details to update on the specified team. |
+ **team** | **Team**| Details to update on the specified team. |
  **orgId** | [**string**] | Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access. | defaults to undefined
  **teamId** | [**string**] | Unique 24-hexadecimal digit string that identifies the team that you want to rename. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
- **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
 
 
 ### Return type
 
-**ApiTeamResponseView**
+**TeamResponse**
 
 ### Authorization
 
@@ -867,18 +798,18 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
-**409** | Conflict |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**401** | Unauthorized. |  -  |
+**404** | Not Found. |  -  |
+**409** | Conflict. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **updateTeamRoles**
-> PaginatedTeamRoleView updateTeamRoles(apiTeamRoleView)
+> PaginatedTeamRole updateTeamRoles(teamRole)
 
-Updates the project roles assigned to the specified team. You can grant team roles for specific projects and grant project access roles to users in the team. All members of the team share the same project access. To use this resource, the requesting API Key must have the Project User Admin role.
+Updates the project roles assigned to the specified team. You can grant team roles for specific projects and grant project access roles to users in the team. All members of the team share the same project access. To use this resource, the requesting API Key must have the Project Owner role.
 
 ### Example
 
@@ -895,17 +826,13 @@ let body:.TeamsApiUpdateTeamRolesRequest = {
   groupId: "32b6e34b3d91647abb20e7b8",
   // string | Unique 24-hexadecimal digit string that identifies the team for which you want to update roles.
   teamId: "bf325375e030fccba0091731",
-  // ApiTeamRoleView | The project roles assigned to the specified team.
-  apiTeamRoleView: {
+  // TeamRole | The project roles assigned to the specified team.
+  teamRole: {
     roleNames: [
-      "GROUP_CLUSTER_MANAGER",
+      "roleNames_example",
     ],
     teamId: "32b6e34b3d91647abb20e7b8",
   },
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
-  // boolean | Flag that indicates whether the response body should be in the <a href=\"https://en.wikipedia.org/wiki/Prettyprint\" target=\"_blank\" rel=\"noopener noreferrer\">prettyprint</a> format. (optional)
-  pretty: false,
 };
 
 apiInstance.updateTeamRoles(body).then((data:any) => {
@@ -918,16 +845,14 @@ apiInstance.updateTeamRoles(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **apiTeamRoleView** | **ApiTeamRoleView**| The project roles assigned to the specified team. |
+ **teamRole** | **TeamRole**| The project roles assigned to the specified team. |
  **groupId** | [**string**] | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. | defaults to undefined
  **teamId** | [**string**] | Unique 24-hexadecimal digit string that identifies the team for which you want to update roles. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
- **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
 
 
 ### Return type
 
-**PaginatedTeamRoleView**
+**PaginatedTeamRole**
 
 ### Authorization
 
@@ -943,11 +868,11 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not Found |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**401** | Unauthorized. |  -  |
+**403** | Forbidden. |  -  |
+**404** | Not Found. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 

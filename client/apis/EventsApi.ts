@@ -9,12 +9,10 @@ import {SecurityAuthentication} from '../auth/auth';
 
 
 import { ApiError } from '../models/ApiError';
-import { EventTypeForNdsGroup } from '../models/EventTypeForNdsGroup';
-import { EventTypeForOrg } from '../models/EventTypeForOrg';
 import { EventViewForNdsGroup } from '../models/EventViewForNdsGroup';
 import { EventViewForOrg } from '../models/EventViewForOrg';
-import { GroupPaginatedEventView } from '../models/GroupPaginatedEventView';
-import { OrgPaginatedEventView } from '../models/OrgPaginatedEventView';
+import { GroupPaginatedEvent } from '../models/GroupPaginatedEvent';
+import { OrgPaginatedEvent } from '../models/OrgPaginatedEvent';
 
 /**
  * no description
@@ -22,15 +20,13 @@ import { OrgPaginatedEventView } from '../models/OrgPaginatedEventView';
 export class EventsApiRequestFactory extends BaseAPIRequestFactory {
 
     /**
-     * Returns one event for the specified organization. Events identify significant database, billing, or security activities or status changes. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an Access List.   This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/events-orgs-get-one/).
+     * Returns one event for the specified organization. Events identify significant database, billing, or security activities or status changes. To use this resource, the requesting API Key must have the Organization Member role.  This resource remains under revision and may change.
      * Return One Event from One Organization
      * @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
      * @param eventId Unique 24-hexadecimal digit string that identifies the event that you want to return. Use the [/events](#tag/Events/operation/listOrganizationEvents) endpoint to retrieve all events to which the authenticated user has access.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
      * @param includeRaw Flag that indicates whether to include the raw document in the output. The raw document contains additional meta information about the event.
      */
-    public async getOrganizationEvent(orgId: string, eventId: string, envelope?: boolean, pretty?: boolean, includeRaw?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async getOrganizationEvent(orgId: string, eventId: string, includeRaw?: boolean, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'orgId' is not null or undefined
@@ -46,8 +42,6 @@ export class EventsApiRequestFactory extends BaseAPIRequestFactory {
 
 
 
-
-
         // Path Params
         const localVarPath = '/api/atlas/v2/orgs/{orgId}/events/{eventId}'
             .replace('{' + 'orgId' + '}', encodeURIComponent(String(orgId)))
@@ -56,16 +50,6 @@ export class EventsApiRequestFactory extends BaseAPIRequestFactory {
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
-
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
 
         // Query Params
         if (includeRaw !== undefined) {
@@ -83,15 +67,13 @@ export class EventsApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * Returns one event for the specified project. Events identify significant database, billing, or security activities or status changes. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.   This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/events-projects-get-one/).
+     * Returns one event for the specified project. Events identify significant database, billing, or security activities or status changes. To use this resource, the requesting API Key must have the Project Read Only role.  This resource remains under revision and may change.
      * Return One Event from One Project
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
      * @param eventId Unique 24-hexadecimal digit string that identifies the event that you want to return. Use the [/events](#tag/Events/operation/listProjectEvents) endpoint to retrieve all events to which the authenticated user has access.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
      * @param includeRaw Flag that indicates whether to include the raw document in the output. The raw document contains additional meta information about the event.
      */
-    public async getProjectEvent(groupId: string, eventId: string, envelope?: boolean, pretty?: boolean, includeRaw?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async getProjectEvent(groupId: string, eventId: string, includeRaw?: boolean, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
@@ -107,8 +89,6 @@ export class EventsApiRequestFactory extends BaseAPIRequestFactory {
 
 
 
-
-
         // Path Params
         const localVarPath = '/api/atlas/v2/groups/{groupId}/events/{eventId}'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
@@ -117,16 +97,6 @@ export class EventsApiRequestFactory extends BaseAPIRequestFactory {
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
-
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
 
         // Query Params
         if (includeRaw !== undefined) {
@@ -144,28 +114,24 @@ export class EventsApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * Returns all events for the specified organization. Events identify significant database, billing, or security activities or status changes. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an Access List.   This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/events-orgs-get-all/).
+     * Returns all events for the specified organization. Events identify significant database, billing, or security activities or status changes. To use this resource, the requesting API Key must have the Organization Member role.  This resource remains under revision and may change.
      * Return All Events from One Organization
      * @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
      * @param includeCount Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @param itemsPerPage Number of items that the response returns per page.
      * @param pageNum Number of the page that displays the current set of the total objects that the response returns.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
      * @param eventType Category of incident recorded at this moment in time.  **IMPORTANT**: The complete list of event type values changes frequently.
      * @param includeRaw Flag that indicates whether to include the raw document in the output. The raw document contains additional meta information about the event.
      * @param maxDate Date and time from when MongoDB Cloud stops returning events. This parameter uses the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/ISO_8601\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;ISO 8601&lt;/a&gt; timestamp format in UTC.
      * @param minDate Date and time from when MongoDB Cloud starts returning events. This parameter uses the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/ISO_8601\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;ISO 8601&lt;/a&gt; timestamp format in UTC.
      */
-    public async listOrganizationEvents(orgId: string, envelope?: boolean, includeCount?: boolean, itemsPerPage?: number, pageNum?: number, pretty?: boolean, eventType?: EventTypeForOrg, includeRaw?: boolean, maxDate?: Date, minDate?: Date, _options?: Configuration): Promise<RequestContext> {
+    public async listOrganizationEvents(orgId: string, includeCount?: boolean, itemsPerPage?: number, pageNum?: number, eventType?: Array<string>, includeRaw?: boolean, maxDate?: Date, minDate?: Date, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'orgId' is not null or undefined
         if (orgId === null || orgId === undefined) {
             throw new RequiredError("EventsApi", "listOrganizationEvents", "orgId");
         }
-
-
 
 
 
@@ -184,11 +150,6 @@ export class EventsApiRequestFactory extends BaseAPIRequestFactory {
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
 
         // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
         if (includeCount !== undefined) {
             requestContext.setQueryParam("includeCount", ObjectSerializer.serialize(includeCount, "boolean", ""));
         }
@@ -204,13 +165,8 @@ export class EventsApiRequestFactory extends BaseAPIRequestFactory {
         }
 
         // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
-
-        // Query Params
         if (eventType !== undefined) {
-            requestContext.setQueryParam("eventType", ObjectSerializer.serialize(eventType, "EventTypeForOrg", ""));
+            requestContext.setQueryParam("eventType", ObjectSerializer.serialize(eventType, "Array<string>", ""));
         }
 
         // Query Params
@@ -239,28 +195,26 @@ export class EventsApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * Returns one event for the specified project. Events identify significant database, billing, or security activities or status changes. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.   This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/events-projects-get-all/).
+     * Returns one event for the specified project. Events identify significant database, billing, or security activities or status changes. To use this resource, the requesting API Key must have the Project Read Only role.  This resource remains under revision and may change.
      * Return All Events from One Project
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
      * @param includeCount Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @param itemsPerPage Number of items that the response returns per page.
      * @param pageNum Number of the page that displays the current set of the total objects that the response returns.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
      * @param clusterNames Human-readable label that identifies the cluster.
      * @param eventType Category of incident recorded at this moment in time.  **IMPORTANT**: The complete list of event type values changes frequently.
+     * @param excludedEventType Category of event that you would like to exclude from query results, such as CLUSTER_CREATED  **IMPORTANT**: Event type names change frequently. Verify that you specify the event type correctly by checking the complete list of event types.
      * @param includeRaw Flag that indicates whether to include the raw document in the output. The raw document contains additional meta information about the event.
      * @param maxDate Date and time from when MongoDB Cloud stops returning events. This parameter uses the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/ISO_8601\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;ISO 8601&lt;/a&gt; timestamp format in UTC.
      * @param minDate Date and time from when MongoDB Cloud starts returning events. This parameter uses the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/ISO_8601\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;ISO 8601&lt;/a&gt; timestamp format in UTC.
      */
-    public async listProjectEvents(groupId: string, envelope?: boolean, includeCount?: boolean, itemsPerPage?: number, pageNum?: number, pretty?: boolean, clusterNames?: Array<string>, eventType?: EventTypeForNdsGroup, includeRaw?: boolean, maxDate?: Date, minDate?: Date, _options?: Configuration): Promise<RequestContext> {
+    public async listProjectEvents(groupId: string, includeCount?: boolean, itemsPerPage?: number, pageNum?: number, clusterNames?: Array<string>, eventType?: Array<string>, excludedEventType?: Array<string>, includeRaw?: boolean, maxDate?: Date, minDate?: Date, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
         if (groupId === null || groupId === undefined) {
             throw new RequiredError("EventsApi", "listProjectEvents", "groupId");
         }
-
 
 
 
@@ -281,11 +235,6 @@ export class EventsApiRequestFactory extends BaseAPIRequestFactory {
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
 
         // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
         if (includeCount !== undefined) {
             requestContext.setQueryParam("includeCount", ObjectSerializer.serialize(includeCount, "boolean", ""));
         }
@@ -301,18 +250,18 @@ export class EventsApiRequestFactory extends BaseAPIRequestFactory {
         }
 
         // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
-
-        // Query Params
         if (clusterNames !== undefined) {
             requestContext.setQueryParam("clusterNames", ObjectSerializer.serialize(clusterNames, "Array<string>", ""));
         }
 
         // Query Params
         if (eventType !== undefined) {
-            requestContext.setQueryParam("eventType", ObjectSerializer.serialize(eventType, "EventTypeForNdsGroup", ""));
+            requestContext.setQueryParam("eventType", ObjectSerializer.serialize(eventType, "Array<string>", ""));
+        }
+
+        // Query Params
+        if (excludedEventType !== undefined) {
+            requestContext.setQueryParam("excludedEventType", ObjectSerializer.serialize(excludedEventType, "Array<string>", ""));
         }
 
         // Query Params
@@ -365,21 +314,21 @@ export class EventsApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized.", body, response.headers);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -415,21 +364,21 @@ export class EventsApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized.", body, response.headers);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -451,13 +400,13 @@ export class EventsApiResponseProcessor {
      * @params response Response returned by the server for a request to listOrganizationEvents
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listOrganizationEvents(response: ResponseContext): Promise<OrgPaginatedEventView > {
+     public async listOrganizationEvents(response: ResponseContext): Promise<OrgPaginatedEvent > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: OrgPaginatedEventView = ObjectSerializer.deserialize(
+            const body: OrgPaginatedEvent = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "OrgPaginatedEventView", ""
-            ) as OrgPaginatedEventView;
+                "OrgPaginatedEvent", ""
+            ) as OrgPaginatedEvent;
             return body;
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
@@ -465,22 +414,22 @@ export class EventsApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: OrgPaginatedEventView = ObjectSerializer.deserialize(
+            const body: OrgPaginatedEvent = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "OrgPaginatedEventView", ""
-            ) as OrgPaginatedEventView;
+                "OrgPaginatedEvent", ""
+            ) as OrgPaginatedEvent;
             return body;
         }
 
@@ -494,13 +443,13 @@ export class EventsApiResponseProcessor {
      * @params response Response returned by the server for a request to listProjectEvents
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listProjectEvents(response: ResponseContext): Promise<GroupPaginatedEventView > {
+     public async listProjectEvents(response: ResponseContext): Promise<GroupPaginatedEvent > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: GroupPaginatedEventView = ObjectSerializer.deserialize(
+            const body: GroupPaginatedEvent = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "GroupPaginatedEventView", ""
-            ) as GroupPaginatedEventView;
+                "GroupPaginatedEvent", ""
+            ) as GroupPaginatedEvent;
             return body;
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
@@ -508,29 +457,29 @@ export class EventsApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request.", body, response.headers);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: GroupPaginatedEventView = ObjectSerializer.deserialize(
+            const body: GroupPaginatedEvent = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "GroupPaginatedEventView", ""
-            ) as GroupPaginatedEventView;
+                "GroupPaginatedEvent", ""
+            ) as GroupPaginatedEvent;
             return body;
         }
 

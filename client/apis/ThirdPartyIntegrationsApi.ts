@@ -9,8 +9,8 @@ import {SecurityAuthentication} from '../auth/auth';
 
 
 import { ApiError } from '../models/ApiError';
-import { GroupPaginatedIntegrationView } from '../models/GroupPaginatedIntegrationView';
-import { IntegrationViewForNdsGroup } from '../models/IntegrationViewForNdsGroup';
+import { PaginatedIntegration } from '../models/PaginatedIntegration';
+import { ThridPartyIntegration } from '../models/ThridPartyIntegration';
 
 /**
  * no description
@@ -18,18 +18,16 @@ import { IntegrationViewForNdsGroup } from '../models/IntegrationViewForNdsGroup
 export class ThirdPartyIntegrationsApiRequestFactory extends BaseAPIRequestFactory {
 
     /**
-     * Adds the settings for configuring one third-party service integration. These settings apply to all databases managed in the specified MongoDB Cloud project. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Adds the settings for configuring one third-party service integration. These settings apply to all databases managed in the specified MongoDB Cloud project. Each project can have only one configuration per `{INTEGRATION-TYPE}`. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role.
      * Configure One Third-Party Service Integration
      * @param integrationType Human-readable label that identifies the service which you want to integrate with MongoDB Cloud.
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-     * @param integrationViewForNdsGroup Third-party integration that you want to configure for your project.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+     * @param thridPartyIntegration Third-party integration that you want to configure for your project.
      * @param includeCount Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @param itemsPerPage Number of items that the response returns per page.
      * @param pageNum Number of the page that displays the current set of the total objects that the response returns.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
      */
-    public async createThirdPartyIntegration(integrationType: 'PAGER_DUTY' | 'SLACK' | 'DATADOG' | 'NEW_RELIC' | 'OPS_GENIE' | 'VICTOR_OPS' | 'WEBHOOK' | 'PROMETHEUS' | 'MICROSOFT_TEAMS', groupId: string, integrationViewForNdsGroup: IntegrationViewForNdsGroup, envelope?: boolean, includeCount?: boolean, itemsPerPage?: number, pageNum?: number, pretty?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async createThirdPartyIntegration(integrationType: string, groupId: string, thridPartyIntegration: ThridPartyIntegration, includeCount?: boolean, itemsPerPage?: number, pageNum?: number, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'integrationType' is not null or undefined
@@ -44,12 +42,10 @@ export class ThirdPartyIntegrationsApiRequestFactory extends BaseAPIRequestFacto
         }
 
 
-        // verify required parameter 'integrationViewForNdsGroup' is not null or undefined
-        if (integrationViewForNdsGroup === null || integrationViewForNdsGroup === undefined) {
-            throw new RequiredError("ThirdPartyIntegrationsApi", "createThirdPartyIntegration", "integrationViewForNdsGroup");
+        // verify required parameter 'thridPartyIntegration' is not null or undefined
+        if (thridPartyIntegration === null || thridPartyIntegration === undefined) {
+            throw new RequiredError("ThirdPartyIntegrationsApi", "createThirdPartyIntegration", "thridPartyIntegration");
         }
-
-
 
 
 
@@ -65,11 +61,6 @@ export class ThirdPartyIntegrationsApiRequestFactory extends BaseAPIRequestFacto
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
 
         // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
         if (includeCount !== undefined) {
             requestContext.setQueryParam("includeCount", ObjectSerializer.serialize(includeCount, "boolean", ""));
         }
@@ -84,11 +75,6 @@ export class ThirdPartyIntegrationsApiRequestFactory extends BaseAPIRequestFacto
             requestContext.setQueryParam("pageNum", ObjectSerializer.serialize(pageNum, "number", ""));
         }
 
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
-
 
         // Body Params
         const contentType = ObjectSerializer.getPreferredMediaType([
@@ -96,7 +82,7 @@ export class ThirdPartyIntegrationsApiRequestFactory extends BaseAPIRequestFacto
         ]);
         requestContext.setHeaderParam("Content-Type", contentType);
         const serializedBody = ObjectSerializer.stringify(
-            ObjectSerializer.serialize(integrationViewForNdsGroup, "IntegrationViewForNdsGroup", ""),
+            ObjectSerializer.serialize(thridPartyIntegration, "ThridPartyIntegration", ""),
             contentType
         );
         requestContext.setBody(serializedBody);
@@ -111,14 +97,12 @@ export class ThirdPartyIntegrationsApiRequestFactory extends BaseAPIRequestFacto
     }
 
     /**
-     * Removes the settings that permit configuring one third-party service integration. These settings apply to all databases managed in one MongoDB Cloud project. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Removes the settings that permit configuring one third-party service integration. These settings apply to all databases managed in one MongoDB Cloud project. If you delete an integration from a project, you remove that integration configuration only for that project. This action doesn't affect any other project or organization's configured `{INTEGRATION-TYPE}` integrations. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role.
      * Remove One Third-Party Service Integration
      * @param integrationType Human-readable label that identifies the service which you want to integrate with MongoDB Cloud.
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
      */
-    public async deleteThirdPartyIntegration(integrationType: 'PAGER_DUTY' | 'SLACK' | 'DATADOG' | 'NEW_RELIC' | 'OPS_GENIE' | 'VICTOR_OPS' | 'WEBHOOK' | 'PROMETHEUS' | 'MICROSOFT_TEAMS', groupId: string, envelope?: boolean, pretty?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async deleteThirdPartyIntegration(integrationType: string, groupId: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'integrationType' is not null or undefined
@@ -133,8 +117,6 @@ export class ThirdPartyIntegrationsApiRequestFactory extends BaseAPIRequestFacto
         }
 
 
-
-
         // Path Params
         const localVarPath = '/api/atlas/v2/groups/{groupId}/integrations/{integrationType}'
             .replace('{' + 'integrationType' + '}', encodeURIComponent(String(integrationType)))
@@ -142,17 +124,7 @@ export class ThirdPartyIntegrationsApiRequestFactory extends BaseAPIRequestFacto
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
-        requestContext.setHeaderParam("Accept","application/json")
-
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
+        requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
 
 
         
@@ -165,14 +137,12 @@ export class ThirdPartyIntegrationsApiRequestFactory extends BaseAPIRequestFacto
     }
 
     /**
-     * Returns the settings for configuring integration with one third-party service. These settings apply to all databases managed in one MongoDB Cloud project. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Returns the settings for configuring integration with one third-party service. These settings apply to all databases managed in one MongoDB Cloud project. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role.
      * Return One Third-Party Service Integration
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
      * @param integrationType Human-readable label that identifies the service which you want to integrate with MongoDB Cloud.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
      */
-    public async getThirdPartyIntegration(groupId: string, integrationType: 'PAGER_DUTY' | 'SLACK' | 'DATADOG' | 'NEW_RELIC' | 'OPS_GENIE' | 'VICTOR_OPS' | 'WEBHOOK' | 'PROMETHEUS' | 'MICROSOFT_TEAMS', envelope?: boolean, pretty?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async getThirdPartyIntegration(groupId: string, integrationType: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
@@ -187,8 +157,6 @@ export class ThirdPartyIntegrationsApiRequestFactory extends BaseAPIRequestFacto
         }
 
 
-
-
         // Path Params
         const localVarPath = '/api/atlas/v2/groups/{groupId}/integrations/{integrationType}'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
@@ -197,16 +165,6 @@ export class ThirdPartyIntegrationsApiRequestFactory extends BaseAPIRequestFacto
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
-
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
 
 
         
@@ -219,24 +177,20 @@ export class ThirdPartyIntegrationsApiRequestFactory extends BaseAPIRequestFacto
     }
 
     /**
-     * Returns the settings that permit integrations with all configured third-party services. These settings apply to all databases managed in one MongoDB Cloud project. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Returns the settings that permit integrations with all configured third-party services. These settings apply to all databases managed in one MongoDB Cloud project. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role.
      * Return All Active Third-Party Service Integrations
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
      * @param includeCount Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @param itemsPerPage Number of items that the response returns per page.
      * @param pageNum Number of the page that displays the current set of the total objects that the response returns.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
      */
-    public async listThirdPartyIntegrations(groupId: string, envelope?: boolean, includeCount?: boolean, itemsPerPage?: number, pageNum?: number, pretty?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async listThirdPartyIntegrations(groupId: string, includeCount?: boolean, itemsPerPage?: number, pageNum?: number, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
         if (groupId === null || groupId === undefined) {
             throw new RequiredError("ThirdPartyIntegrationsApi", "listThirdPartyIntegrations", "groupId");
         }
-
-
 
 
 
@@ -249,11 +203,6 @@ export class ThirdPartyIntegrationsApiRequestFactory extends BaseAPIRequestFacto
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
-
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
 
         // Query Params
         if (includeCount !== undefined) {
@@ -270,11 +219,6 @@ export class ThirdPartyIntegrationsApiRequestFactory extends BaseAPIRequestFacto
             requestContext.setQueryParam("pageNum", ObjectSerializer.serialize(pageNum, "number", ""));
         }
 
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
-
 
         
         const defaultAuth: SecurityAuthentication | undefined = _options?.authMethods?.default || this.configuration?.authMethods?.default
@@ -286,18 +230,16 @@ export class ThirdPartyIntegrationsApiRequestFactory extends BaseAPIRequestFacto
     }
 
     /**
-     * Updates the settings for configuring integration with one third-party service. These settings apply to all databases managed in one MongoDB Cloud project. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Updates the settings for configuring integration with one third-party service. These settings apply to all databases managed in one MongoDB Cloud project. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role.
      * Update One Third-Party Service Integration
      * @param integrationType Human-readable label that identifies the service which you want to integrate with MongoDB Cloud.
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-     * @param integrationViewForNdsGroup Third-party integration that you want to configure for your project.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+     * @param thridPartyIntegration Third-party integration that you want to configure for your project.
      * @param includeCount Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @param itemsPerPage Number of items that the response returns per page.
      * @param pageNum Number of the page that displays the current set of the total objects that the response returns.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
      */
-    public async updateThirdPartyIntegration(integrationType: 'PAGER_DUTY' | 'SLACK' | 'DATADOG' | 'NEW_RELIC' | 'OPS_GENIE' | 'VICTOR_OPS' | 'WEBHOOK' | 'PROMETHEUS' | 'MICROSOFT_TEAMS', groupId: string, integrationViewForNdsGroup: IntegrationViewForNdsGroup, envelope?: boolean, includeCount?: boolean, itemsPerPage?: number, pageNum?: number, pretty?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async updateThirdPartyIntegration(integrationType: string, groupId: string, thridPartyIntegration: ThridPartyIntegration, includeCount?: boolean, itemsPerPage?: number, pageNum?: number, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'integrationType' is not null or undefined
@@ -312,12 +254,10 @@ export class ThirdPartyIntegrationsApiRequestFactory extends BaseAPIRequestFacto
         }
 
 
-        // verify required parameter 'integrationViewForNdsGroup' is not null or undefined
-        if (integrationViewForNdsGroup === null || integrationViewForNdsGroup === undefined) {
-            throw new RequiredError("ThirdPartyIntegrationsApi", "updateThirdPartyIntegration", "integrationViewForNdsGroup");
+        // verify required parameter 'thridPartyIntegration' is not null or undefined
+        if (thridPartyIntegration === null || thridPartyIntegration === undefined) {
+            throw new RequiredError("ThirdPartyIntegrationsApi", "updateThirdPartyIntegration", "thridPartyIntegration");
         }
-
-
 
 
 
@@ -333,11 +273,6 @@ export class ThirdPartyIntegrationsApiRequestFactory extends BaseAPIRequestFacto
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
 
         // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
         if (includeCount !== undefined) {
             requestContext.setQueryParam("includeCount", ObjectSerializer.serialize(includeCount, "boolean", ""));
         }
@@ -352,11 +287,6 @@ export class ThirdPartyIntegrationsApiRequestFactory extends BaseAPIRequestFacto
             requestContext.setQueryParam("pageNum", ObjectSerializer.serialize(pageNum, "number", ""));
         }
 
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
-
 
         // Body Params
         const contentType = ObjectSerializer.getPreferredMediaType([
@@ -364,7 +294,7 @@ export class ThirdPartyIntegrationsApiRequestFactory extends BaseAPIRequestFacto
         ]);
         requestContext.setHeaderParam("Content-Type", contentType);
         const serializedBody = ObjectSerializer.stringify(
-            ObjectSerializer.serialize(integrationViewForNdsGroup, "IntegrationViewForNdsGroup", ""),
+            ObjectSerializer.serialize(thridPartyIntegration, "ThridPartyIntegration", ""),
             contentType
         );
         requestContext.setBody(serializedBody);
@@ -389,13 +319,13 @@ export class ThirdPartyIntegrationsApiResponseProcessor {
      * @params response Response returned by the server for a request to createThirdPartyIntegration
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createThirdPartyIntegration(response: ResponseContext): Promise<GroupPaginatedIntegrationView > {
+     public async createThirdPartyIntegration(response: ResponseContext): Promise<PaginatedIntegration > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: GroupPaginatedIntegrationView = ObjectSerializer.deserialize(
+            const body: PaginatedIntegration = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "GroupPaginatedIntegrationView", ""
-            ) as GroupPaginatedIntegrationView;
+                "PaginatedIntegration", ""
+            ) as PaginatedIntegration;
             return body;
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
@@ -403,43 +333,43 @@ export class ThirdPartyIntegrationsApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request.", body, response.headers);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized.", body, response.headers);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found.", body, response.headers);
         }
         if (isCodeInRange("409", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Conflict", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Conflict.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: GroupPaginatedIntegrationView = ObjectSerializer.deserialize(
+            const body: PaginatedIntegration = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "GroupPaginatedIntegrationView", ""
-            ) as GroupPaginatedIntegrationView;
+                "PaginatedIntegration", ""
+            ) as PaginatedIntegration;
             return body;
         }
 
@@ -453,46 +383,50 @@ export class ThirdPartyIntegrationsApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteThirdPartyIntegration
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteThirdPartyIntegration(response: ResponseContext): Promise<void > {
+     public async deleteThirdPartyIntegration(response: ResponseContext): Promise<any > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("204", response.httpStatusCode)) {
-            return;
+            const body: any = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "any", ""
+            ) as any;
+            return body;
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request.", body, response.headers);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized.", body, response.headers);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: void = ObjectSerializer.deserialize(
+            const body: any = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "void", ""
-            ) as void;
+                "any", ""
+            ) as any;
             return body;
         }
 
@@ -506,13 +440,13 @@ export class ThirdPartyIntegrationsApiResponseProcessor {
      * @params response Response returned by the server for a request to getThirdPartyIntegration
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getThirdPartyIntegration(response: ResponseContext): Promise<IntegrationViewForNdsGroup > {
+     public async getThirdPartyIntegration(response: ResponseContext): Promise<ThridPartyIntegration > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: IntegrationViewForNdsGroup = ObjectSerializer.deserialize(
+            const body: ThridPartyIntegration = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "IntegrationViewForNdsGroup", ""
-            ) as IntegrationViewForNdsGroup;
+                "ThridPartyIntegration", ""
+            ) as ThridPartyIntegration;
             return body;
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
@@ -520,36 +454,36 @@ export class ThirdPartyIntegrationsApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request.", body, response.headers);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized.", body, response.headers);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: IntegrationViewForNdsGroup = ObjectSerializer.deserialize(
+            const body: ThridPartyIntegration = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "IntegrationViewForNdsGroup", ""
-            ) as IntegrationViewForNdsGroup;
+                "ThridPartyIntegration", ""
+            ) as ThridPartyIntegration;
             return body;
         }
 
@@ -563,13 +497,13 @@ export class ThirdPartyIntegrationsApiResponseProcessor {
      * @params response Response returned by the server for a request to listThirdPartyIntegrations
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listThirdPartyIntegrations(response: ResponseContext): Promise<GroupPaginatedIntegrationView > {
+     public async listThirdPartyIntegrations(response: ResponseContext): Promise<PaginatedIntegration > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: GroupPaginatedIntegrationView = ObjectSerializer.deserialize(
+            const body: PaginatedIntegration = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "GroupPaginatedIntegrationView", ""
-            ) as GroupPaginatedIntegrationView;
+                "PaginatedIntegration", ""
+            ) as PaginatedIntegration;
             return body;
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
@@ -577,36 +511,36 @@ export class ThirdPartyIntegrationsApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request.", body, response.headers);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized.", body, response.headers);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: GroupPaginatedIntegrationView = ObjectSerializer.deserialize(
+            const body: PaginatedIntegration = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "GroupPaginatedIntegrationView", ""
-            ) as GroupPaginatedIntegrationView;
+                "PaginatedIntegration", ""
+            ) as PaginatedIntegration;
             return body;
         }
 
@@ -620,13 +554,13 @@ export class ThirdPartyIntegrationsApiResponseProcessor {
      * @params response Response returned by the server for a request to updateThirdPartyIntegration
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async updateThirdPartyIntegration(response: ResponseContext): Promise<GroupPaginatedIntegrationView > {
+     public async updateThirdPartyIntegration(response: ResponseContext): Promise<PaginatedIntegration > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: GroupPaginatedIntegrationView = ObjectSerializer.deserialize(
+            const body: PaginatedIntegration = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "GroupPaginatedIntegrationView", ""
-            ) as GroupPaginatedIntegrationView;
+                "PaginatedIntegration", ""
+            ) as PaginatedIntegration;
             return body;
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
@@ -634,36 +568,36 @@ export class ThirdPartyIntegrationsApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Bad Request.", body, response.headers);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized.", body, response.headers);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: GroupPaginatedIntegrationView = ObjectSerializer.deserialize(
+            const body: PaginatedIntegration = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "GroupPaginatedIntegrationView", ""
-            ) as GroupPaginatedIntegrationView;
+                "PaginatedIntegration", ""
+            ) as PaginatedIntegration;
             return body;
         }
 

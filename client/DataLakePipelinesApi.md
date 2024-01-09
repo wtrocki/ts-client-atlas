@@ -20,7 +20,7 @@ Method | HTTP request | Description
 
 
 # **createPipeline**
-> IngestionPipeline createPipeline(ingestionPipeline)
+> DataLakeIngestionPipeline createPipeline(dataLakeIngestionPipeline)
 
 Creates one Data Lake Pipeline.
 
@@ -37,35 +37,37 @@ const apiInstance = new .DataLakePipelinesApi(configuration);
 let body:.DataLakePipelinesApiCreatePipelineRequest = {
   // string | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
   groupId: "32b6e34b3d91647abb20e7b8",
-  // IngestionPipeline | Creates one Data Lake Pipeline.
-  ingestionPipeline: {
+  // DataLakeIngestionPipeline | Creates one Data Lake Pipeline.
+  dataLakeIngestionPipeline: {
+    datasetRetentionPolicy: {
+      units: "units_example",
+      value: 1,
+    },
     name: "name_example",
     sink: {
-    metadataProvider: "AWS",
-    metadataRegion: "metadataRegion_example",
-    partitionFields: [
-      {
-        fieldName: "fieldName_example",
-        order: 0,
-      },
-    ],
-    type: "DLS",
-  },
+      metadataProvider: "metadataProvider_example",
+      metadataRegion: "metadataRegion_example",
+      partitionFields: [
+        {
+          fieldName: "fieldName_example",
+          order: 0,
+        },
+      ],
+    },
     source: {
-    clusterName: "clusterName_example",
-    collectionName: "collectionName_example",
-    databaseName: "databaseName_example",
-    type: "PERIODIC_CPS",
-  },
+      type: "type_example",
+      clusterName: "clusterName_example",
+      collectionName: "collectionName_example",
+      databaseName: "databaseName_example",
+      policyItemId: "32b6e34b3d91647abb20e7b8",
+    },
     transformations: [
       {
         field: "field_example",
-        type: "EXCLUDE",
+        type: "type_example",
       },
     ],
   },
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
 };
 
 apiInstance.createPipeline(body).then((data:any) => {
@@ -78,14 +80,13 @@ apiInstance.createPipeline(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ingestionPipeline** | **IngestionPipeline**| Creates one Data Lake Pipeline. |
+ **dataLakeIngestionPipeline** | **DataLakeIngestionPipeline**| Creates one Data Lake Pipeline. |
  **groupId** | [**string**] | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
 
 
 ### Return type
 
-**IngestionPipeline**
+**DataLakeIngestionPipeline**
 
 ### Authorization
 
@@ -101,15 +102,15 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**401** | Unauthorized. |  -  |
+**404** | Not Found. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **deletePipeline**
-> void deletePipeline()
+> any deletePipeline()
 
 Removes one Data Lake Pipeline.
 
@@ -128,8 +129,6 @@ let body:.DataLakePipelinesApiDeletePipelineRequest = {
   groupId: "32b6e34b3d91647abb20e7b8",
   // string | Human-readable label that identifies the Data Lake Pipeline.
   pipelineName: "P+a5XTJiB!9pN_kmb|~J!7gXm=(B-6pL*4:B4+HcKO&KdnO",
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
 };
 
 apiInstance.deletePipeline(body).then((data:any) => {
@@ -144,12 +143,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **groupId** | [**string**] | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. | defaults to undefined
  **pipelineName** | [**string**] | Human-readable label that identifies the Data Lake Pipeline. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
 
 
 ### Return type
 
-**void**
+**any**
 
 ### Authorization
 
@@ -158,21 +156,21 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.atlas.2023-01-01+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | This endpoint does not return a response body. |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
-**500** | Internal Server Error |  -  |
+**401** | Unauthorized. |  -  |
+**404** | Not Found. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **deletePipelineRunDataset**
-> void deletePipelineRunDataset()
+> any deletePipelineRunDataset()
 
 Deletes dataset that Atlas generated during the specified pipeline run.
 
@@ -193,10 +191,6 @@ let body:.DataLakePipelinesApiDeletePipelineRunDatasetRequest = {
   pipelineName: "P+a5XTJiB!9pN_kmb|~J!7gXm=(B-6pL*4:B4+HcKO&KdnO",
   // string | Unique 24-hexadecimal character string that identifies a Data Lake Pipeline run.
   pipelineRunId: "32b6e34b3d91647abb20e7b8",
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
-  // boolean | Flag that indicates whether the response body should be in the <a href=\"https://en.wikipedia.org/wiki/Prettyprint\" target=\"_blank\" rel=\"noopener noreferrer\">prettyprint</a> format. (optional)
-  pretty: false,
 };
 
 apiInstance.deletePipelineRunDataset(body).then((data:any) => {
@@ -212,13 +206,11 @@ Name | Type | Description  | Notes
  **groupId** | [**string**] | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. | defaults to undefined
  **pipelineName** | [**string**] | Human-readable label that identifies the Data Lake Pipeline. | defaults to undefined
  **pipelineRunId** | [**string**] | Unique 24-hexadecimal character string that identifies a Data Lake Pipeline run. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
- **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
 
 
 ### Return type
 
-**void**
+**any**
 
 ### Authorization
 
@@ -227,21 +219,21 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.atlas.2023-01-01+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** | Accepted |  -  |
-**400** | Bad Request |  -  |
-**404** | Not Found |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**404** | Not Found. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **getPipeline**
-> IngestionPipeline getPipeline()
+> DataLakeIngestionPipeline getPipeline()
 
 Returns the details of one Data Lake Pipeline within the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
 
@@ -260,10 +252,6 @@ let body:.DataLakePipelinesApiGetPipelineRequest = {
   groupId: "32b6e34b3d91647abb20e7b8",
   // string | Human-readable label that identifies the Data Lake Pipeline.
   pipelineName: "P+a5XTJiB!9pN_kmb|~J!7gXm=(B-6pL*4:B4+HcKO&KdnO",
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
-  // boolean | Flag that indicates whether the response body should be in the <a href=\"https://en.wikipedia.org/wiki/Prettyprint\" target=\"_blank\" rel=\"noopener noreferrer\">prettyprint</a> format. (optional)
-  pretty: false,
 };
 
 apiInstance.getPipeline(body).then((data:any) => {
@@ -278,13 +266,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **groupId** | [**string**] | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. | defaults to undefined
  **pipelineName** | [**string**] | Human-readable label that identifies the Data Lake Pipeline. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
- **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
 
 
 ### Return type
 
-**IngestionPipeline**
+**DataLakeIngestionPipeline**
 
 ### Authorization
 
@@ -300,9 +286,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**400** | Bad Request |  -  |
-**404** | Not Found |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**404** | Not Found. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
@@ -328,10 +314,6 @@ let body:.DataLakePipelinesApiGetPipelineRunRequest = {
   pipelineName: "P+a5XTJiB!9pN_kmb|~J!7gXm=(B-6pL*4:B4+HcKO&KdnO",
   // string | Unique 24-hexadecimal character string that identifies a Data Lake Pipeline run.
   pipelineRunId: "32b6e34b3d91647abb20e7b8",
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
-  // boolean | Flag that indicates whether the response body should be in the <a href=\"https://en.wikipedia.org/wiki/Prettyprint\" target=\"_blank\" rel=\"noopener noreferrer\">prettyprint</a> format. (optional)
-  pretty: false,
 };
 
 apiInstance.getPipelineRun(body).then((data:any) => {
@@ -347,8 +329,6 @@ Name | Type | Description  | Notes
  **groupId** | [**string**] | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. | defaults to undefined
  **pipelineName** | [**string**] | Human-readable label that identifies the Data Lake Pipeline. | defaults to undefined
  **pipelineRunId** | [**string**] | Unique 24-hexadecimal character string that identifies a Data Lake Pipeline run. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
- **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
 
 
 ### Return type
@@ -369,14 +349,14 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**400** | Bad Request |  -  |
-**404** | Not Found |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**404** | Not Found. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **listPipelineRuns**
-> PaginatedPipelineRunView listPipelineRuns()
+> PaginatedPipelineRun listPipelineRuns()
 
 Returns a list of past Data Lake Pipeline runs. To use this resource, the requesting API Key must have the Project Read Only role.
 
@@ -395,16 +375,12 @@ let body:.DataLakePipelinesApiListPipelineRunsRequest = {
   groupId: "32b6e34b3d91647abb20e7b8",
   // string | Human-readable label that identifies the Data Lake Pipeline.
   pipelineName: "P+a5XTJiB!9pN_kmb|~J!7gXm=(B-6pL*4:B4+HcKO&KdnO",
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
   // boolean | Flag that indicates whether the response returns the total number of items (**totalCount**) in the response. (optional)
   includeCount: true,
   // number | Number of items that the response returns per page. (optional)
   itemsPerPage: 100,
   // number | Number of the page that displays the current set of the total objects that the response returns. (optional)
   pageNum: 1,
-  // boolean | Flag that indicates whether the response body should be in the <a href=\"https://en.wikipedia.org/wiki/Prettyprint\" target=\"_blank\" rel=\"noopener noreferrer\">prettyprint</a> format. (optional)
-  pretty: false,
   // Date | If specified, Atlas returns only Data Lake Pipeline runs initiated before this time and date. (optional)
   createdBefore: new Date('2022-01-01T00:00:00Z'),
 };
@@ -421,17 +397,15 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **groupId** | [**string**] | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. | defaults to undefined
  **pipelineName** | [**string**] | Human-readable label that identifies the Data Lake Pipeline. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
  **includeCount** | [**boolean**] | Flag that indicates whether the response returns the total number of items (**totalCount**) in the response. | (optional) defaults to undefined
  **itemsPerPage** | [**number**] | Number of items that the response returns per page. | (optional) defaults to 100
  **pageNum** | [**number**] | Number of the page that displays the current set of the total objects that the response returns. | (optional) defaults to 1
- **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
  **createdBefore** | [**Date**] | If specified, Atlas returns only Data Lake Pipeline runs initiated before this time and date. | (optional) defaults to undefined
 
 
 ### Return type
 
-**PaginatedPipelineRunView**
+**PaginatedPipelineRun**
 
 ### Authorization
 
@@ -447,14 +421,14 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**400** | Bad Request |  -  |
-**404** | Not Found |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**404** | Not Found. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **listPipelineSchedules**
-> Array<ApiPolicyItemView> listPipelineSchedules()
+> Array<DiskBackupApiPolicyItem> listPipelineSchedules()
 
 Returns a list of backup schedule policy items that you can use as a Data Lake Pipeline source. To use this resource, the requesting API Key must have the Project Read Only role.
 
@@ -473,10 +447,6 @@ let body:.DataLakePipelinesApiListPipelineSchedulesRequest = {
   groupId: "32b6e34b3d91647abb20e7b8",
   // string | Human-readable label that identifies the Data Lake Pipeline.
   pipelineName: "P+a5XTJiB!9pN_kmb|~J!7gXm=(B-6pL*4:B4+HcKO&KdnO",
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
-  // boolean | Flag that indicates whether the response body should be in the <a href=\"https://en.wikipedia.org/wiki/Prettyprint\" target=\"_blank\" rel=\"noopener noreferrer\">prettyprint</a> format. (optional)
-  pretty: false,
 };
 
 apiInstance.listPipelineSchedules(body).then((data:any) => {
@@ -491,13 +461,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **groupId** | [**string**] | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. | defaults to undefined
  **pipelineName** | [**string**] | Human-readable label that identifies the Data Lake Pipeline. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
- **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
 
 
 ### Return type
 
-**Array<ApiPolicyItemView>**
+**Array<DiskBackupApiPolicyItem>**
 
 ### Authorization
 
@@ -513,14 +481,14 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**400** | Bad Request |  -  |
-**404** | Not Found |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**404** | Not Found. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **listPipelineSnapshots**
-> PaginatedBackupSnapshotView listPipelineSnapshots()
+> PaginatedBackupSnapshot listPipelineSnapshots()
 
 Returns a list of backup snapshots that you can use to trigger an on demand pipeline run. To use this resource, the requesting API Key must have the Project Read Only role.
 
@@ -539,16 +507,12 @@ let body:.DataLakePipelinesApiListPipelineSnapshotsRequest = {
   groupId: "32b6e34b3d91647abb20e7b8",
   // string | Human-readable label that identifies the Data Lake Pipeline.
   pipelineName: "P+a5XTJiB!9pN_kmb|~J!7gXm=(B-6pL*4:B4+HcKO&KdnO",
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
   // boolean | Flag that indicates whether the response returns the total number of items (**totalCount**) in the response. (optional)
   includeCount: true,
   // number | Number of items that the response returns per page. (optional)
   itemsPerPage: 100,
   // number | Number of the page that displays the current set of the total objects that the response returns. (optional)
   pageNum: 1,
-  // boolean | Flag that indicates whether the response body should be in the <a href=\"https://en.wikipedia.org/wiki/Prettyprint\" target=\"_blank\" rel=\"noopener noreferrer\">prettyprint</a> format. (optional)
-  pretty: false,
   // Date | Date and time after which MongoDB Cloud created the snapshot. If specified, MongoDB Cloud returns available backup snapshots created after this time and date only. This parameter expresses its value in the ISO 8601 timestamp format in UTC. (optional)
   completedAfter: new Date('2022-01-01T00:00:00Z'),
 };
@@ -565,17 +529,15 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **groupId** | [**string**] | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. | defaults to undefined
  **pipelineName** | [**string**] | Human-readable label that identifies the Data Lake Pipeline. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
  **includeCount** | [**boolean**] | Flag that indicates whether the response returns the total number of items (**totalCount**) in the response. | (optional) defaults to undefined
  **itemsPerPage** | [**number**] | Number of items that the response returns per page. | (optional) defaults to 100
  **pageNum** | [**number**] | Number of the page that displays the current set of the total objects that the response returns. | (optional) defaults to 1
- **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
  **completedAfter** | [**Date**] | Date and time after which MongoDB Cloud created the snapshot. If specified, MongoDB Cloud returns available backup snapshots created after this time and date only. This parameter expresses its value in the ISO 8601 timestamp format in UTC. | (optional) defaults to undefined
 
 
 ### Return type
 
-**PaginatedBackupSnapshotView**
+**PaginatedBackupSnapshot**
 
 ### Authorization
 
@@ -591,14 +553,14 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**400** | Bad Request |  -  |
-**404** | Not Found |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**404** | Not Found. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **listPipelines**
-> Array<IngestionPipeline> listPipelines()
+> Array<DataLakeIngestionPipeline> listPipelines()
 
 Returns a list of Data Lake Pipelines. To use this resource, the requesting API Key must have the Project Read Only role.
 
@@ -615,8 +577,6 @@ const apiInstance = new .DataLakePipelinesApi(configuration);
 let body:.DataLakePipelinesApiListPipelinesRequest = {
   // string | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
   groupId: "32b6e34b3d91647abb20e7b8",
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
 };
 
 apiInstance.listPipelines(body).then((data:any) => {
@@ -630,12 +590,11 @@ apiInstance.listPipelines(body).then((data:any) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **groupId** | [**string**] | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
 
 
 ### Return type
 
-**Array<IngestionPipeline>**
+**Array<DataLakeIngestionPipeline>**
 
 ### Authorization
 
@@ -651,14 +610,14 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**400** | Bad Request |  -  |
-**404** | Not Found |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**404** | Not Found. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **pausePipeline**
-> IngestionPipeline pausePipeline()
+> DataLakeIngestionPipeline pausePipeline()
 
 Pauses ingestion for a Data Lake Pipeline within the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
 
@@ -677,10 +636,6 @@ let body:.DataLakePipelinesApiPausePipelineRequest = {
   groupId: "32b6e34b3d91647abb20e7b8",
   // string | Human-readable label that identifies the Data Lake Pipeline.
   pipelineName: "P+a5XTJiB!9pN_kmb|~J!7gXm=(B-6pL*4:B4+HcKO&KdnO",
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
-  // boolean | Flag that indicates whether the response body should be in the <a href=\"https://en.wikipedia.org/wiki/Prettyprint\" target=\"_blank\" rel=\"noopener noreferrer\">prettyprint</a> format. (optional)
-  pretty: false,
 };
 
 apiInstance.pausePipeline(body).then((data:any) => {
@@ -695,13 +650,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **groupId** | [**string**] | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. | defaults to undefined
  **pipelineName** | [**string**] | Human-readable label that identifies the Data Lake Pipeline. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
- **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
 
 
 ### Return type
 
-**IngestionPipeline**
+**DataLakeIngestionPipeline**
 
 ### Authorization
 
@@ -717,14 +670,14 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**400** | Bad Request |  -  |
-**404** | Not Found |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**404** | Not Found. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **resumePipeline**
-> IngestionPipeline resumePipeline()
+> DataLakeIngestionPipeline resumePipeline()
 
 Resumes ingestion for a Data Lake Pipeline within the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
 
@@ -743,10 +696,6 @@ let body:.DataLakePipelinesApiResumePipelineRequest = {
   groupId: "32b6e34b3d91647abb20e7b8",
   // string | Human-readable label that identifies the Data Lake Pipeline.
   pipelineName: "P+a5XTJiB!9pN_kmb|~J!7gXm=(B-6pL*4:B4+HcKO&KdnO",
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
-  // boolean | Flag that indicates whether the response body should be in the <a href=\"https://en.wikipedia.org/wiki/Prettyprint\" target=\"_blank\" rel=\"noopener noreferrer\">prettyprint</a> format. (optional)
-  pretty: false,
 };
 
 apiInstance.resumePipeline(body).then((data:any) => {
@@ -761,13 +710,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **groupId** | [**string**] | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. | defaults to undefined
  **pipelineName** | [**string**] | Human-readable label that identifies the Data Lake Pipeline. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
- **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
 
 
 ### Return type
 
-**IngestionPipeline**
+**DataLakeIngestionPipeline**
 
 ### Authorization
 
@@ -783,14 +730,14 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**400** | Bad Request |  -  |
-**404** | Not Found |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**404** | Not Found. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **triggerSnapshotIngestion**
-> IngestionPipelineRun triggerSnapshotIngestion(triggerIngestionRequest)
+> IngestionPipelineRun triggerSnapshotIngestion(triggerIngestionPipelineRequest)
 
 Triggers a Data Lake Pipeline ingestion of a specified snapshot.
 
@@ -809,14 +756,14 @@ let body:.DataLakePipelinesApiTriggerSnapshotIngestionRequest = {
   groupId: "32b6e34b3d91647abb20e7b8",
   // string | Human-readable label that identifies the Data Lake Pipeline.
   pipelineName: "P+a5XTJiB!9pN_kmb|~J!7gXm=(B-6pL*4:B4+HcKO&KdnO",
-  // TriggerIngestionRequest | Triggers a single ingestion run of a snapshot.
-  triggerIngestionRequest: {
+  // TriggerIngestionPipelineRequest | Triggers a single ingestion run of a snapshot.
+  triggerIngestionPipelineRequest: {
+    datasetRetentionPolicy: {
+      units: "units_example",
+      value: 1,
+    },
     snapshotId: "32b6e34b3d91647abb20e7b8",
   },
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
-  // boolean | Flag that indicates whether the response body should be in the <a href=\"https://en.wikipedia.org/wiki/Prettyprint\" target=\"_blank\" rel=\"noopener noreferrer\">prettyprint</a> format. (optional)
-  pretty: false,
 };
 
 apiInstance.triggerSnapshotIngestion(body).then((data:any) => {
@@ -829,11 +776,9 @@ apiInstance.triggerSnapshotIngestion(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **triggerIngestionRequest** | **TriggerIngestionRequest**| Triggers a single ingestion run of a snapshot. |
+ **triggerIngestionPipelineRequest** | **TriggerIngestionPipelineRequest**| Triggers a single ingestion run of a snapshot. |
  **groupId** | [**string**] | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. | defaults to undefined
  **pipelineName** | [**string**] | Human-readable label that identifies the Data Lake Pipeline. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
- **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
 
 
 ### Return type
@@ -854,14 +799,14 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**400** | Bad Request |  -  |
-**404** | Not Found |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**404** | Not Found. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **updatePipeline**
-> IngestionPipeline updatePipeline(ingestionPipeline)
+> DataLakeIngestionPipeline updatePipeline(dataLakeIngestionPipeline)
 
 Updates one Data Lake Pipeline.
 
@@ -880,35 +825,37 @@ let body:.DataLakePipelinesApiUpdatePipelineRequest = {
   groupId: "32b6e34b3d91647abb20e7b8",
   // string | Human-readable label that identifies the Data Lake Pipeline.
   pipelineName: "P+a5XTJiB!9pN_kmb|~J!7gXm=(B-6pL*4:B4+HcKO&KdnO",
-  // IngestionPipeline | Updates one Data Lake Pipeline.
-  ingestionPipeline: {
+  // DataLakeIngestionPipeline | Updates one Data Lake Pipeline.
+  dataLakeIngestionPipeline: {
+    datasetRetentionPolicy: {
+      units: "units_example",
+      value: 1,
+    },
     name: "name_example",
     sink: {
-    metadataProvider: "AWS",
-    metadataRegion: "metadataRegion_example",
-    partitionFields: [
-      {
-        fieldName: "fieldName_example",
-        order: 0,
-      },
-    ],
-    type: "DLS",
-  },
+      metadataProvider: "metadataProvider_example",
+      metadataRegion: "metadataRegion_example",
+      partitionFields: [
+        {
+          fieldName: "fieldName_example",
+          order: 0,
+        },
+      ],
+    },
     source: {
-    clusterName: "clusterName_example",
-    collectionName: "collectionName_example",
-    databaseName: "databaseName_example",
-    type: "PERIODIC_CPS",
-  },
+      type: "type_example",
+      clusterName: "clusterName_example",
+      collectionName: "collectionName_example",
+      databaseName: "databaseName_example",
+      policyItemId: "32b6e34b3d91647abb20e7b8",
+    },
     transformations: [
       {
         field: "field_example",
-        type: "EXCLUDE",
+        type: "type_example",
       },
     ],
   },
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
 };
 
 apiInstance.updatePipeline(body).then((data:any) => {
@@ -921,15 +868,14 @@ apiInstance.updatePipeline(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ingestionPipeline** | **IngestionPipeline**| Updates one Data Lake Pipeline. |
+ **dataLakeIngestionPipeline** | **DataLakeIngestionPipeline**| Updates one Data Lake Pipeline. |
  **groupId** | [**string**] | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. | defaults to undefined
  **pipelineName** | [**string**] | Human-readable label that identifies the Data Lake Pipeline. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
 
 
 ### Return type
 
-**IngestionPipeline**
+**DataLakeIngestionPipeline**
 
 ### Authorization
 
@@ -945,11 +891,11 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
-**409** | Conflict |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**401** | Unauthorized. |  -  |
+**404** | Not Found. |  -  |
+**409** | Conflict. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 

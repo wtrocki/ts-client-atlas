@@ -1,548 +1,323 @@
 import { ResponseContext, RequestContext, HttpFile } from '../http/http';
 import { Configuration} from '../configuration'
 
-import { AWSAutoScaling } from '../models/AWSAutoScaling';
-import { AWSCloudProviderContainer } from '../models/AWSCloudProviderContainer';
-import { AWSComputeAutoScaling } from '../models/AWSComputeAutoScaling';
-import { AWSCustomDNSEnabledView } from '../models/AWSCustomDNSEnabledView';
-import { AWSHardwareSpec } from '../models/AWSHardwareSpec';
-import { AWSInterfaceEndpoint } from '../models/AWSInterfaceEndpoint';
-import { AWSKMS } from '../models/AWSKMS';
-import { AWSPeerVpc } from '../models/AWSPeerVpc';
-import { AWSPeerVpcRequest } from '../models/AWSPeerVpcRequest';
-import { AWSPrivateLinkConnection } from '../models/AWSPrivateLinkConnection';
-import { AWSProviderSettings } from '../models/AWSProviderSettings';
-import { AWSRegionConfig } from '../models/AWSRegionConfig';
-import { AccessListItemView } from '../models/AccessListItemView';
-import { AlertAuditTypeView } from '../models/AlertAuditTypeView';
-import { AlertAuditView } from '../models/AlertAuditView';
-import { AlertConfigAuditTypeView } from '../models/AlertConfigAuditTypeView';
-import { AlertConfigAuditView } from '../models/AlertConfigAuditView';
-import { AlertConfigView } from '../models/AlertConfigView';
-import { AlertConfigViewForNdsGroup } from '../models/AlertConfigViewForNdsGroup';
-import { AlertView } from '../models/AlertView';
+import { AWSCustomDNSEnabled } from '../models/AWSCustomDNSEnabled';
+import { AWSKMSConfiguration } from '../models/AWSKMSConfiguration';
+import { AccessListItem } from '../models/AccessListItem';
+import { AddUserToTeam } from '../models/AddUserToTeam';
+import { AdvancedAutoScalingSettings } from '../models/AdvancedAutoScalingSettings';
+import { AdvancedClusterDescription } from '../models/AdvancedClusterDescription';
+import { AdvancedComputeAutoScaling } from '../models/AdvancedComputeAutoScaling';
+import { AdvancedDiskBackupSnapshotSchedulePolicy } from '../models/AdvancedDiskBackupSnapshotSchedulePolicy';
 import { AlertViewForNdsGroup } from '../models/AlertViewForNdsGroup';
-import { ApiAddUserToTeamView } from '../models/ApiAddUserToTeamView';
-import { ApiApiUserView } from '../models/ApiApiUserView';
-import { ApiAppUserView } from '../models/ApiAppUserView';
-import { ApiAtlasContainerPeerViewRequest } from '../models/ApiAtlasContainerPeerViewRequest';
-import { ApiAtlasFTSAnalyzersViewManual } from '../models/ApiAtlasFTSAnalyzersViewManual';
-import { ApiAtlasFTSAnalyzersViewManualCharFiltersInner } from '../models/ApiAtlasFTSAnalyzersViewManualCharFiltersInner';
-import { ApiAtlasFTSAnalyzersViewManualTokenFiltersInner } from '../models/ApiAtlasFTSAnalyzersViewManualTokenFiltersInner';
-import { ApiAtlasFTSAnalyzersViewManualTokenizer } from '../models/ApiAtlasFTSAnalyzersViewManualTokenizer';
-import { ApiAtlasFTSMappingsViewManual } from '../models/ApiAtlasFTSMappingsViewManual';
-import { ApiAtlasNetPeerRequestBase } from '../models/ApiAtlasNetPeerRequestBase';
-import { ApiAvailableRegionView } from '../models/ApiAvailableRegionView';
-import { ApiBSONTimestampView } from '../models/ApiBSONTimestampView';
-import { ApiCheckpointPartView } from '../models/ApiCheckpointPartView';
-import { ApiCreateApiKeyView } from '../models/ApiCreateApiKeyView';
-import { ApiDatabaseView } from '../models/ApiDatabaseView';
-import { ApiDatadogView } from '../models/ApiDatadogView';
-import { ApiDeleteCopiedBackupsView } from '../models/ApiDeleteCopiedBackupsView';
-import { ApiDiskPartitionView } from '../models/ApiDiskPartitionView';
+import { AlertsNotificationRootForGroup } from '../models/AlertsNotificationRootForGroup';
+import { AlertsToggle } from '../models/AlertsToggle';
+import { ApiAtlasCheckpoint } from '../models/ApiAtlasCheckpoint';
+import { ApiAtlasFTSAnalyzers } from '../models/ApiAtlasFTSAnalyzers';
+import { ApiAtlasFTSAnalyzersTokenizer } from '../models/ApiAtlasFTSAnalyzersTokenizer';
+import { ApiAtlasFTSMappings } from '../models/ApiAtlasFTSMappings';
+import { ApiAtlasSnapshotSchedule } from '../models/ApiAtlasSnapshotSchedule';
+import { ApiBSONTimestamp } from '../models/ApiBSONTimestamp';
+import { ApiCheckpointPart } from '../models/ApiCheckpointPart';
 import { ApiError } from '../models/ApiError';
-import { ApiExportStatusView } from '../models/ApiExportStatusView';
-import { ApiFTSMetricView } from '../models/ApiFTSMetricView';
-import { ApiFTSMetricsView } from '../models/ApiFTSMetricsView';
-import { ApiGroupInvitationRequestView } from '../models/ApiGroupInvitationRequestView';
-import { ApiGroupInvitationUpdateRequestView } from '../models/ApiGroupInvitationUpdateRequestView';
-import { ApiGroupInvitationView } from '../models/ApiGroupInvitationView';
 import { ApiHostViewAtlas } from '../models/ApiHostViewAtlas';
-import { ApiIndexRequestView } from '../models/ApiIndexRequestView';
-import { ApiInstanceSizeView } from '../models/ApiInstanceSizeView';
-import { ApiIntegrationView } from '../models/ApiIntegrationView';
-import { ApiInvoiceView } from '../models/ApiInvoiceView';
-import { ApiKeyView } from '../models/ApiKeyView';
-import { ApiLimitView } from '../models/ApiLimitView';
-import { ApiLineItemView } from '../models/ApiLineItemView';
-import { ApiMeasurementView } from '../models/ApiMeasurementView';
-import { ApiMeasurementViewAtlas } from '../models/ApiMeasurementViewAtlas';
+import { ApiKey } from '../models/ApiKey';
+import { ApiKeyUserDetails } from '../models/ApiKeyUserDetails';
 import { ApiMeasurementsGeneralViewAtlas } from '../models/ApiMeasurementsGeneralViewAtlas';
-import { ApiMeasurementsIndexesView } from '../models/ApiMeasurementsIndexesView';
-import { ApiMeasurementsNonIndexView } from '../models/ApiMeasurementsNonIndexView';
-import { ApiMetricDataPointView } from '../models/ApiMetricDataPointView';
-import { ApiMetricDataPointViewAtlas } from '../models/ApiMetricDataPointViewAtlas';
-import { ApiMicrosoftTeamsView } from '../models/ApiMicrosoftTeamsView';
-import { ApiMongoDBAccessLogsListView } from '../models/ApiMongoDBAccessLogsListView';
-import { ApiMongoDBAccessLogsView } from '../models/ApiMongoDBAccessLogsView';
-import { ApiNamespaceObjView } from '../models/ApiNamespaceObjView';
-import { ApiNamespacesView } from '../models/ApiNamespacesView';
-import { ApiNewRelicView } from '../models/ApiNewRelicView';
-import { ApiOpsGenieView } from '../models/ApiOpsGenieView';
-import { ApiOrganizationInvitationRequestView } from '../models/ApiOrganizationInvitationRequestView';
-import { ApiOrganizationInvitationUpdateRequestView } from '../models/ApiOrganizationInvitationUpdateRequestView';
-import { ApiOrganizationInvitationView } from '../models/ApiOrganizationInvitationView';
-import { ApiOrganizationView } from '../models/ApiOrganizationView';
-import { ApiPagerDutyView } from '../models/ApiPagerDutyView';
-import { ApiPaymentView } from '../models/ApiPaymentView';
-import { ApiPerformanceAdvisorIndexView } from '../models/ApiPerformanceAdvisorIndexView';
-import { ApiPerformanceAdvisorResponseView } from '../models/ApiPerformanceAdvisorResponseView';
-import { ApiPerformanceAdvisorShapeView } from '../models/ApiPerformanceAdvisorShapeView';
-import { ApiPerformanceAdvisorSlowQueryListView } from '../models/ApiPerformanceAdvisorSlowQueryListView';
-import { ApiPerformanceAdvisorSlowQueryView } from '../models/ApiPerformanceAdvisorSlowQueryView';
-import { ApiPolicyItemView } from '../models/ApiPolicyItemView';
-import { ApiPolicyView } from '../models/ApiPolicyView';
-import { ApiPrometheusView } from '../models/ApiPrometheusView';
-import { ApiRefundView } from '../models/ApiRefundView';
-import { ApiRestoreJobDeliveryView } from '../models/ApiRestoreJobDeliveryView';
-import { ApiRestoreJobFileHashView } from '../models/ApiRestoreJobFileHashView';
-import { ApiRestoreJobView } from '../models/ApiRestoreJobView';
-import { ApiRoleAssignmentView } from '../models/ApiRoleAssignmentView';
-import { ApiSlackView } from '../models/ApiSlackView';
-import { ApiSnapshotPartView } from '../models/ApiSnapshotPartView';
-import { ApiSnapshotView } from '../models/ApiSnapshotView';
-import { ApiSystemStatusView } from '../models/ApiSystemStatusView';
-import { ApiTeamResponseView } from '../models/ApiTeamResponseView';
-import { ApiTeamRoleView } from '../models/ApiTeamRoleView';
-import { ApiTeamView } from '../models/ApiTeamView';
-import { ApiUserAccessListView } from '../models/ApiUserAccessListView';
-import { ApiUserEventTypeViewForNdsGroup } from '../models/ApiUserEventTypeViewForNdsGroup';
-import { ApiUserEventTypeViewForOrg } from '../models/ApiUserEventTypeViewForOrg';
-import { ApiUserEventViewForNdsGroup } from '../models/ApiUserEventViewForNdsGroup';
-import { ApiUserEventViewForOrg } from '../models/ApiUserEventViewForOrg';
-import { ApiUserRoleAssignment } from '../models/ApiUserRoleAssignment';
-import { ApiVictorOpsView } from '../models/ApiVictorOpsView';
-import { ApiWebhookView } from '../models/ApiWebhookView';
-import { AppServiceAlertConfigViewForNdsGroup } from '../models/AppServiceAlertConfigViewForNdsGroup';
-import { AppServiceAlertView } from '../models/AppServiceAlertView';
-import { AppServiceEventTypeView } from '../models/AppServiceEventTypeView';
-import { AppServiceEventTypeViewAlertable } from '../models/AppServiceEventTypeViewAlertable';
-import { AppServiceEventTypeViewAlertableNoThreshold } from '../models/AppServiceEventTypeViewAlertableNoThreshold';
-import { AppServiceEventTypeViewAlertableWithThreshold } from '../models/AppServiceEventTypeViewAlertableWithThreshold';
-import { AppServiceEventView } from '../models/AppServiceEventView';
-import { AppServiceMetricAlertConfigViewForNdsGroup } from '../models/AppServiceMetricAlertConfigViewForNdsGroup';
-import { AppServiceMetricMatcherField } from '../models/AppServiceMetricMatcherField';
-import { AppServiceMetricMatcherView } from '../models/AppServiceMetricMatcherView';
-import { AppServiceMetricThresholdView } from '../models/AppServiceMetricThresholdView';
+import { ApiSearchDeploymentRequest } from '../models/ApiSearchDeploymentRequest';
+import { ApiSearchDeploymentResponse } from '../models/ApiSearchDeploymentResponse';
+import { ApiSearchDeploymentSpec } from '../models/ApiSearchDeploymentSpec';
+import { AtlasClusterOutageSimulationOutageFilter } from '../models/AtlasClusterOutageSimulationOutageFilter';
+import { AtlasOrganization } from '../models/AtlasOrganization';
 import { AuditLog } from '../models/AuditLog';
-import { AutoExportPolicyView } from '../models/AutoExportPolicyView';
-import { AutoScaling } from '../models/AutoScaling';
-import { AutoScalingV15 } from '../models/AutoScalingV15';
-import { AutomationConfigEventTypeView } from '../models/AutomationConfigEventTypeView';
-import { AutomationConfigEventView } from '../models/AutomationConfigEventView';
-import { AvailableDeploymentView } from '../models/AvailableDeploymentView';
-import { AvailableProjectView } from '../models/AvailableProjectView';
-import { AzureAutoScaling } from '../models/AzureAutoScaling';
-import { AzureCloudProviderContainer } from '../models/AzureCloudProviderContainer';
-import { AzureComputeAutoScaling } from '../models/AzureComputeAutoScaling';
-import { AzureHardwareSpec } from '../models/AzureHardwareSpec';
+import { AuthFederationRoleMapping } from '../models/AuthFederationRoleMapping';
+import { AutoExportPolicy } from '../models/AutoExportPolicy';
+import { AvailableCloudProviderRegion } from '../models/AvailableCloudProviderRegion';
+import { AvailableClustersDeployment } from '../models/AvailableClustersDeployment';
 import { AzureKeyVault } from '../models/AzureKeyVault';
-import { AzurePeerNetwork } from '../models/AzurePeerNetwork';
-import { AzurePeerNetworkRequest } from '../models/AzurePeerNetworkRequest';
-import { AzurePrivateEndpoint } from '../models/AzurePrivateEndpoint';
-import { AzurePrivateLinkConnection } from '../models/AzurePrivateLinkConnection';
-import { AzureProviderSettings } from '../models/AzureProviderSettings';
-import { AzureRegionConfig } from '../models/AzureRegionConfig';
+import { BackupComplianceOnDemandPolicyItem } from '../models/BackupComplianceOnDemandPolicyItem';
+import { BackupComplianceScheduledPolicyItem } from '../models/BackupComplianceScheduledPolicyItem';
+import { BackupLabel } from '../models/BackupLabel';
+import { BackupOnlineArchive } from '../models/BackupOnlineArchive';
+import { BackupOnlineArchiveCreate } from '../models/BackupOnlineArchiveCreate';
+import { BackupRestoreJob } from '../models/BackupRestoreJob';
+import { BackupRestoreJobDelivery } from '../models/BackupRestoreJobDelivery';
+import { BackupSnapshot } from '../models/BackupSnapshot';
+import { BackupSnapshotPart } from '../models/BackupSnapshotPart';
+import { BackupSnapshotRetention } from '../models/BackupSnapshotRetention';
+import { BackupTenantSnapshot } from '../models/BackupTenantSnapshot';
+import { BaseNetworkPeeringConnectionSettings } from '../models/BaseNetworkPeeringConnectionSettings';
 import { BiConnector } from '../models/BiConnector';
-import { BillingEventTypeViewAlertableWithThreshold } from '../models/BillingEventTypeViewAlertableWithThreshold';
-import { BillingEventTypeViewForNdsGroup } from '../models/BillingEventTypeViewForNdsGroup';
-import { BillingEventTypeViewForOrg } from '../models/BillingEventTypeViewForOrg';
-import { BillingEventViewForNdsGroup } from '../models/BillingEventViewForNdsGroup';
-import { BillingEventViewForOrg } from '../models/BillingEventViewForOrg';
-import { BillingThresholdAlertConfigViewForNdsGroup } from '../models/BillingThresholdAlertConfigViewForNdsGroup';
-import { CharFilterhtmlStrip } from '../models/CharFilterhtmlStrip';
-import { CharFiltericuNormalize } from '../models/CharFiltericuNormalize';
-import { CharFiltermapping } from '../models/CharFiltermapping';
-import { CharFiltermappingMappings } from '../models/CharFiltermappingMappings';
-import { CharFilterpersian } from '../models/CharFilterpersian';
-import { Checkpoint } from '../models/Checkpoint';
-import { CloudProviderAccess } from '../models/CloudProviderAccess';
+import { BillingInvoice } from '../models/BillingInvoice';
+import { BillingPayment } from '../models/BillingPayment';
+import { BillingRefund } from '../models/BillingRefund';
+import { CloudAccessRoleAssignment } from '../models/CloudAccessRoleAssignment';
+import { CloudAppUser } from '../models/CloudAppUser';
+import { CloudCluster } from '../models/CloudCluster';
+import { CloudDatabaseUser } from '../models/CloudDatabaseUser';
 import { CloudProviderAccessAWSIAMRole } from '../models/CloudProviderAccessAWSIAMRole';
-import { CloudProviderAccessDataLakeFeatureUsage } from '../models/CloudProviderAccessDataLakeFeatureUsage';
-import { CloudProviderAccessEncryptionAtRestFeatureUsage } from '../models/CloudProviderAccessEncryptionAtRestFeatureUsage';
-import { CloudProviderAccessExportSnapshotFeatureUsage } from '../models/CloudProviderAccessExportSnapshotFeatureUsage';
+import { CloudProviderAccessAWSIAMRoleAllOf } from '../models/CloudProviderAccessAWSIAMRoleAllOf';
 import { CloudProviderAccessFeatureUsage } from '../models/CloudProviderAccessFeatureUsage';
-import { CloudProviderAccessFeatureUsageDataLakeFeatureId } from '../models/CloudProviderAccessFeatureUsageDataLakeFeatureId';
-import { CloudProviderAccessFeatureUsageExportSnapshotFeatureId } from '../models/CloudProviderAccessFeatureUsageExportSnapshotFeatureId';
+import { CloudProviderAccessFeatureUsagePushBasedLogExportFeatureId } from '../models/CloudProviderAccessFeatureUsagePushBasedLogExportFeatureId';
 import { CloudProviderAccessRole } from '../models/CloudProviderAccessRole';
+import { CloudProviderAccessRoles } from '../models/CloudProviderAccessRoles';
 import { CloudProviderContainer } from '../models/CloudProviderContainer';
-import { ClusterAlertConfigViewForNdsGroup } from '../models/ClusterAlertConfigViewForNdsGroup';
-import { ClusterAlertView } from '../models/ClusterAlertView';
-import { ClusterDescriptionConnectionStrings } from '../models/ClusterDescriptionConnectionStrings';
+import { CloudProviderEndpointServiceRequest } from '../models/CloudProviderEndpointServiceRequest';
+import { CloudProviderRegions } from '../models/CloudProviderRegions';
+import { CloudRegionConfig } from '../models/CloudRegionConfig';
+import { CloudSearchMetrics } from '../models/CloudSearchMetrics';
+import { ClusterAutoScalingSettings } from '../models/ClusterAutoScalingSettings';
+import { ClusterCloudProviderInstanceSize } from '../models/ClusterCloudProviderInstanceSize';
+import { ClusterComputeAutoScaling } from '../models/ClusterComputeAutoScaling';
+import { ClusterConnectionStrings } from '../models/ClusterConnectionStrings';
 import { ClusterDescriptionConnectionStringsPrivateEndpoint } from '../models/ClusterDescriptionConnectionStringsPrivateEndpoint';
 import { ClusterDescriptionConnectionStringsPrivateEndpointEndpoint } from '../models/ClusterDescriptionConnectionStringsPrivateEndpointEndpoint';
 import { ClusterDescriptionProcessArgs } from '../models/ClusterDescriptionProcessArgs';
-import { ClusterDescriptionV15 } from '../models/ClusterDescriptionV15';
-import { ClusterEventTypeViewAlertable } from '../models/ClusterEventTypeViewAlertable';
-import { ClusterEventTypeViewForNdsGroup } from '../models/ClusterEventTypeViewForNdsGroup';
-import { ClusterEventViewForNdsGroup } from '../models/ClusterEventViewForNdsGroup';
-import { ClusterMatcherField } from '../models/ClusterMatcherField';
-import { ClusterMatcherView } from '../models/ClusterMatcherView';
+import { ClusterFreeAutoScaling } from '../models/ClusterFreeAutoScaling';
+import { ClusterIPAddresses } from '../models/ClusterIPAddresses';
 import { ClusterOutageSimulation } from '../models/ClusterOutageSimulation';
-import { ClusterOutageSimulationOutageFilter } from '../models/ClusterOutageSimulationOutageFilter';
 import { ClusterProviderSettings } from '../models/ClusterProviderSettings';
+import { ClusterSearchIndex } from '../models/ClusterSearchIndex';
+import { ClusterServerlessBackupOptions } from '../models/ClusterServerlessBackupOptions';
 import { ClusterStatus } from '../models/ClusterStatus';
-import { ClusterView } from '../models/ClusterView';
 import { Collation } from '../models/Collation';
-import { ComputeAutoScaling } from '../models/ComputeAutoScaling';
-import { ComputeAutoScalingV15 } from '../models/ComputeAutoScalingV15';
-import { ConnectedOrgConfigView } from '../models/ConnectedOrgConfigView';
-import { ContainerPeer } from '../models/ContainerPeer';
-import { CpsBackupEventTypeViewForNdsGroupAlertableWithThreshold } from '../models/CpsBackupEventTypeViewForNdsGroupAlertableWithThreshold';
-import { CpsBackupThresholdAlertConfigViewForNdsGroup } from '../models/CpsBackupThresholdAlertConfigViewForNdsGroup';
-import { CreateAWSEndpointRequest } from '../models/CreateAWSEndpointRequest';
-import { CreateAWSEndpointRequestAllOf } from '../models/CreateAWSEndpointRequestAllOf';
-import { CreateAzureEndpointRequest } from '../models/CreateAzureEndpointRequest';
-import { CreateAzureEndpointRequestAllOf } from '../models/CreateAzureEndpointRequestAllOf';
-import { CreateEndpointServiceRequest } from '../models/CreateEndpointServiceRequest';
-import { CreateGCPEndpointGroupRequest } from '../models/CreateGCPEndpointGroupRequest';
-import { CreateGCPEndpointGroupRequestAllOf } from '../models/CreateGCPEndpointGroupRequestAllOf';
+import { ComponentLabel } from '../models/ComponentLabel';
+import { ConnectedOrgConfig } from '../models/ConnectedOrgConfig';
+import { CostExplorerFilterRequestBody } from '../models/CostExplorerFilterRequestBody';
+import { CostExplorerFilterResponse } from '../models/CostExplorerFilterResponse';
+import { CreateAtlasOrganizationApiKey } from '../models/CreateAtlasOrganizationApiKey';
+import { CreateAtlasProjectApiKey } from '../models/CreateAtlasProjectApiKey';
+import { CreateEndpointRequest } from '../models/CreateEndpointRequest';
 import { CreateGCPForwardingRuleRequest } from '../models/CreateGCPForwardingRuleRequest';
 import { CreateOrganizationRequest } from '../models/CreateOrganizationRequest';
 import { CreateOrganizationResponse } from '../models/CreateOrganizationResponse';
-import { CreatePeeringConnection200Response } from '../models/CreatePeeringConnection200Response';
-import { CreatePrivateEndpointRequest } from '../models/CreatePrivateEndpointRequest';
-import { CriteriaView } from '../models/CriteriaView';
-import { CustomCriteriaView } from '../models/CustomCriteriaView';
-import { CustomDBRole } from '../models/CustomDBRole';
+import { Criteria } from '../models/Criteria';
 import { CustomZoneMappings } from '../models/CustomZoneMappings';
-import { CustomerX509 } from '../models/CustomerX509';
-import { DBAction } from '../models/DBAction';
-import { DBResource } from '../models/DBResource';
-import { DLSIngestionSink } from '../models/DLSIngestionSink';
-import { DailyScheduleView } from '../models/DailyScheduleView';
-import { DataExplorerAccessedEventTypeView } from '../models/DataExplorerAccessedEventTypeView';
-import { DataExplorerAccessedEventView } from '../models/DataExplorerAccessedEventView';
-import { DataFederationQueryLimit } from '../models/DataFederationQueryLimit';
+import { DBUserTLSX509Settings } from '../models/DBUserTLSX509Settings';
+import { DataExpirationRule } from '../models/DataExpirationRule';
+import { DataFederationLimit } from '../models/DataFederationLimit';
 import { DataFederationTenantQueryLimit } from '../models/DataFederationTenantQueryLimit';
 import { DataLakeAWSCloudProviderConfig } from '../models/DataLakeAWSCloudProviderConfig';
-import { DataLakeAtlasStore } from '../models/DataLakeAtlasStore';
+import { DataLakeApiBase } from '../models/DataLakeApiBase';
+import { DataLakeAtlasStoreReadConcern } from '../models/DataLakeAtlasStoreReadConcern';
 import { DataLakeAtlasStoreReadPreference } from '../models/DataLakeAtlasStoreReadPreference';
 import { DataLakeAtlasStoreReadPreferenceTag } from '../models/DataLakeAtlasStoreReadPreferenceTag';
 import { DataLakeCloudProviderConfig } from '../models/DataLakeCloudProviderConfig';
 import { DataLakeDataProcessRegion } from '../models/DataLakeDataProcessRegion';
-import { DataLakeDatabase } from '../models/DataLakeDatabase';
 import { DataLakeDatabaseCollection } from '../models/DataLakeDatabaseCollection';
-import { DataLakeDatabaseDataSource } from '../models/DataLakeDatabaseDataSource';
-import { DataLakeHTTPStore } from '../models/DataLakeHTTPStore';
-import { DataLakeOnlineArchiveStore } from '../models/DataLakeOnlineArchiveStore';
-import { DataLakeRegion } from '../models/DataLakeRegion';
-import { DataLakeS3Store } from '../models/DataLakeS3Store';
+import { DataLakeDatabaseDataSourceSettings } from '../models/DataLakeDatabaseDataSourceSettings';
+import { DataLakeDatabaseInstance } from '../models/DataLakeDatabaseInstance';
+import { DataLakeIngestionPipeline } from '../models/DataLakeIngestionPipeline';
+import { DataLakePipelinesPartitionField } from '../models/DataLakePipelinesPartitionField';
 import { DataLakeStorage } from '../models/DataLakeStorage';
-import { DataLakeStore } from '../models/DataLakeStore';
+import { DataLakeStoreSettings } from '../models/DataLakeStoreSettings';
 import { DataLakeTenant } from '../models/DataLakeTenant';
-import { DataLakeView } from '../models/DataLakeView';
-import { DataMetricAlertView } from '../models/DataMetricAlertView';
-import { DataMetricEventView } from '../models/DataMetricEventView';
-import { DataMetricThresholdView } from '../models/DataMetricThresholdView';
-import { DataMetricUnits } from '../models/DataMetricUnits';
-import { DataMetricValueView } from '../models/DataMetricValueView';
-import { DataProtectionSettings } from '../models/DataProtectionSettings';
-import { DatabaseUser } from '../models/DatabaseUser';
-import { DatadogNotificationView } from '../models/DatadogNotificationView';
-import { DateCriteriaView } from '../models/DateCriteriaView';
+import { DataProcessRegion } from '../models/DataProcessRegion';
+import { DataProtectionSettings20231001 } from '../models/DataProtectionSettings20231001';
+import { DatabaseInheritedRole } from '../models/DatabaseInheritedRole';
+import { DatabasePermittedNamespaceResource } from '../models/DatabasePermittedNamespaceResource';
+import { DatabasePrivilegeAction } from '../models/DatabasePrivilegeAction';
+import { DatabaseRollingIndexRequest } from '../models/DatabaseRollingIndexRequest';
+import { DatabaseUserRole } from '../models/DatabaseUserRole';
+import { DatasetRetentionPolicy } from '../models/DatasetRetentionPolicy';
 import { DedicatedHardwareSpec } from '../models/DedicatedHardwareSpec';
-import { DefaultAlertConfigViewForNdsGroup } from '../models/DefaultAlertConfigViewForNdsGroup';
-import { DefaultAlertViewForNdsGroup } from '../models/DefaultAlertViewForNdsGroup';
-import { DefaultEventViewForNdsGroup } from '../models/DefaultEventViewForNdsGroup';
-import { DefaultEventViewForOrg } from '../models/DefaultEventViewForOrg';
-import { DefaultScheduleView } from '../models/DefaultScheduleView';
+import { DeleteCopiedBackups } from '../models/DeleteCopiedBackups';
 import { Destination } from '../models/Destination';
+import { DiskBackupApiPolicyItem } from '../models/DiskBackupApiPolicyItem';
 import { DiskBackupBaseRestoreMember } from '../models/DiskBackupBaseRestoreMember';
 import { DiskBackupCopySetting } from '../models/DiskBackupCopySetting';
 import { DiskBackupExportJob } from '../models/DiskBackupExportJob';
 import { DiskBackupExportJobRequest } from '../models/DiskBackupExportJobRequest';
 import { DiskBackupOnDemandSnapshotRequest } from '../models/DiskBackupOnDemandSnapshotRequest';
 import { DiskBackupReplicaSet } from '../models/DiskBackupReplicaSet';
-import { DiskBackupRestoreJob } from '../models/DiskBackupRestoreJob';
 import { DiskBackupShardedClusterSnapshot } from '../models/DiskBackupShardedClusterSnapshot';
 import { DiskBackupShardedClusterSnapshotMember } from '../models/DiskBackupShardedClusterSnapshotMember';
 import { DiskBackupSnapshot } from '../models/DiskBackupSnapshot';
 import { DiskBackupSnapshotAWSExportBucket } from '../models/DiskBackupSnapshotAWSExportBucket';
+import { DiskBackupSnapshotRestoreJob } from '../models/DiskBackupSnapshotRestoreJob';
 import { DiskBackupSnapshotSchedule } from '../models/DiskBackupSnapshotSchedule';
 import { DiskGBAutoScaling } from '../models/DiskGBAutoScaling';
-import { EmailNotificationView } from '../models/EmailNotificationView';
 import { EncryptionAtRest } from '../models/EncryptionAtRest';
-import { EncryptionKeyAlertConfigViewForNdsGroup } from '../models/EncryptionKeyAlertConfigViewForNdsGroup';
-import { EncryptionKeyEventTypeViewAlertable } from '../models/EncryptionKeyEventTypeViewAlertable';
-import { Endpoint } from '../models/Endpoint';
 import { EndpointService } from '../models/EndpointService';
-import { EventTypeForNdsGroup } from '../models/EventTypeForNdsGroup';
-import { EventTypeForOrg } from '../models/EventTypeForOrg';
 import { EventViewForNdsGroup } from '../models/EventViewForNdsGroup';
 import { EventViewForOrg } from '../models/EventViewForOrg';
-import { ExampleResourceResponseView20230101 } from '../models/ExampleResourceResponseView20230101';
-import { ExampleResourceResponseView20230201 } from '../models/ExampleResourceResponseView20230201';
-import { FTSIndex } from '../models/FTSIndex';
-import { FTSIndexAuditTypeView } from '../models/FTSIndexAuditTypeView';
-import { FTSIndexAuditView } from '../models/FTSIndexAuditView';
-import { FTSSynonymMappingDefinition } from '../models/FTSSynonymMappingDefinition';
-import { FederatedUserView } from '../models/FederatedUserView';
+import { ExportStatus } from '../models/ExportStatus';
+import { ExtraRetentionSetting } from '../models/ExtraRetentionSetting';
+import { FTSMetric } from '../models/FTSMetric';
+import { FederatedUser } from '../models/FederatedUser';
+import { FederationIdentityProvider } from '../models/FederationIdentityProvider';
 import { FieldTransformation } from '../models/FieldTransformation';
-import { ForNdsGroup } from '../models/ForNdsGroup';
-import { FreeAutoScaling } from '../models/FreeAutoScaling';
-import { FreeProviderSettings } from '../models/FreeProviderSettings';
-import { GCPAutoScaling } from '../models/GCPAutoScaling';
-import { GCPCloudProviderContainer } from '../models/GCPCloudProviderContainer';
-import { GCPComputeAutoScaling } from '../models/GCPComputeAutoScaling';
 import { GCPConsumerForwardingRule } from '../models/GCPConsumerForwardingRule';
-import { GCPEndpointGroup } from '../models/GCPEndpointGroup';
-import { GCPEndpointService } from '../models/GCPEndpointService';
-import { GCPHardwareSpec } from '../models/GCPHardwareSpec';
-import { GCPPeerVpc } from '../models/GCPPeerVpc';
-import { GCPPeerVpcRequest } from '../models/GCPPeerVpcRequest';
-import { GCPProviderSettings } from '../models/GCPProviderSettings';
-import { GCPRegionConfig } from '../models/GCPRegionConfig';
 import { GeoSharding } from '../models/GeoSharding';
-import { GetPeeringConnection200Response } from '../models/GetPeeringConnection200Response';
 import { GoogleCloudKMS } from '../models/GoogleCloudKMS';
-import { GreaterThanDaysThresholdView } from '../models/GreaterThanDaysThresholdView';
-import { GreaterThanRawThresholdAlertConfigViewForNdsGroup } from '../models/GreaterThanRawThresholdAlertConfigViewForNdsGroup';
-import { GreaterThanRawThresholdView } from '../models/GreaterThanRawThresholdView';
-import { GreaterThanTimeThresholdView } from '../models/GreaterThanTimeThresholdView';
+import { GreaterThanRawThreshold } from '../models/GreaterThanRawThreshold';
 import { Group } from '../models/Group';
+import { GroupAlertsConfig } from '../models/GroupAlertsConfig';
+import { GroupIPAddresses } from '../models/GroupIPAddresses';
+import { GroupInvitation } from '../models/GroupInvitation';
+import { GroupInvitationRequest } from '../models/GroupInvitationRequest';
+import { GroupInvitationUpdateRequest } from '../models/GroupInvitationUpdateRequest';
 import { GroupMaintenanceWindow } from '../models/GroupMaintenanceWindow';
 import { GroupName } from '../models/GroupName';
-import { GroupNotificationView } from '../models/GroupNotificationView';
-import { GroupPaginatedEventView } from '../models/GroupPaginatedEventView';
-import { GroupPaginatedIntegrationView } from '../models/GroupPaginatedIntegrationView';
+import { GroupPaginatedEvent } from '../models/GroupPaginatedEvent';
+import { GroupRole } from '../models/GroupRole';
+import { GroupService } from '../models/GroupService';
 import { GroupSettings } from '../models/GroupSettings';
 import { HardwareSpec } from '../models/HardwareSpec';
-import { HipChatNotificationView } from '../models/HipChatNotificationView';
-import { HostAlertConfigViewForNdsGroup } from '../models/HostAlertConfigViewForNdsGroup';
-import { HostAlertViewForNdsGroup } from '../models/HostAlertViewForNdsGroup';
-import { HostEventTypeViewForNdsGroup } from '../models/HostEventTypeViewForNdsGroup';
-import { HostEventTypeViewForNdsGroupAlertable } from '../models/HostEventTypeViewForNdsGroupAlertable';
-import { HostEventViewForNdsGroup } from '../models/HostEventViewForNdsGroup';
-import { HostMatcherField } from '../models/HostMatcherField';
-import { HostMatcherView } from '../models/HostMatcherView';
-import { HostMetricAlertConfigViewForNdsGroup } from '../models/HostMetricAlertConfigViewForNdsGroup';
-import { HostMetricAlertView } from '../models/HostMetricAlertView';
-import { HostMetricEventTypeView } from '../models/HostMetricEventTypeView';
-import { HostMetricEventTypeViewAlertable } from '../models/HostMetricEventTypeViewAlertable';
-import { HostMetricEventView } from '../models/HostMetricEventView';
-import { HostMetricThresholdView } from '../models/HostMetricThresholdView';
-import { HostMetricValueView } from '../models/HostMetricValueView';
 import { IdentityProviderUpdate } from '../models/IdentityProviderUpdate';
-import { IdentityProviderView } from '../models/IdentityProviderView';
 import { IndexOptions } from '../models/IndexOptions';
-import { IngestionPipeline } from '../models/IngestionPipeline';
 import { IngestionPipelineRun } from '../models/IngestionPipelineRun';
 import { IngestionSink } from '../models/IngestionSink';
 import { IngestionSource } from '../models/IngestionSource';
-import { InheritedRole } from '../models/InheritedRole';
-import { InstanceSize } from '../models/InstanceSize';
-import { IntegrationViewForNdsGroup } from '../models/IntegrationViewForNdsGroup';
-import { Label } from '../models/Label';
-import { LegacyClusterDescription } from '../models/LegacyClusterDescription';
+import { InvoiceLineItem } from '../models/InvoiceLineItem';
+import { LDAPSecuritySettings } from '../models/LDAPSecuritySettings';
+import { LDAPVerifyConnectivityJobRequest } from '../models/LDAPVerifyConnectivityJobRequest';
+import { LDAPVerifyConnectivityJobRequestParams } from '../models/LDAPVerifyConnectivityJobRequestParams';
+import { LDAPVerifyConnectivityJobRequestValidation } from '../models/LDAPVerifyConnectivityJobRequestValidation';
+import { LegacyAtlasCluster } from '../models/LegacyAtlasCluster';
+import { LegacyAtlasTenantClusterUpgradeRequest } from '../models/LegacyAtlasTenantClusterUpgradeRequest';
 import { LegacyReplicationSpec } from '../models/LegacyReplicationSpec';
-import { LessThanDaysThresholdView } from '../models/LessThanDaysThresholdView';
-import { LessThanTimeThresholdAlertConfigViewForNdsGroup } from '../models/LessThanTimeThresholdAlertConfigViewForNdsGroup';
-import { LessThanTimeThresholdView } from '../models/LessThanTimeThresholdView';
 import { Link } from '../models/Link';
 import { LinkAtlas } from '../models/LinkAtlas';
-import { ListPeeringConnections200Response } from '../models/ListPeeringConnections200Response';
-import { LiveMigrationRequestView } from '../models/LiveMigrationRequestView';
-import { LiveMigrationResponseView } from '../models/LiveMigrationResponseView';
-import { ManagedNamespaceView } from '../models/ManagedNamespaceView';
+import { LiveImportAvailableProject } from '../models/LiveImportAvailableProject';
+import { LiveImportValidation } from '../models/LiveImportValidation';
+import { LiveMigrationRequest } from '../models/LiveMigrationRequest';
+import { LiveMigrationResponse } from '../models/LiveMigrationResponse';
+import { ManagedNamespace } from '../models/ManagedNamespace';
 import { ManagedNamespaces } from '../models/ManagedNamespaces';
-import { MatcherFieldView } from '../models/MatcherFieldView';
-import { MatcherHostType } from '../models/MatcherHostType';
-import { MatcherView } from '../models/MatcherView';
-import { MicrosoftTeamsNotificationView } from '../models/MicrosoftTeamsNotificationView';
-import { MonthlyScheduleView } from '../models/MonthlyScheduleView';
-import { NDSAuditTypeViewForNdsGroup } from '../models/NDSAuditTypeViewForNdsGroup';
-import { NDSAuditTypeViewForOrg } from '../models/NDSAuditTypeViewForOrg';
-import { NDSAuditViewForNdsGroup } from '../models/NDSAuditViewForNdsGroup';
-import { NDSAuditViewForOrg } from '../models/NDSAuditViewForOrg';
-import { NDSAutoScalingAuditTypeViewForNdsGroup } from '../models/NDSAutoScalingAuditTypeViewForNdsGroup';
-import { NDSAutoScalingAuditViewForNdsGroup } from '../models/NDSAutoScalingAuditViewForNdsGroup';
-import { NDSLDAP } from '../models/NDSLDAP';
-import { NDSLDAPVerifyConnectivityJobRequest } from '../models/NDSLDAPVerifyConnectivityJobRequest';
-import { NDSLDAPVerifyConnectivityJobRequestParams } from '../models/NDSLDAPVerifyConnectivityJobRequestParams';
-import { NDSLDAPVerifyConnectivityJobRequestValidation } from '../models/NDSLDAPVerifyConnectivityJobRequestValidation';
-import { NDSLabel } from '../models/NDSLabel';
-import { NDSNotificationView } from '../models/NDSNotificationView';
-import { NDSServerlessInstanceAuditTypeView } from '../models/NDSServerlessInstanceAuditTypeView';
-import { NDSServerlessInstanceAuditView } from '../models/NDSServerlessInstanceAuditView';
-import { NDSTenantEndpointAuditTypeView } from '../models/NDSTenantEndpointAuditTypeView';
-import { NDSTenantEndpointAuditView } from '../models/NDSTenantEndpointAuditView';
-import { NDSUserToDNMapping } from '../models/NDSUserToDNMapping';
-import { NDSX509UserAuthenticationAlertConfigViewForNdsGroup } from '../models/NDSX509UserAuthenticationAlertConfigViewForNdsGroup';
-import { NDSX509UserAuthenticationEventTypeViewAlertable } from '../models/NDSX509UserAuthenticationEventTypeViewAlertable';
+import { MeasurementDiskPartition } from '../models/MeasurementDiskPartition';
+import { MeasurementsIndexes } from '../models/MeasurementsIndexes';
+import { MeasurementsNonIndex } from '../models/MeasurementsNonIndex';
+import { MesurementsDatabase } from '../models/MesurementsDatabase';
+import { MetricDataPoint } from '../models/MetricDataPoint';
+import { MetricDataPointAtlas } from '../models/MetricDataPointAtlas';
+import { MetricsMeasurement } from '../models/MetricsMeasurement';
+import { MetricsMeasurementAtlas } from '../models/MetricsMeasurementAtlas';
+import { MongoDBAccessLogs } from '../models/MongoDBAccessLogs';
+import { MongoDBAccessLogsList } from '../models/MongoDBAccessLogsList';
+import { NamespaceObj } from '../models/NamespaceObj';
+import { Namespaces } from '../models/Namespaces';
 import { NetworkPermissionEntry } from '../models/NetworkPermissionEntry';
 import { NetworkPermissionEntryStatus } from '../models/NetworkPermissionEntryStatus';
-import { NotificationView } from '../models/NotificationView';
-import { NotificationViewForNdsGroup } from '../models/NotificationViewForNdsGroup';
-import { NumberMetricAlertView } from '../models/NumberMetricAlertView';
-import { NumberMetricEventView } from '../models/NumberMetricEventView';
-import { NumberMetricThresholdView } from '../models/NumberMetricThresholdView';
-import { NumberMetricUnits } from '../models/NumberMetricUnits';
-import { NumberMetricValueView } from '../models/NumberMetricValueView';
-import { OnDemandCpsSnapshotSource } from '../models/OnDemandCpsSnapshotSource';
-import { OnlineArchive } from '../models/OnlineArchive';
+import { NumberMetricValue } from '../models/NumberMetricValue';
 import { OnlineArchiveSchedule } from '../models/OnlineArchiveSchedule';
-import { Operator } from '../models/Operator';
-import { OpsGenieNotificationView } from '../models/OpsGenieNotificationView';
-import { OrgEventTypeViewForOrg } from '../models/OrgEventTypeViewForOrg';
-import { OrgEventViewForOrg } from '../models/OrgEventViewForOrg';
-import { OrgFederationSettingsView } from '../models/OrgFederationSettingsView';
-import { OrgGroupView } from '../models/OrgGroupView';
-import { OrgNotificationView } from '../models/OrgNotificationView';
-import { OrgPaginatedEventView } from '../models/OrgPaginatedEventView';
+import { OrgFederationSettings } from '../models/OrgFederationSettings';
+import { OrgGroup } from '../models/OrgGroup';
+import { OrgPaginatedEvent } from '../models/OrgPaginatedEvent';
+import { OrganizationInvitation } from '../models/OrganizationInvitation';
+import { OrganizationInvitationGroupRoleAssignmentsRequest } from '../models/OrganizationInvitationGroupRoleAssignmentsRequest';
+import { OrganizationInvitationRequest } from '../models/OrganizationInvitationRequest';
+import { OrganizationInvitationUpdateRequest } from '../models/OrganizationInvitationUpdateRequest';
 import { OrganizationSettings } from '../models/OrganizationSettings';
-import { PagerDutyNotificationView } from '../models/PagerDutyNotificationView';
-import { PaginatedAWSPeerVpcView } from '../models/PaginatedAWSPeerVpcView';
-import { PaginatedAlertConfigView } from '../models/PaginatedAlertConfigView';
-import { PaginatedAlertView } from '../models/PaginatedAlertView';
-import { PaginatedApiApiUserView } from '../models/PaginatedApiApiUserView';
-import { PaginatedApiAppUserView } from '../models/PaginatedApiAppUserView';
-import { PaginatedApiAtlasCheckpointView } from '../models/PaginatedApiAtlasCheckpointView';
-import { PaginatedApiAtlasDatabaseUserView } from '../models/PaginatedApiAtlasDatabaseUserView';
-import { PaginatedApiAtlasDiskBackupExportJobView } from '../models/PaginatedApiAtlasDiskBackupExportJobView';
-import { PaginatedApiAtlasProviderRegionsView } from '../models/PaginatedApiAtlasProviderRegionsView';
-import { PaginatedApiAtlasServerlessBackupRestoreJobView } from '../models/PaginatedApiAtlasServerlessBackupRestoreJobView';
-import { PaginatedApiAtlasServerlessBackupSnapshotView } from '../models/PaginatedApiAtlasServerlessBackupSnapshotView';
-import { PaginatedApiInvoiceView } from '../models/PaginatedApiInvoiceView';
-import { PaginatedApiUserAccessListView } from '../models/PaginatedApiUserAccessListView';
-import { PaginatedAppUserView } from '../models/PaginatedAppUserView';
-import { PaginatedAtlasGroupView } from '../models/PaginatedAtlasGroupView';
-import { PaginatedAzurePeerNetworkView } from '../models/PaginatedAzurePeerNetworkView';
-import { PaginatedBackupSnapshotExportBucketView } from '../models/PaginatedBackupSnapshotExportBucketView';
-import { PaginatedBackupSnapshotView } from '../models/PaginatedBackupSnapshotView';
-import { PaginatedCloudBackupReplicaSetView } from '../models/PaginatedCloudBackupReplicaSetView';
-import { PaginatedCloudBackupRestoreJobView } from '../models/PaginatedCloudBackupRestoreJobView';
-import { PaginatedCloudBackupShardedClusterSnapshotView } from '../models/PaginatedCloudBackupShardedClusterSnapshotView';
-import { PaginatedCloudProviderContainerView } from '../models/PaginatedCloudProviderContainerView';
-import { PaginatedClusterDescriptionV15View } from '../models/PaginatedClusterDescriptionV15View';
-import { PaginatedDatabaseView } from '../models/PaginatedDatabaseView';
-import { PaginatedDiskPartitionView } from '../models/PaginatedDiskPartitionView';
-import { PaginatedGCPPeerVpcView } from '../models/PaginatedGCPPeerVpcView';
+import { PaginatedAdvancedClusterDescription } from '../models/PaginatedAdvancedClusterDescription';
+import { PaginatedAlert } from '../models/PaginatedAlert';
+import { PaginatedAlertConfig } from '../models/PaginatedAlertConfig';
+import { PaginatedApiApiUser } from '../models/PaginatedApiApiUser';
+import { PaginatedApiAppUser } from '../models/PaginatedApiAppUser';
+import { PaginatedApiAtlasCheckpoint } from '../models/PaginatedApiAtlasCheckpoint';
+import { PaginatedApiAtlasDatabaseUser } from '../models/PaginatedApiAtlasDatabaseUser';
+import { PaginatedApiAtlasDiskBackupExportJob } from '../models/PaginatedApiAtlasDiskBackupExportJob';
+import { PaginatedApiAtlasProviderRegions } from '../models/PaginatedApiAtlasProviderRegions';
+import { PaginatedApiAtlasServerlessBackupRestoreJob } from '../models/PaginatedApiAtlasServerlessBackupRestoreJob';
+import { PaginatedApiAtlasServerlessBackupSnapshot } from '../models/PaginatedApiAtlasServerlessBackupSnapshot';
+import { PaginatedApiInvoice } from '../models/PaginatedApiInvoice';
+import { PaginatedApiStreamsConnection } from '../models/PaginatedApiStreamsConnection';
+import { PaginatedApiStreamsTenant } from '../models/PaginatedApiStreamsTenant';
+import { PaginatedApiUserAccessList } from '../models/PaginatedApiUserAccessList';
+import { PaginatedAppUser } from '../models/PaginatedAppUser';
+import { PaginatedAtlasGroup } from '../models/PaginatedAtlasGroup';
+import { PaginatedBackupSnapshot } from '../models/PaginatedBackupSnapshot';
+import { PaginatedBackupSnapshotExportBucket } from '../models/PaginatedBackupSnapshotExportBucket';
+import { PaginatedCloudBackupReplicaSet } from '../models/PaginatedCloudBackupReplicaSet';
+import { PaginatedCloudBackupRestoreJob } from '../models/PaginatedCloudBackupRestoreJob';
+import { PaginatedCloudBackupShardedClusterSnapshot } from '../models/PaginatedCloudBackupShardedClusterSnapshot';
+import { PaginatedCloudProviderContainer } from '../models/PaginatedCloudProviderContainer';
+import { PaginatedContainerPeer } from '../models/PaginatedContainerPeer';
+import { PaginatedDatabase } from '../models/PaginatedDatabase';
+import { PaginatedDiskPartition } from '../models/PaginatedDiskPartition';
 import { PaginatedHostViewAtlas } from '../models/PaginatedHostViewAtlas';
-import { PaginatedLegacyClusterView } from '../models/PaginatedLegacyClusterView';
-import { PaginatedNetworkAccessView } from '../models/PaginatedNetworkAccessView';
-import { PaginatedOnlineArchiveView } from '../models/PaginatedOnlineArchiveView';
-import { PaginatedOrgGroupView } from '../models/PaginatedOrgGroupView';
-import { PaginatedOrganizationView } from '../models/PaginatedOrganizationView';
-import { PaginatedPipelineRunView } from '../models/PaginatedPipelineRunView';
-import { PaginatedPrivateLinkConnectionView } from '../models/PaginatedPrivateLinkConnectionView';
-import { PaginatedRestoreJobView } from '../models/PaginatedRestoreJobView';
-import { PaginatedServerlessInstanceDescriptionView } from '../models/PaginatedServerlessInstanceDescriptionView';
-import { PaginatedSnapshotView } from '../models/PaginatedSnapshotView';
-import { PaginatedTeamRoleView } from '../models/PaginatedTeamRoleView';
-import { PaginatedTeamView } from '../models/PaginatedTeamView';
-import { PaginatedTenantRestoreView } from '../models/PaginatedTenantRestoreView';
-import { PaginatedTenantSnapshotView } from '../models/PaginatedTenantSnapshotView';
-import { PaginatedUserCertView } from '../models/PaginatedUserCertView';
+import { PaginatedIntegration } from '../models/PaginatedIntegration';
+import { PaginatedNetworkAccess } from '../models/PaginatedNetworkAccess';
+import { PaginatedOnlineArchive } from '../models/PaginatedOnlineArchive';
+import { PaginatedOrgGroup } from '../models/PaginatedOrgGroup';
+import { PaginatedOrganization } from '../models/PaginatedOrganization';
+import { PaginatedPipelineRun } from '../models/PaginatedPipelineRun';
+import { PaginatedPrivateNetworkEndpointIdEntry } from '../models/PaginatedPrivateNetworkEndpointIdEntry';
+import { PaginatedRestoreJob } from '../models/PaginatedRestoreJob';
+import { PaginatedRoleMapping } from '../models/PaginatedRoleMapping';
+import { PaginatedServerlessInstanceDescription } from '../models/PaginatedServerlessInstanceDescription';
+import { PaginatedSnapshot } from '../models/PaginatedSnapshot';
+import { PaginatedTeam } from '../models/PaginatedTeam';
+import { PaginatedTeamRole } from '../models/PaginatedTeamRole';
+import { PaginatedTenantRestore } from '../models/PaginatedTenantRestore';
+import { PaginatedTenantSnapshot } from '../models/PaginatedTenantSnapshot';
+import { PaginatedUserCert } from '../models/PaginatedUserCert';
 import { PartitionField } from '../models/PartitionField';
-import { PartitionFieldView } from '../models/PartitionFieldView';
 import { PemFileInfo } from '../models/PemFileInfo';
-import { PemFileInfoView } from '../models/PemFileInfoView';
-import { PerformanceAdvisorOpStatsView } from '../models/PerformanceAdvisorOpStatsView';
-import { PerformanceAdvisorOperationView } from '../models/PerformanceAdvisorOperationView';
-import { PeriodicCpsSnapshotSource } from '../models/PeriodicCpsSnapshotSource';
+import { PerformanceAdvisorIndex } from '../models/PerformanceAdvisorIndex';
+import { PerformanceAdvisorOpStats } from '../models/PerformanceAdvisorOpStats';
+import { PerformanceAdvisorOperation } from '../models/PerformanceAdvisorOperation';
+import { PerformanceAdvisorResponse } from '../models/PerformanceAdvisorResponse';
+import { PerformanceAdvisorShape } from '../models/PerformanceAdvisorShape';
+import { PerformanceAdvisorSlowQuery } from '../models/PerformanceAdvisorSlowQuery';
+import { PerformanceAdvisorSlowQueryList } from '../models/PerformanceAdvisorSlowQueryList';
 import { PipelineRunStats } from '../models/PipelineRunStats';
-import { PrivateIPModeView } from '../models/PrivateIPModeView';
+import { PrivateEndpointHostname } from '../models/PrivateEndpointHostname';
+import { PrivateIPMode } from '../models/PrivateIPMode';
+import { PrivateLinkEndpoint } from '../models/PrivateLinkEndpoint';
 import { PrivateNetworkEndpointIdEntry } from '../models/PrivateNetworkEndpointIdEntry';
-import { ProjectSettingItemView } from '../models/ProjectSettingItemView';
-import { ProviderRegions } from '../models/ProviderRegions';
-import { RPUMetricThresholdView } from '../models/RPUMetricThresholdView';
+import { ProjectSettingItem } from '../models/ProjectSettingItem';
+import { PushBasedLogExportProject } from '../models/PushBasedLogExportProject';
 import { Raw } from '../models/Raw';
-import { RawMetricAlertView } from '../models/RawMetricAlertView';
-import { RawMetricEventView } from '../models/RawMetricEventView';
-import { RawMetricThresholdView } from '../models/RawMetricThresholdView';
-import { RawMetricUnits } from '../models/RawMetricUnits';
-import { RawMetricValueView } from '../models/RawMetricValueView';
-import { RegionConfig } from '../models/RegionConfig';
 import { RegionSpec } from '../models/RegionSpec';
-import { ReplicaSetAlertConfigViewForNdsGroup } from '../models/ReplicaSetAlertConfigViewForNdsGroup';
-import { ReplicaSetAlertViewForNdsGroup } from '../models/ReplicaSetAlertViewForNdsGroup';
-import { ReplicaSetEventTypeViewForNdsGroup } from '../models/ReplicaSetEventTypeViewForNdsGroup';
-import { ReplicaSetEventTypeViewForNdsGroupAlertable } from '../models/ReplicaSetEventTypeViewForNdsGroupAlertable';
-import { ReplicaSetEventTypeViewForNdsGroupAlertableNoThreshold } from '../models/ReplicaSetEventTypeViewForNdsGroupAlertableNoThreshold';
-import { ReplicaSetEventTypeViewForNdsGroupAlertableWithThreshold } from '../models/ReplicaSetEventTypeViewForNdsGroupAlertableWithThreshold';
-import { ReplicaSetMatcherField } from '../models/ReplicaSetMatcherField';
-import { ReplicaSetMatcherView } from '../models/ReplicaSetMatcherView';
-import { ReplicaSetThresholdAlertConfigViewForNdsGroup } from '../models/ReplicaSetThresholdAlertConfigViewForNdsGroup';
 import { ReplicationSpec } from '../models/ReplicationSpec';
-import { Role } from '../models/Role';
+import { ResourceTag } from '../models/ResourceTag';
+import { RestoreJobFileHash } from '../models/RestoreJobFileHash';
 import { RoleAssignment } from '../models/RoleAssignment';
-import { RoleMappingView } from '../models/RoleMappingView';
-import { SMSNotificationView } from '../models/SMSNotificationView';
 import { SampleDatasetStatus } from '../models/SampleDatasetStatus';
-import { ServerlessAWSTenantEndpoint } from '../models/ServerlessAWSTenantEndpoint';
-import { ServerlessAWSTenantEndpointUpdate } from '../models/ServerlessAWSTenantEndpointUpdate';
-import { ServerlessAzureTenantEndpoint } from '../models/ServerlessAzureTenantEndpoint';
-import { ServerlessAzureTenantEndpointUpdate } from '../models/ServerlessAzureTenantEndpointUpdate';
-import { ServerlessBackupOptions } from '../models/ServerlessBackupOptions';
+import { SearchSynonymMappingDefinition } from '../models/SearchSynonymMappingDefinition';
 import { ServerlessBackupRestoreJob } from '../models/ServerlessBackupRestoreJob';
 import { ServerlessBackupSnapshot } from '../models/ServerlessBackupSnapshot';
-import { ServerlessEventTypeViewAlertable } from '../models/ServerlessEventTypeViewAlertable';
+import { ServerlessConnectionStringsPrivateEndpointItem } from '../models/ServerlessConnectionStringsPrivateEndpointItem';
+import { ServerlessConnectionStringsPrivateEndpointList } from '../models/ServerlessConnectionStringsPrivateEndpointList';
 import { ServerlessInstanceDescription } from '../models/ServerlessInstanceDescription';
 import { ServerlessInstanceDescriptionConnectionStrings } from '../models/ServerlessInstanceDescriptionConnectionStrings';
-import { ServerlessInstanceDescriptionConnectionStringsPrivateEndpoint } from '../models/ServerlessInstanceDescriptionConnectionStringsPrivateEndpoint';
-import { ServerlessInstanceDescriptionConnectionStringsPrivateEndpointEndpoint } from '../models/ServerlessInstanceDescriptionConnectionStringsPrivateEndpointEndpoint';
 import { ServerlessInstanceDescriptionCreate } from '../models/ServerlessInstanceDescriptionCreate';
 import { ServerlessInstanceDescriptionUpdate } from '../models/ServerlessInstanceDescriptionUpdate';
-import { ServerlessMetricAlertConfigViewForNdsGroup } from '../models/ServerlessMetricAlertConfigViewForNdsGroup';
-import { ServerlessMetricThresholdView } from '../models/ServerlessMetricThresholdView';
-import { ServerlessMetricUnits } from '../models/ServerlessMetricUnits';
+import { ServerlessMetricThreshold } from '../models/ServerlessMetricThreshold';
 import { ServerlessProviderSettings } from '../models/ServerlessProviderSettings';
+import { ServerlessTenantCreateRequest } from '../models/ServerlessTenantCreateRequest';
 import { ServerlessTenantEndpoint } from '../models/ServerlessTenantEndpoint';
-import { ServerlessTenantEndpointCreate } from '../models/ServerlessTenantEndpointCreate';
 import { ServerlessTenantEndpointUpdate } from '../models/ServerlessTenantEndpointUpdate';
-import { SlackNotificationView } from '../models/SlackNotificationView';
-import { SnapshotRetention } from '../models/SnapshotRetention';
-import { SnapshotSchedule } from '../models/SnapshotSchedule';
 import { Source } from '../models/Source';
-import { SummaryNotificationView } from '../models/SummaryNotificationView';
+import { StreamsConnection } from '../models/StreamsConnection';
+import { StreamsDataProcessRegion } from '../models/StreamsDataProcessRegion';
+import { StreamsKafkaAuthentication } from '../models/StreamsKafkaAuthentication';
+import { StreamsKafkaSecurity } from '../models/StreamsKafkaSecurity';
+import { StreamsTenant } from '../models/StreamsTenant';
 import { SynonymSource } from '../models/SynonymSource';
-import { TargetOrgRequestView } from '../models/TargetOrgRequestView';
-import { TargetOrgView } from '../models/TargetOrgView';
-import { TeamEventTypeView } from '../models/TeamEventTypeView';
-import { TeamEventTypeViewForNdsGroup } from '../models/TeamEventTypeViewForNdsGroup';
-import { TeamEventView } from '../models/TeamEventView';
-import { TeamEventViewForNdsGroup } from '../models/TeamEventViewForNdsGroup';
-import { TeamNotificationView } from '../models/TeamNotificationView';
-import { TenantHardwareSpec } from '../models/TenantHardwareSpec';
-import { TenantRegionConfig } from '../models/TenantRegionConfig';
+import { SystemStatus } from '../models/SystemStatus';
+import { TargetOrg } from '../models/TargetOrg';
+import { TargetOrgRequest } from '../models/TargetOrgRequest';
+import { Team } from '../models/Team';
+import { TeamResponse } from '../models/TeamResponse';
+import { TeamRole } from '../models/TeamRole';
 import { TenantRestore } from '../models/TenantRestore';
-import { TenantSnapshot } from '../models/TenantSnapshot';
-import { ThresholdViewInteger } from '../models/ThresholdViewInteger';
-import { TimeMetricAlertView } from '../models/TimeMetricAlertView';
-import { TimeMetricEventView } from '../models/TimeMetricEventView';
-import { TimeMetricThresholdView } from '../models/TimeMetricThresholdView';
-import { TimeMetricUnits } from '../models/TimeMetricUnits';
-import { TimeMetricValueView } from '../models/TimeMetricValueView';
-import { ToggleView } from '../models/ToggleView';
-import { TokenFilterasciiFolding } from '../models/TokenFilterasciiFolding';
-import { TokenFilterdaitchMokotoffSoundex } from '../models/TokenFilterdaitchMokotoffSoundex';
-import { TokenFilteredgeGram } from '../models/TokenFilteredgeGram';
-import { TokenFiltericuFolding } from '../models/TokenFiltericuFolding';
-import { TokenFiltericuNormalizer } from '../models/TokenFiltericuNormalizer';
-import { TokenFilterlength } from '../models/TokenFilterlength';
-import { TokenFilterlowercase } from '../models/TokenFilterlowercase';
-import { TokenFilternGram } from '../models/TokenFilternGram';
-import { TokenFilterregex } from '../models/TokenFilterregex';
-import { TokenFilterreverse } from '../models/TokenFilterreverse';
-import { TokenFiltershingle } from '../models/TokenFiltershingle';
-import { TokenFiltersnowballStemming } from '../models/TokenFiltersnowballStemming';
-import { TokenFilterstopword } from '../models/TokenFilterstopword';
-import { TokenFiltertrim } from '../models/TokenFiltertrim';
-import { TokenizeredgeGram } from '../models/TokenizeredgeGram';
-import { Tokenizerkeyword } from '../models/Tokenizerkeyword';
-import { TokenizernGram } from '../models/TokenizernGram';
-import { TokenizerregexCaptureGroup } from '../models/TokenizerregexCaptureGroup';
-import { TokenizerregexSplit } from '../models/TokenizerregexSplit';
-import { Tokenizerstandard } from '../models/Tokenizerstandard';
-import { TokenizeruaxUrlEmail } from '../models/TokenizeruaxUrlEmail';
-import { Tokenizerwhitespace } from '../models/Tokenizerwhitespace';
-import { TriggerIngestionRequest } from '../models/TriggerIngestionRequest';
+import { ThridPartyIntegration } from '../models/ThridPartyIntegration';
+import { TriggerIngestionPipelineRequest } from '../models/TriggerIngestionPipelineRequest';
+import { UpdateAtlasOrganizationApiKey } from '../models/UpdateAtlasOrganizationApiKey';
+import { UpdateAtlasProjectApiKey } from '../models/UpdateAtlasProjectApiKey';
 import { UpdateCustomDBRole } from '../models/UpdateCustomDBRole';
+import { UpdateGroupRolesForUser } from '../models/UpdateGroupRolesForUser';
+import { UpdateOrgRolesForUser } from '../models/UpdateOrgRolesForUser';
+import { UserAccessList } from '../models/UserAccessList';
+import { UserAccessRoleAssignment } from '../models/UserAccessRoleAssignment';
 import { UserCert } from '../models/UserCert';
-import { UserEventTypeViewForNdsGroup } from '../models/UserEventTypeViewForNdsGroup';
-import { UserEventTypeViewForOrg } from '../models/UserEventTypeViewForOrg';
-import { UserEventViewForNdsGroup } from '../models/UserEventViewForNdsGroup';
-import { UserEventViewForOrg } from '../models/UserEventViewForOrg';
-import { UserNotificationView } from '../models/UserNotificationView';
+import { UserCustomDBRole } from '../models/UserCustomDBRole';
 import { UserScope } from '../models/UserScope';
 import { UserSecurity } from '../models/UserSecurity';
-import { ValidationView } from '../models/ValidationView';
-import { VictorOpsNotificationView } from '../models/VictorOpsNotificationView';
-import { WebhookNotificationView } from '../models/WebhookNotificationView';
-import { WeeklyScheduleView } from '../models/WeeklyScheduleView';
+import { UserToDNMapping } from '../models/UserToDNMapping';
 import { X509Certificate } from '../models/X509Certificate';
-import { X509CertificateView } from '../models/X509CertificateView';
 import { ZoneMapping } from '../models/ZoneMapping';
 
 import { ObservableAWSClustersDNSApi } from "./ObservableAPI";
@@ -555,18 +330,6 @@ export interface AWSClustersDNSApiGetAWSCustomDNSRequest {
      * @memberof AWSClustersDNSApigetAWSCustomDNS
      */
     groupId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof AWSClustersDNSApigetAWSCustomDNS
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof AWSClustersDNSApigetAWSCustomDNS
-     */
-    pretty?: boolean
 }
 
 export interface AWSClustersDNSApiToggleAWSCustomDNSRequest {
@@ -578,22 +341,10 @@ export interface AWSClustersDNSApiToggleAWSCustomDNSRequest {
     groupId: string
     /**
      * Enables or disables the custom DNS configuration for AWS clusters in the specified project.
-     * @type AWSCustomDNSEnabledView
+     * @type AWSCustomDNSEnabled
      * @memberof AWSClustersDNSApitoggleAWSCustomDNS
      */
-    aWSCustomDNSEnabledView: AWSCustomDNSEnabledView
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof AWSClustersDNSApitoggleAWSCustomDNS
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof AWSClustersDNSApitoggleAWSCustomDNS
-     */
-    pretty?: boolean
+    aWSCustomDNSEnabled: AWSCustomDNSEnabled
 }
 
 export class ObjectAWSClustersDNSApi {
@@ -604,21 +355,21 @@ export class ObjectAWSClustersDNSApi {
     }
 
     /**
-     * Returns the custom DNS configuration for AWS clusters in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns the custom DNS configuration for AWS clusters in the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return One Custom DNS Configuration for Atlas Clusters on AWS
      * @param param the request object
      */
-    public getAWSCustomDNS(param: AWSClustersDNSApiGetAWSCustomDNSRequest, options?: Configuration): Promise<AWSCustomDNSEnabledView> {
-        return this.api.getAWSCustomDNS(param.groupId, param.envelope, param.pretty,  options).toPromise();
+    public getAWSCustomDNS(param: AWSClustersDNSApiGetAWSCustomDNSRequest, options?: Configuration): Promise<AWSCustomDNSEnabled> {
+        return this.api.getAWSCustomDNS(param.groupId,  options).toPromise();
     }
 
     /**
-     * Enables or disables the custom DNS configuration for AWS clusters in the specified project. Enable custom DNS if you use AWS VPC peering and use your own DNS servers. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
+     * Enables or disables the custom DNS configuration for AWS clusters in the specified project. Enable custom DNS if you use AWS VPC peering and use your own DNS servers. To use this resource, the requesting API Key must have the Project Atlas Admin role.
      * Toggle State of One Custom DNS Configuration for Atlas Clusters on AWS
      * @param param the request object
      */
-    public toggleAWSCustomDNS(param: AWSClustersDNSApiToggleAWSCustomDNSRequest, options?: Configuration): Promise<AWSCustomDNSEnabledView> {
-        return this.api.toggleAWSCustomDNS(param.groupId, param.aWSCustomDNSEnabledView, param.envelope, param.pretty,  options).toPromise();
+    public toggleAWSCustomDNS(param: AWSClustersDNSApiToggleAWSCustomDNSRequest, options?: Configuration): Promise<AWSCustomDNSEnabled> {
+        return this.api.toggleAWSCustomDNS(param.groupId, param.aWSCustomDNSEnabled,  options).toPromise();
     }
 
 }
@@ -640,29 +391,17 @@ export interface AccessTrackingApiListAccessLogsByClusterNameRequest {
      */
     clusterName: string
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof AccessTrackingApilistAccessLogsByClusterName
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof AccessTrackingApilistAccessLogsByClusterName
-     */
-    pretty?: boolean
-    /**
      * Flag that indicates whether the response returns the successful authentication attempts only.
      * @type boolean
      * @memberof AccessTrackingApilistAccessLogsByClusterName
      */
     authResult?: boolean
     /**
-     * Date and time when to stop retrieving database history. If you specify **end**, you must also specify **start**. This parameter uses the ISO 8601 timestamp format in UTC.
-     * @type string
+     * Date and time when to stop retrieving database history. If you specify **end**, you must also specify **start**. This parameter uses UNIX epoch time in milliseconds.
+     * @type number
      * @memberof AccessTrackingApilistAccessLogsByClusterName
      */
-    end?: string
+    end?: number
     /**
      * One Internet Protocol address that attempted to authenticate with the database.
      * @type string
@@ -676,11 +415,11 @@ export interface AccessTrackingApiListAccessLogsByClusterNameRequest {
      */
     nLogs?: number
     /**
-     * Date and time when MongoDB Cloud begins retrieving database history. If you specify **start**, you must also specify **end**. This parameter uses the ISO 8601 timestamp format in UTC.
-     * @type Date
+     * Date and time when MongoDB Cloud begins retrieving database history. If you specify **start**, you must also specify **end**. This parameter uses UNIX epoch time in milliseconds.
+     * @type number
      * @memberof AccessTrackingApilistAccessLogsByClusterName
      */
-    start?: Date
+    start?: number
 }
 
 export interface AccessTrackingApiListAccessLogsByHostnameRequest {
@@ -697,29 +436,17 @@ export interface AccessTrackingApiListAccessLogsByHostnameRequest {
      */
     hostname: string
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof AccessTrackingApilistAccessLogsByHostname
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof AccessTrackingApilistAccessLogsByHostname
-     */
-    pretty?: boolean
-    /**
      * Flag that indicates whether the response returns the successful authentication attempts only.
      * @type boolean
      * @memberof AccessTrackingApilistAccessLogsByHostname
      */
     authResult?: boolean
     /**
-     * Date and time when to stop retrieving database history. If you specify **end**, you must also specify **start**. This parameter uses the ISO 8601 timestamp format in UTC.
-     * @type Date
+     * Date and time when to stop retrieving database history. If you specify **end**, you must also specify **start**. This parameter uses UNIX epoch time in milliseconds.
+     * @type number
      * @memberof AccessTrackingApilistAccessLogsByHostname
      */
-    end?: Date
+    end?: number
     /**
      * One Internet Protocol address that attempted to authenticate with the database.
      * @type string
@@ -733,11 +460,11 @@ export interface AccessTrackingApiListAccessLogsByHostnameRequest {
      */
     nLogs?: number
     /**
-     * Date and time when MongoDB Cloud begins retrieving database history. If you specify **start**, you must also specify **end**. This parameter uses the ISO 8601 timestamp format in UTC.
-     * @type Date
+     * Date and time when MongoDB Cloud begins retrieving database history. If you specify **start**, you must also specify **end**. This parameter uses UNIX epoch time in milliseconds.
+     * @type number
      * @memberof AccessTrackingApilistAccessLogsByHostname
      */
-    start?: Date
+    start?: number
 }
 
 export class ObjectAccessTrackingApi {
@@ -752,8 +479,8 @@ export class ObjectAccessTrackingApi {
      * Return Database Access History for One Cluster using Its Cluster Name
      * @param param the request object
      */
-    public listAccessLogsByClusterName(param: AccessTrackingApiListAccessLogsByClusterNameRequest, options?: Configuration): Promise<ApiMongoDBAccessLogsListView> {
-        return this.api.listAccessLogsByClusterName(param.groupId, param.clusterName, param.envelope, param.pretty, param.authResult, param.end, param.ipAddress, param.nLogs, param.start,  options).toPromise();
+    public listAccessLogsByClusterName(param: AccessTrackingApiListAccessLogsByClusterNameRequest, options?: Configuration): Promise<MongoDBAccessLogsList> {
+        return this.api.listAccessLogsByClusterName(param.groupId, param.clusterName, param.authResult, param.end, param.ipAddress, param.nLogs, param.start,  options).toPromise();
     }
 
     /**
@@ -761,8 +488,8 @@ export class ObjectAccessTrackingApi {
      * Return Database Access History for One Cluster using Its Hostname
      * @param param the request object
      */
-    public listAccessLogsByHostname(param: AccessTrackingApiListAccessLogsByHostnameRequest, options?: Configuration): Promise<ApiMongoDBAccessLogsListView> {
-        return this.api.listAccessLogsByHostname(param.groupId, param.hostname, param.envelope, param.pretty, param.authResult, param.end, param.ipAddress, param.nLogs, param.start,  options).toPromise();
+    public listAccessLogsByHostname(param: AccessTrackingApiListAccessLogsByHostnameRequest, options?: Configuration): Promise<MongoDBAccessLogsList> {
+        return this.api.listAccessLogsByHostname(param.groupId, param.hostname, param.authResult, param.end, param.ipAddress, param.nLogs, param.start,  options).toPromise();
     }
 
 }
@@ -779,22 +506,10 @@ export interface AlertConfigurationsApiCreateAlertConfigurationRequest {
     groupId: string
     /**
      * Creates one alert configuration for the specified project.
-     * @type AlertConfigViewForNdsGroup
+     * @type GroupAlertsConfig
      * @memberof AlertConfigurationsApicreateAlertConfiguration
      */
-    alertConfigViewForNdsGroup: AlertConfigViewForNdsGroup
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof AlertConfigurationsApicreateAlertConfiguration
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof AlertConfigurationsApicreateAlertConfiguration
-     */
-    pretty?: boolean
+    groupAlertsConfig: GroupAlertsConfig
 }
 
 export interface AlertConfigurationsApiDeleteAlertConfigurationRequest {
@@ -810,18 +525,6 @@ export interface AlertConfigurationsApiDeleteAlertConfigurationRequest {
      * @memberof AlertConfigurationsApideleteAlertConfiguration
      */
     alertConfigId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof AlertConfigurationsApideleteAlertConfiguration
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof AlertConfigurationsApideleteAlertConfiguration
-     */
-    pretty?: boolean
 }
 
 export interface AlertConfigurationsApiGetAlertConfigurationRequest {
@@ -837,33 +540,9 @@ export interface AlertConfigurationsApiGetAlertConfigurationRequest {
      * @memberof AlertConfigurationsApigetAlertConfiguration
      */
     alertConfigId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof AlertConfigurationsApigetAlertConfiguration
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof AlertConfigurationsApigetAlertConfiguration
-     */
-    pretty?: boolean
 }
 
 export interface AlertConfigurationsApiListAlertConfigurationMatchersFieldNamesRequest {
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof AlertConfigurationsApilistAlertConfigurationMatchersFieldNames
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof AlertConfigurationsApilistAlertConfigurationMatchersFieldNames
-     */
-    pretty?: boolean
 }
 
 export interface AlertConfigurationsApiListAlertConfigurationsRequest {
@@ -873,12 +552,6 @@ export interface AlertConfigurationsApiListAlertConfigurationsRequest {
      * @memberof AlertConfigurationsApilistAlertConfigurations
      */
     groupId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof AlertConfigurationsApilistAlertConfigurations
-     */
-    envelope?: boolean
     /**
      * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
@@ -897,12 +570,6 @@ export interface AlertConfigurationsApiListAlertConfigurationsRequest {
      * @memberof AlertConfigurationsApilistAlertConfigurations
      */
     pageNum?: number
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof AlertConfigurationsApilistAlertConfigurations
-     */
-    pretty?: boolean
 }
 
 export interface AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest {
@@ -918,18 +585,6 @@ export interface AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest {
      * @memberof AlertConfigurationsApilistAlertConfigurationsByAlertId
      */
     alertId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof AlertConfigurationsApilistAlertConfigurationsByAlertId
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof AlertConfigurationsApilistAlertConfigurationsByAlertId
-     */
-    pretty?: boolean
     /**
      * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
@@ -965,22 +620,10 @@ export interface AlertConfigurationsApiToggleAlertConfigurationRequest {
     alertConfigId: string
     /**
      * Enables or disables the specified alert configuration in the specified project.
-     * @type ToggleView
+     * @type AlertsToggle
      * @memberof AlertConfigurationsApitoggleAlertConfiguration
      */
-    toggleView: ToggleView
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof AlertConfigurationsApitoggleAlertConfiguration
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof AlertConfigurationsApitoggleAlertConfiguration
-     */
-    pretty?: boolean
+    alertsToggle: AlertsToggle
 }
 
 export interface AlertConfigurationsApiUpdateAlertConfigurationRequest {
@@ -998,22 +641,10 @@ export interface AlertConfigurationsApiUpdateAlertConfigurationRequest {
     alertConfigId: string
     /**
      * Updates one alert configuration in the specified project.
-     * @type AlertConfigViewForNdsGroup
+     * @type GroupAlertsConfig
      * @memberof AlertConfigurationsApiupdateAlertConfiguration
      */
-    alertConfigViewForNdsGroup: AlertConfigViewForNdsGroup
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof AlertConfigurationsApiupdateAlertConfiguration
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof AlertConfigurationsApiupdateAlertConfiguration
-     */
-    pretty?: boolean
+    groupAlertsConfig: GroupAlertsConfig
 }
 
 export class ObjectAlertConfigurationsApi {
@@ -1024,75 +655,75 @@ export class ObjectAlertConfigurationsApi {
     }
 
     /**
-     * Creates one alert configuration for the specified project. Alert configurations define the triggers and notification methods for alerts. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role.   This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/).
+     * Creates one alert configuration for the specified project. Alert configurations define the triggers and notification methods for alerts. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role.  This resource remains under revision and may change.
      * Create One Alert Configuration in One Project
      * @param param the request object
      */
-    public createAlertConfiguration(param: AlertConfigurationsApiCreateAlertConfigurationRequest, options?: Configuration): Promise<AlertConfigViewForNdsGroup> {
-        return this.api.createAlertConfiguration(param.groupId, param.alertConfigViewForNdsGroup, param.envelope, param.pretty,  options).toPromise();
+    public createAlertConfiguration(param: AlertConfigurationsApiCreateAlertConfigurationRequest, options?: Configuration): Promise<GroupAlertsConfig> {
+        return this.api.createAlertConfiguration(param.groupId, param.groupAlertsConfig,  options).toPromise();
     }
 
     /**
-     * Removes one alert configuration from the specified project. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role.   This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-delete-config/).
+     * Removes one alert configuration from the specified project. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role.  This resource remains under revision and may change.
      * Remove One Alert Configuration from One Project
      * @param param the request object
      */
     public deleteAlertConfiguration(param: AlertConfigurationsApiDeleteAlertConfigurationRequest, options?: Configuration): Promise<void> {
-        return this.api.deleteAlertConfiguration(param.groupId, param.alertConfigId, param.envelope, param.pretty,  options).toPromise();
+        return this.api.deleteAlertConfiguration(param.groupId, param.alertConfigId,  options).toPromise();
     }
 
     /**
-     * Returns the specified alert configuration from the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.   This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/).
+     * Returns the specified alert configuration from the specified project. To use this resource, the requesting API Key must have the Project Read Only role.  This resource remains under revision and may change.
      * Return One Alert Configuration from One Project
      * @param param the request object
      */
-    public getAlertConfiguration(param: AlertConfigurationsApiGetAlertConfigurationRequest, options?: Configuration): Promise<AlertConfigViewForNdsGroup> {
-        return this.api.getAlertConfiguration(param.groupId, param.alertConfigId, param.envelope, param.pretty,  options).toPromise();
+    public getAlertConfiguration(param: AlertConfigurationsApiGetAlertConfigurationRequest, options?: Configuration): Promise<GroupAlertsConfig> {
+        return this.api.getAlertConfiguration(param.groupId, param.alertConfigId,  options).toPromise();
     }
 
     /**
-     * Get all field names that the matchers.fieldName parameter accepts when you [create](#tag/Alert-Configurations/operation/createAlertConfiguration) or [update](#tag/Alert-Configurations/operation/updateAlertConfiguration) an Alert Configuration.
+     * Get all field names that the `matchers.fieldName` parameter accepts when you create or update an Alert Configuration. You can successfully call this endpoint with any assigned role.
      * Get All Alert Configuration Matchers Field Names
      * @param param the request object
      */
-    public listAlertConfigurationMatchersFieldNames(param: AlertConfigurationsApiListAlertConfigurationMatchersFieldNamesRequest = {}, options?: Configuration): Promise<Array<MatcherFieldView>> {
-        return this.api.listAlertConfigurationMatchersFieldNames(param.envelope, param.pretty,  options).toPromise();
+    public listAlertConfigurationMatchersFieldNames(param: AlertConfigurationsApiListAlertConfigurationMatchersFieldNamesRequest = {}, options?: Configuration): Promise<Array<string>> {
+        return this.api.listAlertConfigurationMatchersFieldNames( options).toPromise();
     }
 
     /**
-     * Returns all alert configurations for one project. These alert configurations apply to any component in the project. Alert configurations define the triggers and notification methods for alerts. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.   This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-all-configs/).
+     * Returns all alert configurations for one project. These alert configurations apply to any component in the project. Alert configurations define the triggers and notification methods for alerts. To use this resource, the requesting API Key must have the Project Read Only role.  This resource remains under revision and may change.
      * Return All Alert Configurations for One Project
      * @param param the request object
      */
-    public listAlertConfigurations(param: AlertConfigurationsApiListAlertConfigurationsRequest, options?: Configuration): Promise<PaginatedAlertConfigView> {
-        return this.api.listAlertConfigurations(param.groupId, param.envelope, param.includeCount, param.itemsPerPage, param.pageNum, param.pretty,  options).toPromise();
+    public listAlertConfigurations(param: AlertConfigurationsApiListAlertConfigurationsRequest, options?: Configuration): Promise<PaginatedAlertConfig> {
+        return this.api.listAlertConfigurations(param.groupId, param.includeCount, param.itemsPerPage, param.pageNum,  options).toPromise();
     }
 
     /**
-     * Returns all alert configurations set for the specified alert. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.   This resource remains under revision and may change.
+     * Returns all alert configurations set for the specified alert. To use this resource, the requesting API Key must have the Project Read Only role.  This resource remains under revision and may change.
      * Return All Alert Configurations Set for One Alert
      * @param param the request object
      */
-    public listAlertConfigurationsByAlertId(param: AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest, options?: Configuration): Promise<PaginatedAlertConfigView> {
-        return this.api.listAlertConfigurationsByAlertId(param.groupId, param.alertId, param.envelope, param.pretty, param.includeCount, param.itemsPerPage, param.pageNum,  options).toPromise();
+    public listAlertConfigurationsByAlertId(param: AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest, options?: Configuration): Promise<PaginatedAlertConfig> {
+        return this.api.listAlertConfigurationsByAlertId(param.groupId, param.alertId, param.includeCount, param.itemsPerPage, param.pageNum,  options).toPromise();
     }
 
     /**
-     * Enables or disables the specified alert configuration in the specified project. The resource enables the specified alert configuration if currently enabled. The resource disables the specified alert configuration if currently disabled. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role.  **NOTE**: This endpoint updates only the enabled/disabled state for the alert configuration. To update more than just this configuration, see [Update One Alert Configuration](#tag/Alert-Configurations/operation/updateAlertConfiguration).  This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-enable-disable-config/).
+     * Enables or disables the specified alert configuration in the specified project. The resource enables the specified alert configuration if currently enabled. The resource disables the specified alert configuration if currently disabled. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role.  **NOTE**: This endpoint updates only the enabled/disabled state for the alert configuration. To update more than just this configuration, see [Update One Alert Configuration](#tag/Alert-Configurations/operation/updateAlertConfiguration).  This resource remains under revision and may change.
      * Toggle One State of One Alert Configuration in One Project
      * @param param the request object
      */
-    public toggleAlertConfiguration(param: AlertConfigurationsApiToggleAlertConfigurationRequest, options?: Configuration): Promise<AlertConfigViewForNdsGroup> {
-        return this.api.toggleAlertConfiguration(param.groupId, param.alertConfigId, param.toggleView, param.envelope, param.pretty,  options).toPromise();
+    public toggleAlertConfiguration(param: AlertConfigurationsApiToggleAlertConfigurationRequest, options?: Configuration): Promise<GroupAlertsConfig> {
+        return this.api.toggleAlertConfiguration(param.groupId, param.alertConfigId, param.alertsToggle,  options).toPromise();
     }
 
     /**
-     * Updates one alert configuration in the specified project. Alert configurations define the triggers and notification methods for alerts. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role.  **NOTE**: To enable or disable the alert configuration, see [Toggle One State of One Alert Configuration in One Project](#tag/Alert-Configurations/operation/toggleAlertConfiguration).   This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-update-config/).
+     * Updates one alert configuration in the specified project. Alert configurations define the triggers and notification methods for alerts. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role.  **NOTE**: To enable or disable the alert configuration, see [Toggle One State of One Alert Configuration in One Project](#tag/Alert-Configurations/operation/toggleAlertConfiguration).  This resource remains under revision and may change.
      * Update One Alert Configuration for One Project
      * @param param the request object
      */
-    public updateAlertConfiguration(param: AlertConfigurationsApiUpdateAlertConfigurationRequest, options?: Configuration): Promise<AlertConfigViewForNdsGroup> {
-        return this.api.updateAlertConfiguration(param.groupId, param.alertConfigId, param.alertConfigViewForNdsGroup, param.envelope, param.pretty,  options).toPromise();
+    public updateAlertConfiguration(param: AlertConfigurationsApiUpdateAlertConfigurationRequest, options?: Configuration): Promise<GroupAlertsConfig> {
+        return this.api.updateAlertConfiguration(param.groupId, param.alertConfigId, param.groupAlertsConfig,  options).toPromise();
     }
 
 }
@@ -1119,18 +750,6 @@ export interface AlertsApiAcknowledgeAlertRequest {
      * @memberof AlertsApiacknowledgeAlert
      */
     alertViewForNdsGroup: AlertViewForNdsGroup
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof AlertsApiacknowledgeAlert
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof AlertsApiacknowledgeAlert
-     */
-    pretty?: boolean
 }
 
 export interface AlertsApiGetAlertRequest {
@@ -1146,18 +765,6 @@ export interface AlertsApiGetAlertRequest {
      * @memberof AlertsApigetAlert
      */
     alertId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof AlertsApigetAlert
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof AlertsApigetAlert
-     */
-    pretty?: boolean
 }
 
 export interface AlertsApiListAlertsRequest {
@@ -1167,12 +774,6 @@ export interface AlertsApiListAlertsRequest {
      * @memberof AlertsApilistAlerts
      */
     groupId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof AlertsApilistAlerts
-     */
-    envelope?: boolean
     /**
      * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
@@ -1192,17 +793,11 @@ export interface AlertsApiListAlertsRequest {
      */
     pageNum?: number
     /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof AlertsApilistAlerts
-     */
-    pretty?: boolean
-    /**
      * Status of the alerts to return. Omit to return all alerts in all statuses.
-     * @type &#39;OPEN&#39; | &#39;TRACKING&#39; | &#39;CLOSED&#39;
+     * @type string
      * @memberof AlertsApilistAlerts
      */
-    status?: 'OPEN' | 'TRACKING' | 'CLOSED'
+    status?: string
 }
 
 export interface AlertsApiListAlertsByAlertConfigurationIdRequest {
@@ -1219,12 +814,6 @@ export interface AlertsApiListAlertsByAlertConfigurationIdRequest {
      */
     alertConfigId: string
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof AlertsApilistAlertsByAlertConfigurationId
-     */
-    envelope?: boolean
-    /**
      * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
      * @memberof AlertsApilistAlertsByAlertConfigurationId
@@ -1242,12 +831,6 @@ export interface AlertsApiListAlertsByAlertConfigurationIdRequest {
      * @memberof AlertsApilistAlertsByAlertConfigurationId
      */
     pageNum?: number
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof AlertsApilistAlertsByAlertConfigurationId
-     */
-    pretty?: boolean
 }
 
 export class ObjectAlertsApi {
@@ -1258,45 +841,66 @@ export class ObjectAlertsApi {
     }
 
     /**
-     * Confirms receipt of one existing alert. This alert applies to any component in one project. Acknowledging an alert prevents successive notifications. You receive an alert when a monitored component meets or exceeds a value you set until you acknowledge the alert. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role. This resource doesn't require the API Key to have an Access List.   This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alerts-acknowledge-alert/).
+     * Confirms receipt of one existing alert. This alert applies to any component in one project. Acknowledging an alert prevents successive notifications. You receive an alert when a monitored component meets or exceeds a value you set until you acknowledge the alert. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role.  This resource remains under revision and may change.
      * Acknowledge One Alert from One Project
      * @param param the request object
      */
     public acknowledgeAlert(param: AlertsApiAcknowledgeAlertRequest, options?: Configuration): Promise<AlertViewForNdsGroup> {
-        return this.api.acknowledgeAlert(param.groupId, param.alertId, param.alertViewForNdsGroup, param.envelope, param.pretty,  options).toPromise();
+        return this.api.acknowledgeAlert(param.groupId, param.alertId, param.alertViewForNdsGroup,  options).toPromise();
     }
 
     /**
-     * Returns one alert. This alert applies to any component in one project. You receive an alert when a monitored component meets or exceeds a value you set. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.   This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alerts-get-alert/).
+     * Returns one alert. This alert applies to any component in one project. You receive an alert when a monitored component meets or exceeds a value you set. To use this resource, the requesting API Key must have the Project Read Only role.  This resource remains under revision and may change.
      * Return One Alert from One Project
      * @param param the request object
      */
     public getAlert(param: AlertsApiGetAlertRequest, options?: Configuration): Promise<AlertViewForNdsGroup> {
-        return this.api.getAlert(param.groupId, param.alertId, param.envelope, param.pretty,  options).toPromise();
+        return this.api.getAlert(param.groupId, param.alertId,  options).toPromise();
     }
 
     /**
-     * Returns all alerts. These alerts apply to all components in one project. You receive an alert when a monitored component meets or exceeds a value you set. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.   This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alerts-get-all-alerts/).
+     * Returns all alerts. These alerts apply to all components in one project. You receive an alert when a monitored component meets or exceeds a value you set. To use this resource, the requesting API Key must have the Project Read Only role.  This resource remains under revision and may change.
      * Return All Alerts from One Project
      * @param param the request object
      */
-    public listAlerts(param: AlertsApiListAlertsRequest, options?: Configuration): Promise<PaginatedAlertView> {
-        return this.api.listAlerts(param.groupId, param.envelope, param.includeCount, param.itemsPerPage, param.pageNum, param.pretty, param.status,  options).toPromise();
+    public listAlerts(param: AlertsApiListAlertsRequest, options?: Configuration): Promise<PaginatedAlert> {
+        return this.api.listAlerts(param.groupId, param.includeCount, param.itemsPerPage, param.pageNum, param.status,  options).toPromise();
     }
 
     /**
-     * Returns all open alerts that the specified alert configuration triggers. These alert configurations apply to the specified project only. Alert configurations define the triggers and notification methods for alerts. Open alerts have been triggered but remain unacknowledged. To use this resource, the requesting API Key must have the Project Read Only role.   This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-open-alerts/).
+     * Returns all open alerts that the specified alert configuration triggers. These alert configurations apply to the specified project only. Alert configurations define the triggers and notification methods for alerts. Open alerts have been triggered but remain unacknowledged. To use this resource, the requesting API Key must have the Project Read Only role.  This resource remains under revision and may change.
      * Return All Open Alerts for Alert Configuration
      * @param param the request object
      */
-    public listAlertsByAlertConfigurationId(param: AlertsApiListAlertsByAlertConfigurationIdRequest, options?: Configuration): Promise<PaginatedAlertView> {
-        return this.api.listAlertsByAlertConfigurationId(param.groupId, param.alertConfigId, param.envelope, param.includeCount, param.itemsPerPage, param.pageNum, param.pretty,  options).toPromise();
+    public listAlertsByAlertConfigurationId(param: AlertsApiListAlertsByAlertConfigurationIdRequest, options?: Configuration): Promise<PaginatedAlert> {
+        return this.api.listAlertsByAlertConfigurationId(param.groupId, param.alertConfigId, param.includeCount, param.itemsPerPage, param.pageNum,  options).toPromise();
     }
 
 }
 
 import { ObservableAtlasSearchApi } from "./ObservableAPI";
 import { AtlasSearchApiRequestFactory, AtlasSearchApiResponseProcessor} from "../apis/AtlasSearchApi";
+
+export interface AtlasSearchApiCreateAtlasSearchDeploymentRequest {
+    /**
+     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+     * @type string
+     * @memberof AtlasSearchApicreateAtlasSearchDeployment
+     */
+    groupId: string
+    /**
+     * Label that identifies the cluster to create search nodes for.
+     * @type string
+     * @memberof AtlasSearchApicreateAtlasSearchDeployment
+     */
+    clusterName: string
+    /**
+     * Creates search nodes for the specified cluster.
+     * @type ApiSearchDeploymentRequest
+     * @memberof AtlasSearchApicreateAtlasSearchDeployment
+     */
+    apiSearchDeploymentRequest: ApiSearchDeploymentRequest
+}
 
 export interface AtlasSearchApiCreateAtlasSearchIndexRequest {
     /**
@@ -1313,22 +917,25 @@ export interface AtlasSearchApiCreateAtlasSearchIndexRequest {
     clusterName: string
     /**
      * Creates one Atlas Search index on the specified collection.
-     * @type FTSIndex
+     * @type ClusterSearchIndex
      * @memberof AtlasSearchApicreateAtlasSearchIndex
      */
-    fTSIndex: FTSIndex
+    clusterSearchIndex: ClusterSearchIndex
+}
+
+export interface AtlasSearchApiDeleteAtlasSearchDeploymentRequest {
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof AtlasSearchApicreateAtlasSearchIndex
+     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+     * @type string
+     * @memberof AtlasSearchApideleteAtlasSearchDeployment
      */
-    envelope?: boolean
+    groupId: string
     /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof AtlasSearchApicreateAtlasSearchIndex
+     * Label that identifies the cluster to delete.
+     * @type string
+     * @memberof AtlasSearchApideleteAtlasSearchDeployment
      */
-    pretty?: boolean
+    clusterName: string
 }
 
 export interface AtlasSearchApiDeleteAtlasSearchIndexRequest {
@@ -1350,18 +957,21 @@ export interface AtlasSearchApiDeleteAtlasSearchIndexRequest {
      * @memberof AtlasSearchApideleteAtlasSearchIndex
      */
     indexId: string
+}
+
+export interface AtlasSearchApiGetAtlasSearchDeploymentRequest {
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof AtlasSearchApideleteAtlasSearchIndex
+     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+     * @type string
+     * @memberof AtlasSearchApigetAtlasSearchDeployment
      */
-    envelope?: boolean
+    groupId: string
     /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof AtlasSearchApideleteAtlasSearchIndex
+     * Label that identifies the cluster to return the search nodes for.
+     * @type string
+     * @memberof AtlasSearchApigetAtlasSearchDeployment
      */
-    pretty?: boolean
+    clusterName: string
 }
 
 export interface AtlasSearchApiGetAtlasSearchIndexRequest {
@@ -1383,18 +993,6 @@ export interface AtlasSearchApiGetAtlasSearchIndexRequest {
      * @memberof AtlasSearchApigetAtlasSearchIndex
      */
     indexId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof AtlasSearchApigetAtlasSearchIndex
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof AtlasSearchApigetAtlasSearchIndex
-     */
-    pretty?: boolean
 }
 
 export interface AtlasSearchApiListAtlasSearchIndexesRequest {
@@ -1422,18 +1020,27 @@ export interface AtlasSearchApiListAtlasSearchIndexesRequest {
      * @memberof AtlasSearchApilistAtlasSearchIndexes
      */
     databaseName: string
+}
+
+export interface AtlasSearchApiUpdateAtlasSearchDeploymentRequest {
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof AtlasSearchApilistAtlasSearchIndexes
+     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+     * @type string
+     * @memberof AtlasSearchApiupdateAtlasSearchDeployment
      */
-    envelope?: boolean
+    groupId: string
     /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof AtlasSearchApilistAtlasSearchIndexes
+     * Label that identifies the cluster to update the search nodes for.
+     * @type string
+     * @memberof AtlasSearchApiupdateAtlasSearchDeployment
      */
-    pretty?: boolean
+    clusterName: string
+    /**
+     * Updates the search nodes for the specified cluster.
+     * @type ApiSearchDeploymentRequest
+     * @memberof AtlasSearchApiupdateAtlasSearchDeployment
+     */
+    apiSearchDeploymentRequest: ApiSearchDeploymentRequest
 }
 
 export interface AtlasSearchApiUpdateAtlasSearchIndexRequest {
@@ -1457,22 +1064,10 @@ export interface AtlasSearchApiUpdateAtlasSearchIndexRequest {
     indexId: string
     /**
      * Details to update on the Atlas Search index.
-     * @type FTSIndex
+     * @type ClusterSearchIndex
      * @memberof AtlasSearchApiupdateAtlasSearchIndex
      */
-    fTSIndex: FTSIndex
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof AtlasSearchApiupdateAtlasSearchIndex
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof AtlasSearchApiupdateAtlasSearchIndex
-     */
-    pretty?: boolean
+    clusterSearchIndex: ClusterSearchIndex
 }
 
 export class ObjectAtlasSearchApi {
@@ -1483,48 +1078,84 @@ export class ObjectAtlasSearchApi {
     }
 
     /**
-     * Creates one Atlas Search index on the specified collection. Atlas Search indexes define the fields on which to create the index and the analyzers to use when creating the index. Only clusters running MongoDB v4.2 or later can use Atlas Search. To use this resource, the requesting API Key must have the Project Data Access Admin role. This resource doesn't require the API Key to have an Access List.
+     * Creates search nodes for the specified cluster.
+     * Create Search Nodes
+     * @param param the request object
+     */
+    public createAtlasSearchDeployment(param: AtlasSearchApiCreateAtlasSearchDeploymentRequest, options?: Configuration): Promise<ApiSearchDeploymentResponse> {
+        return this.api.createAtlasSearchDeployment(param.groupId, param.clusterName, param.apiSearchDeploymentRequest,  options).toPromise();
+    }
+
+    /**
+     * Creates one Atlas Search index on the specified collection. Atlas Search indexes define the fields on which to create the index and the analyzers to use when creating the index. Only clusters running MongoDB v4.2 or later can use Atlas Search. To use this resource, the requesting API Key must have the Project Data Access Admin role.
      * Create One Atlas Search Index
      * @param param the request object
      */
-    public createAtlasSearchIndex(param: AtlasSearchApiCreateAtlasSearchIndexRequest, options?: Configuration): Promise<FTSIndex> {
-        return this.api.createAtlasSearchIndex(param.groupId, param.clusterName, param.fTSIndex, param.envelope, param.pretty,  options).toPromise();
+    public createAtlasSearchIndex(param: AtlasSearchApiCreateAtlasSearchIndexRequest, options?: Configuration): Promise<ClusterSearchIndex> {
+        return this.api.createAtlasSearchIndex(param.groupId, param.clusterName, param.clusterSearchIndex,  options).toPromise();
     }
 
     /**
-     * Removes one Atlas Search index that you identified with its unique ID. To use this resource, the requesting API Key must have the Project Data Access Admin role. This resource doesn't require the API Key to have an Access List.
+     * Deletes the search nodes for the specified cluster.
+     * Delete Search Nodes
+     * @param param the request object
+     */
+    public deleteAtlasSearchDeployment(param: AtlasSearchApiDeleteAtlasSearchDeploymentRequest, options?: Configuration): Promise<void> {
+        return this.api.deleteAtlasSearchDeployment(param.groupId, param.clusterName,  options).toPromise();
+    }
+
+    /**
+     * Removes one Atlas Search index that you identified with its unique ID. To use this resource, the requesting API Key must have the Project Data Access Admin role.
      * Remove One Atlas Search Index
      * @param param the request object
      */
-    public deleteAtlasSearchIndex(param: AtlasSearchApiDeleteAtlasSearchIndexRequest, options?: Configuration): Promise<void> {
-        return this.api.deleteAtlasSearchIndex(param.groupId, param.clusterName, param.indexId, param.envelope, param.pretty,  options).toPromise();
+    public deleteAtlasSearchIndex(param: AtlasSearchApiDeleteAtlasSearchIndexRequest, options?: Configuration): Promise<any> {
+        return this.api.deleteAtlasSearchIndex(param.groupId, param.clusterName, param.indexId,  options).toPromise();
     }
 
     /**
-     * Returns one Atlas Search index in the specified project. You identify this index using its unique ID. Atlas Search index contains the indexed fields and the analyzers used to create the index. To use this resource, the requesting API Key must have the Project Data Access Read Write role. This resource doesn't require the API Key to have an Access List.
+     * Return the search nodes for the specified cluster.
+     * Return Search Nodes
+     * @param param the request object
+     */
+    public getAtlasSearchDeployment(param: AtlasSearchApiGetAtlasSearchDeploymentRequest, options?: Configuration): Promise<ApiSearchDeploymentResponse> {
+        return this.api.getAtlasSearchDeployment(param.groupId, param.clusterName,  options).toPromise();
+    }
+
+    /**
+     * Returns one Atlas Search index in the specified project. You identify this index using its unique ID. Atlas Search index contains the indexed fields and the analyzers used to create the index. To use this resource, the requesting API Key must have the Project Data Access Read Write role.
      * Return One Atlas Search Index
      * @param param the request object
      */
-    public getAtlasSearchIndex(param: AtlasSearchApiGetAtlasSearchIndexRequest, options?: Configuration): Promise<FTSIndex> {
-        return this.api.getAtlasSearchIndex(param.groupId, param.clusterName, param.indexId, param.envelope, param.pretty,  options).toPromise();
+    public getAtlasSearchIndex(param: AtlasSearchApiGetAtlasSearchIndexRequest, options?: Configuration): Promise<ClusterSearchIndex> {
+        return this.api.getAtlasSearchIndex(param.groupId, param.clusterName, param.indexId,  options).toPromise();
     }
 
     /**
-     * Returns all Atlas Search indexes on the specified collection. Atlas Search indexes contain the indexed fields and the analyzers used to create the indexes. To use this resource, the requesting API Key must have the Project Data Access Read Write role. This resource doesn't require the API Key to have an Access List.
+     * Returns all Atlas Search indexes on the specified collection. Atlas Search indexes contain the indexed fields and the analyzers used to create the indexes. To use this resource, the requesting API Key must have the Project Data Access Read Write role.
      * Return All Atlas Search Indexes for One Collection
      * @param param the request object
      */
-    public listAtlasSearchIndexes(param: AtlasSearchApiListAtlasSearchIndexesRequest, options?: Configuration): Promise<Array<FTSIndex>> {
-        return this.api.listAtlasSearchIndexes(param.groupId, param.clusterName, param.collectionName, param.databaseName, param.envelope, param.pretty,  options).toPromise();
+    public listAtlasSearchIndexes(param: AtlasSearchApiListAtlasSearchIndexesRequest, options?: Configuration): Promise<Array<ClusterSearchIndex>> {
+        return this.api.listAtlasSearchIndexes(param.groupId, param.clusterName, param.collectionName, param.databaseName,  options).toPromise();
     }
 
     /**
-     * Updates one Atlas Search index that you identified with its unique ID. Atlas Search indexes define the fields on which to create the index and the analyzers to use when creating the index. To use this resource, the requesting API Key must have the Project Data Access Admin role. This resource doesn't require the API Key to have an Access List.
+     * Updates the search nodes for the specified cluster.
+     * Update Search Nodes
+     * @param param the request object
+     */
+    public updateAtlasSearchDeployment(param: AtlasSearchApiUpdateAtlasSearchDeploymentRequest, options?: Configuration): Promise<ApiSearchDeploymentResponse> {
+        return this.api.updateAtlasSearchDeployment(param.groupId, param.clusterName, param.apiSearchDeploymentRequest,  options).toPromise();
+    }
+
+    /**
+     * Updates one Atlas Search index that you identified with its unique ID. Atlas Search indexes define the fields on which to create the index and the analyzers to use when creating the index. To use this resource, the requesting API Key must have the Project Data Access Admin role.
      * Update One Atlas Search Index
      * @param param the request object
      */
-    public updateAtlasSearchIndex(param: AtlasSearchApiUpdateAtlasSearchIndexRequest, options?: Configuration): Promise<FTSIndex> {
-        return this.api.updateAtlasSearchIndex(param.groupId, param.clusterName, param.indexId, param.fTSIndex, param.envelope, param.pretty,  options).toPromise();
+    public updateAtlasSearchIndex(param: AtlasSearchApiUpdateAtlasSearchIndexRequest, options?: Configuration): Promise<ClusterSearchIndex> {
+        return this.api.updateAtlasSearchIndex(param.groupId, param.clusterName, param.indexId, param.clusterSearchIndex,  options).toPromise();
     }
 
 }
@@ -1539,18 +1170,6 @@ export interface AuditingApiGetAuditingConfigurationRequest {
      * @memberof AuditingApigetAuditingConfiguration
      */
     groupId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof AuditingApigetAuditingConfiguration
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof AuditingApigetAuditingConfiguration
-     */
-    pretty?: boolean
 }
 
 export interface AuditingApiUpdateAuditingConfigurationRequest {
@@ -1566,18 +1185,6 @@ export interface AuditingApiUpdateAuditingConfigurationRequest {
      * @memberof AuditingApiupdateAuditingConfiguration
      */
     auditLog: AuditLog
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof AuditingApiupdateAuditingConfiguration
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof AuditingApiupdateAuditingConfiguration
-     */
-    pretty?: boolean
 }
 
 export class ObjectAuditingApi {
@@ -1588,21 +1195,21 @@ export class ObjectAuditingApi {
     }
 
     /**
-     * Returns the auditing configuration for the specified project. The auditing configuration defines the events that MongoDB Cloud records in the audit log. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
+     * Returns the auditing configuration for the specified project. The auditing configuration defines the events that MongoDB Cloud records in the audit log. To use this resource, the requesting API Key must have the Project Owner role. This feature isn't available for `M0`, `M2`, `M5`, or serverless clusters.
      * Return the Auditing Configuration for One Project
      * @param param the request object
      */
     public getAuditingConfiguration(param: AuditingApiGetAuditingConfigurationRequest, options?: Configuration): Promise<AuditLog> {
-        return this.api.getAuditingConfiguration(param.groupId, param.envelope, param.pretty,  options).toPromise();
+        return this.api.getAuditingConfiguration(param.groupId,  options).toPromise();
     }
 
     /**
-     * Updates the auditing configuration for the specified project. The auditing configuration defines the events that MongoDB Cloud records in the audit log. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
+     * Updates the auditing configuration for the specified project. The auditing configuration defines the events that MongoDB Cloud records in the audit log. To use this resource, the requesting API Key must have the Project Owner role. This feature isn't available for `M0`, `M2`, `M5`, or serverless clusters.
      * Update Auditing Configuration for One Project
      * @param param the request object
      */
     public updateAuditingConfiguration(param: AuditingApiUpdateAuditingConfigurationRequest, options?: Configuration): Promise<AuditLog> {
-        return this.api.updateAuditingConfiguration(param.groupId, param.auditLog, param.envelope, param.pretty,  options).toPromise();
+        return this.api.updateAuditingConfiguration(param.groupId, param.auditLog,  options).toPromise();
     }
 
 }
@@ -1629,18 +1236,6 @@ export interface CloudBackupsApiCancelBackupRestoreJobRequest {
      * @memberof CloudBackupsApicancelBackupRestoreJob
      */
     restoreJobId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CloudBackupsApicancelBackupRestoreJob
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof CloudBackupsApicancelBackupRestoreJob
-     */
-    pretty?: boolean
 }
 
 export interface CloudBackupsApiCreateBackupExportJobRequest {
@@ -1662,12 +1257,6 @@ export interface CloudBackupsApiCreateBackupExportJobRequest {
      * @memberof CloudBackupsApicreateBackupExportJob
      */
     diskBackupExportJobRequest: DiskBackupExportJobRequest
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CloudBackupsApicreateBackupExportJob
-     */
-    envelope?: boolean
 }
 
 export interface CloudBackupsApiCreateBackupRestoreJobRequest {
@@ -1685,22 +1274,10 @@ export interface CloudBackupsApiCreateBackupRestoreJobRequest {
     clusterName: string
     /**
      * Restores one snapshot of one cluster from the specified project.
-     * @type DiskBackupRestoreJob
+     * @type DiskBackupSnapshotRestoreJob
      * @memberof CloudBackupsApicreateBackupRestoreJob
      */
-    diskBackupRestoreJob: DiskBackupRestoreJob
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CloudBackupsApicreateBackupRestoreJob
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof CloudBackupsApicreateBackupRestoreJob
-     */
-    pretty?: boolean
+    diskBackupSnapshotRestoreJob: DiskBackupSnapshotRestoreJob
 }
 
 export interface CloudBackupsApiCreateExportBucketRequest {
@@ -1716,18 +1293,6 @@ export interface CloudBackupsApiCreateExportBucketRequest {
      * @memberof CloudBackupsApicreateExportBucket
      */
     diskBackupSnapshotAWSExportBucket: DiskBackupSnapshotAWSExportBucket
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CloudBackupsApicreateExportBucket
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof CloudBackupsApicreateExportBucket
-     */
-    pretty?: boolean
 }
 
 export interface CloudBackupsApiCreateServerlessBackupRestoreJobRequest {
@@ -1749,18 +1314,6 @@ export interface CloudBackupsApiCreateServerlessBackupRestoreJobRequest {
      * @memberof CloudBackupsApicreateServerlessBackupRestoreJob
      */
     serverlessBackupRestoreJob: ServerlessBackupRestoreJob
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CloudBackupsApicreateServerlessBackupRestoreJob
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof CloudBackupsApicreateServerlessBackupRestoreJob
-     */
-    pretty?: boolean
 }
 
 export interface CloudBackupsApiDeleteAllBackupSchedulesRequest {
@@ -1776,12 +1329,6 @@ export interface CloudBackupsApiDeleteAllBackupSchedulesRequest {
      * @memberof CloudBackupsApideleteAllBackupSchedules
      */
     clusterName: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CloudBackupsApideleteAllBackupSchedules
-     */
-    envelope?: boolean
 }
 
 export interface CloudBackupsApiDeleteExportBucketRequest {
@@ -1797,12 +1344,6 @@ export interface CloudBackupsApiDeleteExportBucketRequest {
      * @memberof CloudBackupsApideleteExportBucket
      */
     exportBucketId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CloudBackupsApideleteExportBucket
-     */
-    envelope?: boolean
 }
 
 export interface CloudBackupsApiDeleteReplicaSetBackupRequest {
@@ -1824,18 +1365,6 @@ export interface CloudBackupsApiDeleteReplicaSetBackupRequest {
      * @memberof CloudBackupsApideleteReplicaSetBackup
      */
     snapshotId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CloudBackupsApideleteReplicaSetBackup
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof CloudBackupsApideleteReplicaSetBackup
-     */
-    pretty?: boolean
 }
 
 export interface CloudBackupsApiDeleteShardedClusterBackupRequest {
@@ -1857,18 +1386,6 @@ export interface CloudBackupsApiDeleteShardedClusterBackupRequest {
      * @memberof CloudBackupsApideleteShardedClusterBackup
      */
     snapshotId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CloudBackupsApideleteShardedClusterBackup
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof CloudBackupsApideleteShardedClusterBackup
-     */
-    pretty?: boolean
 }
 
 export interface CloudBackupsApiGetBackupExportJobRequest {
@@ -1890,12 +1407,6 @@ export interface CloudBackupsApiGetBackupExportJobRequest {
      * @memberof CloudBackupsApigetBackupExportJob
      */
     exportId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CloudBackupsApigetBackupExportJob
-     */
-    envelope?: boolean
 }
 
 export interface CloudBackupsApiGetBackupRestoreJobRequest {
@@ -1917,18 +1428,6 @@ export interface CloudBackupsApiGetBackupRestoreJobRequest {
      * @memberof CloudBackupsApigetBackupRestoreJob
      */
     restoreJobId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CloudBackupsApigetBackupRestoreJob
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof CloudBackupsApigetBackupRestoreJob
-     */
-    pretty?: boolean
 }
 
 export interface CloudBackupsApiGetBackupScheduleRequest {
@@ -1944,18 +1443,6 @@ export interface CloudBackupsApiGetBackupScheduleRequest {
      * @memberof CloudBackupsApigetBackupSchedule
      */
     clusterName: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CloudBackupsApigetBackupSchedule
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof CloudBackupsApigetBackupSchedule
-     */
-    pretty?: boolean
 }
 
 export interface CloudBackupsApiGetDataProtectionSettingsRequest {
@@ -1965,18 +1452,6 @@ export interface CloudBackupsApiGetDataProtectionSettingsRequest {
      * @memberof CloudBackupsApigetDataProtectionSettings
      */
     groupId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CloudBackupsApigetDataProtectionSettings
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof CloudBackupsApigetDataProtectionSettings
-     */
-    pretty?: boolean
 }
 
 export interface CloudBackupsApiGetExportBucketRequest {
@@ -1992,12 +1467,6 @@ export interface CloudBackupsApiGetExportBucketRequest {
      * @memberof CloudBackupsApigetExportBucket
      */
     exportBucketId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CloudBackupsApigetExportBucket
-     */
-    envelope?: boolean
 }
 
 export interface CloudBackupsApiGetReplicaSetBackupRequest {
@@ -2019,18 +1488,6 @@ export interface CloudBackupsApiGetReplicaSetBackupRequest {
      * @memberof CloudBackupsApigetReplicaSetBackup
      */
     snapshotId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CloudBackupsApigetReplicaSetBackup
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof CloudBackupsApigetReplicaSetBackup
-     */
-    pretty?: boolean
 }
 
 export interface CloudBackupsApiGetServerlessBackupRequest {
@@ -2052,12 +1509,6 @@ export interface CloudBackupsApiGetServerlessBackupRequest {
      * @memberof CloudBackupsApigetServerlessBackup
      */
     snapshotId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CloudBackupsApigetServerlessBackup
-     */
-    envelope?: boolean
 }
 
 export interface CloudBackupsApiGetServerlessBackupRestoreJobRequest {
@@ -2079,18 +1530,6 @@ export interface CloudBackupsApiGetServerlessBackupRestoreJobRequest {
      * @memberof CloudBackupsApigetServerlessBackupRestoreJob
      */
     restoreJobId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CloudBackupsApigetServerlessBackupRestoreJob
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof CloudBackupsApigetServerlessBackupRestoreJob
-     */
-    pretty?: boolean
 }
 
 export interface CloudBackupsApiGetShardedClusterBackupRequest {
@@ -2112,18 +1551,6 @@ export interface CloudBackupsApiGetShardedClusterBackupRequest {
      * @memberof CloudBackupsApigetShardedClusterBackup
      */
     snapshotId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CloudBackupsApigetShardedClusterBackup
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof CloudBackupsApigetShardedClusterBackup
-     */
-    pretty?: boolean
 }
 
 export interface CloudBackupsApiListBackupExportJobsRequest {
@@ -2139,18 +1566,6 @@ export interface CloudBackupsApiListBackupExportJobsRequest {
      * @memberof CloudBackupsApilistBackupExportJobs
      */
     clusterName: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CloudBackupsApilistBackupExportJobs
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof CloudBackupsApilistBackupExportJobs
-     */
-    pretty?: boolean
     /**
      * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
@@ -2185,12 +1600,6 @@ export interface CloudBackupsApiListBackupRestoreJobsRequest {
      */
     clusterName: string
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CloudBackupsApilistBackupRestoreJobs
-     */
-    envelope?: boolean
-    /**
      * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
      * @memberof CloudBackupsApilistBackupRestoreJobs
@@ -2208,12 +1617,6 @@ export interface CloudBackupsApiListBackupRestoreJobsRequest {
      * @memberof CloudBackupsApilistBackupRestoreJobs
      */
     pageNum?: number
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof CloudBackupsApilistBackupRestoreJobs
-     */
-    pretty?: boolean
 }
 
 export interface CloudBackupsApiListExportBucketsRequest {
@@ -2224,17 +1627,23 @@ export interface CloudBackupsApiListExportBucketsRequest {
      */
     groupId: string
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+     * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
      * @memberof CloudBackupsApilistExportBuckets
      */
-    envelope?: boolean
+    includeCount?: boolean
     /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
+     * Number of items that the response returns per page.
+     * @type number
      * @memberof CloudBackupsApilistExportBuckets
      */
-    pretty?: boolean
+    itemsPerPage?: number
+    /**
+     * Number of the page that displays the current set of the total objects that the response returns.
+     * @type number
+     * @memberof CloudBackupsApilistExportBuckets
+     */
+    pageNum?: number
 }
 
 export interface CloudBackupsApiListReplicaSetBackupsRequest {
@@ -2251,12 +1660,6 @@ export interface CloudBackupsApiListReplicaSetBackupsRequest {
      */
     clusterName: string
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CloudBackupsApilistReplicaSetBackups
-     */
-    envelope?: boolean
-    /**
      * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
      * @memberof CloudBackupsApilistReplicaSetBackups
@@ -2274,12 +1677,6 @@ export interface CloudBackupsApiListReplicaSetBackupsRequest {
      * @memberof CloudBackupsApilistReplicaSetBackups
      */
     pageNum?: number
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof CloudBackupsApilistReplicaSetBackups
-     */
-    pretty?: boolean
 }
 
 export interface CloudBackupsApiListServerlessBackupRestoreJobsRequest {
@@ -2296,17 +1693,23 @@ export interface CloudBackupsApiListServerlessBackupRestoreJobsRequest {
      */
     clusterName: string
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+     * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
      * @memberof CloudBackupsApilistServerlessBackupRestoreJobs
      */
-    envelope?: boolean
+    includeCount?: boolean
     /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
+     * Number of items that the response returns per page.
+     * @type number
      * @memberof CloudBackupsApilistServerlessBackupRestoreJobs
      */
-    pretty?: boolean
+    itemsPerPage?: number
+    /**
+     * Number of the page that displays the current set of the total objects that the response returns.
+     * @type number
+     * @memberof CloudBackupsApilistServerlessBackupRestoreJobs
+     */
+    pageNum?: number
 }
 
 export interface CloudBackupsApiListServerlessBackupsRequest {
@@ -2322,18 +1725,6 @@ export interface CloudBackupsApiListServerlessBackupsRequest {
      * @memberof CloudBackupsApilistServerlessBackups
      */
     clusterName: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CloudBackupsApilistServerlessBackups
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof CloudBackupsApilistServerlessBackups
-     */
-    pretty?: boolean
     /**
      * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
@@ -2367,18 +1758,6 @@ export interface CloudBackupsApiListShardedClusterBackupsRequest {
      * @memberof CloudBackupsApilistShardedClusterBackups
      */
     clusterName: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CloudBackupsApilistShardedClusterBackups
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof CloudBackupsApilistShardedClusterBackups
-     */
-    pretty?: boolean
 }
 
 export interface CloudBackupsApiTakeSnapshotRequest {
@@ -2400,18 +1779,6 @@ export interface CloudBackupsApiTakeSnapshotRequest {
      * @memberof CloudBackupsApitakeSnapshot
      */
     diskBackupOnDemandSnapshotRequest: DiskBackupOnDemandSnapshotRequest
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CloudBackupsApitakeSnapshot
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof CloudBackupsApitakeSnapshot
-     */
-    pretty?: boolean
 }
 
 export interface CloudBackupsApiUpdateBackupScheduleRequest {
@@ -2433,18 +1800,6 @@ export interface CloudBackupsApiUpdateBackupScheduleRequest {
      * @memberof CloudBackupsApiupdateBackupSchedule
      */
     diskBackupSnapshotSchedule: DiskBackupSnapshotSchedule
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CloudBackupsApiupdateBackupSchedule
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof CloudBackupsApiupdateBackupSchedule
-     */
-    pretty?: boolean
 }
 
 export interface CloudBackupsApiUpdateDataProtectionSettingsRequest {
@@ -2455,23 +1810,11 @@ export interface CloudBackupsApiUpdateDataProtectionSettingsRequest {
      */
     groupId: string
     /**
-     * The new Data Protection Policy settings.
-     * @type DataProtectionSettings
+     * The new Backup Compliance Policy settings.
+     * @type DataProtectionSettings20231001
      * @memberof CloudBackupsApiupdateDataProtectionSettings
      */
-    dataProtectionSettings: DataProtectionSettings
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CloudBackupsApiupdateDataProtectionSettings
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof CloudBackupsApiupdateDataProtectionSettings
-     */
-    pretty?: boolean
+    dataProtectionSettings20231001: DataProtectionSettings20231001
 }
 
 export interface CloudBackupsApiUpdateSnapshotRetentionRequest {
@@ -2495,22 +1838,10 @@ export interface CloudBackupsApiUpdateSnapshotRetentionRequest {
     snapshotId: string
     /**
      * Changes the expiration date for one cloud backup snapshot for one cluster in the specified project.
-     * @type SnapshotRetention
+     * @type BackupSnapshotRetention
      * @memberof CloudBackupsApiupdateSnapshotRetention
      */
-    snapshotRetention: SnapshotRetention
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CloudBackupsApiupdateSnapshotRetention
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof CloudBackupsApiupdateSnapshotRetention
-     */
-    pretty?: boolean
+    backupSnapshotRetention: BackupSnapshotRetention
 }
 
 export class ObjectCloudBackupsApi {
@@ -2521,264 +1852,264 @@ export class ObjectCloudBackupsApi {
     }
 
     /**
-     * Cancels one cloud backup restore job of one cluster from the specified project. To use this resource, the requesting API Key must have the Project Owner role and an entry for the project access list.
+     * Cancels one cloud backup restore job of one cluster from the specified project. To use this resource, the requesting API Key must have the Project Owner role.
      * Cancel One Restore Job of One Cluster
      * @param param the request object
      */
-    public cancelBackupRestoreJob(param: CloudBackupsApiCancelBackupRestoreJobRequest, options?: Configuration): Promise<void> {
-        return this.api.cancelBackupRestoreJob(param.groupId, param.clusterName, param.restoreJobId, param.envelope, param.pretty,  options).toPromise();
+    public cancelBackupRestoreJob(param: CloudBackupsApiCancelBackupRestoreJobRequest, options?: Configuration): Promise<any> {
+        return this.api.cancelBackupRestoreJob(param.groupId, param.clusterName, param.restoreJobId,  options).toPromise();
     }
 
     /**
-     * Exports one backup snapshot for dedicated Atlas cluster using Cloud Backups to an AWS bucket. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
+     * Exports one backup snapshot for dedicated Atlas cluster using Cloud Backups to an AWS bucket. To use this resource, the requesting API Key must have the Project Atlas Admin role.
      * Create One Cloud Backup Snapshot Export Job
      * @param param the request object
      */
     public createBackupExportJob(param: CloudBackupsApiCreateBackupExportJobRequest, options?: Configuration): Promise<DiskBackupExportJob> {
-        return this.api.createBackupExportJob(param.groupId, param.clusterName, param.diskBackupExportJobRequest, param.envelope,  options).toPromise();
+        return this.api.createBackupExportJob(param.groupId, param.clusterName, param.diskBackupExportJobRequest,  options).toPromise();
     }
 
     /**
-     * Restores one snapshot of one cluster from the specified project. To use this resource, the requesting API Key must have the Project Owner role and an entry for the project access list.
+     * Restores one snapshot of one cluster from the specified project. Atlas takes on-demand snapshots immediately and scheduled snapshots at regular intervals. If an on-demand snapshot with a status of **queued** or **inProgress** exists, before taking another snapshot, wait until Atlas completes completes processing the previously taken on-demand snapshot.   To use this resource, the requesting API Key must have the Project Owner role.
      * Restore One Snapshot of One Cluster
      * @param param the request object
      */
-    public createBackupRestoreJob(param: CloudBackupsApiCreateBackupRestoreJobRequest, options?: Configuration): Promise<DiskBackupRestoreJob> {
-        return this.api.createBackupRestoreJob(param.groupId, param.clusterName, param.diskBackupRestoreJob, param.envelope, param.pretty,  options).toPromise();
+    public createBackupRestoreJob(param: CloudBackupsApiCreateBackupRestoreJobRequest, options?: Configuration): Promise<DiskBackupSnapshotRestoreJob> {
+        return this.api.createBackupRestoreJob(param.groupId, param.clusterName, param.diskBackupSnapshotRestoreJob,  options).toPromise();
     }
 
     /**
-     * Grants MongoDB Cloud access to the specified AWS S3 bucket. This enables this bucket to receive Atlas Cloud Backup snapshots. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Grants MongoDB Cloud access to the specified AWS S3 bucket. This enables this bucket to receive Atlas Cloud Backup snapshots. To use this resource, the requesting API Key must have the Project Owner role.
      * Grant Access to AWS S3 Bucket for Cloud Backup Snapshot Exports
      * @param param the request object
      */
     public createExportBucket(param: CloudBackupsApiCreateExportBucketRequest, options?: Configuration): Promise<DiskBackupSnapshotAWSExportBucket> {
-        return this.api.createExportBucket(param.groupId, param.diskBackupSnapshotAWSExportBucket, param.envelope, param.pretty,  options).toPromise();
+        return this.api.createExportBucket(param.groupId, param.diskBackupSnapshotAWSExportBucket,  options).toPromise();
     }
 
     /**
-     * Restores one snapshot of one serverless instance from the specified project. To use this resource, the requesting API Key must have the Project Owner role and an entry for the project access list.
+     * Restores one snapshot of one serverless instance from the specified project. To use this resource, the requesting API Key must have the Project Owner role.
      * Restore One Snapshot of One Serverless Instance
      * @param param the request object
      */
     public createServerlessBackupRestoreJob(param: CloudBackupsApiCreateServerlessBackupRestoreJobRequest, options?: Configuration): Promise<ServerlessBackupRestoreJob> {
-        return this.api.createServerlessBackupRestoreJob(param.groupId, param.clusterName, param.serverlessBackupRestoreJob, param.envelope, param.pretty,  options).toPromise();
+        return this.api.createServerlessBackupRestoreJob(param.groupId, param.clusterName, param.serverlessBackupRestoreJob,  options).toPromise();
     }
 
     /**
-     * Removes all cloud backup schedules for the specified cluster. This schedule defines when MongoDB Cloud takes scheduled snapshots and how long it stores those snapshots. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
+     * Removes all cloud backup schedules for the specified cluster. This schedule defines when MongoDB Cloud takes scheduled snapshots and how long it stores those snapshots. To use this resource, the requesting API Key must have the Project Atlas Admin role.
      * Remove All Cloud Backup Schedules
      * @param param the request object
      */
     public deleteAllBackupSchedules(param: CloudBackupsApiDeleteAllBackupSchedulesRequest, options?: Configuration): Promise<DiskBackupSnapshotSchedule> {
-        return this.api.deleteAllBackupSchedules(param.groupId, param.clusterName, param.envelope,  options).toPromise();
+        return this.api.deleteAllBackupSchedules(param.groupId, param.clusterName,  options).toPromise();
     }
 
     /**
-     * Revoke MongoDB Cloud access to the specified AWS S3 bucket. This prevents this bucket to receive Atlas Cloud Backup snapshots. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Revoke MongoDB Cloud access to the specified AWS S3 bucket. This prevents this bucket to receive Atlas Cloud Backup snapshots. Auto export must be disabled on all clusters in this project exporting to this bucket before revoking access. To use this resource, the requesting API Key must have the Project Owner role.
      * Revoke Access to AWS S3 Bucket for Cloud Backup Snapshot Exports
      * @param param the request object
      */
-    public deleteExportBucket(param: CloudBackupsApiDeleteExportBucketRequest, options?: Configuration): Promise<void> {
-        return this.api.deleteExportBucket(param.groupId, param.exportBucketId, param.envelope,  options).toPromise();
+    public deleteExportBucket(param: CloudBackupsApiDeleteExportBucketRequest, options?: Configuration): Promise<any> {
+        return this.api.deleteExportBucket(param.groupId, param.exportBucketId,  options).toPromise();
     }
 
     /**
-     * Removes the specified snapshot. To use this resource, the requesting API Key must have the Project Owner role and an entry for the project access list.
+     * Removes the specified snapshot. To use this resource, the requesting API Key must have the Project Owner role.
      * Remove One Replica Set Cloud Backup
      * @param param the request object
      */
-    public deleteReplicaSetBackup(param: CloudBackupsApiDeleteReplicaSetBackupRequest, options?: Configuration): Promise<void> {
-        return this.api.deleteReplicaSetBackup(param.groupId, param.clusterName, param.snapshotId, param.envelope, param.pretty,  options).toPromise();
+    public deleteReplicaSetBackup(param: CloudBackupsApiDeleteReplicaSetBackupRequest, options?: Configuration): Promise<any> {
+        return this.api.deleteReplicaSetBackup(param.groupId, param.clusterName, param.snapshotId,  options).toPromise();
     }
 
     /**
-     * Removes one snapshot of one sharded cluster from the specified project. To use this resource, the requesting API Key must have the Project Owner role and an entry for the project access list.
+     * Removes one snapshot of one sharded cluster from the specified project. To use this resource, the requesting API Key must have the Project Owner role.
      * Remove One Sharded Cluster Cloud Backup
      * @param param the request object
      */
-    public deleteShardedClusterBackup(param: CloudBackupsApiDeleteShardedClusterBackupRequest, options?: Configuration): Promise<void> {
-        return this.api.deleteShardedClusterBackup(param.groupId, param.clusterName, param.snapshotId, param.envelope, param.pretty,  options).toPromise();
+    public deleteShardedClusterBackup(param: CloudBackupsApiDeleteShardedClusterBackupRequest, options?: Configuration): Promise<any> {
+        return this.api.deleteShardedClusterBackup(param.groupId, param.clusterName, param.snapshotId,  options).toPromise();
     }
 
     /**
-     * Returns one Cloud Backup snapshot export job associated with the specified Atlas cluster. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
+     * Returns one Cloud Backup snapshot export job associated with the specified Atlas cluster. To use this resource, the requesting API Key must have the Project Atlas Admin role.
      * Return One Cloud Backup Snapshot Export Job
      * @param param the request object
      */
     public getBackupExportJob(param: CloudBackupsApiGetBackupExportJobRequest, options?: Configuration): Promise<DiskBackupExportJob> {
-        return this.api.getBackupExportJob(param.groupId, param.clusterName, param.exportId, param.envelope,  options).toPromise();
+        return this.api.getBackupExportJob(param.groupId, param.clusterName, param.exportId,  options).toPromise();
     }
 
     /**
-     * Returns one cloud backup restore job for one cluster from the specified project. To use this resource, the requesting API Key must have the Project Owner role and an entry for the project access list.
+     * Returns one cloud backup restore job for one cluster from the specified project. To use this resource, the requesting API Key must have the Project Owner role.
      * Return One Restore Job of One Cluster
      * @param param the request object
      */
-    public getBackupRestoreJob(param: CloudBackupsApiGetBackupRestoreJobRequest, options?: Configuration): Promise<DiskBackupRestoreJob> {
-        return this.api.getBackupRestoreJob(param.groupId, param.clusterName, param.restoreJobId, param.envelope, param.pretty,  options).toPromise();
+    public getBackupRestoreJob(param: CloudBackupsApiGetBackupRestoreJobRequest, options?: Configuration): Promise<DiskBackupSnapshotRestoreJob> {
+        return this.api.getBackupRestoreJob(param.groupId, param.clusterName, param.restoreJobId,  options).toPromise();
     }
 
     /**
-     * Returns the cloud backup schedule for the specified cluster within the specified project. This schedule defines when MongoDB Cloud takes scheduled snapshots and how long it stores those snapshots. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns the cloud backup schedule for the specified cluster within the specified project. This schedule defines when MongoDB Cloud takes scheduled snapshots and how long it stores those snapshots. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return One Cloud Backup Schedule
      * @param param the request object
      */
     public getBackupSchedule(param: CloudBackupsApiGetBackupScheduleRequest, options?: Configuration): Promise<DiskBackupSnapshotSchedule> {
-        return this.api.getBackupSchedule(param.groupId, param.clusterName, param.envelope, param.pretty,  options).toPromise();
+        return this.api.getBackupSchedule(param.groupId, param.clusterName,  options).toPromise();
     }
 
     /**
-     * Returns the Data Protection Policy settings with the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
-     * Return the Data Protection Policy settings
+     * Returns the Backup Compliance Policy settings with the specified project. To use this resource, the requesting API Key must have the Project Owner role. Deprecated versions: v2-{2023-01-01}
+     * Return the Backup Compliance Policy settings
      * @param param the request object
      */
-    public getDataProtectionSettings(param: CloudBackupsApiGetDataProtectionSettingsRequest, options?: Configuration): Promise<DataProtectionSettings> {
-        return this.api.getDataProtectionSettings(param.groupId, param.envelope, param.pretty,  options).toPromise();
+    public getDataProtectionSettings(param: CloudBackupsApiGetDataProtectionSettingsRequest, options?: Configuration): Promise<DataProtectionSettings20231001> {
+        return this.api.getDataProtectionSettings(param.groupId,  options).toPromise();
     }
 
     /**
-     * Returns one AWS S3 bucket associated with the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns one AWS S3 bucket associated with the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return One AWS S3 Bucket Used for Cloud Backup Snapshot Exports
      * @param param the request object
      */
     public getExportBucket(param: CloudBackupsApiGetExportBucketRequest, options?: Configuration): Promise<DiskBackupSnapshotAWSExportBucket> {
-        return this.api.getExportBucket(param.groupId, param.exportBucketId, param.envelope,  options).toPromise();
+        return this.api.getExportBucket(param.groupId, param.exportBucketId,  options).toPromise();
     }
 
     /**
-     * Returns one snapshot from the specified cluster. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns one snapshot from the specified cluster. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return One Replica Set Cloud Backup
      * @param param the request object
      */
     public getReplicaSetBackup(param: CloudBackupsApiGetReplicaSetBackupRequest, options?: Configuration): Promise<DiskBackupReplicaSet> {
-        return this.api.getReplicaSetBackup(param.groupId, param.clusterName, param.snapshotId, param.envelope, param.pretty,  options).toPromise();
+        return this.api.getReplicaSetBackup(param.groupId, param.clusterName, param.snapshotId,  options).toPromise();
     }
 
     /**
-     * Returns one snapshot of one serverless instance from the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns one snapshot of one serverless instance from the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return One Snapshot of One Serverless Instance
      * @param param the request object
      */
     public getServerlessBackup(param: CloudBackupsApiGetServerlessBackupRequest, options?: Configuration): Promise<ServerlessBackupSnapshot> {
-        return this.api.getServerlessBackup(param.groupId, param.clusterName, param.snapshotId, param.envelope,  options).toPromise();
+        return this.api.getServerlessBackup(param.groupId, param.clusterName, param.snapshotId,  options).toPromise();
     }
 
     /**
-     * Returns one restore job for one serverless instance from the specified project. To use this resource, the requesting API Key must have the Project Owner role and an entry for the project access list.
+     * Returns one restore job for one serverless instance from the specified project. To use this resource, the requesting API Key must have the Project Owner role.
      * Return One Restore Job for One Serverless Instance
      * @param param the request object
      */
     public getServerlessBackupRestoreJob(param: CloudBackupsApiGetServerlessBackupRestoreJobRequest, options?: Configuration): Promise<ServerlessBackupRestoreJob> {
-        return this.api.getServerlessBackupRestoreJob(param.groupId, param.clusterName, param.restoreJobId, param.envelope, param.pretty,  options).toPromise();
+        return this.api.getServerlessBackupRestoreJob(param.groupId, param.clusterName, param.restoreJobId,  options).toPromise();
     }
 
     /**
-     * Returns one snapshot of one sharded cluster from the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns one snapshot of one sharded cluster from the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return One Sharded Cluster Cloud Backup
      * @param param the request object
      */
     public getShardedClusterBackup(param: CloudBackupsApiGetShardedClusterBackupRequest, options?: Configuration): Promise<DiskBackupShardedClusterSnapshot> {
-        return this.api.getShardedClusterBackup(param.groupId, param.clusterName, param.snapshotId, param.envelope, param.pretty,  options).toPromise();
+        return this.api.getShardedClusterBackup(param.groupId, param.clusterName, param.snapshotId,  options).toPromise();
     }
 
     /**
-     * Returns all Cloud Backup snapshot export jobs associated with the specified Atlas cluster. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
+     * Returns all Cloud Backup snapshot export jobs associated with the specified Atlas cluster. To use this resource, the requesting API Key must have the Project Atlas Admin role.
      * Return All Cloud Backup Snapshot Export Jobs
      * @param param the request object
      */
-    public listBackupExportJobs(param: CloudBackupsApiListBackupExportJobsRequest, options?: Configuration): Promise<PaginatedApiAtlasDiskBackupExportJobView> {
-        return this.api.listBackupExportJobs(param.groupId, param.clusterName, param.envelope, param.pretty, param.includeCount, param.itemsPerPage, param.pageNum,  options).toPromise();
+    public listBackupExportJobs(param: CloudBackupsApiListBackupExportJobsRequest, options?: Configuration): Promise<PaginatedApiAtlasDiskBackupExportJob> {
+        return this.api.listBackupExportJobs(param.groupId, param.clusterName, param.includeCount, param.itemsPerPage, param.pageNum,  options).toPromise();
     }
 
     /**
-     * Returns all cloud backup restore jobs for one cluster from the specified project. To use this resource, the requesting API Key must have the Project Owner role and an entry for the project access list.
+     * Returns all cloud backup restore jobs for one cluster from the specified project. To use this resource, the requesting API Key must have the Project Owner role.
      * Return All Restore Jobs for One Cluster
      * @param param the request object
      */
-    public listBackupRestoreJobs(param: CloudBackupsApiListBackupRestoreJobsRequest, options?: Configuration): Promise<PaginatedCloudBackupRestoreJobView> {
-        return this.api.listBackupRestoreJobs(param.groupId, param.clusterName, param.envelope, param.includeCount, param.itemsPerPage, param.pageNum, param.pretty,  options).toPromise();
+    public listBackupRestoreJobs(param: CloudBackupsApiListBackupRestoreJobsRequest, options?: Configuration): Promise<PaginatedCloudBackupRestoreJob> {
+        return this.api.listBackupRestoreJobs(param.groupId, param.clusterName, param.includeCount, param.itemsPerPage, param.pageNum,  options).toPromise();
     }
 
     /**
-     * Returns all AWS S3 buckets associated with the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns all AWS S3 buckets associated with the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return All AWS S3 Buckets Used for Cloud Backup Snapshot Exports
      * @param param the request object
      */
-    public listExportBuckets(param: CloudBackupsApiListExportBucketsRequest, options?: Configuration): Promise<PaginatedBackupSnapshotExportBucketView> {
-        return this.api.listExportBuckets(param.groupId, param.envelope, param.pretty,  options).toPromise();
+    public listExportBuckets(param: CloudBackupsApiListExportBucketsRequest, options?: Configuration): Promise<PaginatedBackupSnapshotExportBucket> {
+        return this.api.listExportBuckets(param.groupId, param.includeCount, param.itemsPerPage, param.pageNum,  options).toPromise();
     }
 
     /**
-     * Returns all snapshots of one cluster from the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns all snapshots of one cluster from the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return All Replica Set Cloud Backups
      * @param param the request object
      */
-    public listReplicaSetBackups(param: CloudBackupsApiListReplicaSetBackupsRequest, options?: Configuration): Promise<PaginatedCloudBackupReplicaSetView> {
-        return this.api.listReplicaSetBackups(param.groupId, param.clusterName, param.envelope, param.includeCount, param.itemsPerPage, param.pageNum, param.pretty,  options).toPromise();
+    public listReplicaSetBackups(param: CloudBackupsApiListReplicaSetBackupsRequest, options?: Configuration): Promise<PaginatedCloudBackupReplicaSet> {
+        return this.api.listReplicaSetBackups(param.groupId, param.clusterName, param.includeCount, param.itemsPerPage, param.pageNum,  options).toPromise();
     }
 
     /**
-     * Returns all restore jobs for one serverless instance from the specified project. To use this resource, the requesting API Key must have the Project Owner role and an entry for the project access list.
+     * Returns all restore jobs for one serverless instance from the specified project. To use this resource, the requesting API Key must have the Project Owner role.
      * Return All Restore Jobs for One Serverless Instance
      * @param param the request object
      */
-    public listServerlessBackupRestoreJobs(param: CloudBackupsApiListServerlessBackupRestoreJobsRequest, options?: Configuration): Promise<PaginatedApiAtlasServerlessBackupRestoreJobView> {
-        return this.api.listServerlessBackupRestoreJobs(param.groupId, param.clusterName, param.envelope, param.pretty,  options).toPromise();
+    public listServerlessBackupRestoreJobs(param: CloudBackupsApiListServerlessBackupRestoreJobsRequest, options?: Configuration): Promise<PaginatedApiAtlasServerlessBackupRestoreJob> {
+        return this.api.listServerlessBackupRestoreJobs(param.groupId, param.clusterName, param.includeCount, param.itemsPerPage, param.pageNum,  options).toPromise();
     }
 
     /**
-     * Returns all snapshots of one serverless instance from the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns all snapshots of one serverless instance from the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return All Snapshots of One Serverless Instance
      * @param param the request object
      */
-    public listServerlessBackups(param: CloudBackupsApiListServerlessBackupsRequest, options?: Configuration): Promise<PaginatedApiAtlasServerlessBackupSnapshotView> {
-        return this.api.listServerlessBackups(param.groupId, param.clusterName, param.envelope, param.pretty, param.includeCount, param.itemsPerPage, param.pageNum,  options).toPromise();
+    public listServerlessBackups(param: CloudBackupsApiListServerlessBackupsRequest, options?: Configuration): Promise<PaginatedApiAtlasServerlessBackupSnapshot> {
+        return this.api.listServerlessBackups(param.groupId, param.clusterName, param.includeCount, param.itemsPerPage, param.pageNum,  options).toPromise();
     }
 
     /**
-     * Returns all snapshots of one sharded cluster from the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns all snapshots of one sharded cluster from the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return All Sharded Cluster Cloud Backups
      * @param param the request object
      */
-    public listShardedClusterBackups(param: CloudBackupsApiListShardedClusterBackupsRequest, options?: Configuration): Promise<PaginatedCloudBackupShardedClusterSnapshotView> {
-        return this.api.listShardedClusterBackups(param.groupId, param.clusterName, param.envelope, param.pretty,  options).toPromise();
+    public listShardedClusterBackups(param: CloudBackupsApiListShardedClusterBackupsRequest, options?: Configuration): Promise<PaginatedCloudBackupShardedClusterSnapshot> {
+        return this.api.listShardedClusterBackups(param.groupId, param.clusterName,  options).toPromise();
     }
 
     /**
-     * Takes one on-demand snapshot for the specified cluster. To use this resource, the requesting API Key must have the Project Owner role and an entry for the project access list.
+     * Takes one on-demand snapshot for the specified cluster. Atlas takes on-demand snapshots immediately and scheduled snapshots at regular intervals. If an on-demand snapshot with a status of **queued** or **inProgress** exists, before taking another snapshot, wait until Atlas completes completes processing the previously taken on-demand snapshot.   To use this resource, the requesting API Key must have the Project Owner role.
      * Take One On-Demand Snapshot
      * @param param the request object
      */
     public takeSnapshot(param: CloudBackupsApiTakeSnapshotRequest, options?: Configuration): Promise<DiskBackupSnapshot> {
-        return this.api.takeSnapshot(param.groupId, param.clusterName, param.diskBackupOnDemandSnapshotRequest, param.envelope, param.pretty,  options).toPromise();
+        return this.api.takeSnapshot(param.groupId, param.clusterName, param.diskBackupOnDemandSnapshotRequest,  options).toPromise();
     }
 
     /**
-     * Updates the cloud backup schedule for one cluster within the specified project. This schedule defines when MongoDB Cloud takes scheduled snapshots and how long it stores those snapshots. To use this resource, the requesting API Key must have the Project Owner role and an entry for the project access list.
+     * Updates the cloud backup schedule for one cluster within the specified project. This schedule defines when MongoDB Cloud takes scheduled snapshots and how long it stores those snapshots. To use this resource, the requesting API Key must have the Project Owner role.
      * Update Cloud Backup Schedule for One Cluster
      * @param param the request object
      */
     public updateBackupSchedule(param: CloudBackupsApiUpdateBackupScheduleRequest, options?: Configuration): Promise<DiskBackupSnapshotSchedule> {
-        return this.api.updateBackupSchedule(param.groupId, param.clusterName, param.diskBackupSnapshotSchedule, param.envelope, param.pretty,  options).toPromise();
+        return this.api.updateBackupSchedule(param.groupId, param.clusterName, param.diskBackupSnapshotSchedule,  options).toPromise();
     }
 
     /**
-     * Updates the Data Protection Policy settings for the specified project. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
-     * Update or enable the Data Protection Policy settings
+     * Updates the Backup Compliance Policy settings for the specified project. To use this resource, the requesting API Key must have the Project Owner role. Deprecated versions: v2-{2023-01-01}
+     * Update or enable the Backup Compliance Policy settings
      * @param param the request object
      */
-    public updateDataProtectionSettings(param: CloudBackupsApiUpdateDataProtectionSettingsRequest, options?: Configuration): Promise<DataProtectionSettings> {
-        return this.api.updateDataProtectionSettings(param.groupId, param.dataProtectionSettings, param.envelope, param.pretty,  options).toPromise();
+    public updateDataProtectionSettings(param: CloudBackupsApiUpdateDataProtectionSettingsRequest, options?: Configuration): Promise<DataProtectionSettings20231001> {
+        return this.api.updateDataProtectionSettings(param.groupId, param.dataProtectionSettings20231001,  options).toPromise();
     }
 
     /**
-     * Changes the expiration date for one cloud backup snapshot for one cluster in the specified project. This resource doesn't require the API Key to have an Access List.
+     * Changes the expiration date for one cloud backup snapshot for one cluster in the specified project.
      * Change Expiration Date for One Cloud Backup
      * @param param the request object
      */
     public updateSnapshotRetention(param: CloudBackupsApiUpdateSnapshotRetentionRequest, options?: Configuration): Promise<DiskBackupReplicaSet> {
-        return this.api.updateSnapshotRetention(param.groupId, param.clusterName, param.snapshotId, param.snapshotRetention, param.envelope, param.pretty,  options).toPromise();
+        return this.api.updateSnapshotRetention(param.groupId, param.clusterName, param.snapshotId, param.backupSnapshotRetention,  options).toPromise();
     }
 
 }
@@ -2795,22 +2126,10 @@ export interface CloudMigrationServiceApiCreateLinkTokenRequest {
     orgId: string
     /**
      * IP address access list entries associated with the migration.
-     * @type TargetOrgRequestView
+     * @type TargetOrgRequest
      * @memberof CloudMigrationServiceApicreateLinkToken
      */
-    targetOrgRequestView: TargetOrgRequestView
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CloudMigrationServiceApicreateLinkToken
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof CloudMigrationServiceApicreateLinkToken
-     */
-    pretty?: boolean
+    targetOrgRequest: TargetOrgRequest
 }
 
 export interface CloudMigrationServiceApiCreatePushMigrationRequest {
@@ -2822,22 +2141,10 @@ export interface CloudMigrationServiceApiCreatePushMigrationRequest {
     groupId: string
     /**
      * One migration to be created.
-     * @type LiveMigrationRequestView
+     * @type LiveMigrationRequest
      * @memberof CloudMigrationServiceApicreatePushMigration
      */
-    liveMigrationRequestView: LiveMigrationRequestView
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CloudMigrationServiceApicreatePushMigration
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof CloudMigrationServiceApicreatePushMigration
-     */
-    pretty?: boolean
+    liveMigrationRequest: LiveMigrationRequest
 }
 
 export interface CloudMigrationServiceApiCutoverMigrationRequest {
@@ -2853,18 +2160,6 @@ export interface CloudMigrationServiceApiCutoverMigrationRequest {
      * @memberof CloudMigrationServiceApicutoverMigration
      */
     liveMigrationId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CloudMigrationServiceApicutoverMigration
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof CloudMigrationServiceApicutoverMigration
-     */
-    pretty?: boolean
 }
 
 export interface CloudMigrationServiceApiDeleteLinkTokenRequest {
@@ -2874,12 +2169,6 @@ export interface CloudMigrationServiceApiDeleteLinkTokenRequest {
      * @memberof CloudMigrationServiceApideleteLinkToken
      */
     orgId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CloudMigrationServiceApideleteLinkToken
-     */
-    envelope?: boolean
 }
 
 export interface CloudMigrationServiceApiGetPushMigrationRequest {
@@ -2895,18 +2184,6 @@ export interface CloudMigrationServiceApiGetPushMigrationRequest {
      * @memberof CloudMigrationServiceApigetPushMigration
      */
     liveMigrationId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CloudMigrationServiceApigetPushMigration
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof CloudMigrationServiceApigetPushMigration
-     */
-    pretty?: boolean
 }
 
 export interface CloudMigrationServiceApiGetValidationStatusRequest {
@@ -2922,12 +2199,6 @@ export interface CloudMigrationServiceApiGetValidationStatusRequest {
      * @memberof CloudMigrationServiceApigetValidationStatus
      */
     validationId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CloudMigrationServiceApigetValidationStatus
-     */
-    envelope?: boolean
 }
 
 export interface CloudMigrationServiceApiListSourceProjectsRequest {
@@ -2937,18 +2208,6 @@ export interface CloudMigrationServiceApiListSourceProjectsRequest {
      * @memberof CloudMigrationServiceApilistSourceProjects
      */
     orgId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CloudMigrationServiceApilistSourceProjects
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof CloudMigrationServiceApilistSourceProjects
-     */
-    pretty?: boolean
 }
 
 export interface CloudMigrationServiceApiValidateMigrationRequest {
@@ -2960,22 +2219,10 @@ export interface CloudMigrationServiceApiValidateMigrationRequest {
     groupId: string
     /**
      * One migration to be validated.
-     * @type LiveMigrationRequestView
+     * @type LiveMigrationRequest
      * @memberof CloudMigrationServiceApivalidateMigration
      */
-    liveMigrationRequestView: LiveMigrationRequestView
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CloudMigrationServiceApivalidateMigration
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof CloudMigrationServiceApivalidateMigration
-     */
-    pretty?: boolean
+    liveMigrationRequest: LiveMigrationRequest
 }
 
 export class ObjectCloudMigrationServiceApi {
@@ -2986,57 +2233,57 @@ export class ObjectCloudMigrationServiceApi {
     }
 
     /**
-     * Create one link-token that contains all the information required to complete the link.
+     * Create one link-token that contains all the information required to complete the link. MongoDB Atlas uses the link-token for push live migrations only. Live migration (push) allows you to securely push data from Cloud Manager or Ops Manager into MongoDB Atlas. Your API Key must have the Organization Owner role to successfully call this resource.
      * Create One Link-Token
      * @param param the request object
      */
-    public createLinkToken(param: CloudMigrationServiceApiCreateLinkTokenRequest, options?: Configuration): Promise<TargetOrgView> {
-        return this.api.createLinkToken(param.orgId, param.targetOrgRequestView, param.envelope, param.pretty,  options).toPromise();
+    public createLinkToken(param: CloudMigrationServiceApiCreateLinkTokenRequest, options?: Configuration): Promise<TargetOrg> {
+        return this.api.createLinkToken(param.orgId, param.targetOrgRequest,  options).toPromise();
     }
 
     /**
-     * Migrate one cluster that Cloud or Ops Manager manages to MongoDB Atlas.   Please make sure to [validate](#tag/Cloud-Migration-Service/operation/validateMigration) your migration before initiating it.
+     * Migrate one cluster that Cloud or Ops Manager manages to MongoDB Atlas.   Please make sure to [validate](#tag/Cloud-Migration-Service/operation/validateOneMigration) your migration before initiating it.   You can use this API endpoint for push live migrations only. Your API Key must have the Organization Owner role to successfully call this resource.   **NOTE**: Migrating time-series collections is not yet supported on MongoDB v6.0 or higher. Migrations on MongoDB v6.0 or higher will skip any time-series collections on the source cluster.
      * Migrate One Local Managed Cluster to MongoDB Atlas
      * @param param the request object
      */
-    public createPushMigration(param: CloudMigrationServiceApiCreatePushMigrationRequest, options?: Configuration): Promise<LiveMigrationResponseView> {
-        return this.api.createPushMigration(param.groupId, param.liveMigrationRequestView, param.envelope, param.pretty,  options).toPromise();
+    public createPushMigration(param: CloudMigrationServiceApiCreatePushMigrationRequest, options?: Configuration): Promise<LiveMigrationResponse> {
+        return this.api.createPushMigration(param.groupId, param.liveMigrationRequest,  options).toPromise();
     }
 
     /**
-     * Cut over the migrated cluster to MongoDB Cloud. Confirm when the cut over completes. When the cut over completes, MongoDB Cloud completes the live migration process and stops synchronizing with the source cluster.
+     * Cut over the migrated cluster to MongoDB Atlas. Confirm when the cut over completes. When the cut over completes, MongoDB Atlas completes the live migration process and stops synchronizing with the source cluster. Your API Key must have the Organization Owner role to successfully call this resource.
      * Cut Over the Migrated Cluster
      * @param param the request object
      */
     public cutoverMigration(param: CloudMigrationServiceApiCutoverMigrationRequest, options?: Configuration): Promise<void> {
-        return this.api.cutoverMigration(param.groupId, param.liveMigrationId, param.envelope, param.pretty,  options).toPromise();
+        return this.api.cutoverMigration(param.groupId, param.liveMigrationId,  options).toPromise();
     }
 
     /**
-     * Remove one organization link and its associated public API key.
+     * Remove one organization link and its associated public API key. MongoDB Atlas uses the link-token for push live migrations only. Live migrations (push) let you securely push data from Cloud Manager or Ops Manager into MongoDB Atlas. Your API Key must have the Organization Owner role to successfully call this resource.
      * Remove One Link-Token
      * @param param the request object
      */
-    public deleteLinkToken(param: CloudMigrationServiceApiDeleteLinkTokenRequest, options?: Configuration): Promise<void> {
-        return this.api.deleteLinkToken(param.orgId, param.envelope,  options).toPromise();
+    public deleteLinkToken(param: CloudMigrationServiceApiDeleteLinkTokenRequest, options?: Configuration): Promise<any> {
+        return this.api.deleteLinkToken(param.orgId,  options).toPromise();
     }
 
     /**
-     * Return details of one cluster migration job.
+     * Return details of one cluster migration job. Each push live migration job uses one migration host. Your API Key must have the Organization Member role to successfully call this resource.
      * Return One Migration Job
      * @param param the request object
      */
-    public getPushMigration(param: CloudMigrationServiceApiGetPushMigrationRequest, options?: Configuration): Promise<LiveMigrationResponseView> {
-        return this.api.getPushMigration(param.groupId, param.liveMigrationId, param.envelope, param.pretty,  options).toPromise();
+    public getPushMigration(param: CloudMigrationServiceApiGetPushMigrationRequest, options?: Configuration): Promise<LiveMigrationResponse> {
+        return this.api.getPushMigration(param.groupId, param.liveMigrationId,  options).toPromise();
     }
 
     /**
-     * Return the status of one migration validation job.
+     * Return the status of one migration validation job. Your API Key must have the Organization Owner role to successfully call this resource.
      * Return One Migration Validation Job
      * @param param the request object
      */
-    public getValidationStatus(param: CloudMigrationServiceApiGetValidationStatusRequest, options?: Configuration): Promise<ValidationView> {
-        return this.api.getValidationStatus(param.groupId, param.validationId, param.envelope,  options).toPromise();
+    public getValidationStatus(param: CloudMigrationServiceApiGetValidationStatusRequest, options?: Configuration): Promise<LiveImportValidation> {
+        return this.api.getValidationStatus(param.groupId, param.validationId,  options).toPromise();
     }
 
     /**
@@ -3044,17 +2291,17 @@ export class ObjectCloudMigrationServiceApi {
      * Return All Projects Available for Migration
      * @param param the request object
      */
-    public listSourceProjects(param: CloudMigrationServiceApiListSourceProjectsRequest, options?: Configuration): Promise<Array<AvailableProjectView>> {
-        return this.api.listSourceProjects(param.orgId, param.envelope, param.pretty,  options).toPromise();
+    public listSourceProjects(param: CloudMigrationServiceApiListSourceProjectsRequest, options?: Configuration): Promise<Array<LiveImportAvailableProject>> {
+        return this.api.listSourceProjects(param.orgId,  options).toPromise();
     }
 
     /**
-     * Check whether the provided credentials, available disk space, MongoDB versions, and so on meet the requirements of the migration request. If the check passes, the migration can proceed.
+     * Verifies whether the provided credentials, available disk space, MongoDB versions, and so on meet the requirements of the migration request. If the check passes, the migration can proceed. Your API Key must have the Organization Owner role to successfully call this resource.
      * Validate One Migration Request
      * @param param the request object
      */
-    public validateMigration(param: CloudMigrationServiceApiValidateMigrationRequest, options?: Configuration): Promise<ValidationView> {
-        return this.api.validateMigration(param.groupId, param.liveMigrationRequestView, param.envelope, param.pretty,  options).toPromise();
+    public validateMigration(param: CloudMigrationServiceApiValidateMigrationRequest, options?: Configuration): Promise<LiveImportValidation> {
+        return this.api.validateMigration(param.groupId, param.liveMigrationRequest,  options).toPromise();
     }
 
 }
@@ -3076,23 +2323,11 @@ export interface CloudProviderAccessApiAuthorizeCloudProviderAccessRoleRequest {
      */
     roleId: string
     /**
-     * Grants access to the specified project for the specified AWS IAM role.
+     * Grants access to the specified project for the specified access role.
      * @type CloudProviderAccessRole
      * @memberof CloudProviderAccessApiauthorizeCloudProviderAccessRole
      */
     cloudProviderAccessRole: CloudProviderAccessRole
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CloudProviderAccessApiauthorizeCloudProviderAccessRole
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof CloudProviderAccessApiauthorizeCloudProviderAccessRole
-     */
-    pretty?: boolean
 }
 
 export interface CloudProviderAccessApiCreateCloudProviderAccessRoleRequest {
@@ -3103,23 +2338,11 @@ export interface CloudProviderAccessApiCreateCloudProviderAccessRoleRequest {
      */
     groupId: string
     /**
-     * Creates one AWS IAM role.
+     * Creates one role for the specified cloud provider.
      * @type CloudProviderAccessRole
      * @memberof CloudProviderAccessApicreateCloudProviderAccessRole
      */
     cloudProviderAccessRole: CloudProviderAccessRole
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CloudProviderAccessApicreateCloudProviderAccessRole
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof CloudProviderAccessApicreateCloudProviderAccessRole
-     */
-    pretty?: boolean
 }
 
 export interface CloudProviderAccessApiDeauthorizeCloudProviderAccessRoleRequest {
@@ -3131,28 +2354,16 @@ export interface CloudProviderAccessApiDeauthorizeCloudProviderAccessRoleRequest
     groupId: string
     /**
      * Human-readable label that identifies the cloud provider of the role to deauthorize.
-     * @type &#39;AWS&#39;
+     * @type string
      * @memberof CloudProviderAccessApideauthorizeCloudProviderAccessRole
      */
-    cloudProvider: 'AWS'
+    cloudProvider: string
     /**
      * Unique 24-hexadecimal digit string that identifies the role.
      * @type string
      * @memberof CloudProviderAccessApideauthorizeCloudProviderAccessRole
      */
     roleId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CloudProviderAccessApideauthorizeCloudProviderAccessRole
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof CloudProviderAccessApideauthorizeCloudProviderAccessRole
-     */
-    pretty?: boolean
 }
 
 export interface CloudProviderAccessApiGetCloudProviderAccessRoleRequest {
@@ -3168,18 +2379,6 @@ export interface CloudProviderAccessApiGetCloudProviderAccessRoleRequest {
      * @memberof CloudProviderAccessApigetCloudProviderAccessRole
      */
     roleId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CloudProviderAccessApigetCloudProviderAccessRole
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof CloudProviderAccessApigetCloudProviderAccessRole
-     */
-    pretty?: boolean
 }
 
 export interface CloudProviderAccessApiListCloudProviderAccessRolesRequest {
@@ -3189,18 +2388,6 @@ export interface CloudProviderAccessApiListCloudProviderAccessRolesRequest {
      * @memberof CloudProviderAccessApilistCloudProviderAccessRoles
      */
     groupId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CloudProviderAccessApilistCloudProviderAccessRoles
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof CloudProviderAccessApilistCloudProviderAccessRoles
-     */
-    pretty?: boolean
 }
 
 export class ObjectCloudProviderAccessApi {
@@ -3211,48 +2398,48 @@ export class ObjectCloudProviderAccessApi {
     }
 
     /**
-     * Grants access to the specified project for the specified Amazon Web Services (AWS) Identity and Access Management (IAM) role. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List. This API endpoint is one step in a procedure to create unified AWS access for MongoDB Cloud services.
+     * Grants access to the specified project for the specified access role. To use this resource, the requesting API Key must have the Project Owner role. This API endpoint is one step in a procedure to create unified access for MongoDB Cloud services.
      * Authorize One Cloud Provider Access Role
      * @param param the request object
      */
     public authorizeCloudProviderAccessRole(param: CloudProviderAccessApiAuthorizeCloudProviderAccessRoleRequest, options?: Configuration): Promise<CloudProviderAccessRole> {
-        return this.api.authorizeCloudProviderAccessRole(param.groupId, param.roleId, param.cloudProviderAccessRole, param.envelope, param.pretty,  options).toPromise();
+        return this.api.authorizeCloudProviderAccessRole(param.groupId, param.roleId, param.cloudProviderAccessRole,  options).toPromise();
     }
 
     /**
-     * Creates one Amazon Web Services (AWS) Identity and Access Management (IAM) role. Some MongoDB Cloud features use AWS IAM roles for authentication. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.  After a successful request to this API endpoint, you can add the **atlasAWSAccountArn** and **atlasAssumedRoleExternalId** values to the trust policy in your AWS console to create an IAM Assumed Amazon Resource Name (ARN).
+     * Creates one access role for the specified cloud provider. Some MongoDB Cloud features use these cloud provider access roles for authentication. To use this resource, the requesting API Key must have the Project Owner role.
      * Create One Cloud Provider Access Role
      * @param param the request object
      */
     public createCloudProviderAccessRole(param: CloudProviderAccessApiCreateCloudProviderAccessRoleRequest, options?: Configuration): Promise<CloudProviderAccessRole> {
-        return this.api.createCloudProviderAccessRole(param.groupId, param.cloudProviderAccessRole, param.envelope, param.pretty,  options).toPromise();
+        return this.api.createCloudProviderAccessRole(param.groupId, param.cloudProviderAccessRole,  options).toPromise();
     }
 
     /**
-     * Revokes access to the specified project for the specified AWS IAM role. To use this resource,the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Revokes access to the specified project for the specified access role. To use this resource, the requesting API Key must have the Project Owner role.
      * Deauthorize One Cloud Provider Access Role
      * @param param the request object
      */
     public deauthorizeCloudProviderAccessRole(param: CloudProviderAccessApiDeauthorizeCloudProviderAccessRoleRequest, options?: Configuration): Promise<void> {
-        return this.api.deauthorizeCloudProviderAccessRole(param.groupId, param.cloudProvider, param.roleId, param.envelope, param.pretty,  options).toPromise();
+        return this.api.deauthorizeCloudProviderAccessRole(param.groupId, param.cloudProvider, param.roleId,  options).toPromise();
     }
 
     /**
-     * Returns the Amazon Web Services (AWS) Identity and Access Management (IAM) role with the specified id and with access to the specified project. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Returns the access role with the specified id and with access to the specified project. To use this resource, the requesting API Key must have the Project Owner role.
      * Return specified Cloud Provider Access Role
      * @param param the request object
      */
-    public getCloudProviderAccessRole(param: CloudProviderAccessApiGetCloudProviderAccessRoleRequest, options?: Configuration): Promise<CloudProviderAccess> {
-        return this.api.getCloudProviderAccessRole(param.groupId, param.roleId, param.envelope, param.pretty,  options).toPromise();
+    public getCloudProviderAccessRole(param: CloudProviderAccessApiGetCloudProviderAccessRoleRequest, options?: Configuration): Promise<CloudProviderAccessRole> {
+        return this.api.getCloudProviderAccessRole(param.groupId, param.roleId,  options).toPromise();
     }
 
     /**
-     * Returns all Amazon Web Services (AWS) Identity and Access Management (IAM) roles with access to the specified project. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Returns all cloud provider access roles with access to the specified project. To use this resource, the requesting API Key must have the Project Owner role.
      * Return All Cloud Provider Access Roles
      * @param param the request object
      */
-    public listCloudProviderAccessRoles(param: CloudProviderAccessApiListCloudProviderAccessRolesRequest, options?: Configuration): Promise<CloudProviderAccess> {
-        return this.api.listCloudProviderAccessRoles(param.groupId, param.envelope, param.pretty,  options).toPromise();
+    public listCloudProviderAccessRoles(param: CloudProviderAccessApiListCloudProviderAccessRolesRequest, options?: Configuration): Promise<CloudProviderAccessRoles> {
+        return this.api.listCloudProviderAccessRoles(param.groupId,  options).toPromise();
     }
 
 }
@@ -3273,18 +2460,6 @@ export interface ClusterOutageSimulationApiEndOutageSimulationRequest {
      * @memberof ClusterOutageSimulationApiendOutageSimulation
      */
     clusterName: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ClusterOutageSimulationApiendOutageSimulation
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ClusterOutageSimulationApiendOutageSimulation
-     */
-    pretty?: boolean
 }
 
 export interface ClusterOutageSimulationApiGetOutageSimulationRequest {
@@ -3300,18 +2475,6 @@ export interface ClusterOutageSimulationApiGetOutageSimulationRequest {
      * @memberof ClusterOutageSimulationApigetOutageSimulation
      */
     clusterName: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ClusterOutageSimulationApigetOutageSimulation
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ClusterOutageSimulationApigetOutageSimulation
-     */
-    pretty?: boolean
 }
 
 export interface ClusterOutageSimulationApiStartOutageSimulationRequest {
@@ -3333,18 +2496,6 @@ export interface ClusterOutageSimulationApiStartOutageSimulationRequest {
      * @memberof ClusterOutageSimulationApistartOutageSimulation
      */
     clusterOutageSimulation: ClusterOutageSimulation
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ClusterOutageSimulationApistartOutageSimulation
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ClusterOutageSimulationApistartOutageSimulation
-     */
-    pretty?: boolean
 }
 
 export class ObjectClusterOutageSimulationApi {
@@ -3360,7 +2511,7 @@ export class ObjectClusterOutageSimulationApi {
      * @param param the request object
      */
     public endOutageSimulation(param: ClusterOutageSimulationApiEndOutageSimulationRequest, options?: Configuration): Promise<ClusterOutageSimulation> {
-        return this.api.endOutageSimulation(param.groupId, param.clusterName, param.envelope, param.pretty,  options).toPromise();
+        return this.api.endOutageSimulation(param.groupId, param.clusterName,  options).toPromise();
     }
 
     /**
@@ -3369,7 +2520,7 @@ export class ObjectClusterOutageSimulationApi {
      * @param param the request object
      */
     public getOutageSimulation(param: ClusterOutageSimulationApiGetOutageSimulationRequest, options?: Configuration): Promise<ClusterOutageSimulation> {
-        return this.api.getOutageSimulation(param.groupId, param.clusterName, param.envelope, param.pretty,  options).toPromise();
+        return this.api.getOutageSimulation(param.groupId, param.clusterName,  options).toPromise();
     }
 
     /**
@@ -3378,13 +2529,64 @@ export class ObjectClusterOutageSimulationApi {
      * @param param the request object
      */
     public startOutageSimulation(param: ClusterOutageSimulationApiStartOutageSimulationRequest, options?: Configuration): Promise<ClusterOutageSimulation> {
-        return this.api.startOutageSimulation(param.groupId, param.clusterName, param.clusterOutageSimulation, param.envelope, param.pretty,  options).toPromise();
+        return this.api.startOutageSimulation(param.groupId, param.clusterName, param.clusterOutageSimulation,  options).toPromise();
     }
 
 }
 
 import { ObservableClustersApi } from "./ObservableAPI";
 import { ClustersApiRequestFactory, ClustersApiResponseProcessor} from "../apis/ClustersApi";
+
+export interface ClustersApiCreateClusterRequest {
+    /**
+     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+     * @type string
+     * @memberof ClustersApicreateCluster
+     */
+    groupId: string
+    /**
+     * Cluster to create in the specific project.
+     * @type AdvancedClusterDescription
+     * @memberof ClustersApicreateCluster
+     */
+    advancedClusterDescription: AdvancedClusterDescription
+}
+
+export interface ClustersApiDeleteClusterRequest {
+    /**
+     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+     * @type string
+     * @memberof ClustersApideleteCluster
+     */
+    groupId: string
+    /**
+     * Human-readable label that identifies the cluster.
+     * @type string
+     * @memberof ClustersApideleteCluster
+     */
+    clusterName: string
+    /**
+     * Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster.
+     * @type boolean
+     * @memberof ClustersApideleteCluster
+     */
+    retainBackups?: boolean
+}
+
+export interface ClustersApiGetClusterRequest {
+    /**
+     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+     * @type string
+     * @memberof ClustersApigetCluster
+     */
+    groupId: string
+    /**
+     * Human-readable label that identifies this advanced cluster.
+     * @type string
+     * @memberof ClustersApigetCluster
+     */
+    clusterName: string
+}
 
 export interface ClustersApiGetClusterAdvancedConfigurationRequest {
     /**
@@ -3399,18 +2601,6 @@ export interface ClustersApiGetClusterAdvancedConfigurationRequest {
      * @memberof ClustersApigetClusterAdvancedConfiguration
      */
     clusterName: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ClustersApigetClusterAdvancedConfiguration
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ClustersApigetClusterAdvancedConfiguration
-     */
-    pretty?: boolean
 }
 
 export interface ClustersApiGetClusterStatusRequest {
@@ -3426,18 +2616,6 @@ export interface ClustersApiGetClusterStatusRequest {
      * @memberof ClustersApigetClusterStatus
      */
     clusterName: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ClustersApigetClusterStatus
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ClustersApigetClusterStatus
-     */
-    pretty?: boolean
 }
 
 export interface ClustersApiGetSampleDatasetLoadStatusRequest {
@@ -3453,12 +2631,6 @@ export interface ClustersApiGetSampleDatasetLoadStatusRequest {
      * @memberof ClustersApigetSampleDatasetLoadStatus
      */
     sampleDatasetId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ClustersApigetSampleDatasetLoadStatus
-     */
-    envelope?: boolean
 }
 
 export interface ClustersApiListCloudProviderRegionsRequest {
@@ -3468,12 +2640,6 @@ export interface ClustersApiListCloudProviderRegionsRequest {
      * @memberof ClustersApilistCloudProviderRegions
      */
     groupId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ClustersApilistCloudProviderRegions
-     */
-    envelope?: boolean
     /**
      * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
@@ -3492,12 +2658,6 @@ export interface ClustersApiListCloudProviderRegionsRequest {
      * @memberof ClustersApilistCloudProviderRegions
      */
     pageNum?: number
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ClustersApilistCloudProviderRegions
-     */
-    pretty?: boolean
     /**
      * Cloud providers whose regions to retrieve. When you specify multiple providers, the response can return only tiers and regions that support multi-cloud clusters.
      * @type Array&lt;string&gt;
@@ -3512,13 +2672,40 @@ export interface ClustersApiListCloudProviderRegionsRequest {
     tier?: string
 }
 
-export interface ClustersApiListClustersForAllProjectsRequest {
+export interface ClustersApiListClustersRequest {
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ClustersApilistClustersForAllProjects
+     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+     * @type string
+     * @memberof ClustersApilistClusters
      */
-    envelope?: boolean
+    groupId: string
+    /**
+     * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
+     * @type boolean
+     * @memberof ClustersApilistClusters
+     */
+    includeCount?: boolean
+    /**
+     * Number of items that the response returns per page.
+     * @type number
+     * @memberof ClustersApilistClusters
+     */
+    itemsPerPage?: number
+    /**
+     * Number of the page that displays the current set of the total objects that the response returns.
+     * @type number
+     * @memberof ClustersApilistClusters
+     */
+    pageNum?: number
+    /**
+     * Flag that indicates whether to return Clusters with retain backups.
+     * @type boolean
+     * @memberof ClustersApilistClusters
+     */
+    includeDeletedWithRetainedBackups?: boolean
+}
+
+export interface ClustersApiListClustersForAllProjectsRequest {
     /**
      * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
@@ -3537,12 +2724,6 @@ export interface ClustersApiListClustersForAllProjectsRequest {
      * @memberof ClustersApilistClustersForAllProjects
      */
     pageNum?: number
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ClustersApilistClustersForAllProjects
-     */
-    pretty?: boolean
 }
 
 export interface ClustersApiLoadSampleDatasetRequest {
@@ -3558,18 +2739,42 @@ export interface ClustersApiLoadSampleDatasetRequest {
      * @memberof ClustersApiloadSampleDataset
      */
     name: string
+}
+
+export interface ClustersApiTestFailoverRequest {
     /**
-     * Cluster into which to load the sample dataset.
-     * @type SampleDatasetStatus
-     * @memberof ClustersApiloadSampleDataset
+     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+     * @type string
+     * @memberof ClustersApitestFailover
      */
-    sampleDatasetStatus: SampleDatasetStatus
+    groupId: string
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ClustersApiloadSampleDataset
+     * Human-readable label that identifies the cluster.
+     * @type string
+     * @memberof ClustersApitestFailover
      */
-    envelope?: boolean
+    clusterName: string
+}
+
+export interface ClustersApiUpdateClusterRequest {
+    /**
+     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+     * @type string
+     * @memberof ClustersApiupdateCluster
+     */
+    groupId: string
+    /**
+     * Human-readable label that identifies the cluster.
+     * @type string
+     * @memberof ClustersApiupdateCluster
+     */
+    clusterName: string
+    /**
+     * Cluster to update in the specified project.
+     * @type AdvancedClusterDescription
+     * @memberof ClustersApiupdateCluster
+     */
+    advancedClusterDescription: AdvancedClusterDescription
 }
 
 export interface ClustersApiUpdateClusterAdvancedConfigurationRequest {
@@ -3591,18 +2796,6 @@ export interface ClustersApiUpdateClusterAdvancedConfigurationRequest {
      * @memberof ClustersApiupdateClusterAdvancedConfiguration
      */
     clusterDescriptionProcessArgs: ClusterDescriptionProcessArgs
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ClustersApiupdateClusterAdvancedConfiguration
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ClustersApiupdateClusterAdvancedConfiguration
-     */
-    pretty?: boolean
 }
 
 export interface ClustersApiUpgradeSharedClusterRequest {
@@ -3614,22 +2807,10 @@ export interface ClustersApiUpgradeSharedClusterRequest {
     groupId: string
     /**
      * Details of the shared-tier cluster upgrade in the specified project.
-     * @type LegacyClusterDescription
+     * @type LegacyAtlasTenantClusterUpgradeRequest
      * @memberof ClustersApiupgradeSharedCluster
      */
-    legacyClusterDescription: LegacyClusterDescription
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ClustersApiupgradeSharedCluster
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ClustersApiupgradeSharedCluster
-     */
-    pretty?: boolean
+    legacyAtlasTenantClusterUpgradeRequest: LegacyAtlasTenantClusterUpgradeRequest
 }
 
 export interface ClustersApiUpgradeSharedClusterToServerlessRequest {
@@ -3645,18 +2826,6 @@ export interface ClustersApiUpgradeSharedClusterToServerlessRequest {
      * @memberof ClustersApiupgradeSharedClusterToServerless
      */
     serverlessInstanceDescription: ServerlessInstanceDescription
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ClustersApiupgradeSharedClusterToServerless
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ClustersApiupgradeSharedClusterToServerless
-     */
-    pretty?: boolean
 }
 
 export class ObjectClustersApi {
@@ -3667,84 +2836,138 @@ export class ObjectClustersApi {
     }
 
     /**
-     * Returns the advanced configuration details for one cluster in the specified project. Clusters contain a group of hosts that maintain the same data set. Advanced configuration details include the read/write concern, index and oplog limits, and other database settings.  Shared-tier clusters can't use this resource.  To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Creates one cluster in the specified project. Clusters contain a group of hosts that maintain the same data set. This resource can create multi-cloud clusters. Each project supports up to 25 database deployments. To use this resource, the requesting API Key must have the Project Owner role. This feature is not available for serverless clusters. Deprecated versions: v2-{2023-01-01}
+     * Create One Multi-Cloud Cluster from One Project
+     * @param param the request object
+     */
+    public createCluster(param: ClustersApiCreateClusterRequest, options?: Configuration): Promise<AdvancedClusterDescription> {
+        return this.api.createCluster(param.groupId, param.advancedClusterDescription,  options).toPromise();
+    }
+
+    /**
+     * Removes one cluster with advanced features from the specified project. The cluster must have termination protection disabled in order to be deleted. To use this resource, the requesting API Key must have the Project Owner role. This feature is not available for serverless clusters. Deprecated versions: v2-{2023-01-01}
+     * Remove One Multi-Cloud Cluster from One Project
+     * @param param the request object
+     */
+    public deleteCluster(param: ClustersApiDeleteClusterRequest, options?: Configuration): Promise<void> {
+        return this.api.deleteCluster(param.groupId, param.clusterName, param.retainBackups,  options).toPromise();
+    }
+
+    /**
+     * Returns the details for one cluster in the specified project. Clusters contain a group of hosts that maintain the same data set. The response includes multi-cloud clusters. To use this resource, the requesting API Key must have the Project Read Only role. This feature is not available for serverless clusters. Deprecated versions: v2-{2023-01-01}
+     * Return One Multi-Cloud Cluster from One Project
+     * @param param the request object
+     */
+    public getCluster(param: ClustersApiGetClusterRequest, options?: Configuration): Promise<AdvancedClusterDescription> {
+        return this.api.getCluster(param.groupId, param.clusterName,  options).toPromise();
+    }
+
+    /**
+     * Returns the advanced configuration details for one cluster in the specified project. Clusters contain a group of hosts that maintain the same data set. Advanced configuration details include the read/write concern, index and oplog limits, and other database settings. This feature isn't available for `M0` free clusters, `M2` and `M5` shared-tier clusters, or serverless clusters. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return One Advanced Configuration Options for One Cluster
      * @param param the request object
      */
     public getClusterAdvancedConfiguration(param: ClustersApiGetClusterAdvancedConfigurationRequest, options?: Configuration): Promise<ClusterDescriptionProcessArgs> {
-        return this.api.getClusterAdvancedConfiguration(param.groupId, param.clusterName, param.envelope, param.pretty,  options).toPromise();
+        return this.api.getClusterAdvancedConfiguration(param.groupId, param.clusterName,  options).toPromise();
     }
 
     /**
-     * Returns the status of all changes that you made to the specified cluster in the specified project. Use this resource to check the progress MongoDB Cloud has made in processing your changes. The response does not include the deployment of new dedicated clusters. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns the status of all changes that you made to the specified cluster in the specified project. Use this resource to check the progress MongoDB Cloud has made in processing your changes. The response does not include the deployment of new dedicated clusters. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return Status of All Cluster Operations
      * @param param the request object
      */
     public getClusterStatus(param: ClustersApiGetClusterStatusRequest, options?: Configuration): Promise<ClusterStatus> {
-        return this.api.getClusterStatus(param.groupId, param.clusterName, param.envelope, param.pretty,  options).toPromise();
+        return this.api.getClusterStatus(param.groupId, param.clusterName,  options).toPromise();
     }
 
     /**
-     * Checks the progress of loading the sample dataset into one cluster. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Checks the progress of loading the sample dataset into one cluster. To use this resource, the requesting API Key must have the Project Owner role.
      * Check Status of Cluster Sample Dataset Request
      * @param param the request object
      */
     public getSampleDatasetLoadStatus(param: ClustersApiGetSampleDatasetLoadStatusRequest, options?: Configuration): Promise<SampleDatasetStatus> {
-        return this.api.getSampleDatasetLoadStatus(param.groupId, param.sampleDatasetId, param.envelope,  options).toPromise();
+        return this.api.getSampleDatasetLoadStatus(param.groupId, param.sampleDatasetId,  options).toPromise();
     }
 
     /**
-     * Returns the list of regions available for the specified cloud provider at the specified tier. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns the list of regions available for the specified cloud provider at the specified tier. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return All Cloud Provider Regions
      * @param param the request object
      */
-    public listCloudProviderRegions(param: ClustersApiListCloudProviderRegionsRequest, options?: Configuration): Promise<PaginatedApiAtlasProviderRegionsView> {
-        return this.api.listCloudProviderRegions(param.groupId, param.envelope, param.includeCount, param.itemsPerPage, param.pageNum, param.pretty, param.providers, param.tier,  options).toPromise();
+    public listCloudProviderRegions(param: ClustersApiListCloudProviderRegionsRequest, options?: Configuration): Promise<PaginatedApiAtlasProviderRegions> {
+        return this.api.listCloudProviderRegions(param.groupId, param.includeCount, param.itemsPerPage, param.pageNum, param.providers, param.tier,  options).toPromise();
     }
 
     /**
-     * Returns the details for all clusters in all projects to which you have access. Clusters contain a group of hosts that maintain the same data set. The response does not include multi-cloud clusters. To use this resource, the requesting API Key can have any cluster-level role. This resource doesn't require the API Key to have an Access List.
+     * Returns the details for all clusters in the specific project to which you have access. Clusters contain a group of hosts that maintain the same data set. The response includes multi-cloud clusters. To use this resource, the requesting API Key must have the Project Read Only role. This feature is not available for serverless clusters. Deprecated versions: v2-{2023-01-01}
+     * Return All Clusters in One Project
+     * @param param the request object
+     */
+    public listClusters(param: ClustersApiListClustersRequest, options?: Configuration): Promise<PaginatedAdvancedClusterDescription> {
+        return this.api.listClusters(param.groupId, param.includeCount, param.itemsPerPage, param.pageNum, param.includeDeletedWithRetainedBackups,  options).toPromise();
+    }
+
+    /**
+     * Returns the details for all clusters in all projects to which you have access. Clusters contain a group of hosts that maintain the same data set. The response does not include multi-cloud clusters. To use this resource, the requesting API Key can have any cluster-level role.
      * Return All Authorized Clusters in All Projects
      * @param param the request object
      */
-    public listClustersForAllProjects(param: ClustersApiListClustersForAllProjectsRequest = {}, options?: Configuration): Promise<PaginatedOrgGroupView> {
-        return this.api.listClustersForAllProjects(param.envelope, param.includeCount, param.itemsPerPage, param.pageNum, param.pretty,  options).toPromise();
+    public listClustersForAllProjects(param: ClustersApiListClustersForAllProjectsRequest = {}, options?: Configuration): Promise<PaginatedOrgGroup> {
+        return this.api.listClustersForAllProjects(param.includeCount, param.itemsPerPage, param.pageNum,  options).toPromise();
     }
 
     /**
-     * Requests loading the MongoDB sample dataset into the specified cluster. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Requests loading the MongoDB sample dataset into the specified cluster. To use this resource, the requesting API Key must have the Project Owner role.
      * Load Sample Dataset Request into Cluster
      * @param param the request object
      */
-    public loadSampleDataset(param: ClustersApiLoadSampleDatasetRequest, options?: Configuration): Promise<Array<SampleDatasetStatus>> {
-        return this.api.loadSampleDataset(param.groupId, param.name, param.sampleDatasetStatus, param.envelope,  options).toPromise();
+    public loadSampleDataset(param: ClustersApiLoadSampleDatasetRequest, options?: Configuration): Promise<SampleDatasetStatus> {
+        return this.api.loadSampleDataset(param.groupId, param.name,  options).toPromise();
     }
 
     /**
-     * Updates the advanced configuration details for one cluster in the specified project. Clusters contain a group of hosts that maintain the same data set. Advanced configuration details include the read/write concern, index and oplog limits, and other database settings. To use this resource, the requesting API Key must have the Project Cluster Manager role. This resource doesn't require the API Key to have an Access List.
+     * Starts a failover test for the specified cluster in the specified project. Clusters contain a group of hosts that maintain the same data set. A failover test checks how MongoDB Cloud handles the failure of the cluster's primary node. During the test, MongoDB Cloud shuts down the primary node and elects a new primary. To use this resource, the requesting API Key must have the Project Cluster Manager role. Deprecated versions: v2-{2023-01-01}
+     * Test Failover for One Multi-Cloud Cluster
+     * @param param the request object
+     */
+    public testFailover(param: ClustersApiTestFailoverRequest, options?: Configuration): Promise<void> {
+        return this.api.testFailover(param.groupId, param.clusterName,  options).toPromise();
+    }
+
+    /**
+     * Updates the details for one cluster in the specified project. Clusters contain a group of hosts that maintain the same data set. This resource can update multi-cloud clusters. To update a cluster's termination protection, the requesting API Key must have the Project Owner role. For all other updates, the requesting API Key must have the Project Cluster Manager role. You can't modify a paused cluster (`paused : true`). You must call this endpoint to set `paused : false`. After this endpoint responds with `paused : false`, you can call it again with the changes you want to make to the cluster. This feature is not available for serverless clusters. Deprecated versions: v2-{2023-01-01}
+     * Modify One Multi-Cloud Cluster from One Project
+     * @param param the request object
+     */
+    public updateCluster(param: ClustersApiUpdateClusterRequest, options?: Configuration): Promise<AdvancedClusterDescription> {
+        return this.api.updateCluster(param.groupId, param.clusterName, param.advancedClusterDescription,  options).toPromise();
+    }
+
+    /**
+     * Updates the advanced configuration details for one cluster in the specified project. Clusters contain a group of hosts that maintain the same data set. Advanced configuration details include the read/write concern, index and oplog limits, and other database settings. To use this resource, the requesting API Key must have the Project Cluster Manager role. This feature isn't available for `M0` free clusters, `M2` and `M5` shared-tier clusters, or serverless clusters.
      * Update Advanced Configuration Options for One Cluster
      * @param param the request object
      */
     public updateClusterAdvancedConfiguration(param: ClustersApiUpdateClusterAdvancedConfigurationRequest, options?: Configuration): Promise<ClusterDescriptionProcessArgs> {
-        return this.api.updateClusterAdvancedConfiguration(param.groupId, param.clusterName, param.clusterDescriptionProcessArgs, param.envelope, param.pretty,  options).toPromise();
+        return this.api.updateClusterAdvancedConfiguration(param.groupId, param.clusterName, param.clusterDescriptionProcessArgs,  options).toPromise();
     }
 
     /**
-     * Upgrade a shared-tier cluster in the specified project. To use this resource, the requesting API key must have the Project Cluster Manager role. This resource doesn't require the API key to have an Access List.
+     * Upgrades a shared-tier cluster in the specified project. To use this resource, the requesting API key must have the Project Cluster Manager role. Each project supports up to 25 clusters.
      * Upgrade One Shared-tier Cluster
      * @param param the request object
      */
-    public upgradeSharedCluster(param: ClustersApiUpgradeSharedClusterRequest, options?: Configuration): Promise<LegacyClusterDescription> {
-        return this.api.upgradeSharedCluster(param.groupId, param.legacyClusterDescription, param.envelope, param.pretty,  options).toPromise();
+    public upgradeSharedCluster(param: ClustersApiUpgradeSharedClusterRequest, options?: Configuration): Promise<LegacyAtlasCluster> {
+        return this.api.upgradeSharedCluster(param.groupId, param.legacyAtlasTenantClusterUpgradeRequest,  options).toPromise();
     }
 
     /**
-     * Upgrades a shared-tier cluster to a serverless instance in the specified project. To use this resource, the requesting API key must have the Project Cluster Manager role. This resource doesn't require the API key to have an Access List.
+     * Upgrades a shared-tier cluster to a serverless instance in the specified project. To use this resource, the requesting API key must have the Project Cluster Manager role.
      * Upgrades One Shared-Tier Cluster to the Serverless Instance
      * @param param the request object
      */
     public upgradeSharedClusterToServerless(param: ClustersApiUpgradeSharedClusterToServerlessRequest, options?: Configuration): Promise<ServerlessInstanceDescription> {
-        return this.api.upgradeSharedClusterToServerless(param.groupId, param.serverlessInstanceDescription, param.envelope, param.pretty,  options).toPromise();
+        return this.api.upgradeSharedClusterToServerless(param.groupId, param.serverlessInstanceDescription,  options).toPromise();
     }
 
 }
@@ -3761,22 +2984,10 @@ export interface CustomDatabaseRolesApiCreateCustomDatabaseRoleRequest {
     groupId: string
     /**
      * Creates one custom role in the specified project.
-     * @type CustomDBRole
+     * @type UserCustomDBRole
      * @memberof CustomDatabaseRolesApicreateCustomDatabaseRole
      */
-    customDBRole: CustomDBRole
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CustomDatabaseRolesApicreateCustomDatabaseRole
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof CustomDatabaseRolesApicreateCustomDatabaseRole
-     */
-    pretty?: boolean
+    userCustomDBRole: UserCustomDBRole
 }
 
 export interface CustomDatabaseRolesApiDeleteCustomDatabaseRoleRequest {
@@ -3792,18 +3003,6 @@ export interface CustomDatabaseRolesApiDeleteCustomDatabaseRoleRequest {
      * @memberof CustomDatabaseRolesApideleteCustomDatabaseRole
      */
     roleName: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CustomDatabaseRolesApideleteCustomDatabaseRole
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof CustomDatabaseRolesApideleteCustomDatabaseRole
-     */
-    pretty?: boolean
 }
 
 export interface CustomDatabaseRolesApiGetCustomDatabaseRoleRequest {
@@ -3819,18 +3018,6 @@ export interface CustomDatabaseRolesApiGetCustomDatabaseRoleRequest {
      * @memberof CustomDatabaseRolesApigetCustomDatabaseRole
      */
     roleName: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CustomDatabaseRolesApigetCustomDatabaseRole
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof CustomDatabaseRolesApigetCustomDatabaseRole
-     */
-    pretty?: boolean
 }
 
 export interface CustomDatabaseRolesApiListCustomDatabaseRolesRequest {
@@ -3840,18 +3027,6 @@ export interface CustomDatabaseRolesApiListCustomDatabaseRolesRequest {
      * @memberof CustomDatabaseRolesApilistCustomDatabaseRoles
      */
     groupId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CustomDatabaseRolesApilistCustomDatabaseRoles
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof CustomDatabaseRolesApilistCustomDatabaseRoles
-     */
-    pretty?: boolean
 }
 
 export interface CustomDatabaseRolesApiUpdateCustomDatabaseRoleRequest {
@@ -3873,18 +3048,6 @@ export interface CustomDatabaseRolesApiUpdateCustomDatabaseRoleRequest {
      * @memberof CustomDatabaseRolesApiupdateCustomDatabaseRole
      */
     updateCustomDBRole: UpdateCustomDBRole
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof CustomDatabaseRolesApiupdateCustomDatabaseRole
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof CustomDatabaseRolesApiupdateCustomDatabaseRole
-     */
-    pretty?: boolean
 }
 
 export class ObjectCustomDatabaseRolesApi {
@@ -3895,48 +3058,48 @@ export class ObjectCustomDatabaseRolesApi {
     }
 
     /**
-     * Creates one custom role in the specified project. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Creates one custom role in the specified project. To use this resource, the requesting API Key must have the Project Owner role.
      * Create One Custom Role
      * @param param the request object
      */
-    public createCustomDatabaseRole(param: CustomDatabaseRolesApiCreateCustomDatabaseRoleRequest, options?: Configuration): Promise<CustomDBRole> {
-        return this.api.createCustomDatabaseRole(param.groupId, param.customDBRole, param.envelope, param.pretty,  options).toPromise();
+    public createCustomDatabaseRole(param: CustomDatabaseRolesApiCreateCustomDatabaseRoleRequest, options?: Configuration): Promise<UserCustomDBRole> {
+        return this.api.createCustomDatabaseRole(param.groupId, param.userCustomDBRole,  options).toPromise();
     }
 
     /**
-     * Removes one custom role from the specified project. You can't remove a custom role that would leave one or more child roles with no parent roles or actions. You also can't remove a custom role that would leave one or more database users without roles. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
+     * Removes one custom role from the specified project. You can't remove a custom role that would leave one or more child roles with no parent roles or actions. You also can't remove a custom role that would leave one or more database users without roles. To use this resource, the requesting API Key must have the Project Atlas Admin role.
      * Remove One Custom Role from One Project
      * @param param the request object
      */
     public deleteCustomDatabaseRole(param: CustomDatabaseRolesApiDeleteCustomDatabaseRoleRequest, options?: Configuration): Promise<void> {
-        return this.api.deleteCustomDatabaseRole(param.groupId, param.roleName, param.envelope, param.pretty,  options).toPromise();
+        return this.api.deleteCustomDatabaseRole(param.groupId, param.roleName,  options).toPromise();
     }
 
     /**
-     * Returns one custom role for the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns one custom role for the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return One Custom Role in One Project
      * @param param the request object
      */
-    public getCustomDatabaseRole(param: CustomDatabaseRolesApiGetCustomDatabaseRoleRequest, options?: Configuration): Promise<CustomDBRole> {
-        return this.api.getCustomDatabaseRole(param.groupId, param.roleName, param.envelope, param.pretty,  options).toPromise();
+    public getCustomDatabaseRole(param: CustomDatabaseRolesApiGetCustomDatabaseRoleRequest, options?: Configuration): Promise<UserCustomDBRole> {
+        return this.api.getCustomDatabaseRole(param.groupId, param.roleName,  options).toPromise();
     }
 
     /**
-     * Returns all custom roles for the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns all custom roles for the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return All Custom Roles in One Project
      * @param param the request object
      */
-    public listCustomDatabaseRoles(param: CustomDatabaseRolesApiListCustomDatabaseRolesRequest, options?: Configuration): Promise<Array<CustomDBRole>> {
-        return this.api.listCustomDatabaseRoles(param.groupId, param.envelope, param.pretty,  options).toPromise();
+    public listCustomDatabaseRoles(param: CustomDatabaseRolesApiListCustomDatabaseRolesRequest, options?: Configuration): Promise<Array<UserCustomDBRole>> {
+        return this.api.listCustomDatabaseRoles(param.groupId,  options).toPromise();
     }
 
     /**
-     * Updates one custom role in the specified project. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Updates one custom role in the specified project. To use this resource, the requesting API Key must have the Project Owner role.
      * Update One Custom Role in One Project
      * @param param the request object
      */
-    public updateCustomDatabaseRole(param: CustomDatabaseRolesApiUpdateCustomDatabaseRoleRequest, options?: Configuration): Promise<CustomDBRole> {
-        return this.api.updateCustomDatabaseRole(param.groupId, param.roleName, param.updateCustomDBRole, param.envelope, param.pretty,  options).toPromise();
+    public updateCustomDatabaseRole(param: CustomDatabaseRolesApiUpdateCustomDatabaseRoleRequest, options?: Configuration): Promise<UserCustomDBRole> {
+        return this.api.updateCustomDatabaseRole(param.groupId, param.roleName, param.updateCustomDBRole,  options).toPromise();
     }
 
 }
@@ -3957,18 +3120,6 @@ export interface DataFederationApiCreateDataFederationPrivateEndpointRequest {
      * @memberof DataFederationApicreateDataFederationPrivateEndpoint
      */
     privateNetworkEndpointIdEntry: PrivateNetworkEndpointIdEntry
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof DataFederationApicreateDataFederationPrivateEndpoint
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof DataFederationApicreateDataFederationPrivateEndpoint
-     */
-    pretty?: boolean
 }
 
 export interface DataFederationApiCreateFederatedDatabaseRequest {
@@ -3984,18 +3135,6 @@ export interface DataFederationApiCreateFederatedDatabaseRequest {
      * @memberof DataFederationApicreateFederatedDatabase
      */
     dataLakeTenant: DataLakeTenant
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof DataFederationApicreateFederatedDatabase
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof DataFederationApicreateFederatedDatabase
-     */
-    pretty?: boolean
     /**
      * Flag that indicates whether this request should check if the requesting IAM role can read from the S3 bucket. AWS checks if the role can list the objects in the bucket before writing to it. Some IAM roles only need write permissions. This flag allows you to skip that check.
      * @type boolean
@@ -4019,22 +3158,16 @@ export interface DataFederationApiCreateOneDataFederationQueryLimitRequest {
     tenantName: string
     /**
      * Human-readable label that identifies this data federation instance limit.  | Limit Name | Description | Default | | --- | --- | --- | | bytesProcessed.query | Limit on the number of bytes processed during a single data federation query | N/A | | bytesProcessed.daily | Limit on the number of bytes processed for the data federation instance for the current day | N/A | | bytesProcessed.weekly | Limit on the number of bytes processed for the data federation instance for the current week | N/A | | bytesProcessed.monthly | Limit on the number of bytes processed for the data federation instance for the current month | N/A | 
-     * @type &#39;bytesProcessed.query&#39; | &#39;bytesProcessed.daily&#39; | &#39;bytesProcessed.weekly&#39; | &#39;bytesProcessed.monthly&#39;
+     * @type string
      * @memberof DataFederationApicreateOneDataFederationQueryLimit
      */
-    limitName: 'bytesProcessed.query' | 'bytesProcessed.daily' | 'bytesProcessed.weekly' | 'bytesProcessed.monthly'
+    limitName: string
     /**
      * Creates or updates one query limit for one federated database instance.
      * @type DataFederationTenantQueryLimit
      * @memberof DataFederationApicreateOneDataFederationQueryLimit
      */
     dataFederationTenantQueryLimit: DataFederationTenantQueryLimit
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof DataFederationApicreateOneDataFederationQueryLimit
-     */
-    envelope?: boolean
 }
 
 export interface DataFederationApiDeleteDataFederationPrivateEndpointRequest {
@@ -4050,18 +3183,6 @@ export interface DataFederationApiDeleteDataFederationPrivateEndpointRequest {
      * @memberof DataFederationApideleteDataFederationPrivateEndpoint
      */
     endpointId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof DataFederationApideleteDataFederationPrivateEndpoint
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof DataFederationApideleteDataFederationPrivateEndpoint
-     */
-    pretty?: boolean
 }
 
 export interface DataFederationApiDeleteFederatedDatabaseRequest {
@@ -4077,18 +3198,6 @@ export interface DataFederationApiDeleteFederatedDatabaseRequest {
      * @memberof DataFederationApideleteFederatedDatabase
      */
     tenantName: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof DataFederationApideleteFederatedDatabase
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof DataFederationApideleteFederatedDatabase
-     */
-    pretty?: boolean
 }
 
 export interface DataFederationApiDeleteOneDataFederationInstanceQueryLimitRequest {
@@ -4106,16 +3215,10 @@ export interface DataFederationApiDeleteOneDataFederationInstanceQueryLimitReque
     tenantName: string
     /**
      * Human-readable label that identifies this data federation instance limit.  | Limit Name | Description | Default | | --- | --- | --- | | bytesProcessed.query | Limit on the number of bytes processed during a single data federation query | N/A | | bytesProcessed.daily | Limit on the number of bytes processed for the data federation instance for the current day | N/A | | bytesProcessed.weekly | Limit on the number of bytes processed for the data federation instance for the current week | N/A | | bytesProcessed.monthly | Limit on the number of bytes processed for the data federation instance for the current month | N/A | 
-     * @type &#39;bytesProcessed.query&#39; | &#39;bytesProcessed.daily&#39; | &#39;bytesProcessed.weekly&#39; | &#39;bytesProcessed.monthly&#39;
+     * @type string
      * @memberof DataFederationApideleteOneDataFederationInstanceQueryLimit
      */
-    limitName: 'bytesProcessed.query' | 'bytesProcessed.daily' | 'bytesProcessed.weekly' | 'bytesProcessed.monthly'
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof DataFederationApideleteOneDataFederationInstanceQueryLimit
-     */
-    envelope?: boolean
+    limitName: string
 }
 
 export interface DataFederationApiDownloadFederatedDatabaseQueryLogsRequest {
@@ -4158,18 +3261,6 @@ export interface DataFederationApiGetDataFederationPrivateEndpointRequest {
      * @memberof DataFederationApigetDataFederationPrivateEndpoint
      */
     endpointId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof DataFederationApigetDataFederationPrivateEndpoint
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof DataFederationApigetDataFederationPrivateEndpoint
-     */
-    pretty?: boolean
 }
 
 export interface DataFederationApiGetFederatedDatabaseRequest {
@@ -4185,12 +3276,6 @@ export interface DataFederationApiGetFederatedDatabaseRequest {
      * @memberof DataFederationApigetFederatedDatabase
      */
     tenantName: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof DataFederationApigetFederatedDatabase
-     */
-    envelope?: boolean
 }
 
 export interface DataFederationApiListDataFederationPrivateEndpointsRequest {
@@ -4201,17 +3286,23 @@ export interface DataFederationApiListDataFederationPrivateEndpointsRequest {
      */
     groupId: string
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+     * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
      * @memberof DataFederationApilistDataFederationPrivateEndpoints
      */
-    envelope?: boolean
+    includeCount?: boolean
     /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
+     * Number of items that the response returns per page.
+     * @type number
      * @memberof DataFederationApilistDataFederationPrivateEndpoints
      */
-    pretty?: boolean
+    itemsPerPage?: number
+    /**
+     * Number of the page that displays the current set of the total objects that the response returns.
+     * @type number
+     * @memberof DataFederationApilistDataFederationPrivateEndpoints
+     */
+    pageNum?: number
 }
 
 export interface DataFederationApiListFederatedDatabasesRequest {
@@ -4222,23 +3313,11 @@ export interface DataFederationApiListFederatedDatabasesRequest {
      */
     groupId: string
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof DataFederationApilistFederatedDatabases
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof DataFederationApilistFederatedDatabases
-     */
-    pretty?: boolean
-    /**
      * Type of Federated Database Instances to return.
-     * @type &#39;USER&#39; | &#39;ONLINE_ARCHIVE&#39;
+     * @type string
      * @memberof DataFederationApilistFederatedDatabases
      */
-    type?: 'USER' | 'ONLINE_ARCHIVE'
+    type?: string
 }
 
 export interface DataFederationApiReturnFederatedDatabaseQueryLimitRequest {
@@ -4256,22 +3335,10 @@ export interface DataFederationApiReturnFederatedDatabaseQueryLimitRequest {
     tenantName: string
     /**
      * Human-readable label that identifies this data federation instance limit.  | Limit Name | Description | Default | | --- | --- | --- | | bytesProcessed.query | Limit on the number of bytes processed during a single data federation query | N/A | | bytesProcessed.daily | Limit on the number of bytes processed for the data federation instance for the current day | N/A | | bytesProcessed.weekly | Limit on the number of bytes processed for the data federation instance for the current week | N/A | | bytesProcessed.monthly | Limit on the number of bytes processed for the data federation instance for the current month | N/A | 
-     * @type &#39;bytesProcessed.query&#39; | &#39;bytesProcessed.daily&#39; | &#39;bytesProcessed.weekly&#39; | &#39;bytesProcessed.monthly&#39;
+     * @type string
      * @memberof DataFederationApireturnFederatedDatabaseQueryLimit
      */
-    limitName: 'bytesProcessed.query' | 'bytesProcessed.daily' | 'bytesProcessed.weekly' | 'bytesProcessed.monthly'
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof DataFederationApireturnFederatedDatabaseQueryLimit
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof DataFederationApireturnFederatedDatabaseQueryLimit
-     */
-    pretty?: boolean
+    limitName: string
 }
 
 export interface DataFederationApiReturnFederatedDatabaseQueryLimitsRequest {
@@ -4287,18 +3354,6 @@ export interface DataFederationApiReturnFederatedDatabaseQueryLimitsRequest {
      * @memberof DataFederationApireturnFederatedDatabaseQueryLimits
      */
     tenantName: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof DataFederationApireturnFederatedDatabaseQueryLimits
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof DataFederationApireturnFederatedDatabaseQueryLimits
-     */
-    pretty?: boolean
 }
 
 export interface DataFederationApiUpdateFederatedDatabaseRequest {
@@ -4326,18 +3381,6 @@ export interface DataFederationApiUpdateFederatedDatabaseRequest {
      * @memberof DataFederationApiupdateFederatedDatabase
      */
     dataLakeTenant: DataLakeTenant
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof DataFederationApiupdateFederatedDatabase
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof DataFederationApiupdateFederatedDatabase
-     */
-    pretty?: boolean
 }
 
 export class ObjectDataFederationApi {
@@ -4348,61 +3391,61 @@ export class ObjectDataFederationApi {
     }
 
     /**
-     * Adds one private endpoint for Federated Database Instances and Online Archives to the specified projects. To use this resource, the requesting API Key must have the Project Atlas Admin or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List.
+     * Adds one private endpoint for Federated Database Instances and Online Archives to the specified projects. If the endpoint ID already exists and the associated comment is unchanged, Atlas Data Federation makes no change to the endpoint ID list. If the endpoint ID already exists and the associated comment is changed, Atlas Data Federation updates the comment value only in the endpoint ID list. If the endpoint ID doesn't exist, Atlas Data Federation appends the new endpoint to the list of endpoints in the endpoint ID list. Each region has an associated service name for the various endpoints in each region.   `us-east-1` is `com.amazonaws.vpce.us-east-1.vpce-svc-00e311695874992b4`.   `us-west-1` is `com.amazonaws.vpce.us-west-2.vpce-svc-09d86b19e59d1b4bb`.   `eu-west-1` is `com.amazonaws.vpce.eu-west-1.vpce-svc-0824460b72e1a420e`.   `eu-west-2` is `com.amazonaws.vpce.eu-west-2.vpce-svc-052f1840aa0c4f1f9`.   `eu-central-1` is `com.amazonaws.vpce.eu-central-1.vpce-svc-0ac8ce91871138c0d`.   `sa-east-1` is `com.amazonaws.vpce.sa-east-1.vpce-svc-0b56e75e8cdf50044`.   `ap-southeast-2` is `com.amazonaws.vpce.ap-southeast-2.vpce-svc-036f1de74d761706e`.   `ap-south-1` is `com.amazonaws.vpce.ap-south-1.vpce-svc-03eb8a541f96d356d`.   To use this resource, the requesting API Key must have the Project Owner or Project Charts Admin roles.
      * Create One Federated Database Instance and Online Archive Private Endpoint for One Project
      * @param param the request object
      */
-    public createDataFederationPrivateEndpoint(param: DataFederationApiCreateDataFederationPrivateEndpointRequest, options?: Configuration): Promise<Array<PrivateNetworkEndpointIdEntry>> {
-        return this.api.createDataFederationPrivateEndpoint(param.groupId, param.privateNetworkEndpointIdEntry, param.envelope, param.pretty,  options).toPromise();
+    public createDataFederationPrivateEndpoint(param: DataFederationApiCreateDataFederationPrivateEndpointRequest, options?: Configuration): Promise<PaginatedPrivateNetworkEndpointIdEntry> {
+        return this.api.createDataFederationPrivateEndpoint(param.groupId, param.privateNetworkEndpointIdEntry,  options).toPromise();
     }
 
     /**
-     * Creates one federated database instance in the specified project. To use this resource, the requesting API Key must have the Project Owner or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List.
+     * Creates one federated database instance in the specified project. To use this resource, the requesting API Key must have the Project Owner or Project Charts Admin roles.
      * Create One Federated Database Instance in One Project
      * @param param the request object
      */
     public createFederatedDatabase(param: DataFederationApiCreateFederatedDatabaseRequest, options?: Configuration): Promise<DataLakeTenant> {
-        return this.api.createFederatedDatabase(param.groupId, param.dataLakeTenant, param.envelope, param.pretty, param.skipRoleValidation,  options).toPromise();
+        return this.api.createFederatedDatabase(param.groupId, param.dataLakeTenant, param.skipRoleValidation,  options).toPromise();
     }
 
     /**
-     * Creates or updates one query limit for one federated database instance. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Creates or updates one query limit for one federated database instance. To use this resource, the requesting API Key must have the Project Owner role.
      * Configure One Query Limit for One Federated Database Instance
      * @param param the request object
      */
-    public createOneDataFederationQueryLimit(param: DataFederationApiCreateOneDataFederationQueryLimitRequest, options?: Configuration): Promise<Array<DataFederationTenantQueryLimit>> {
-        return this.api.createOneDataFederationQueryLimit(param.groupId, param.tenantName, param.limitName, param.dataFederationTenantQueryLimit, param.envelope,  options).toPromise();
+    public createOneDataFederationQueryLimit(param: DataFederationApiCreateOneDataFederationQueryLimitRequest, options?: Configuration): Promise<DataFederationTenantQueryLimit> {
+        return this.api.createOneDataFederationQueryLimit(param.groupId, param.tenantName, param.limitName, param.dataFederationTenantQueryLimit,  options).toPromise();
     }
 
     /**
-     * Removes one private endpoint for Federated Database Instances and Online Archives in the specified project. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Removes one private endpoint for Federated Database Instances and Online Archives in the specified project. To use this resource, the requesting API Key must have the Project Owner role.
      * Remove One Federated Database Instance and Online Archive Private Endpoint from One Project
      * @param param the request object
      */
-    public deleteDataFederationPrivateEndpoint(param: DataFederationApiDeleteDataFederationPrivateEndpointRequest, options?: Configuration): Promise<void> {
-        return this.api.deleteDataFederationPrivateEndpoint(param.groupId, param.endpointId, param.envelope, param.pretty,  options).toPromise();
+    public deleteDataFederationPrivateEndpoint(param: DataFederationApiDeleteDataFederationPrivateEndpointRequest, options?: Configuration): Promise<any> {
+        return this.api.deleteDataFederationPrivateEndpoint(param.groupId, param.endpointId,  options).toPromise();
     }
 
     /**
-     * Removes one federated database instance from the specified project. To use this resource, the requesting API Key must have the Project Owner or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List.
+     * Removes one federated database instance from the specified project. To use this resource, the requesting API Key must have the Project Owner or Project Charts Admin roles.
      * Remove One Federated Database Instance from One Project
      * @param param the request object
      */
-    public deleteFederatedDatabase(param: DataFederationApiDeleteFederatedDatabaseRequest, options?: Configuration): Promise<void> {
-        return this.api.deleteFederatedDatabase(param.groupId, param.tenantName, param.envelope, param.pretty,  options).toPromise();
+    public deleteFederatedDatabase(param: DataFederationApiDeleteFederatedDatabaseRequest, options?: Configuration): Promise<any> {
+        return this.api.deleteFederatedDatabase(param.groupId, param.tenantName,  options).toPromise();
     }
 
     /**
-     * Deletes one query limit for one federated database instance. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Deletes one query limit for one federated database instance. To use this resource, the requesting API Key must have the Project Owner role.
      * Delete One Query Limit For One Federated Database Instance
      * @param param the request object
      */
-    public deleteOneDataFederationInstanceQueryLimit(param: DataFederationApiDeleteOneDataFederationInstanceQueryLimitRequest, options?: Configuration): Promise<void> {
-        return this.api.deleteOneDataFederationInstanceQueryLimit(param.groupId, param.tenantName, param.limitName, param.envelope,  options).toPromise();
+    public deleteOneDataFederationInstanceQueryLimit(param: DataFederationApiDeleteOneDataFederationInstanceQueryLimitRequest, options?: Configuration): Promise<any> {
+        return this.api.deleteOneDataFederationInstanceQueryLimit(param.groupId, param.tenantName, param.limitName,  options).toPromise();
     }
 
     /**
-     * Downloads the query logs for the specified federated database instance. To use this resource, the requesting API Key must have the Project Owner or Project Data Access Read Write roles. This resource doesn't require the API Key to have an Access List.
+     * Downloads the query logs for the specified federated database instance. To use this resource, the requesting API Key must have the Project Owner or Project Data Access Read Write roles.
      * Download Query Logs for One Federated Database Instance
      * @param param the request object
      */
@@ -4411,66 +3454,66 @@ export class ObjectDataFederationApi {
     }
 
     /**
-     * Returns the specified private endpoint for Federated Database Instances or Online Archives in the specified project. To use this resource, the requesting API Key must have the Project Read Only or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List.
+     * Returns the specified private endpoint for Federated Database Instances or Online Archives in the specified project. To use this resource, the requesting API Key must have the Project Read Only or Project Charts Admin roles.
      * Return One Federated Database Instance and Online Archive Private Endpoint in One Project
      * @param param the request object
      */
     public getDataFederationPrivateEndpoint(param: DataFederationApiGetDataFederationPrivateEndpointRequest, options?: Configuration): Promise<PrivateNetworkEndpointIdEntry> {
-        return this.api.getDataFederationPrivateEndpoint(param.groupId, param.endpointId, param.envelope, param.pretty,  options).toPromise();
+        return this.api.getDataFederationPrivateEndpoint(param.groupId, param.endpointId,  options).toPromise();
     }
 
     /**
-     * Returns the details of one federated database instance within the specified project. To use this resource, the requesting API Key must have the Project Read Only or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List.
+     * Returns the details of one federated database instance within the specified project. To use this resource, the requesting API Key must have the Project Read Only or Project Charts Admin roles.
      * Return One Federated Database Instance in One Project
      * @param param the request object
      */
     public getFederatedDatabase(param: DataFederationApiGetFederatedDatabaseRequest, options?: Configuration): Promise<DataLakeTenant> {
-        return this.api.getFederatedDatabase(param.groupId, param.tenantName, param.envelope,  options).toPromise();
+        return this.api.getFederatedDatabase(param.groupId, param.tenantName,  options).toPromise();
     }
 
     /**
-     * Returns all private endpoints for Federated Database Instances and Online Archives in the specified project. To use this resource, the requesting API Key must have the Project Read Only or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List.
+     * Returns all private endpoints for Federated Database Instances and Online Archives in the specified project. To use this resource, the requesting API Key must have the Project Read Only or Project Charts Admin roles.
      * Return All Federated Database Instance and Online Archive Private Endpoints in One Project
      * @param param the request object
      */
-    public listDataFederationPrivateEndpoints(param: DataFederationApiListDataFederationPrivateEndpointsRequest, options?: Configuration): Promise<Array<PrivateNetworkEndpointIdEntry>> {
-        return this.api.listDataFederationPrivateEndpoints(param.groupId, param.envelope, param.pretty,  options).toPromise();
+    public listDataFederationPrivateEndpoints(param: DataFederationApiListDataFederationPrivateEndpointsRequest, options?: Configuration): Promise<PaginatedPrivateNetworkEndpointIdEntry> {
+        return this.api.listDataFederationPrivateEndpoints(param.groupId, param.includeCount, param.itemsPerPage, param.pageNum,  options).toPromise();
     }
 
     /**
-     * Returns the details of all federated database instances in the specified project. To use this resource, the requesting API Key must have the Project Read Only or higher role. This resource doesn't require the API Key to have an Access List.
+     * Returns the details of all federated database instances in the specified project. To use this resource, the requesting API Key must have the Project Read Only or higher role.
      * Return All Federated Database Instances in One Project
      * @param param the request object
      */
     public listFederatedDatabases(param: DataFederationApiListFederatedDatabasesRequest, options?: Configuration): Promise<Array<DataLakeTenant>> {
-        return this.api.listFederatedDatabases(param.groupId, param.envelope, param.pretty, param.type,  options).toPromise();
+        return this.api.listFederatedDatabases(param.groupId, param.type,  options).toPromise();
     }
 
     /**
-     * Returns the details of one query limit for the specified federated database instance in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns the details of one query limit for the specified federated database instance in the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return One Federated Database Instance Query Limit for One Project
      * @param param the request object
      */
-    public returnFederatedDatabaseQueryLimit(param: DataFederationApiReturnFederatedDatabaseQueryLimitRequest, options?: Configuration): Promise<Array<DataFederationTenantQueryLimit>> {
-        return this.api.returnFederatedDatabaseQueryLimit(param.groupId, param.tenantName, param.limitName, param.envelope, param.pretty,  options).toPromise();
+    public returnFederatedDatabaseQueryLimit(param: DataFederationApiReturnFederatedDatabaseQueryLimitRequest, options?: Configuration): Promise<DataFederationTenantQueryLimit> {
+        return this.api.returnFederatedDatabaseQueryLimit(param.groupId, param.tenantName, param.limitName,  options).toPromise();
     }
 
     /**
-     * Returns query limits for a federated databases instance in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns query limits for a federated databases instance in the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return All Query Limits for One Federated Database Instance
      * @param param the request object
      */
     public returnFederatedDatabaseQueryLimits(param: DataFederationApiReturnFederatedDatabaseQueryLimitsRequest, options?: Configuration): Promise<Array<DataFederationTenantQueryLimit>> {
-        return this.api.returnFederatedDatabaseQueryLimits(param.groupId, param.tenantName, param.envelope, param.pretty,  options).toPromise();
+        return this.api.returnFederatedDatabaseQueryLimits(param.groupId, param.tenantName,  options).toPromise();
     }
 
     /**
-     * Updates the details of one federated database instance in the specified project. To use this resource, the requesting API Key must have the Project Owner or higher role. This resource doesn't require the API Key to have an Access List.
+     * Updates the details of one federated database instance in the specified project. To use this resource, the requesting API Key must have the Project Owner or higher role.
      * Update One Federated Database Instance in One Project
      * @param param the request object
      */
     public updateFederatedDatabase(param: DataFederationApiUpdateFederatedDatabaseRequest, options?: Configuration): Promise<DataLakeTenant> {
-        return this.api.updateFederatedDatabase(param.groupId, param.tenantName, param.skipRoleValidation, param.dataLakeTenant, param.envelope, param.pretty,  options).toPromise();
+        return this.api.updateFederatedDatabase(param.groupId, param.tenantName, param.skipRoleValidation, param.dataLakeTenant,  options).toPromise();
     }
 
 }
@@ -4487,16 +3530,10 @@ export interface DataLakePipelinesApiCreatePipelineRequest {
     groupId: string
     /**
      * Creates one Data Lake Pipeline.
-     * @type IngestionPipeline
+     * @type DataLakeIngestionPipeline
      * @memberof DataLakePipelinesApicreatePipeline
      */
-    ingestionPipeline: IngestionPipeline
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof DataLakePipelinesApicreatePipeline
-     */
-    envelope?: boolean
+    dataLakeIngestionPipeline: DataLakeIngestionPipeline
 }
 
 export interface DataLakePipelinesApiDeletePipelineRequest {
@@ -4512,12 +3549,6 @@ export interface DataLakePipelinesApiDeletePipelineRequest {
      * @memberof DataLakePipelinesApideletePipeline
      */
     pipelineName: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof DataLakePipelinesApideletePipeline
-     */
-    envelope?: boolean
 }
 
 export interface DataLakePipelinesApiDeletePipelineRunDatasetRequest {
@@ -4539,18 +3570,6 @@ export interface DataLakePipelinesApiDeletePipelineRunDatasetRequest {
      * @memberof DataLakePipelinesApideletePipelineRunDataset
      */
     pipelineRunId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof DataLakePipelinesApideletePipelineRunDataset
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof DataLakePipelinesApideletePipelineRunDataset
-     */
-    pretty?: boolean
 }
 
 export interface DataLakePipelinesApiGetPipelineRequest {
@@ -4566,18 +3585,6 @@ export interface DataLakePipelinesApiGetPipelineRequest {
      * @memberof DataLakePipelinesApigetPipeline
      */
     pipelineName: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof DataLakePipelinesApigetPipeline
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof DataLakePipelinesApigetPipeline
-     */
-    pretty?: boolean
 }
 
 export interface DataLakePipelinesApiGetPipelineRunRequest {
@@ -4599,18 +3606,6 @@ export interface DataLakePipelinesApiGetPipelineRunRequest {
      * @memberof DataLakePipelinesApigetPipelineRun
      */
     pipelineRunId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof DataLakePipelinesApigetPipelineRun
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof DataLakePipelinesApigetPipelineRun
-     */
-    pretty?: boolean
 }
 
 export interface DataLakePipelinesApiListPipelineRunsRequest {
@@ -4626,12 +3621,6 @@ export interface DataLakePipelinesApiListPipelineRunsRequest {
      * @memberof DataLakePipelinesApilistPipelineRuns
      */
     pipelineName: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof DataLakePipelinesApilistPipelineRuns
-     */
-    envelope?: boolean
     /**
      * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
@@ -4650,12 +3639,6 @@ export interface DataLakePipelinesApiListPipelineRunsRequest {
      * @memberof DataLakePipelinesApilistPipelineRuns
      */
     pageNum?: number
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof DataLakePipelinesApilistPipelineRuns
-     */
-    pretty?: boolean
     /**
      * If specified, Atlas returns only Data Lake Pipeline runs initiated before this time and date.
      * @type Date
@@ -4677,18 +3660,6 @@ export interface DataLakePipelinesApiListPipelineSchedulesRequest {
      * @memberof DataLakePipelinesApilistPipelineSchedules
      */
     pipelineName: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof DataLakePipelinesApilistPipelineSchedules
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof DataLakePipelinesApilistPipelineSchedules
-     */
-    pretty?: boolean
 }
 
 export interface DataLakePipelinesApiListPipelineSnapshotsRequest {
@@ -4704,12 +3675,6 @@ export interface DataLakePipelinesApiListPipelineSnapshotsRequest {
      * @memberof DataLakePipelinesApilistPipelineSnapshots
      */
     pipelineName: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof DataLakePipelinesApilistPipelineSnapshots
-     */
-    envelope?: boolean
     /**
      * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
@@ -4729,12 +3694,6 @@ export interface DataLakePipelinesApiListPipelineSnapshotsRequest {
      */
     pageNum?: number
     /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof DataLakePipelinesApilistPipelineSnapshots
-     */
-    pretty?: boolean
-    /**
      * Date and time after which MongoDB Cloud created the snapshot. If specified, MongoDB Cloud returns available backup snapshots created after this time and date only. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
      * @type Date
      * @memberof DataLakePipelinesApilistPipelineSnapshots
@@ -4749,12 +3708,6 @@ export interface DataLakePipelinesApiListPipelinesRequest {
      * @memberof DataLakePipelinesApilistPipelines
      */
     groupId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof DataLakePipelinesApilistPipelines
-     */
-    envelope?: boolean
 }
 
 export interface DataLakePipelinesApiPausePipelineRequest {
@@ -4770,18 +3723,6 @@ export interface DataLakePipelinesApiPausePipelineRequest {
      * @memberof DataLakePipelinesApipausePipeline
      */
     pipelineName: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof DataLakePipelinesApipausePipeline
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof DataLakePipelinesApipausePipeline
-     */
-    pretty?: boolean
 }
 
 export interface DataLakePipelinesApiResumePipelineRequest {
@@ -4797,18 +3738,6 @@ export interface DataLakePipelinesApiResumePipelineRequest {
      * @memberof DataLakePipelinesApiresumePipeline
      */
     pipelineName: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof DataLakePipelinesApiresumePipeline
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof DataLakePipelinesApiresumePipeline
-     */
-    pretty?: boolean
 }
 
 export interface DataLakePipelinesApiTriggerSnapshotIngestionRequest {
@@ -4826,22 +3755,10 @@ export interface DataLakePipelinesApiTriggerSnapshotIngestionRequest {
     pipelineName: string
     /**
      * Triggers a single ingestion run of a snapshot.
-     * @type TriggerIngestionRequest
+     * @type TriggerIngestionPipelineRequest
      * @memberof DataLakePipelinesApitriggerSnapshotIngestion
      */
-    triggerIngestionRequest: TriggerIngestionRequest
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof DataLakePipelinesApitriggerSnapshotIngestion
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof DataLakePipelinesApitriggerSnapshotIngestion
-     */
-    pretty?: boolean
+    triggerIngestionPipelineRequest: TriggerIngestionPipelineRequest
 }
 
 export interface DataLakePipelinesApiUpdatePipelineRequest {
@@ -4859,16 +3776,10 @@ export interface DataLakePipelinesApiUpdatePipelineRequest {
     pipelineName: string
     /**
      * Updates one Data Lake Pipeline.
-     * @type IngestionPipeline
+     * @type DataLakeIngestionPipeline
      * @memberof DataLakePipelinesApiupdatePipeline
      */
-    ingestionPipeline: IngestionPipeline
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof DataLakePipelinesApiupdatePipeline
-     */
-    envelope?: boolean
+    dataLakeIngestionPipeline: DataLakeIngestionPipeline
 }
 
 export class ObjectDataLakePipelinesApi {
@@ -4883,8 +3794,8 @@ export class ObjectDataLakePipelinesApi {
      * Create One Data Lake Pipeline
      * @param param the request object
      */
-    public createPipeline(param: DataLakePipelinesApiCreatePipelineRequest, options?: Configuration): Promise<IngestionPipeline> {
-        return this.api.createPipeline(param.groupId, param.ingestionPipeline, param.envelope,  options).toPromise();
+    public createPipeline(param: DataLakePipelinesApiCreatePipelineRequest, options?: Configuration): Promise<DataLakeIngestionPipeline> {
+        return this.api.createPipeline(param.groupId, param.dataLakeIngestionPipeline,  options).toPromise();
     }
 
     /**
@@ -4892,8 +3803,8 @@ export class ObjectDataLakePipelinesApi {
      * Remove One Data Lake Pipeline
      * @param param the request object
      */
-    public deletePipeline(param: DataLakePipelinesApiDeletePipelineRequest, options?: Configuration): Promise<void> {
-        return this.api.deletePipeline(param.groupId, param.pipelineName, param.envelope,  options).toPromise();
+    public deletePipeline(param: DataLakePipelinesApiDeletePipelineRequest, options?: Configuration): Promise<any> {
+        return this.api.deletePipeline(param.groupId, param.pipelineName,  options).toPromise();
     }
 
     /**
@@ -4901,8 +3812,8 @@ export class ObjectDataLakePipelinesApi {
      * Delete Pipeline Run Dataset
      * @param param the request object
      */
-    public deletePipelineRunDataset(param: DataLakePipelinesApiDeletePipelineRunDatasetRequest, options?: Configuration): Promise<void> {
-        return this.api.deletePipelineRunDataset(param.groupId, param.pipelineName, param.pipelineRunId, param.envelope, param.pretty,  options).toPromise();
+    public deletePipelineRunDataset(param: DataLakePipelinesApiDeletePipelineRunDatasetRequest, options?: Configuration): Promise<any> {
+        return this.api.deletePipelineRunDataset(param.groupId, param.pipelineName, param.pipelineRunId,  options).toPromise();
     }
 
     /**
@@ -4910,8 +3821,8 @@ export class ObjectDataLakePipelinesApi {
      * Return One Data Lake Pipeline
      * @param param the request object
      */
-    public getPipeline(param: DataLakePipelinesApiGetPipelineRequest, options?: Configuration): Promise<IngestionPipeline> {
-        return this.api.getPipeline(param.groupId, param.pipelineName, param.envelope, param.pretty,  options).toPromise();
+    public getPipeline(param: DataLakePipelinesApiGetPipelineRequest, options?: Configuration): Promise<DataLakeIngestionPipeline> {
+        return this.api.getPipeline(param.groupId, param.pipelineName,  options).toPromise();
     }
 
     /**
@@ -4920,7 +3831,7 @@ export class ObjectDataLakePipelinesApi {
      * @param param the request object
      */
     public getPipelineRun(param: DataLakePipelinesApiGetPipelineRunRequest, options?: Configuration): Promise<IngestionPipelineRun> {
-        return this.api.getPipelineRun(param.groupId, param.pipelineName, param.pipelineRunId, param.envelope, param.pretty,  options).toPromise();
+        return this.api.getPipelineRun(param.groupId, param.pipelineName, param.pipelineRunId,  options).toPromise();
     }
 
     /**
@@ -4928,8 +3839,8 @@ export class ObjectDataLakePipelinesApi {
      * Return All Data Lake Pipeline Runs from One Project
      * @param param the request object
      */
-    public listPipelineRuns(param: DataLakePipelinesApiListPipelineRunsRequest, options?: Configuration): Promise<PaginatedPipelineRunView> {
-        return this.api.listPipelineRuns(param.groupId, param.pipelineName, param.envelope, param.includeCount, param.itemsPerPage, param.pageNum, param.pretty, param.createdBefore,  options).toPromise();
+    public listPipelineRuns(param: DataLakePipelinesApiListPipelineRunsRequest, options?: Configuration): Promise<PaginatedPipelineRun> {
+        return this.api.listPipelineRuns(param.groupId, param.pipelineName, param.includeCount, param.itemsPerPage, param.pageNum, param.createdBefore,  options).toPromise();
     }
 
     /**
@@ -4937,8 +3848,8 @@ export class ObjectDataLakePipelinesApi {
      * Return Available Ingestion Schedules for One Data Lake Pipeline
      * @param param the request object
      */
-    public listPipelineSchedules(param: DataLakePipelinesApiListPipelineSchedulesRequest, options?: Configuration): Promise<Array<ApiPolicyItemView>> {
-        return this.api.listPipelineSchedules(param.groupId, param.pipelineName, param.envelope, param.pretty,  options).toPromise();
+    public listPipelineSchedules(param: DataLakePipelinesApiListPipelineSchedulesRequest, options?: Configuration): Promise<Array<DiskBackupApiPolicyItem>> {
+        return this.api.listPipelineSchedules(param.groupId, param.pipelineName,  options).toPromise();
     }
 
     /**
@@ -4946,8 +3857,8 @@ export class ObjectDataLakePipelinesApi {
      * Return Available Backup Snapshots for One Data Lake Pipeline
      * @param param the request object
      */
-    public listPipelineSnapshots(param: DataLakePipelinesApiListPipelineSnapshotsRequest, options?: Configuration): Promise<PaginatedBackupSnapshotView> {
-        return this.api.listPipelineSnapshots(param.groupId, param.pipelineName, param.envelope, param.includeCount, param.itemsPerPage, param.pageNum, param.pretty, param.completedAfter,  options).toPromise();
+    public listPipelineSnapshots(param: DataLakePipelinesApiListPipelineSnapshotsRequest, options?: Configuration): Promise<PaginatedBackupSnapshot> {
+        return this.api.listPipelineSnapshots(param.groupId, param.pipelineName, param.includeCount, param.itemsPerPage, param.pageNum, param.completedAfter,  options).toPromise();
     }
 
     /**
@@ -4955,8 +3866,8 @@ export class ObjectDataLakePipelinesApi {
      * Return All Data Lake Pipelines from One Project
      * @param param the request object
      */
-    public listPipelines(param: DataLakePipelinesApiListPipelinesRequest, options?: Configuration): Promise<Array<IngestionPipeline>> {
-        return this.api.listPipelines(param.groupId, param.envelope,  options).toPromise();
+    public listPipelines(param: DataLakePipelinesApiListPipelinesRequest, options?: Configuration): Promise<Array<DataLakeIngestionPipeline>> {
+        return this.api.listPipelines(param.groupId,  options).toPromise();
     }
 
     /**
@@ -4964,8 +3875,8 @@ export class ObjectDataLakePipelinesApi {
      * Pause One Data Lake Pipeline
      * @param param the request object
      */
-    public pausePipeline(param: DataLakePipelinesApiPausePipelineRequest, options?: Configuration): Promise<IngestionPipeline> {
-        return this.api.pausePipeline(param.groupId, param.pipelineName, param.envelope, param.pretty,  options).toPromise();
+    public pausePipeline(param: DataLakePipelinesApiPausePipelineRequest, options?: Configuration): Promise<DataLakeIngestionPipeline> {
+        return this.api.pausePipeline(param.groupId, param.pipelineName,  options).toPromise();
     }
 
     /**
@@ -4973,8 +3884,8 @@ export class ObjectDataLakePipelinesApi {
      * Resume One Data Lake Pipeline
      * @param param the request object
      */
-    public resumePipeline(param: DataLakePipelinesApiResumePipelineRequest, options?: Configuration): Promise<IngestionPipeline> {
-        return this.api.resumePipeline(param.groupId, param.pipelineName, param.envelope, param.pretty,  options).toPromise();
+    public resumePipeline(param: DataLakePipelinesApiResumePipelineRequest, options?: Configuration): Promise<DataLakeIngestionPipeline> {
+        return this.api.resumePipeline(param.groupId, param.pipelineName,  options).toPromise();
     }
 
     /**
@@ -4983,7 +3894,7 @@ export class ObjectDataLakePipelinesApi {
      * @param param the request object
      */
     public triggerSnapshotIngestion(param: DataLakePipelinesApiTriggerSnapshotIngestionRequest, options?: Configuration): Promise<IngestionPipelineRun> {
-        return this.api.triggerSnapshotIngestion(param.groupId, param.pipelineName, param.triggerIngestionRequest, param.envelope, param.pretty,  options).toPromise();
+        return this.api.triggerSnapshotIngestion(param.groupId, param.pipelineName, param.triggerIngestionPipelineRequest,  options).toPromise();
     }
 
     /**
@@ -4991,8 +3902,8 @@ export class ObjectDataLakePipelinesApi {
      * Update One Data Lake Pipeline
      * @param param the request object
      */
-    public updatePipeline(param: DataLakePipelinesApiUpdatePipelineRequest, options?: Configuration): Promise<IngestionPipeline> {
-        return this.api.updatePipeline(param.groupId, param.pipelineName, param.ingestionPipeline, param.envelope,  options).toPromise();
+    public updatePipeline(param: DataLakePipelinesApiUpdatePipelineRequest, options?: Configuration): Promise<DataLakeIngestionPipeline> {
+        return this.api.updatePipeline(param.groupId, param.pipelineName, param.dataLakeIngestionPipeline,  options).toPromise();
     }
 
 }
@@ -5009,22 +3920,10 @@ export interface DatabaseUsersApiCreateDatabaseUserRequest {
     groupId: string
     /**
      * Creates one database user in the specified project.
-     * @type DatabaseUser
+     * @type CloudDatabaseUser
      * @memberof DatabaseUsersApicreateDatabaseUser
      */
-    databaseUser: DatabaseUser
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof DatabaseUsersApicreateDatabaseUser
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof DatabaseUsersApicreateDatabaseUser
-     */
-    pretty?: boolean
+    cloudDatabaseUser: CloudDatabaseUser
 }
 
 export interface DatabaseUsersApiDeleteDatabaseUserRequest {
@@ -5035,29 +3934,17 @@ export interface DatabaseUsersApiDeleteDatabaseUserRequest {
      */
     groupId: string
     /**
-     * Human-readable label that identifies the database against which the database user authenticates. Database users must provide both a username and authentication database to log into MongoDB. If the user authenticates with AWS IAM, x.509, or LDAP, this value should be &#x60;$external&#x60;. If the user authenticates with SCRAM-SHA, this value should be &#x60;admin&#x60;.
+     * Human-readable label that identifies the database against which the database user authenticates. Database users must provide both a username and authentication database to log into MongoDB. If the user authenticates with AWS IAM, x.509, or LDAP, this value should be &#x60;$external&#x60;. If the user authenticates with SCRAM-SHA or OIDC, this value should be &#x60;admin&#x60;.
      * @type string
      * @memberof DatabaseUsersApideleteDatabaseUser
      */
     databaseName: string
     /**
-     * Human-readable label that represents the user that authenticates to MongoDB. The format of this label depends on the method of authentication:  | Authentication Method | Parameter Needed | Parameter Value | username Format | |---|---|---|---| | AWS IAM | awsType | ROLE | &lt;abbr title&#x3D;\&quot;Amazon Resource Name\&quot;&gt;ARN&lt;/abbr&gt; | | AWS IAM | awsType | USER | &lt;abbr title&#x3D;\&quot;Amazon Resource Name\&quot;&gt;ARN&lt;/abbr&gt; | | x.509 | x509Type | CUSTOMER | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | x.509 | x509Type | MANAGED | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | LDAP | ldapAuthType | USER | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | LDAP | ldapAuthType | GROUP | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | SCRAM-SHA | awsType, x509Type, ldapAuthType | NONE | Alphanumeric string | 
+     * Human-readable label that represents the user that authenticates to MongoDB. The format of this label depends on the method of authentication:  | Authentication Method | Parameter Needed | Parameter Value | username Format | |---|---|---|---| | AWS IAM | awsType | ROLE | &lt;abbr title&#x3D;\&quot;Amazon Resource Name\&quot;&gt;ARN&lt;/abbr&gt; | | AWS IAM | awsType | USER | &lt;abbr title&#x3D;\&quot;Amazon Resource Name\&quot;&gt;ARN&lt;/abbr&gt; | | x.509 | x509Type | CUSTOMER | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | x.509 | x509Type | MANAGED | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | LDAP | ldapAuthType | USER | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | LDAP | ldapAuthType | GROUP | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | OIDC | oidcAuthType | IDP_GROUP | Atlas OIDC IdP ID (found in federation settings), followed by a &#39;/&#39;, followed by the IdP group name | | SCRAM-SHA | awsType, x509Type, ldapAuthType, oidcAuthType | NONE | Alphanumeric string | 
      * @type string
      * @memberof DatabaseUsersApideleteDatabaseUser
      */
     username: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof DatabaseUsersApideleteDatabaseUser
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof DatabaseUsersApideleteDatabaseUser
-     */
-    pretty?: boolean
 }
 
 export interface DatabaseUsersApiGetDatabaseUserRequest {
@@ -5068,29 +3955,17 @@ export interface DatabaseUsersApiGetDatabaseUserRequest {
      */
     groupId: string
     /**
-     * Human-readable label that identifies the database against which the database user authenticates. Database users must provide both a username and authentication database to log into MongoDB. If the user authenticates with AWS IAM, x.509, or LDAP, this value should be &#x60;$external&#x60;. If the user authenticates with SCRAM-SHA, this value should be &#x60;admin&#x60;.
+     * Human-readable label that identifies the database against which the database user authenticates. Database users must provide both a username and authentication database to log into MongoDB. If the user authenticates with AWS IAM, x.509, or LDAP, this value should be &#x60;$external&#x60;. If the user authenticates with SCRAM-SHA or OIDC, this value should be &#x60;admin&#x60;.
      * @type string
      * @memberof DatabaseUsersApigetDatabaseUser
      */
     databaseName: string
     /**
-     * Human-readable label that represents the user that authenticates to MongoDB. The format of this label depends on the method of authentication:  | Authentication Method | Parameter Needed | Parameter Value | username Format | |---|---|---|---| | AWS IAM | awsType | ROLE | &lt;abbr title&#x3D;\&quot;Amazon Resource Name\&quot;&gt;ARN&lt;/abbr&gt; | | AWS IAM | awsType | USER | &lt;abbr title&#x3D;\&quot;Amazon Resource Name\&quot;&gt;ARN&lt;/abbr&gt; | | x.509 | x509Type | CUSTOMER | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | x.509 | x509Type | MANAGED | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | LDAP | ldapAuthType | USER | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | LDAP | ldapAuthType | GROUP | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | SCRAM-SHA | awsType, x509Type, ldapAuthType | NONE | Alphanumeric string | 
+     * Human-readable label that represents the user that authenticates to MongoDB. The format of this label depends on the method of authentication:  | Authentication Method | Parameter Needed | Parameter Value | username Format | |---|---|---|---| | AWS IAM | awsType | ROLE | &lt;abbr title&#x3D;\&quot;Amazon Resource Name\&quot;&gt;ARN&lt;/abbr&gt; | | AWS IAM | awsType | USER | &lt;abbr title&#x3D;\&quot;Amazon Resource Name\&quot;&gt;ARN&lt;/abbr&gt; | | x.509 | x509Type | CUSTOMER | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | x.509 | x509Type | MANAGED | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | LDAP | ldapAuthType | USER | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | LDAP | ldapAuthType | GROUP | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | OIDC | oidcAuthType | IDP_GROUP | Atlas OIDC IdP ID (found in federation settings), followed by a &#39;/&#39;, followed by the IdP group name | | SCRAM-SHA | awsType, x509Type, ldapAuthType, oidcAuthType | NONE | Alphanumeric string | 
      * @type string
      * @memberof DatabaseUsersApigetDatabaseUser
      */
     username: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof DatabaseUsersApigetDatabaseUser
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof DatabaseUsersApigetDatabaseUser
-     */
-    pretty?: boolean
 }
 
 export interface DatabaseUsersApiListDatabaseUsersRequest {
@@ -5100,12 +3975,6 @@ export interface DatabaseUsersApiListDatabaseUsersRequest {
      * @memberof DatabaseUsersApilistDatabaseUsers
      */
     groupId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof DatabaseUsersApilistDatabaseUsers
-     */
-    envelope?: boolean
     /**
      * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
@@ -5124,12 +3993,6 @@ export interface DatabaseUsersApiListDatabaseUsersRequest {
      * @memberof DatabaseUsersApilistDatabaseUsers
      */
     pageNum?: number
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof DatabaseUsersApilistDatabaseUsers
-     */
-    pretty?: boolean
 }
 
 export interface DatabaseUsersApiUpdateDatabaseUserRequest {
@@ -5140,35 +4003,23 @@ export interface DatabaseUsersApiUpdateDatabaseUserRequest {
      */
     groupId: string
     /**
-     * Human-readable label that identifies the database against which the database user authenticates. Database users must provide both a username and authentication database to log into MongoDB. If the user authenticates with AWS IAM, x.509, or LDAP, this value should be &#x60;$external&#x60;. If the user authenticates with SCRAM-SHA, this value should be &#x60;admin&#x60;.
+     * Human-readable label that identifies the database against which the database user authenticates. Database users must provide both a username and authentication database to log into MongoDB. If the user authenticates with AWS IAM, x.509, or LDAP, this value should be &#x60;$external&#x60;. If the user authenticates with SCRAM-SHA or OIDC, this value should be &#x60;admin&#x60;.
      * @type string
      * @memberof DatabaseUsersApiupdateDatabaseUser
      */
     databaseName: string
     /**
-     * Human-readable label that represents the user that authenticates to MongoDB. The format of this label depends on the method of authentication:  | Authentication Method | Parameter Needed | Parameter Value | username Format | |---|---|---|---| | AWS IAM | awsType | ROLE | &lt;abbr title&#x3D;\&quot;Amazon Resource Name\&quot;&gt;ARN&lt;/abbr&gt; | | AWS IAM | awsType | USER | &lt;abbr title&#x3D;\&quot;Amazon Resource Name\&quot;&gt;ARN&lt;/abbr&gt; | | x.509 | x509Type | CUSTOMER | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | x.509 | x509Type | MANAGED | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | LDAP | ldapAuthType | USER | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | LDAP | ldapAuthType | GROUP | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | SCRAM-SHA | awsType, x509Type, ldapAuthType | NONE | Alphanumeric string | 
+     * Human-readable label that represents the user that authenticates to MongoDB. The format of this label depends on the method of authentication:  | Authentication Method | Parameter Needed | Parameter Value | username Format | |---|---|---|---| | AWS IAM | awsType | ROLE | &lt;abbr title&#x3D;\&quot;Amazon Resource Name\&quot;&gt;ARN&lt;/abbr&gt; | | AWS IAM | awsType | USER | &lt;abbr title&#x3D;\&quot;Amazon Resource Name\&quot;&gt;ARN&lt;/abbr&gt; | | x.509 | x509Type | CUSTOMER | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | x.509 | x509Type | MANAGED | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | LDAP | ldapAuthType | USER | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | LDAP | ldapAuthType | GROUP | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | OIDC | oidcAuthType | IDP_GROUP | Atlas OIDC IdP ID (found in federation settings), followed by a &#39;/&#39;, followed by the IdP group name | | SCRAM-SHA | awsType, x509Type, ldapAuthType, oidcAuthType | NONE | Alphanumeric string | 
      * @type string
      * @memberof DatabaseUsersApiupdateDatabaseUser
      */
     username: string
     /**
      * Updates one database user that belongs to the specified project.
-     * @type DatabaseUser
+     * @type CloudDatabaseUser
      * @memberof DatabaseUsersApiupdateDatabaseUser
      */
-    databaseUser: DatabaseUser
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof DatabaseUsersApiupdateDatabaseUser
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof DatabaseUsersApiupdateDatabaseUser
-     */
-    pretty?: boolean
+    cloudDatabaseUser: CloudDatabaseUser
 }
 
 export class ObjectDatabaseUsersApi {
@@ -5179,48 +4030,48 @@ export class ObjectDatabaseUsersApi {
     }
 
     /**
-     * Creates one database user in the specified project. This MongoDB Cloud supports a maximum of 100 database users per project. If you require more than 100 database users on a project, contact [Support](https://cloud.mongodb.com/support). To use this resource, the requesting API Key must have the Project Owner or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List.
+     * Creates one database user in the specified project. This MongoDB Cloud supports a maximum of 100 database users per project. If you require more than 100 database users on a project, contact [Support](https://cloud.mongodb.com/support). To use this resource, the requesting API Key must have the Project Owner or Project Charts Admin roles.
      * Create One Database User in One Project
      * @param param the request object
      */
-    public createDatabaseUser(param: DatabaseUsersApiCreateDatabaseUserRequest, options?: Configuration): Promise<DatabaseUser> {
-        return this.api.createDatabaseUser(param.groupId, param.databaseUser, param.envelope, param.pretty,  options).toPromise();
+    public createDatabaseUser(param: DatabaseUsersApiCreateDatabaseUserRequest, options?: Configuration): Promise<CloudDatabaseUser> {
+        return this.api.createDatabaseUser(param.groupId, param.cloudDatabaseUser,  options).toPromise();
     }
 
     /**
-     * Removes one database user from the specified project. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Removes one database user from the specified project. To use this resource, the requesting API Key must have the Project Owner role.
      * Remove One Database User from One Project
      * @param param the request object
      */
-    public deleteDatabaseUser(param: DatabaseUsersApiDeleteDatabaseUserRequest, options?: Configuration): Promise<void> {
-        return this.api.deleteDatabaseUser(param.groupId, param.databaseName, param.username, param.envelope, param.pretty,  options).toPromise();
+    public deleteDatabaseUser(param: DatabaseUsersApiDeleteDatabaseUserRequest, options?: Configuration): Promise<any> {
+        return this.api.deleteDatabaseUser(param.groupId, param.databaseName, param.username,  options).toPromise();
     }
 
     /**
-     * Returns one database user that belong to the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns one database user that belong to the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return One Database User from One Project
      * @param param the request object
      */
-    public getDatabaseUser(param: DatabaseUsersApiGetDatabaseUserRequest, options?: Configuration): Promise<DatabaseUser> {
-        return this.api.getDatabaseUser(param.groupId, param.databaseName, param.username, param.envelope, param.pretty,  options).toPromise();
+    public getDatabaseUser(param: DatabaseUsersApiGetDatabaseUserRequest, options?: Configuration): Promise<CloudDatabaseUser> {
+        return this.api.getDatabaseUser(param.groupId, param.databaseName, param.username,  options).toPromise();
     }
 
     /**
-     * Returns all database users that belong to the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns all database users that belong to the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return All Database Users from One Project
      * @param param the request object
      */
-    public listDatabaseUsers(param: DatabaseUsersApiListDatabaseUsersRequest, options?: Configuration): Promise<PaginatedApiAtlasDatabaseUserView> {
-        return this.api.listDatabaseUsers(param.groupId, param.envelope, param.includeCount, param.itemsPerPage, param.pageNum, param.pretty,  options).toPromise();
+    public listDatabaseUsers(param: DatabaseUsersApiListDatabaseUsersRequest, options?: Configuration): Promise<PaginatedApiAtlasDatabaseUser> {
+        return this.api.listDatabaseUsers(param.groupId, param.includeCount, param.itemsPerPage, param.pageNum,  options).toPromise();
     }
 
     /**
-     * Updates one database user that belongs to the specified project. To use this resource, the requesting API Key must have the Project Owner or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List.
+     * Updates one database user that belongs to the specified project. To use this resource, the requesting API Key must have the Project Owner or Project Charts Admin roles.
      * Update One Database User in One Project
      * @param param the request object
      */
-    public updateDatabaseUser(param: DatabaseUsersApiUpdateDatabaseUserRequest, options?: Configuration): Promise<DatabaseUser> {
-        return this.api.updateDatabaseUser(param.groupId, param.databaseName, param.username, param.databaseUser, param.envelope, param.pretty,  options).toPromise();
+    public updateDatabaseUser(param: DatabaseUsersApiUpdateDatabaseUserRequest, options?: Configuration): Promise<CloudDatabaseUser> {
+        return this.api.updateDatabaseUser(param.groupId, param.databaseName, param.username, param.cloudDatabaseUser,  options).toPromise();
     }
 
 }
@@ -5228,25 +4079,13 @@ export class ObjectDatabaseUsersApi {
 import { ObservableEncryptionAtRestUsingCustomerKeyManagementApi } from "./ObservableAPI";
 import { EncryptionAtRestUsingCustomerKeyManagementApiRequestFactory, EncryptionAtRestUsingCustomerKeyManagementApiResponseProcessor} from "../apis/EncryptionAtRestUsingCustomerKeyManagementApi";
 
-export interface EncryptionAtRestUsingCustomerKeyManagementApiReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest {
+export interface EncryptionAtRestUsingCustomerKeyManagementApiGetEncryptionAtRestRequest {
     /**
      * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
      * @type string
-     * @memberof EncryptionAtRestUsingCustomerKeyManagementApireturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProject
+     * @memberof EncryptionAtRestUsingCustomerKeyManagementApigetEncryptionAtRest
      */
     groupId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof EncryptionAtRestUsingCustomerKeyManagementApireturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProject
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof EncryptionAtRestUsingCustomerKeyManagementApireturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProject
-     */
-    pretty?: boolean
 }
 
 export interface EncryptionAtRestUsingCustomerKeyManagementApiUpdateEncryptionAtRestRequest {
@@ -5262,18 +4101,6 @@ export interface EncryptionAtRestUsingCustomerKeyManagementApiUpdateEncryptionAt
      * @memberof EncryptionAtRestUsingCustomerKeyManagementApiupdateEncryptionAtRest
      */
     encryptionAtRest: EncryptionAtRest
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof EncryptionAtRestUsingCustomerKeyManagementApiupdateEncryptionAtRest
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof EncryptionAtRestUsingCustomerKeyManagementApiupdateEncryptionAtRest
-     */
-    pretty?: boolean
 }
 
 export class ObjectEncryptionAtRestUsingCustomerKeyManagementApi {
@@ -5288,17 +4115,17 @@ export class ObjectEncryptionAtRestUsingCustomerKeyManagementApi {
      * Return One Configuration for Encryption at Rest using Customer-Managed Keys for One Project
      * @param param the request object
      */
-    public returnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProject(param: EncryptionAtRestUsingCustomerKeyManagementApiReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest, options?: Configuration): Promise<EncryptionAtRest> {
-        return this.api.returnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProject(param.groupId, param.envelope, param.pretty,  options).toPromise();
+    public getEncryptionAtRest(param: EncryptionAtRestUsingCustomerKeyManagementApiGetEncryptionAtRestRequest, options?: Configuration): Promise<EncryptionAtRest> {
+        return this.api.getEncryptionAtRest(param.groupId,  options).toPromise();
     }
 
     /**
-     * Updates the configuration for encryption at rest using the keys you manage through your cloud provider. MongoDB Cloud encrypts all storage even if you don't use your own key management. This resource requires the requesting API Key to have the Project Atlas Admin role.  **LIMITED TO M10 OR GREATER:** MongoDB Cloud limits this feature to dedicated cluster tiers of M10 and greater.
+     * Updates the configuration for encryption at rest using the keys you manage through your cloud provider. MongoDB Cloud encrypts all storage even if you don't use your own key management. This resource requires the requesting API Key to have the Project Owner role. This feature isn't available for `M0` free clusters, `M2`, `M5`, or serverless clusters.   After you configure at least one Encryption at Rest using a Customer Key Management provider for the MongoDB Cloud project, Project Owners can enable Encryption at Rest using Customer Key Management for each MongoDB Cloud cluster for which they require encryption. The Encryption at Rest using Customer Key Management provider doesn't have to match the cluster cloud service provider. MongoDB Cloud doesn't automatically rotate user-managed encryption keys. Defer to your preferred Encryption at Rest using Customer Key Management provider's documentation and guidance for best practices on key rotation. MongoDB Cloud automatically creates a 90-day key rotation alert when you configure Encryption at Rest using Customer Key Management using your Key Management in an MongoDB Cloud project. MongoDB Cloud encrypts all storage whether or not you use your own key management.
      * Update Configuration for Encryption at Rest using Customer-Managed Keys for One Project
      * @param param the request object
      */
     public updateEncryptionAtRest(param: EncryptionAtRestUsingCustomerKeyManagementApiUpdateEncryptionAtRestRequest, options?: Configuration): Promise<EncryptionAtRest> {
-        return this.api.updateEncryptionAtRest(param.groupId, param.encryptionAtRest, param.envelope, param.pretty,  options).toPromise();
+        return this.api.updateEncryptionAtRest(param.groupId, param.encryptionAtRest,  options).toPromise();
     }
 
 }
@@ -5319,18 +4146,6 @@ export interface EventsApiGetOrganizationEventRequest {
      * @memberof EventsApigetOrganizationEvent
      */
     eventId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof EventsApigetOrganizationEvent
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof EventsApigetOrganizationEvent
-     */
-    pretty?: boolean
     /**
      * Flag that indicates whether to include the raw document in the output. The raw document contains additional meta information about the event.
      * @type boolean
@@ -5353,18 +4168,6 @@ export interface EventsApiGetProjectEventRequest {
      */
     eventId: string
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof EventsApigetProjectEvent
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof EventsApigetProjectEvent
-     */
-    pretty?: boolean
-    /**
      * Flag that indicates whether to include the raw document in the output. The raw document contains additional meta information about the event.
      * @type boolean
      * @memberof EventsApigetProjectEvent
@@ -5379,12 +4182,6 @@ export interface EventsApiListOrganizationEventsRequest {
      * @memberof EventsApilistOrganizationEvents
      */
     orgId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof EventsApilistOrganizationEvents
-     */
-    envelope?: boolean
     /**
      * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
@@ -5404,17 +4201,11 @@ export interface EventsApiListOrganizationEventsRequest {
      */
     pageNum?: number
     /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof EventsApilistOrganizationEvents
-     */
-    pretty?: boolean
-    /**
      * Category of incident recorded at this moment in time.  **IMPORTANT**: The complete list of event type values changes frequently.
-     * @type EventTypeForOrg
+     * @type Array&lt;string&gt;
      * @memberof EventsApilistOrganizationEvents
      */
-    eventType?: EventTypeForOrg
+    eventType?: Array<string>
     /**
      * Flag that indicates whether to include the raw document in the output. The raw document contains additional meta information about the event.
      * @type boolean
@@ -5443,12 +4234,6 @@ export interface EventsApiListProjectEventsRequest {
      */
     groupId: string
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof EventsApilistProjectEvents
-     */
-    envelope?: boolean
-    /**
      * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
      * @memberof EventsApilistProjectEvents
@@ -5467,12 +4252,6 @@ export interface EventsApiListProjectEventsRequest {
      */
     pageNum?: number
     /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof EventsApilistProjectEvents
-     */
-    pretty?: boolean
-    /**
      * Human-readable label that identifies the cluster.
      * @type Array&lt;string&gt;
      * @memberof EventsApilistProjectEvents
@@ -5480,10 +4259,16 @@ export interface EventsApiListProjectEventsRequest {
     clusterNames?: Array<string>
     /**
      * Category of incident recorded at this moment in time.  **IMPORTANT**: The complete list of event type values changes frequently.
-     * @type EventTypeForNdsGroup
+     * @type Array&lt;string&gt;
      * @memberof EventsApilistProjectEvents
      */
-    eventType?: EventTypeForNdsGroup
+    eventType?: Array<string>
+    /**
+     * Category of event that you would like to exclude from query results, such as CLUSTER_CREATED  **IMPORTANT**: Event type names change frequently. Verify that you specify the event type correctly by checking the complete list of event types.
+     * @type Array&lt;string&gt;
+     * @memberof EventsApilistProjectEvents
+     */
+    excludedEventType?: Array<string>
     /**
      * Flag that indicates whether to include the raw document in the output. The raw document contains additional meta information about the event.
      * @type boolean
@@ -5512,39 +4297,39 @@ export class ObjectEventsApi {
     }
 
     /**
-     * Returns one event for the specified organization. Events identify significant database, billing, or security activities or status changes. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an Access List.   This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/events-orgs-get-one/).
+     * Returns one event for the specified organization. Events identify significant database, billing, or security activities or status changes. To use this resource, the requesting API Key must have the Organization Member role.  This resource remains under revision and may change.
      * Return One Event from One Organization
      * @param param the request object
      */
     public getOrganizationEvent(param: EventsApiGetOrganizationEventRequest, options?: Configuration): Promise<EventViewForOrg> {
-        return this.api.getOrganizationEvent(param.orgId, param.eventId, param.envelope, param.pretty, param.includeRaw,  options).toPromise();
+        return this.api.getOrganizationEvent(param.orgId, param.eventId, param.includeRaw,  options).toPromise();
     }
 
     /**
-     * Returns one event for the specified project. Events identify significant database, billing, or security activities or status changes. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.   This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/events-projects-get-one/).
+     * Returns one event for the specified project. Events identify significant database, billing, or security activities or status changes. To use this resource, the requesting API Key must have the Project Read Only role.  This resource remains under revision and may change.
      * Return One Event from One Project
      * @param param the request object
      */
     public getProjectEvent(param: EventsApiGetProjectEventRequest, options?: Configuration): Promise<EventViewForNdsGroup> {
-        return this.api.getProjectEvent(param.groupId, param.eventId, param.envelope, param.pretty, param.includeRaw,  options).toPromise();
+        return this.api.getProjectEvent(param.groupId, param.eventId, param.includeRaw,  options).toPromise();
     }
 
     /**
-     * Returns all events for the specified organization. Events identify significant database, billing, or security activities or status changes. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an Access List.   This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/events-orgs-get-all/).
+     * Returns all events for the specified organization. Events identify significant database, billing, or security activities or status changes. To use this resource, the requesting API Key must have the Organization Member role.  This resource remains under revision and may change.
      * Return All Events from One Organization
      * @param param the request object
      */
-    public listOrganizationEvents(param: EventsApiListOrganizationEventsRequest, options?: Configuration): Promise<OrgPaginatedEventView> {
-        return this.api.listOrganizationEvents(param.orgId, param.envelope, param.includeCount, param.itemsPerPage, param.pageNum, param.pretty, param.eventType, param.includeRaw, param.maxDate, param.minDate,  options).toPromise();
+    public listOrganizationEvents(param: EventsApiListOrganizationEventsRequest, options?: Configuration): Promise<OrgPaginatedEvent> {
+        return this.api.listOrganizationEvents(param.orgId, param.includeCount, param.itemsPerPage, param.pageNum, param.eventType, param.includeRaw, param.maxDate, param.minDate,  options).toPromise();
     }
 
     /**
-     * Returns one event for the specified project. Events identify significant database, billing, or security activities or status changes. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.   This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/events-projects-get-all/).
+     * Returns one event for the specified project. Events identify significant database, billing, or security activities or status changes. To use this resource, the requesting API Key must have the Project Read Only role.  This resource remains under revision and may change.
      * Return All Events from One Project
      * @param param the request object
      */
-    public listProjectEvents(param: EventsApiListProjectEventsRequest, options?: Configuration): Promise<GroupPaginatedEventView> {
-        return this.api.listProjectEvents(param.groupId, param.envelope, param.includeCount, param.itemsPerPage, param.pageNum, param.pretty, param.clusterNames, param.eventType, param.includeRaw, param.maxDate, param.minDate,  options).toPromise();
+    public listProjectEvents(param: EventsApiListProjectEventsRequest, options?: Configuration): Promise<GroupPaginatedEvent> {
+        return this.api.listProjectEvents(param.groupId, param.includeCount, param.itemsPerPage, param.pageNum, param.clusterNames, param.eventType, param.excludedEventType, param.includeRaw, param.maxDate, param.minDate,  options).toPromise();
     }
 
 }
@@ -5567,16 +4352,10 @@ export interface FederatedAuthenticationApiCreateRoleMappingRequest {
     orgId: string
     /**
      * The role mapping that you want to create.
-     * @type RoleMappingView
+     * @type AuthFederationRoleMapping
      * @memberof FederatedAuthenticationApicreateRoleMapping
      */
-    roleMappingView: RoleMappingView
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof FederatedAuthenticationApicreateRoleMapping
-     */
-    envelope?: boolean
+    authFederationRoleMapping: AuthFederationRoleMapping
 }
 
 export interface FederatedAuthenticationApiDeleteFederationAppRequest {
@@ -5607,12 +4386,6 @@ export interface FederatedAuthenticationApiDeleteRoleMappingRequest {
      * @memberof FederatedAuthenticationApideleteRoleMapping
      */
     orgId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof FederatedAuthenticationApideleteRoleMapping
-     */
-    envelope?: boolean
 }
 
 export interface FederatedAuthenticationApiGetConnectedOrgConfigRequest {
@@ -5628,12 +4401,6 @@ export interface FederatedAuthenticationApiGetConnectedOrgConfigRequest {
      * @memberof FederatedAuthenticationApigetConnectedOrgConfig
      */
     orgId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof FederatedAuthenticationApigetConnectedOrgConfig
-     */
-    envelope?: boolean
 }
 
 export interface FederatedAuthenticationApiGetFederationSettingsRequest {
@@ -5643,18 +4410,6 @@ export interface FederatedAuthenticationApiGetFederationSettingsRequest {
      * @memberof FederatedAuthenticationApigetFederationSettings
      */
     orgId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof FederatedAuthenticationApigetFederationSettings
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof FederatedAuthenticationApigetFederationSettings
-     */
-    pretty?: boolean
 }
 
 export interface FederatedAuthenticationApiGetIdentityProviderRequest {
@@ -5670,12 +4425,6 @@ export interface FederatedAuthenticationApiGetIdentityProviderRequest {
      * @memberof FederatedAuthenticationApigetIdentityProvider
      */
     identityProviderId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof FederatedAuthenticationApigetIdentityProvider
-     */
-    envelope?: boolean
 }
 
 export interface FederatedAuthenticationApiGetIdentityProviderMetadataRequest {
@@ -5712,12 +4461,6 @@ export interface FederatedAuthenticationApiGetRoleMappingRequest {
      * @memberof FederatedAuthenticationApigetRoleMapping
      */
     orgId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof FederatedAuthenticationApigetRoleMapping
-     */
-    envelope?: boolean
 }
 
 export interface FederatedAuthenticationApiListConnectedOrgConfigsRequest {
@@ -5727,12 +4470,6 @@ export interface FederatedAuthenticationApiListConnectedOrgConfigsRequest {
      * @memberof FederatedAuthenticationApilistConnectedOrgConfigs
      */
     federationSettingsId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof FederatedAuthenticationApilistConnectedOrgConfigs
-     */
-    envelope?: boolean
 }
 
 export interface FederatedAuthenticationApiListIdentityProvidersRequest {
@@ -5743,11 +4480,11 @@ export interface FederatedAuthenticationApiListIdentityProvidersRequest {
      */
     federationSettingsId: string
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
+     * The protocols of the target identity providers.
+     * @type string
      * @memberof FederatedAuthenticationApilistIdentityProviders
      */
-    envelope?: boolean
+    protocol?: string
 }
 
 export interface FederatedAuthenticationApiListRoleMappingsRequest {
@@ -5763,12 +4500,6 @@ export interface FederatedAuthenticationApiListRoleMappingsRequest {
      * @memberof FederatedAuthenticationApilistRoleMappings
      */
     orgId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof FederatedAuthenticationApilistRoleMappings
-     */
-    envelope?: boolean
 }
 
 export interface FederatedAuthenticationApiRemoveConnectedOrgConfigRequest {
@@ -5784,12 +4515,6 @@ export interface FederatedAuthenticationApiRemoveConnectedOrgConfigRequest {
      * @memberof FederatedAuthenticationApiremoveConnectedOrgConfig
      */
     orgId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof FederatedAuthenticationApiremoveConnectedOrgConfig
-     */
-    envelope?: boolean
 }
 
 export interface FederatedAuthenticationApiUpdateConnectedOrgConfigRequest {
@@ -5807,16 +4532,10 @@ export interface FederatedAuthenticationApiUpdateConnectedOrgConfigRequest {
     orgId: string
     /**
      * The connected organization configuration that you want to update.
-     * @type ConnectedOrgConfigView
+     * @type ConnectedOrgConfig
      * @memberof FederatedAuthenticationApiupdateConnectedOrgConfig
      */
-    connectedOrgConfigView: ConnectedOrgConfigView
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof FederatedAuthenticationApiupdateConnectedOrgConfig
-     */
-    envelope?: boolean
+    connectedOrgConfig: ConnectedOrgConfig
 }
 
 export interface FederatedAuthenticationApiUpdateIdentityProviderRequest {
@@ -5838,12 +4557,6 @@ export interface FederatedAuthenticationApiUpdateIdentityProviderRequest {
      * @memberof FederatedAuthenticationApiupdateIdentityProvider
      */
     identityProviderUpdate: IdentityProviderUpdate
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof FederatedAuthenticationApiupdateIdentityProvider
-     */
-    envelope?: boolean
 }
 
 export interface FederatedAuthenticationApiUpdateRoleMappingRequest {
@@ -5867,16 +4580,10 @@ export interface FederatedAuthenticationApiUpdateRoleMappingRequest {
     orgId: string
     /**
      * The role mapping that you want to update.
-     * @type RoleMappingView
+     * @type AuthFederationRoleMapping
      * @memberof FederatedAuthenticationApiupdateRoleMapping
      */
-    roleMappingView: RoleMappingView
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof FederatedAuthenticationApiupdateRoleMapping
-     */
-    envelope?: boolean
+    authFederationRoleMapping: AuthFederationRoleMapping
 }
 
 export class ObjectFederatedAuthenticationApi {
@@ -5887,16 +4594,16 @@ export class ObjectFederatedAuthenticationApi {
     }
 
     /**
-     * Adds one role mapping to the specified organization in the specified federation. To use this resource, the requesting API Key must have the Organization Owner role. This resource doesn't require the API Key to have an Access List.
+     * Adds one role mapping to the specified organization in the specified federation. To use this resource, the requesting API Key must have the Organization Owner role.
      * Add One Role Mapping to One Organization
      * @param param the request object
      */
-    public createRoleMapping(param: FederatedAuthenticationApiCreateRoleMappingRequest, options?: Configuration): Promise<RoleMappingView> {
-        return this.api.createRoleMapping(param.federationSettingsId, param.orgId, param.roleMappingView, param.envelope,  options).toPromise();
+    public createRoleMapping(param: FederatedAuthenticationApiCreateRoleMappingRequest, options?: Configuration): Promise<AuthFederationRoleMapping> {
+        return this.api.createRoleMapping(param.federationSettingsId, param.orgId, param.authFederationRoleMapping,  options).toPromise();
     }
 
     /**
-     * Deletes the federation settings instance and all associated data, including identity providers and domains. To use this resource, the requesting API Key must have the Organization Owner role in the last remaining connected organization. This resource doesn't require the API Key to have an Access List. **Note**: requests to this resource will fail if there is more than one connected organization in the federation.
+     * Deletes the federation settings instance and all associated data, including identity providers and domains. To use this resource, the requesting API Key must have the Organization Owner role in the last remaining connected organization. **Note**: requests to this resource will fail if there is more than one connected organization in the federation.
      * Delete the federation settings instance.
      * @param param the request object
      */
@@ -5905,43 +4612,43 @@ export class ObjectFederatedAuthenticationApi {
     }
 
     /**
-     * Removes one role mapping in the specified organization from the specified federation. To use this resource, the requesting API Key must have the Organization Owner role. This resource doesn't require the API Key to have an Access List.
+     * Removes one role mapping in the specified organization from the specified federation. To use this resource, the requesting API Key must have the Organization Owner role.
      * Remove One Role Mapping from One Organization
      * @param param the request object
      */
     public deleteRoleMapping(param: FederatedAuthenticationApiDeleteRoleMappingRequest, options?: Configuration): Promise<void> {
-        return this.api.deleteRoleMapping(param.federationSettingsId, param.id, param.orgId, param.envelope,  options).toPromise();
+        return this.api.deleteRoleMapping(param.federationSettingsId, param.id, param.orgId,  options).toPromise();
     }
 
     /**
-     * Returns the specified connected org config from the specified federation. To use this resource, the requesting API Key must have the Organization Owner role in the connected org. This resource doesn't require the API Key to have an Access List.
+     * Returns the specified connected org config from the specified federation. To use this resource, the requesting API Key must have the Organization Owner role in the connected org.
      * Return One Org Config Connected to One Federation
      * @param param the request object
      */
-    public getConnectedOrgConfig(param: FederatedAuthenticationApiGetConnectedOrgConfigRequest, options?: Configuration): Promise<ConnectedOrgConfigView> {
-        return this.api.getConnectedOrgConfig(param.federationSettingsId, param.orgId, param.envelope,  options).toPromise();
+    public getConnectedOrgConfig(param: FederatedAuthenticationApiGetConnectedOrgConfigRequest, options?: Configuration): Promise<ConnectedOrgConfig> {
+        return this.api.getConnectedOrgConfig(param.federationSettingsId, param.orgId,  options).toPromise();
     }
 
     /**
-     * Returns information about the federation settings for the specified organization. To use this resource, the requesting API Key must have the Organization Owner role in the connected org. This resource doesn't require the API Key to have an Access List.
+     * Returns information about the federation settings for the specified organization. To use this resource, the requesting API Key must have the Organization Owner role in the connected org.
      * Return Federation Settings for One Organization
      * @param param the request object
      */
-    public getFederationSettings(param: FederatedAuthenticationApiGetFederationSettingsRequest, options?: Configuration): Promise<OrgFederationSettingsView> {
-        return this.api.getFederationSettings(param.orgId, param.envelope, param.pretty,  options).toPromise();
+    public getFederationSettings(param: FederatedAuthenticationApiGetFederationSettingsRequest, options?: Configuration): Promise<OrgFederationSettings> {
+        return this.api.getFederationSettings(param.orgId,  options).toPromise();
     }
 
     /**
-     * Returns one identity provider from the specified federation. To use this resource, the requesting API Key must have the Organization Owner role in one of the connected organizations. This resource doesn't require the API Key to have an Access List.
-     * Return one identity provider from the specified federation.
+     * Returns one identity provider in the specified federation by the identity provider's id. To use this resource, the requesting API Key must have the Organization Owner role in one of the connected organizations. Deprecated versions: v2-{2023-01-01}
+     * Return one identity provider from the specified federation by id.
      * @param param the request object
      */
-    public getIdentityProvider(param: FederatedAuthenticationApiGetIdentityProviderRequest, options?: Configuration): Promise<IdentityProviderView> {
-        return this.api.getIdentityProvider(param.federationSettingsId, param.identityProviderId, param.envelope,  options).toPromise();
+    public getIdentityProvider(param: FederatedAuthenticationApiGetIdentityProviderRequest, options?: Configuration): Promise<FederationIdentityProvider> {
+        return this.api.getIdentityProvider(param.federationSettingsId, param.identityProviderId,  options).toPromise();
     }
 
     /**
-     * Returns the metadata of one identity provider in the specified federation. To use this resource, the requesting API Key must have the Organization Owner role in one of the connected organizations. This resource doesn't require the API Key to have an Access List.
+     * Returns the metadata of one identity provider in the specified federation. To use this resource, the requesting API Key must have the Organization Owner role in one of the connected organizations.
      * Return the metadata of one identity provider in the specified federation.
      * @param param the request object
      */
@@ -5950,75 +4657,75 @@ export class ObjectFederatedAuthenticationApi {
     }
 
     /**
-     * Returns one role mapping from the specified organization in the specified federation. To use this resource, the requesting API Key must have the Organization Owner role. This resource doesn't require the API Key to have an Access List.
+     * Returns one role mapping from the specified organization in the specified federation. To use this resource, the requesting API Key must have the Organization Owner role.
      * Return One Role Mapping from One Organization
      * @param param the request object
      */
-    public getRoleMapping(param: FederatedAuthenticationApiGetRoleMappingRequest, options?: Configuration): Promise<RoleMappingView> {
-        return this.api.getRoleMapping(param.federationSettingsId, param.id, param.orgId, param.envelope,  options).toPromise();
+    public getRoleMapping(param: FederatedAuthenticationApiGetRoleMappingRequest, options?: Configuration): Promise<AuthFederationRoleMapping> {
+        return this.api.getRoleMapping(param.federationSettingsId, param.id, param.orgId,  options).toPromise();
     }
 
     /**
-     * Returns all connected org configs in the specified federation. To use this resource, the requesting API Key must have the Organization Owner role in one of the connected orgs. This resource doesn't require the API Key to have an Access List.
+     * Returns all connected org configs in the specified federation. To use this resource, the requesting API Key must have the Organization Owner role in one of the connected orgs.
      * Return All Connected Org Configs from the Federation
      * @param param the request object
      */
-    public listConnectedOrgConfigs(param: FederatedAuthenticationApiListConnectedOrgConfigsRequest, options?: Configuration): Promise<Array<ConnectedOrgConfigView>> {
-        return this.api.listConnectedOrgConfigs(param.federationSettingsId, param.envelope,  options).toPromise();
+    public listConnectedOrgConfigs(param: FederatedAuthenticationApiListConnectedOrgConfigsRequest, options?: Configuration): Promise<Array<ConnectedOrgConfig>> {
+        return this.api.listConnectedOrgConfigs(param.federationSettingsId,  options).toPromise();
     }
 
     /**
-     * Returns all identity providers in the specified federation. To use this resource, the requesting API Key must have the Organization Owner role in one of the connected organizations. This resource doesn't require the API Key to have an Access List.
+     * Returns all identity providers with the provided protocol in the specified federation. If no protocol is specified, only SAML identity providers will be returned. To use this resource, the requesting API Key must have the Organization Owner role in one of the connected organizations.
      * Return all identity providers from the specified federation.
      * @param param the request object
      */
-    public listIdentityProviders(param: FederatedAuthenticationApiListIdentityProvidersRequest, options?: Configuration): Promise<Array<IdentityProviderView>> {
-        return this.api.listIdentityProviders(param.federationSettingsId, param.envelope,  options).toPromise();
+    public listIdentityProviders(param: FederatedAuthenticationApiListIdentityProvidersRequest, options?: Configuration): Promise<Array<FederationIdentityProvider>> {
+        return this.api.listIdentityProviders(param.federationSettingsId, param.protocol,  options).toPromise();
     }
 
     /**
-     * Returns all role mappings from the specified organization in the specified federation. To use this resource, the requesting API Key must have the Organization Owner role. This resource doesn't require the API Key to have an Access List.
+     * Returns all role mappings from the specified organization in the specified federation. To use this resource, the requesting API Key must have the Organization Owner role.
      * Return All Role Mappings from One Organization
      * @param param the request object
      */
-    public listRoleMappings(param: FederatedAuthenticationApiListRoleMappingsRequest, options?: Configuration): Promise<Array<RoleMappingView>> {
-        return this.api.listRoleMappings(param.federationSettingsId, param.orgId, param.envelope,  options).toPromise();
+    public listRoleMappings(param: FederatedAuthenticationApiListRoleMappingsRequest, options?: Configuration): Promise<PaginatedRoleMapping> {
+        return this.api.listRoleMappings(param.federationSettingsId, param.orgId,  options).toPromise();
     }
 
     /**
-     * Removes one connected organization configuration from the specified federation. To use this resource, the requesting API Key must have the Organization Owner role. This resource doesn't require the API Key to have an Access List. Note: This request fails if only one connected organization exists in the federation.
+     * Removes one connected organization configuration from the specified federation. To use this resource, the requesting API Key must have the Organization Owner role. Note: This request fails if only one connected organization exists in the federation.
      * Remove One Org Config Connected to One Federation
      * @param param the request object
      */
-    public removeConnectedOrgConfig(param: FederatedAuthenticationApiRemoveConnectedOrgConfigRequest, options?: Configuration): Promise<void> {
-        return this.api.removeConnectedOrgConfig(param.federationSettingsId, param.orgId, param.envelope,  options).toPromise();
+    public removeConnectedOrgConfig(param: FederatedAuthenticationApiRemoveConnectedOrgConfigRequest, options?: Configuration): Promise<any> {
+        return this.api.removeConnectedOrgConfig(param.federationSettingsId, param.orgId,  options).toPromise();
     }
 
     /**
-     * Updates one connected organization configuration from the specified federation. To use this resource, the requesting API Key must have the Organization Owner role. This resource doesn't require the API Key to have an Access List.   **Note** If the organization configuration has no associated identity provider, you can't use this resource to update role mappings or post authorization role grants.    **Note**: The domainRestrictionEnabled field defaults to false if not provided in the request.   **Note**: If the identityProviderId field is not provided, you will disconnect the organization and the identity provider.
+     * Updates one connected organization configuration from the specified federation. To use this resource, the requesting API Key must have the Organization Owner role.   **Note** If the organization configuration has no associated identity provider, you can't use this resource to update role mappings or post authorization role grants.    **Note**: The domainRestrictionEnabled field defaults to false if not provided in the request.   **Note**: If the identityProviderId field is not provided, you will disconnect the organization and the identity provider.
      * Update One Org Config Connected to One Federation
      * @param param the request object
      */
-    public updateConnectedOrgConfig(param: FederatedAuthenticationApiUpdateConnectedOrgConfigRequest, options?: Configuration): Promise<ConnectedOrgConfigView> {
-        return this.api.updateConnectedOrgConfig(param.federationSettingsId, param.orgId, param.connectedOrgConfigView, param.envelope,  options).toPromise();
+    public updateConnectedOrgConfig(param: FederatedAuthenticationApiUpdateConnectedOrgConfigRequest, options?: Configuration): Promise<ConnectedOrgConfig> {
+        return this.api.updateConnectedOrgConfig(param.federationSettingsId, param.orgId, param.connectedOrgConfig,  options).toPromise();
     }
 
     /**
-     * Updates one identity provider in the specified federation. To use this resource, the requesting API Key must have the Organization Owner role in one of the connected organizations. This resource doesn't require the API Key to have an Access List.
+     * Updates one identity provider in the specified federation. To use this resource, the requesting API Key must have the Organization Owner role in one of the connected organizations. Deprecated versions: v2-{2023-01-01}
      * Update the identity provider.
      * @param param the request object
      */
-    public updateIdentityProvider(param: FederatedAuthenticationApiUpdateIdentityProviderRequest, options?: Configuration): Promise<IdentityProviderView> {
-        return this.api.updateIdentityProvider(param.federationSettingsId, param.identityProviderId, param.identityProviderUpdate, param.envelope,  options).toPromise();
+    public updateIdentityProvider(param: FederatedAuthenticationApiUpdateIdentityProviderRequest, options?: Configuration): Promise<FederationIdentityProvider> {
+        return this.api.updateIdentityProvider(param.federationSettingsId, param.identityProviderId, param.identityProviderUpdate,  options).toPromise();
     }
 
     /**
-     * Updates one role mapping in the specified organization in the specified federation. To use this resource, the requesting API Key must have the Organization Owner role. This resource doesn't require the API Key to have an Access List.
+     * Updates one role mapping in the specified organization in the specified federation. To use this resource, the requesting API Key must have the Organization Owner role.
      * Update One Role Mapping in One Organization
      * @param param the request object
      */
-    public updateRoleMapping(param: FederatedAuthenticationApiUpdateRoleMappingRequest, options?: Configuration): Promise<RoleMappingView> {
-        return this.api.updateRoleMapping(param.federationSettingsId, param.id, param.orgId, param.roleMappingView, param.envelope,  options).toPromise();
+    public updateRoleMapping(param: FederatedAuthenticationApiUpdateRoleMappingRequest, options?: Configuration): Promise<AuthFederationRoleMapping> {
+        return this.api.updateRoleMapping(param.federationSettingsId, param.id, param.orgId, param.authFederationRoleMapping,  options).toPromise();
     }
 
 }
@@ -6041,16 +4748,10 @@ export interface GlobalClustersApiCreateCustomZoneMappingRequest {
     clusterName: string
     /**
      * Custom zone mapping to add to the specified global cluster.
-     * @type GeoSharding
+     * @type CustomZoneMappings
      * @memberof GlobalClustersApicreateCustomZoneMapping
      */
-    geoSharding: GeoSharding
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof GlobalClustersApicreateCustomZoneMapping
-     */
-    envelope?: boolean
+    customZoneMappings: CustomZoneMappings
 }
 
 export interface GlobalClustersApiCreateManagedNamespaceRequest {
@@ -6068,16 +4769,10 @@ export interface GlobalClustersApiCreateManagedNamespaceRequest {
     clusterName: string
     /**
      * Managed namespace to create within the specified global cluster.
-     * @type ManagedNamespaceView
+     * @type ManagedNamespace
      * @memberof GlobalClustersApicreateManagedNamespace
      */
-    managedNamespaceView: ManagedNamespaceView
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof GlobalClustersApicreateManagedNamespace
-     */
-    envelope?: boolean
+    managedNamespace: ManagedNamespace
 }
 
 export interface GlobalClustersApiDeleteAllCustomZoneMappingsRequest {
@@ -6093,12 +4788,6 @@ export interface GlobalClustersApiDeleteAllCustomZoneMappingsRequest {
      * @memberof GlobalClustersApideleteAllCustomZoneMappings
      */
     clusterName: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof GlobalClustersApideleteAllCustomZoneMappings
-     */
-    envelope?: boolean
 }
 
 export interface GlobalClustersApiDeleteManagedNamespaceRequest {
@@ -6114,18 +4803,6 @@ export interface GlobalClustersApiDeleteManagedNamespaceRequest {
      * @memberof GlobalClustersApideleteManagedNamespace
      */
     groupId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof GlobalClustersApideleteManagedNamespace
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof GlobalClustersApideleteManagedNamespace
-     */
-    pretty?: boolean
     /**
      * Human-readable label that identifies the database that contains the collection.
      * @type string
@@ -6153,12 +4830,6 @@ export interface GlobalClustersApiGetManagedNamespaceRequest {
      * @memberof GlobalClustersApigetManagedNamespace
      */
     clusterName: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof GlobalClustersApigetManagedNamespace
-     */
-    envelope?: boolean
 }
 
 export class ObjectGlobalClustersApi {
@@ -6169,54 +4840,84 @@ export class ObjectGlobalClustersApi {
     }
 
     /**
-     * Creates one custom zone mapping for the specified global cluster. A custom zone mapping matches one ISO 3166-2 location code to a zone in your global cluster. By default, MongoDB Cloud maps each location code to the closest geographical zone. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List. Deprecated versions: v2-{2023-01-01}
+     * Creates one custom zone mapping for the specified global cluster. A custom zone mapping matches one ISO 3166-2 location code to a zone in your global cluster. By default, MongoDB Cloud maps each location code to the closest geographical zone. To use this resource, the requesting API Key must have the Project Owner role. Deprecated versions: v2-{2023-01-01}
      * Add One Entry to One Custom Zone Mapping
      * @param param the request object
      */
     public createCustomZoneMapping(param: GlobalClustersApiCreateCustomZoneMappingRequest, options?: Configuration): Promise<GeoSharding> {
-        return this.api.createCustomZoneMapping(param.groupId, param.clusterName, param.geoSharding, param.envelope,  options).toPromise();
+        return this.api.createCustomZoneMapping(param.groupId, param.clusterName, param.customZoneMappings,  options).toPromise();
     }
 
     /**
-     * Creates one managed namespace within the specified global cluster. A managed namespace identifies a collection using the database name, the dot separator, and the collection name. To use this resource, the requesting API Key must have the Project Data Access Admin role. This resource doesn't require the API Key to have an Access List. Deprecated versions: v2-{2023-01-01}
+     * Creates one managed namespace within the specified global cluster. A managed namespace identifies a collection using the database name, the dot separator, and the collection name. To use this resource, the requesting API Key must have the Project Data Access Admin role. Deprecated versions: v2-{2023-01-01}
      * Create One Managed Namespace in One Global Multi-Cloud Cluster
      * @param param the request object
      */
     public createManagedNamespace(param: GlobalClustersApiCreateManagedNamespaceRequest, options?: Configuration): Promise<GeoSharding> {
-        return this.api.createManagedNamespace(param.groupId, param.clusterName, param.managedNamespaceView, param.envelope,  options).toPromise();
+        return this.api.createManagedNamespace(param.groupId, param.clusterName, param.managedNamespace,  options).toPromise();
     }
 
     /**
-     * Removes all custom zone mappings for the specified global cluster. A custom zone mapping matches one ISO 3166-2 location code to a zone in your global cluster. Removing the custom zone mappings restores the default mapping. By default, MongoDB Cloud maps each location code to the closest geographical zone. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List. Deprecated versions: v2-{2023-01-01}
+     * Removes all custom zone mappings for the specified global cluster. A custom zone mapping matches one ISO 3166-2 location code to a zone in your global cluster. Removing the custom zone mappings restores the default mapping. By default, MongoDB Cloud maps each location code to the closest geographical zone. To use this resource, the requesting API Key must have the Project Owner role. Deprecated versions: v2-{2023-01-01}
      * Remove All Custom Zone Mappings from One Global Multi-Cloud Cluster
      * @param param the request object
      */
     public deleteAllCustomZoneMappings(param: GlobalClustersApiDeleteAllCustomZoneMappingsRequest, options?: Configuration): Promise<GeoSharding> {
-        return this.api.deleteAllCustomZoneMappings(param.groupId, param.clusterName, param.envelope,  options).toPromise();
+        return this.api.deleteAllCustomZoneMappings(param.groupId, param.clusterName,  options).toPromise();
     }
 
     /**
-     * Removes one managed namespace within the specified global cluster. A managed namespace identifies a collection using the database name, the dot separator, and the collection name. Deleting a managed namespace does not remove the associated collection or data. To use this resource, the requesting API Key must have the Project Data Access Admin role. This resource doesn't require the API Key to have an Access List. Deprecated versions: v2-{2023-01-01}
+     * Removes one managed namespace within the specified global cluster. A managed namespace identifies a collection using the database name, the dot separator, and the collection name. Deleting a managed namespace does not remove the associated collection or data. To use this resource, the requesting API Key must have the Project Data Access Admin role. Deprecated versions: v2-{2023-01-01}
      * Remove One Managed Namespace from One Global Multi-Cloud Cluster
      * @param param the request object
      */
     public deleteManagedNamespace(param: GlobalClustersApiDeleteManagedNamespaceRequest, options?: Configuration): Promise<GeoSharding> {
-        return this.api.deleteManagedNamespace(param.clusterName, param.groupId, param.envelope, param.pretty, param.db, param.collection,  options).toPromise();
+        return this.api.deleteManagedNamespace(param.clusterName, param.groupId, param.db, param.collection,  options).toPromise();
     }
 
     /**
-     * Returns one managed namespace within the specified global cluster. A managed namespace identifies a collection using the database name, the dot separator, and the collection name. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List. Deprecated versions: v2-{2023-01-01}
+     * Returns one managed namespace within the specified global cluster. A managed namespace identifies a collection using the database name, the dot separator, and the collection name. To use this resource, the requesting API Key must have the Project Read Only role. Deprecated versions: v2-{2023-01-01}
      * Return One Managed Namespace in One Global Multi-Cloud Cluster
      * @param param the request object
      */
     public getManagedNamespace(param: GlobalClustersApiGetManagedNamespaceRequest, options?: Configuration): Promise<GeoSharding> {
-        return this.api.getManagedNamespace(param.groupId, param.clusterName, param.envelope,  options).toPromise();
+        return this.api.getManagedNamespace(param.groupId, param.clusterName,  options).toPromise();
     }
 
 }
 
 import { ObservableInvoicesApi } from "./ObservableAPI";
 import { InvoicesApiRequestFactory, InvoicesApiResponseProcessor} from "../apis/InvoicesApi";
+
+export interface InvoicesApiCreateCostExplorerQueryProcessRequest {
+    /**
+     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
+     * @type string
+     * @memberof InvoicesApicreateCostExplorerQueryProcess
+     */
+    orgId: string
+    /**
+     * Filter parameters for the Cost Explorer query.
+     * @type CostExplorerFilterRequestBody
+     * @memberof InvoicesApicreateCostExplorerQueryProcess
+     */
+    costExplorerFilterRequestBody: CostExplorerFilterRequestBody
+}
+
+export interface InvoicesApiCreateCostExplorerQueryProcess1Request {
+    /**
+     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
+     * @type string
+     * @memberof InvoicesApicreateCostExplorerQueryProcess1
+     */
+    orgId: string
+    /**
+     * Unique 64 digit string that identifies the Cost Explorer query.
+     * @type string
+     * @memberof InvoicesApicreateCostExplorerQueryProcess1
+     */
+    token: string
+}
 
 export interface InvoicesApiDownloadInvoiceCSVRequest {
     /**
@@ -6231,18 +4932,6 @@ export interface InvoicesApiDownloadInvoiceCSVRequest {
      * @memberof InvoicesApidownloadInvoiceCSV
      */
     invoiceId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof InvoicesApidownloadInvoiceCSV
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof InvoicesApidownloadInvoiceCSV
-     */
-    pretty?: boolean
 }
 
 export interface InvoicesApiGetInvoiceRequest {
@@ -6258,18 +4947,6 @@ export interface InvoicesApiGetInvoiceRequest {
      * @memberof InvoicesApigetInvoice
      */
     invoiceId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof InvoicesApigetInvoice
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof InvoicesApigetInvoice
-     */
-    pretty?: boolean
 }
 
 export interface InvoicesApiListInvoicesRequest {
@@ -6279,12 +4956,6 @@ export interface InvoicesApiListInvoicesRequest {
      * @memberof InvoicesApilistInvoices
      */
     orgId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof InvoicesApilistInvoices
-     */
-    envelope?: boolean
     /**
      * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
@@ -6303,12 +4974,6 @@ export interface InvoicesApiListInvoicesRequest {
      * @memberof InvoicesApilistInvoices
      */
     pageNum?: number
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof InvoicesApilistInvoices
-     */
-    pretty?: boolean
 }
 
 export interface InvoicesApiListPendingInvoicesRequest {
@@ -6318,18 +4983,6 @@ export interface InvoicesApiListPendingInvoicesRequest {
      * @memberof InvoicesApilistPendingInvoices
      */
     orgId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof InvoicesApilistPendingInvoices
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof InvoicesApilistPendingInvoices
-     */
-    pretty?: boolean
 }
 
 export class ObjectInvoicesApi {
@@ -6340,39 +4993,57 @@ export class ObjectInvoicesApi {
     }
 
     /**
-     * Returns one invoice that MongoDB issued to the specified organization in CSV format. A unique 24-hexadecimal digit string identifies the invoice. To use this resource, the requesting API Key must have the Organization Member role. If you have a cross-organization setup, you can query for a linked invoice if you have an Organization Billing Admin or Organization Owner Role. This resource doesn't require the API Key to have an Access List.
+     * Creates a query process within the Cost Explorer for the given parameters. A token is returned that can be used to poll the status of the query and eventually retrievethe results.
+     * Create Cost Explorer query process
+     * @param param the request object
+     */
+    public createCostExplorerQueryProcess(param: InvoicesApiCreateCostExplorerQueryProcessRequest, options?: Configuration): Promise<CostExplorerFilterResponse> {
+        return this.api.createCostExplorerQueryProcess(param.orgId, param.costExplorerFilterRequestBody,  options).toPromise();
+    }
+
+    /**
+     * Returns the usage details for a Cost Explorer query, if the query is finished and the data is ready to be viewed. If the data is not ready, a 'processing' response willindicate that another request should be sent later to view the data.
+     * Return results from a given Cost Explorer query, or notify that the results are not ready yet.
+     * @param param the request object
+     */
+    public createCostExplorerQueryProcess1(param: InvoicesApiCreateCostExplorerQueryProcess1Request, options?: Configuration): Promise<string> {
+        return this.api.createCostExplorerQueryProcess1(param.orgId, param.token,  options).toPromise();
+    }
+
+    /**
+     * Returns one invoice that MongoDB issued to the specified organization in CSV format. A unique 24-hexadecimal digit string identifies the invoice. To use this resource, the requesting API Key have at least the Organization Billing Viewer, Organization Billing Admin, or Organization Owner role. If you have a cross-organization setup, you can query for a linked invoice if you have the Organization Billing Admin or Organization Owner Role.
      * Return One Organization Invoice as CSV
      * @param param the request object
      */
-    public downloadInvoiceCSV(param: InvoicesApiDownloadInvoiceCSVRequest, options?: Configuration): Promise<void> {
-        return this.api.downloadInvoiceCSV(param.orgId, param.invoiceId, param.envelope, param.pretty,  options).toPromise();
+    public downloadInvoiceCSV(param: InvoicesApiDownloadInvoiceCSVRequest, options?: Configuration): Promise<string> {
+        return this.api.downloadInvoiceCSV(param.orgId, param.invoiceId,  options).toPromise();
     }
 
     /**
-     * Returns one invoice that MongoDB issued to the specified organization. A unique 24-hexadecimal digit string identifies the invoice. You can choose to receive this invoice in JSON or CSV format. To use this resource, the requesting API Key must have the Organization Member role. If you have a cross-organization setup, you can query for a linked invoice if you have an Organization Billing Admin or Organization Owner role. This resource doesn't require the API Key to have an Access List.
+     * Returns one invoice that MongoDB issued to the specified organization. A unique 24-hexadecimal digit string identifies the invoice. You can choose to receive this invoice in JSON or CSV format. To use this resource, the requesting API Key must have the Organization Billing Viewer, Organization Billing Admin, or Organization Owner role. If you have a cross-organization setup, you can query for a linked invoice if you have the Organization Billing Admin or Organization Owner role.
      * Return One Organization Invoice
      * @param param the request object
      */
-    public getInvoice(param: InvoicesApiGetInvoiceRequest, options?: Configuration): Promise<ApiInvoiceView> {
-        return this.api.getInvoice(param.orgId, param.invoiceId, param.envelope, param.pretty,  options).toPromise();
+    public getInvoice(param: InvoicesApiGetInvoiceRequest, options?: Configuration): Promise<string> {
+        return this.api.getInvoice(param.orgId, param.invoiceId,  options).toPromise();
     }
 
     /**
-     * Returns all invoices that MongoDB issued to the specified organization. This list includes all invoices regardless of invoice status. To use this resource, the requesting API Key must have the Organization Member role. If you have a cross-organization setup, to view linked invoices, you must have an Organization Billing Admin or Organization Owner role. This resource doesn't require the API Key to have an Access List.
+     * Returns all invoices that MongoDB issued to the specified organization. This list includes all invoices regardless of invoice status. To use this resource, the requesting API Key must have the Organization Billing Viewer, Organization Billing Admin, or Organization Owner role. If you have a cross-organization setup, you can view linked invoices if you have the Organization Billing Admin or Organization Owner role.
      * Return All Invoices for One Organization
      * @param param the request object
      */
-    public listInvoices(param: InvoicesApiListInvoicesRequest, options?: Configuration): Promise<PaginatedApiInvoiceView> {
-        return this.api.listInvoices(param.orgId, param.envelope, param.includeCount, param.itemsPerPage, param.pageNum, param.pretty,  options).toPromise();
+    public listInvoices(param: InvoicesApiListInvoicesRequest, options?: Configuration): Promise<PaginatedApiInvoice> {
+        return this.api.listInvoices(param.orgId, param.includeCount, param.itemsPerPage, param.pageNum,  options).toPromise();
     }
 
     /**
-     * Returns all invoices accruing charges for the current billing cycle for the specified organization. To use this resource, the requesting API Key must have the Organization Member role.  If you have a cross-organization setup, to view linked invoices, you must have an Organization Billing Admin or Organization Owner Role. This resource doesn't require the API Key to have an Access List.
+     * Returns all invoices accruing charges for the current billing cycle for the specified organization. To use this resource, the requesting API Key must have the Organization Billing Viewer, Organization Billing Admin, or Organization Owner role. If you have a cross-organization setup, you can view linked invoices if you have the Organization Billing Admin or Organization Owner Role.
      * Return All Pending Invoices for One Organization
      * @param param the request object
      */
-    public listPendingInvoices(param: InvoicesApiListPendingInvoicesRequest, options?: Configuration): Promise<PaginatedApiInvoiceView> {
-        return this.api.listPendingInvoices(param.orgId, param.envelope, param.pretty,  options).toPromise();
+    public listPendingInvoices(param: InvoicesApiListPendingInvoicesRequest, options?: Configuration): Promise<PaginatedApiInvoice> {
+        return this.api.listPendingInvoices(param.orgId,  options).toPromise();
     }
 
 }
@@ -6387,18 +5058,6 @@ export interface LDAPConfigurationApiDeleteLDAPConfigurationRequest {
      * @memberof LDAPConfigurationApideleteLDAPConfiguration
      */
     groupId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof LDAPConfigurationApideleteLDAPConfiguration
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof LDAPConfigurationApideleteLDAPConfiguration
-     */
-    pretty?: boolean
 }
 
 export interface LDAPConfigurationApiGetLDAPConfigurationRequest {
@@ -6408,18 +5067,6 @@ export interface LDAPConfigurationApiGetLDAPConfigurationRequest {
      * @memberof LDAPConfigurationApigetLDAPConfiguration
      */
     groupId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof LDAPConfigurationApigetLDAPConfiguration
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof LDAPConfigurationApigetLDAPConfiguration
-     */
-    pretty?: boolean
 }
 
 export interface LDAPConfigurationApiGetLDAPConfigurationStatusRequest {
@@ -6435,18 +5082,6 @@ export interface LDAPConfigurationApiGetLDAPConfigurationStatusRequest {
      * @memberof LDAPConfigurationApigetLDAPConfigurationStatus
      */
     requestId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof LDAPConfigurationApigetLDAPConfigurationStatus
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof LDAPConfigurationApigetLDAPConfigurationStatus
-     */
-    pretty?: boolean
 }
 
 export interface LDAPConfigurationApiSaveLDAPConfigurationRequest {
@@ -6462,18 +5097,6 @@ export interface LDAPConfigurationApiSaveLDAPConfigurationRequest {
      * @memberof LDAPConfigurationApisaveLDAPConfiguration
      */
     userSecurity: UserSecurity
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof LDAPConfigurationApisaveLDAPConfiguration
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof LDAPConfigurationApisaveLDAPConfiguration
-     */
-    pretty?: boolean
 }
 
 export interface LDAPConfigurationApiVerifyLDAPConfigurationRequest {
@@ -6485,22 +5108,10 @@ export interface LDAPConfigurationApiVerifyLDAPConfigurationRequest {
     groupId: string
     /**
      * The LDAP configuration for the specified project that you want to verify.
-     * @type NDSLDAPVerifyConnectivityJobRequestParams
+     * @type LDAPVerifyConnectivityJobRequestParams
      * @memberof LDAPConfigurationApiverifyLDAPConfiguration
      */
-    nDSLDAPVerifyConnectivityJobRequestParams: NDSLDAPVerifyConnectivityJobRequestParams
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof LDAPConfigurationApiverifyLDAPConfiguration
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof LDAPConfigurationApiverifyLDAPConfiguration
-     */
-    pretty?: boolean
+    lDAPVerifyConnectivityJobRequestParams: LDAPVerifyConnectivityJobRequestParams
 }
 
 export class ObjectLDAPConfigurationApi {
@@ -6511,48 +5122,48 @@ export class ObjectLDAPConfigurationApi {
     }
 
     /**
-     * Removes the current LDAP Distinguished Name mapping captured in the ``userToDNMapping`` document from the LDAP configuration for the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
+     * Removes the current LDAP Distinguished Name mapping captured in the ``userToDNMapping`` document from the LDAP configuration for the specified project. To use this resource, the requesting API Key must have the Project Owner role.
      * Remove the Current LDAP User to DN Mapping
      * @param param the request object
      */
-    public deleteLDAPConfiguration(param: LDAPConfigurationApiDeleteLDAPConfigurationRequest, options?: Configuration): Promise<void> {
-        return this.api.deleteLDAPConfiguration(param.groupId, param.envelope, param.pretty,  options).toPromise();
+    public deleteLDAPConfiguration(param: LDAPConfigurationApiDeleteLDAPConfigurationRequest, options?: Configuration): Promise<UserSecurity> {
+        return this.api.deleteLDAPConfiguration(param.groupId,  options).toPromise();
     }
 
     /**
-     * Returns the current LDAP configuration for the specified project. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Returns the current LDAP configuration for the specified project. To use this resource, the requesting API Key must have the Project Owner role.
      * Return the Current LDAP or X.509 Configuration
      * @param param the request object
      */
     public getLDAPConfiguration(param: LDAPConfigurationApiGetLDAPConfigurationRequest, options?: Configuration): Promise<UserSecurity> {
-        return this.api.getLDAPConfiguration(param.groupId, param.envelope, param.pretty,  options).toPromise();
+        return this.api.getLDAPConfiguration(param.groupId,  options).toPromise();
     }
 
     /**
-     * Returns the status of one request to verify one LDAP configuration for the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
+     * Returns the status of one request to verify one LDAP configuration for the specified project. To use this resource, the requesting API Key must have the Project Owner role.
      * Return the Status of One Verify LDAP Configuration Request
      * @param param the request object
      */
-    public getLDAPConfigurationStatus(param: LDAPConfigurationApiGetLDAPConfigurationStatusRequest, options?: Configuration): Promise<NDSLDAPVerifyConnectivityJobRequest> {
-        return this.api.getLDAPConfigurationStatus(param.groupId, param.requestId, param.envelope, param.pretty,  options).toPromise();
+    public getLDAPConfigurationStatus(param: LDAPConfigurationApiGetLDAPConfigurationStatusRequest, options?: Configuration): Promise<LDAPVerifyConnectivityJobRequest> {
+        return this.api.getLDAPConfigurationStatus(param.groupId, param.requestId,  options).toPromise();
     }
 
     /**
-     * Edits the LDAP configuration for the specified project. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.  Updating this configuration triggers a rolling restart of the database.
+     * Edits the LDAP configuration for the specified project. To use this resource, the requesting API Key must have the Project Owner role.  Updating this configuration triggers a rolling restart of the database.
      * Edit the LDAP or X.509 Configuration
      * @param param the request object
      */
     public saveLDAPConfiguration(param: LDAPConfigurationApiSaveLDAPConfigurationRequest, options?: Configuration): Promise<UserSecurity> {
-        return this.api.saveLDAPConfiguration(param.groupId, param.userSecurity, param.envelope, param.pretty,  options).toPromise();
+        return this.api.saveLDAPConfiguration(param.groupId, param.userSecurity,  options).toPromise();
     }
 
     /**
-     * Verifies the LDAP configuration for the specified project. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Verifies the LDAP configuration for the specified project. To use this resource, the requesting API Key must have the Project Owner role.
      * Verify the LDAP Configuration in One Project
      * @param param the request object
      */
-    public verifyLDAPConfiguration(param: LDAPConfigurationApiVerifyLDAPConfigurationRequest, options?: Configuration): Promise<NDSLDAPVerifyConnectivityJobRequest> {
-        return this.api.verifyLDAPConfiguration(param.groupId, param.nDSLDAPVerifyConnectivityJobRequestParams, param.envelope, param.pretty,  options).toPromise();
+    public verifyLDAPConfiguration(param: LDAPConfigurationApiVerifyLDAPConfigurationRequest, options?: Configuration): Promise<LDAPVerifyConnectivityJobRequest> {
+        return this.api.verifyLDAPConfiguration(param.groupId, param.lDAPVerifyConnectivityJobRequestParams,  options).toPromise();
     }
 
 }
@@ -6579,18 +5190,6 @@ export interface LegacyBackupApiDeleteLegacySnapshotRequest {
      * @memberof LegacyBackupApideleteLegacySnapshot
      */
     snapshotId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof LegacyBackupApideleteLegacySnapshot
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof LegacyBackupApideleteLegacySnapshot
-     */
-    pretty?: boolean
 }
 
 export interface LegacyBackupApiGetLegacyBackupCheckpointRequest {
@@ -6612,18 +5211,6 @@ export interface LegacyBackupApiGetLegacyBackupCheckpointRequest {
      * @memberof LegacyBackupApigetLegacyBackupCheckpoint
      */
     clusterName: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof LegacyBackupApigetLegacyBackupCheckpoint
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof LegacyBackupApigetLegacyBackupCheckpoint
-     */
-    pretty?: boolean
 }
 
 export interface LegacyBackupApiGetLegacyBackupRestoreJobRequest {
@@ -6645,18 +5232,6 @@ export interface LegacyBackupApiGetLegacyBackupRestoreJobRequest {
      * @memberof LegacyBackupApigetLegacyBackupRestoreJob
      */
     jobId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof LegacyBackupApigetLegacyBackupRestoreJob
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof LegacyBackupApigetLegacyBackupRestoreJob
-     */
-    pretty?: boolean
 }
 
 export interface LegacyBackupApiGetLegacySnapshotRequest {
@@ -6678,18 +5253,6 @@ export interface LegacyBackupApiGetLegacySnapshotRequest {
      * @memberof LegacyBackupApigetLegacySnapshot
      */
     snapshotId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof LegacyBackupApigetLegacySnapshot
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof LegacyBackupApigetLegacySnapshot
-     */
-    pretty?: boolean
 }
 
 export interface LegacyBackupApiGetLegacySnapshotScheduleRequest {
@@ -6705,18 +5268,6 @@ export interface LegacyBackupApiGetLegacySnapshotScheduleRequest {
      * @memberof LegacyBackupApigetLegacySnapshotSchedule
      */
     clusterName: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof LegacyBackupApigetLegacySnapshotSchedule
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof LegacyBackupApigetLegacySnapshotSchedule
-     */
-    pretty?: boolean
 }
 
 export interface LegacyBackupApiListLegacyBackupCheckpointsRequest {
@@ -6733,12 +5284,6 @@ export interface LegacyBackupApiListLegacyBackupCheckpointsRequest {
      */
     clusterName: string
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof LegacyBackupApilistLegacyBackupCheckpoints
-     */
-    envelope?: boolean
-    /**
      * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
      * @memberof LegacyBackupApilistLegacyBackupCheckpoints
@@ -6756,12 +5301,6 @@ export interface LegacyBackupApiListLegacyBackupCheckpointsRequest {
      * @memberof LegacyBackupApilistLegacyBackupCheckpoints
      */
     pageNum?: number
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof LegacyBackupApilistLegacyBackupCheckpoints
-     */
-    pretty?: boolean
 }
 
 export interface LegacyBackupApiListLegacyBackupRestoreJobsRequest {
@@ -6778,12 +5317,6 @@ export interface LegacyBackupApiListLegacyBackupRestoreJobsRequest {
      */
     clusterName: string
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof LegacyBackupApilistLegacyBackupRestoreJobs
-     */
-    envelope?: boolean
-    /**
      * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
      * @memberof LegacyBackupApilistLegacyBackupRestoreJobs
@@ -6801,12 +5334,6 @@ export interface LegacyBackupApiListLegacyBackupRestoreJobsRequest {
      * @memberof LegacyBackupApilistLegacyBackupRestoreJobs
      */
     pageNum?: number
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof LegacyBackupApilistLegacyBackupRestoreJobs
-     */
-    pretty?: boolean
     /**
      * Unique 24-hexadecimal digit string that identifies the batch of restore jobs to return. Timestamp in ISO 8601 date and time format in UTC when creating a restore job for a sharded cluster, Application creates a separate job for each shard, plus another for the config host. Each of these jobs comprise one batch. A restore job for a replica set can&#39;t be part of a batch.
      * @type string
@@ -6829,12 +5356,6 @@ export interface LegacyBackupApiListLegacySnapshotsRequest {
      */
     clusterName: string
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof LegacyBackupApilistLegacySnapshots
-     */
-    envelope?: boolean
-    /**
      * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
      * @memberof LegacyBackupApilistLegacySnapshots
@@ -6853,17 +5374,11 @@ export interface LegacyBackupApiListLegacySnapshotsRequest {
      */
     pageNum?: number
     /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof LegacyBackupApilistLegacySnapshots
-     */
-    pretty?: boolean
-    /**
      * Human-readable label that specifies whether to return only completed, incomplete, or all snapshots. By default, MongoDB Cloud only returns completed snapshots.
-     * @type &#39;all&#39; | &#39;true&#39; | &#39;false&#39;
+     * @type string
      * @memberof LegacyBackupApilistLegacySnapshots
      */
-    completed?: 'all' | 'true' | 'false'
+    completed?: string
 }
 
 export interface LegacyBackupApiUpdateLegacySnapshotRetentionRequest {
@@ -6887,22 +5402,10 @@ export interface LegacyBackupApiUpdateLegacySnapshotRetentionRequest {
     snapshotId: string
     /**
      * Changes One Legacy Backup Snapshot Expiration.
-     * @type ApiSnapshotView
+     * @type BackupSnapshot
      * @memberof LegacyBackupApiupdateLegacySnapshotRetention
      */
-    apiSnapshotView: ApiSnapshotView
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof LegacyBackupApiupdateLegacySnapshotRetention
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof LegacyBackupApiupdateLegacySnapshotRetention
-     */
-    pretty?: boolean
+    backupSnapshot: BackupSnapshot
 }
 
 export interface LegacyBackupApiUpdateLegacySnapshotScheduleRequest {
@@ -6920,22 +5423,10 @@ export interface LegacyBackupApiUpdateLegacySnapshotScheduleRequest {
     clusterName: string
     /**
      * Update the snapshot schedule for one cluster in the specified project.
-     * @type SnapshotSchedule
+     * @type ApiAtlasSnapshotSchedule
      * @memberof LegacyBackupApiupdateLegacySnapshotSchedule
      */
-    snapshotSchedule: SnapshotSchedule
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof LegacyBackupApiupdateLegacySnapshotSchedule
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof LegacyBackupApiupdateLegacySnapshotSchedule
-     */
-    pretty?: boolean
+    apiAtlasSnapshotSchedule: ApiAtlasSnapshotSchedule
 }
 
 export class ObjectLegacyBackupApi {
@@ -6946,93 +5437,93 @@ export class ObjectLegacyBackupApi {
     }
 
     /**
-     * Removes one legacy backup snapshot for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Owner role and an entry for the project access list.
+     * Removes one legacy backup snapshot for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Owner role. Effective 23 March 2020, all new clusters can use only Cloud Backups. When you upgrade to 4.2, your backup system upgrades to cloud backup if it is currently set to legacy backup. After this upgrade, all your existing legacy backup snapshots remain available. They expire over time in accordance with your retention policy. Your backup policy resets to the default schedule. If you had a custom backup policy in place with legacy backups, you must re-create it with the procedure outlined in the [Cloud Backup documentation](https://www.mongodb.com/docs/atlas/backup/cloud-backup/scheduling/#std-label-cloud-provider-backup-schedule).
      * Remove One Legacy Backup Snapshot
      * @param param the request object
      */
-    public deleteLegacySnapshot(param: LegacyBackupApiDeleteLegacySnapshotRequest, options?: Configuration): Promise<void> {
-        return this.api.deleteLegacySnapshot(param.groupId, param.clusterName, param.snapshotId, param.envelope, param.pretty,  options).toPromise();
+    public deleteLegacySnapshot(param: LegacyBackupApiDeleteLegacySnapshotRequest, options?: Configuration): Promise<any> {
+        return this.api.deleteLegacySnapshot(param.groupId, param.clusterName, param.snapshotId,  options).toPromise();
     }
 
     /**
-     * Returns one legacy backup checkpoint for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns one legacy backup checkpoint for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return One Legacy Backup Checkpoint
      * @param param the request object
      */
-    public getLegacyBackupCheckpoint(param: LegacyBackupApiGetLegacyBackupCheckpointRequest, options?: Configuration): Promise<Checkpoint> {
-        return this.api.getLegacyBackupCheckpoint(param.groupId, param.checkpointId, param.clusterName, param.envelope, param.pretty,  options).toPromise();
+    public getLegacyBackupCheckpoint(param: LegacyBackupApiGetLegacyBackupCheckpointRequest, options?: Configuration): Promise<ApiAtlasCheckpoint> {
+        return this.api.getLegacyBackupCheckpoint(param.groupId, param.checkpointId, param.clusterName,  options).toPromise();
     }
 
     /**
-     * Returns one legacy backup restore job for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns one legacy backup restore job for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role.   Effective 23 March 2020, all new clusters can use only Cloud Backups. When you upgrade to 4.2, your backup system upgrades to cloud backup if it is currently set to legacy backup. After this upgrade, all your existing legacy backup snapshots remain available. They expire over time in accordance with your retention policy. Your backup policy resets to the default schedule. If you had a custom backup policy in place with legacy backups, you must re-create it with the procedure outlined in the [Cloud Backup documentation](https://www.mongodb.com/docs/atlas/backup/cloud-backup/scheduling/#std-label-cloud-provider-backup-schedule).
      * Return One Legacy Backup Restore Job
      * @param param the request object
      */
-    public getLegacyBackupRestoreJob(param: LegacyBackupApiGetLegacyBackupRestoreJobRequest, options?: Configuration): Promise<ApiRestoreJobView> {
-        return this.api.getLegacyBackupRestoreJob(param.groupId, param.clusterName, param.jobId, param.envelope, param.pretty,  options).toPromise();
+    public getLegacyBackupRestoreJob(param: LegacyBackupApiGetLegacyBackupRestoreJobRequest, options?: Configuration): Promise<BackupRestoreJob> {
+        return this.api.getLegacyBackupRestoreJob(param.groupId, param.clusterName, param.jobId,  options).toPromise();
     }
 
     /**
-     * Returns one legacy backup snapshot for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns one legacy backup snapshot for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. Effective 23 March 2020, all new clusters can use only Cloud Backups. When you upgrade to 4.2, your backup system upgrades to cloud backup if it is currently set to legacy backup. After this upgrade, all your existing legacy backup snapshots remain available. They expire over time in accordance with your retention policy. Your backup policy resets to the default schedule. If you had a custom backup policy in place with legacy backups, you must re-create it with the procedure outlined in the [Cloud Backup documentation](https://www.mongodb.com/docs/atlas/backup/cloud-backup/scheduling/#std-label-cloud-provider-backup-schedule).
      * Return One Legacy Backup Snapshot
      * @param param the request object
      */
-    public getLegacySnapshot(param: LegacyBackupApiGetLegacySnapshotRequest, options?: Configuration): Promise<ApiSnapshotView> {
-        return this.api.getLegacySnapshot(param.groupId, param.clusterName, param.snapshotId, param.envelope, param.pretty,  options).toPromise();
+    public getLegacySnapshot(param: LegacyBackupApiGetLegacySnapshotRequest, options?: Configuration): Promise<BackupSnapshot> {
+        return this.api.getLegacySnapshot(param.groupId, param.clusterName, param.snapshotId,  options).toPromise();
     }
 
     /**
-     * Returns the snapshot schedule for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
+     * Returns the snapshot schedule for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role.   Effective 23 March 2020, all new clusters can use only Cloud Backups. When you upgrade to 4.2, your backup system upgrades to cloud backup if it is currently set to legacy backup. After this upgrade, all your existing legacy backup snapshots remain available. They expire over time in accordance with your retention policy. Your backup policy resets to the default schedule. If you had a custom backup policy in place with legacy backups, you must re-create it with the procedure outlined in the [Cloud Backup documentation](https://www.mongodb.com/docs/atlas/backup/cloud-backup/scheduling/#std-label-cloud-provider-backup-schedule).
      * Return One Snapshot Schedule
      * @param param the request object
      */
-    public getLegacySnapshotSchedule(param: LegacyBackupApiGetLegacySnapshotScheduleRequest, options?: Configuration): Promise<SnapshotSchedule> {
-        return this.api.getLegacySnapshotSchedule(param.groupId, param.clusterName, param.envelope, param.pretty,  options).toPromise();
+    public getLegacySnapshotSchedule(param: LegacyBackupApiGetLegacySnapshotScheduleRequest, options?: Configuration): Promise<ApiAtlasSnapshotSchedule> {
+        return this.api.getLegacySnapshotSchedule(param.groupId, param.clusterName,  options).toPromise();
     }
 
     /**
-     * Returns all legacy backup checkpoints for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns all legacy backup checkpoints for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return All Legacy Backup Checkpoints
      * @param param the request object
      */
-    public listLegacyBackupCheckpoints(param: LegacyBackupApiListLegacyBackupCheckpointsRequest, options?: Configuration): Promise<PaginatedApiAtlasCheckpointView> {
-        return this.api.listLegacyBackupCheckpoints(param.groupId, param.clusterName, param.envelope, param.includeCount, param.itemsPerPage, param.pageNum, param.pretty,  options).toPromise();
+    public listLegacyBackupCheckpoints(param: LegacyBackupApiListLegacyBackupCheckpointsRequest, options?: Configuration): Promise<PaginatedApiAtlasCheckpoint> {
+        return this.api.listLegacyBackupCheckpoints(param.groupId, param.clusterName, param.includeCount, param.itemsPerPage, param.pageNum,  options).toPromise();
     }
 
     /**
-     * Returns all legacy backup restore jobs for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns all legacy backup restore jobs for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role.   Effective 23 March 2020, all new clusters can use only Cloud Backups. When you upgrade to 4.2, your backup system upgrades to cloud backup if it is currently set to legacy backup. After this upgrade, all your existing legacy backup snapshots remain available. They expire over time in accordance with your retention policy. Your backup policy resets to the default schedule. If you had a custom backup policy in place with legacy backups, you must re-create it with the procedure outlined in the [Cloud Backup documentation](https://www.mongodb.com/docs/atlas/backup/cloud-backup/scheduling/#std-label-cloud-provider-backup-schedule). If you use the `BATCH-ID` query parameter, you can retrieve all restore jobs in the specified batch. When creating a restore job for a sharded cluster, MongoDB Cloud creates a separate job for each shard, plus another for the config server. Each of those jobs are part of a batch. However, a batch can't include a restore job for a replica set.
      * Return All Legacy Backup Restore Jobs
      * @param param the request object
      */
-    public listLegacyBackupRestoreJobs(param: LegacyBackupApiListLegacyBackupRestoreJobsRequest, options?: Configuration): Promise<PaginatedRestoreJobView> {
-        return this.api.listLegacyBackupRestoreJobs(param.groupId, param.clusterName, param.envelope, param.includeCount, param.itemsPerPage, param.pageNum, param.pretty, param.batchId,  options).toPromise();
+    public listLegacyBackupRestoreJobs(param: LegacyBackupApiListLegacyBackupRestoreJobsRequest, options?: Configuration): Promise<PaginatedRestoreJob> {
+        return this.api.listLegacyBackupRestoreJobs(param.groupId, param.clusterName, param.includeCount, param.itemsPerPage, param.pageNum, param.batchId,  options).toPromise();
     }
 
     /**
-     * Returns all legacy backup snapshots for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns all legacy backup snapshots for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. Effective 23 March 2020, all new clusters can use only Cloud Backups. When you upgrade to 4.2, your backup system upgrades to cloud backup if it is currently set to legacy backup. After this upgrade, all your existing legacy backup snapshots remain available. They expire over time in accordance with your retention policy. Your backup policy resets to the default schedule. If you had a custom backup policy in place with legacy backups, you must re-create it with the procedure outlined in the [Cloud Backup documentation](https://www.mongodb.com/docs/atlas/backup/cloud-backup/scheduling/#std-label-cloud-provider-backup-schedule).
      * Return All Legacy Backup Snapshots
      * @param param the request object
      */
-    public listLegacySnapshots(param: LegacyBackupApiListLegacySnapshotsRequest, options?: Configuration): Promise<PaginatedSnapshotView> {
-        return this.api.listLegacySnapshots(param.groupId, param.clusterName, param.envelope, param.includeCount, param.itemsPerPage, param.pageNum, param.pretty, param.completed,  options).toPromise();
+    public listLegacySnapshots(param: LegacyBackupApiListLegacySnapshotsRequest, options?: Configuration): Promise<PaginatedSnapshot> {
+        return this.api.listLegacySnapshots(param.groupId, param.clusterName, param.includeCount, param.itemsPerPage, param.pageNum, param.completed,  options).toPromise();
     }
 
     /**
-     * Changes the expiration date for one legacy backup snapshot for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
+     * Changes the expiration date for one legacy backup snapshot for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Owner role. Effective 23 March 2020, all new clusters can use only Cloud Backups. When you upgrade to 4.2, your backup system upgrades to cloud backup if it is currently set to legacy backup. After this upgrade, all your existing legacy backup snapshots remain available. They expire over time in accordance with your retention policy. Your backup policy resets to the default schedule. If you had a custom backup policy in place with legacy backups, you must re-create it with the procedure outlined in the [Cloud Backup documentation](https://www.mongodb.com/docs/atlas/backup/cloud-backup/scheduling/#std-label-cloud-provider-backup-schedule).
      * Change One Legacy Backup Snapshot Expiration
      * @param param the request object
      */
-    public updateLegacySnapshotRetention(param: LegacyBackupApiUpdateLegacySnapshotRetentionRequest, options?: Configuration): Promise<ApiSnapshotView> {
-        return this.api.updateLegacySnapshotRetention(param.groupId, param.clusterName, param.snapshotId, param.apiSnapshotView, param.envelope, param.pretty,  options).toPromise();
+    public updateLegacySnapshotRetention(param: LegacyBackupApiUpdateLegacySnapshotRetentionRequest, options?: Configuration): Promise<BackupSnapshot> {
+        return this.api.updateLegacySnapshotRetention(param.groupId, param.clusterName, param.snapshotId, param.backupSnapshot,  options).toPromise();
     }
 
     /**
-     * Update the snapshot schedule for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role.
+     * Updates the snapshot schedule for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Owner role.   Effective 23 March 2020, all new clusters can use only Cloud Backups. When you upgrade to 4.2, your backup system upgrades to cloud backup if it is currently set to legacy backup. After this upgrade, all your existing legacy backup snapshots remain available. They expire over time in accordance with your retention policy. Your backup policy resets to the default schedule. If you had a custom backup policy in place with legacy backups, you must re-create it with the procedure outlined in the [Cloud Backup documentation](https://www.mongodb.com/docs/atlas/backup/cloud-backup/scheduling/#std-label-cloud-provider-backup-schedule).
      * Update Snapshot Schedule for One Cluster
      * @param param the request object
      */
-    public updateLegacySnapshotSchedule(param: LegacyBackupApiUpdateLegacySnapshotScheduleRequest, options?: Configuration): Promise<SnapshotSchedule> {
-        return this.api.updateLegacySnapshotSchedule(param.groupId, param.clusterName, param.snapshotSchedule, param.envelope, param.pretty,  options).toPromise();
+    public updateLegacySnapshotSchedule(param: LegacyBackupApiUpdateLegacySnapshotScheduleRequest, options?: Configuration): Promise<ApiAtlasSnapshotSchedule> {
+        return this.api.updateLegacySnapshotSchedule(param.groupId, param.clusterName, param.apiAtlasSnapshotSchedule,  options).toPromise();
     }
 
 }
@@ -7055,22 +5546,10 @@ export interface LegacyBackupRestoreJobsApiCreateLegacyBackupRestoreJobRequest {
     clusterName: string
     /**
      * Legacy backup to restore to one cluster in the specified project.
-     * @type ApiRestoreJobView
+     * @type BackupRestoreJob
      * @memberof LegacyBackupRestoreJobsApicreateLegacyBackupRestoreJob
      */
-    apiRestoreJobView: ApiRestoreJobView
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof LegacyBackupRestoreJobsApicreateLegacyBackupRestoreJob
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof LegacyBackupRestoreJobsApicreateLegacyBackupRestoreJob
-     */
-    pretty?: boolean
+    backupRestoreJob: BackupRestoreJob
 }
 
 export class ObjectLegacyBackupRestoreJobsApi {
@@ -7081,12 +5560,12 @@ export class ObjectLegacyBackupRestoreJobsApi {
     }
 
     /**
-     * Restores one legacy backup for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
+     * Restores one legacy backup for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Owner role. Effective 23 March 2020, all new clusters can use only Cloud Backups. When you upgrade to 4.2, your backup system upgrades to cloud backup if it is currently set to legacy backup. After this upgrade, all your existing legacy backup snapshots remain available. They expire over time in accordance with your retention policy. Your backup policy resets to the default schedule. If you had a custom backup policy in place with legacy backups, you must re-create it with the procedure outlined in the [Cloud Backup documentation](https://www.mongodb.com/docs/atlas/backup/cloud-backup/scheduling/#std-label-cloud-provider-backup-schedule). This endpoint doesn't support creating checkpoint restore jobs for sharded clusters, or creating restore jobs for queryable backup snapshots. If you create an automated restore job by specifying `delivery.methodName` of `AUTOMATED_RESTORE` in your request body, MongoDB Cloud removes all existing data on the target cluster prior to the restore.
      * Create One Legacy Backup Restore Job
      * @param param the request object
      */
-    public createLegacyBackupRestoreJob(param: LegacyBackupRestoreJobsApiCreateLegacyBackupRestoreJobRequest, options?: Configuration): Promise<PaginatedRestoreJobView> {
-        return this.api.createLegacyBackupRestoreJob(param.groupId, param.clusterName, param.apiRestoreJobView, param.envelope, param.pretty,  options).toPromise();
+    public createLegacyBackupRestoreJob(param: LegacyBackupRestoreJobsApiCreateLegacyBackupRestoreJobRequest, options?: Configuration): Promise<PaginatedRestoreJob> {
+        return this.api.createLegacyBackupRestoreJob(param.groupId, param.clusterName, param.backupRestoreJob,  options).toPromise();
     }
 
 }
@@ -7101,12 +5580,6 @@ export interface MaintenanceWindowsApiDeferMaintenanceWindowRequest {
      * @memberof MaintenanceWindowsApideferMaintenanceWindow
      */
     groupId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof MaintenanceWindowsApideferMaintenanceWindow
-     */
-    envelope?: boolean
 }
 
 export interface MaintenanceWindowsApiGetMaintenanceWindowRequest {
@@ -7116,18 +5589,6 @@ export interface MaintenanceWindowsApiGetMaintenanceWindowRequest {
      * @memberof MaintenanceWindowsApigetMaintenanceWindow
      */
     groupId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof MaintenanceWindowsApigetMaintenanceWindow
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof MaintenanceWindowsApigetMaintenanceWindow
-     */
-    pretty?: boolean
 }
 
 export interface MaintenanceWindowsApiResetMaintenanceWindowRequest {
@@ -7137,12 +5598,6 @@ export interface MaintenanceWindowsApiResetMaintenanceWindowRequest {
      * @memberof MaintenanceWindowsApiresetMaintenanceWindow
      */
     groupId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof MaintenanceWindowsApiresetMaintenanceWindow
-     */
-    envelope?: boolean
 }
 
 export interface MaintenanceWindowsApiToggleMaintenanceAutoDeferRequest {
@@ -7152,12 +5607,6 @@ export interface MaintenanceWindowsApiToggleMaintenanceAutoDeferRequest {
      * @memberof MaintenanceWindowsApitoggleMaintenanceAutoDefer
      */
     groupId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof MaintenanceWindowsApitoggleMaintenanceAutoDefer
-     */
-    envelope?: boolean
 }
 
 export interface MaintenanceWindowsApiUpdateMaintenanceWindowRequest {
@@ -7173,12 +5622,6 @@ export interface MaintenanceWindowsApiUpdateMaintenanceWindowRequest {
      * @memberof MaintenanceWindowsApiupdateMaintenanceWindow
      */
     groupMaintenanceWindow: GroupMaintenanceWindow
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof MaintenanceWindowsApiupdateMaintenanceWindow
-     */
-    envelope?: boolean
 }
 
 export class ObjectMaintenanceWindowsApi {
@@ -7189,48 +5632,48 @@ export class ObjectMaintenanceWindowsApi {
     }
 
     /**
-     * Defers the maintenance window for the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role.This resource doesn't require the API Key to have an Access List.
+     * Defers the maintenance window for the specified project. Urgent maintenance activities such as security patches can't wait for your chosen window. MongoDB Cloud starts those maintenance activities when needed. After you schedule maintenance for your cluster, you can't change your maintenance window until the current maintenance efforts complete. The maintenance procedure that MongoDB Cloud performs requires at least one replica set election during the maintenance window per replica set. Maintenance always begins as close to the scheduled hour as possible, but in-progress cluster updates or unexpected system issues could delay the start time. To use this resource, the requesting API Key must have the Project Owner role.
      * Defer One Maintenance Window for One Project
      * @param param the request object
      */
     public deferMaintenanceWindow(param: MaintenanceWindowsApiDeferMaintenanceWindowRequest, options?: Configuration): Promise<void> {
-        return this.api.deferMaintenanceWindow(param.groupId, param.envelope,  options).toPromise();
+        return this.api.deferMaintenanceWindow(param.groupId,  options).toPromise();
     }
 
     /**
-     * Returns the maintenance window for the specified project. To use this resource, the requesting API Key must have the Project Read Only role.This resource doesn't require the API Key to have an Access List.
+     * Returns the maintenance window for the specified project. MongoDB Cloud starts those maintenance activities when needed. You can't change your maintenance window until the current maintenance efforts complete. The maintenance procedure that MongoDB Cloud performs requires at least one replica set election during the maintenance window per replica set. Maintenance always begins as close to the scheduled hour as possible, but in-progress cluster updates or unexpected system issues could delay the start time. To use this resource, the requesting API Key must have the Project Owner role.
      * Return One Maintenance Window for One Project
      * @param param the request object
      */
     public getMaintenanceWindow(param: MaintenanceWindowsApiGetMaintenanceWindowRequest, options?: Configuration): Promise<GroupMaintenanceWindow> {
-        return this.api.getMaintenanceWindow(param.groupId, param.envelope, param.pretty,  options).toPromise();
+        return this.api.getMaintenanceWindow(param.groupId,  options).toPromise();
     }
 
     /**
-     * Resets the maintenance window for the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role.This resource doesn't require the API Key to have an Access List.
+     * Resets the maintenance window for the specified project. To use this resource, the requesting API Key must have the Project Owner role. Urgent maintenance activities such as security patches can't wait for your chosen window. MongoDB Cloud starts those maintenance activities when needed. After you schedule maintenance for your cluster, you can't change your maintenance window until the current maintenance efforts complete. The maintenance procedure that MongoDB Cloud performs requires at least one replica set election during the maintenance window per replica set. Maintenance always begins as close to the scheduled hour as possible, but in-progress cluster updates or unexpected system issues could delay the start time. To use this resource, the requesting API Key must have the Project Owner role.
      * Reset One Maintenance Window for One Project
      * @param param the request object
      */
     public resetMaintenanceWindow(param: MaintenanceWindowsApiResetMaintenanceWindowRequest, options?: Configuration): Promise<void> {
-        return this.api.resetMaintenanceWindow(param.groupId, param.envelope,  options).toPromise();
+        return this.api.resetMaintenanceWindow(param.groupId,  options).toPromise();
     }
 
     /**
-     * Toggles automatic deferral of the maintenance window for the specified project. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Toggles automatic deferral of the maintenance window for the specified project. To use this resource, the requesting API Key must have the Project Owner role.
      * Toggle Automatic Deferral of Maintenance for One Project
      * @param param the request object
      */
     public toggleMaintenanceAutoDefer(param: MaintenanceWindowsApiToggleMaintenanceAutoDeferRequest, options?: Configuration): Promise<void> {
-        return this.api.toggleMaintenanceAutoDefer(param.groupId, param.envelope,  options).toPromise();
+        return this.api.toggleMaintenanceAutoDefer(param.groupId,  options).toPromise();
     }
 
     /**
-     * Updates the maintenance window for the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role.This resource doesn't require the API Key to have an Access List.
+     * Updates the maintenance window for the specified project. Urgent maintenance activities such as security patches can't wait for your chosen window. MongoDB Cloud starts those maintenance activities when needed. After you schedule maintenance for your cluster, you can't change your maintenance window until the current maintenance efforts complete. The maintenance procedure that MongoDB Cloud performs requires at least one replica set election during the maintenance window per replica set. Maintenance always begins as close to the scheduled hour as possible, but in-progress cluster updates or unexpected system issues could delay the start time. To use this resource, the requesting API Key must have the Project Owner role.
      * Update Maintenance Window for One Project
      * @param param the request object
      */
-    public updateMaintenanceWindow(param: MaintenanceWindowsApiUpdateMaintenanceWindowRequest, options?: Configuration): Promise<void> {
-        return this.api.updateMaintenanceWindow(param.groupId, param.groupMaintenanceWindow, param.envelope,  options).toPromise();
+    public updateMaintenanceWindow(param: MaintenanceWindowsApiUpdateMaintenanceWindowRequest, options?: Configuration): Promise<any> {
+        return this.api.updateMaintenanceWindow(param.groupId, param.groupMaintenanceWindow,  options).toPromise();
     }
 
 }
@@ -7241,22 +5684,10 @@ import { MongoDBCloudUsersApiRequestFactory, MongoDBCloudUsersApiResponseProcess
 export interface MongoDBCloudUsersApiCreateUserRequest {
     /**
      * MongoDB Cloud user account to create.
-     * @type ApiAppUserView
+     * @type CloudAppUser
      * @memberof MongoDBCloudUsersApicreateUser
      */
-    apiAppUserView: ApiAppUserView
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof MongoDBCloudUsersApicreateUser
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof MongoDBCloudUsersApicreateUser
-     */
-    pretty?: boolean
+    cloudAppUser: CloudAppUser
 }
 
 export interface MongoDBCloudUsersApiGetUserRequest {
@@ -7266,18 +5697,6 @@ export interface MongoDBCloudUsersApiGetUserRequest {
      * @memberof MongoDBCloudUsersApigetUser
      */
     userId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof MongoDBCloudUsersApigetUser
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof MongoDBCloudUsersApigetUser
-     */
-    pretty?: boolean
 }
 
 export interface MongoDBCloudUsersApiGetUserByUsernameRequest {
@@ -7287,18 +5706,6 @@ export interface MongoDBCloudUsersApiGetUserByUsernameRequest {
      * @memberof MongoDBCloudUsersApigetUserByUsername
      */
     userName: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof MongoDBCloudUsersApigetUserByUsername
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof MongoDBCloudUsersApigetUserByUsername
-     */
-    pretty?: boolean
 }
 
 export class ObjectMongoDBCloudUsersApi {
@@ -7309,30 +5716,30 @@ export class ObjectMongoDBCloudUsersApi {
     }
 
     /**
-     * Creates one MongoDB Cloud user account. A MongoDB Cloud user account only grants access to the MongoDB Cloud application. To grant database access, create a database user. To use this resource, the requesting API Key can have any role. This resource doesn't require the API Key to have an Access List.
+     * Creates one MongoDB Cloud user account. A MongoDB Cloud user account grants access to only the MongoDB Cloud application. To grant database access, create a database user. MongoDB Cloud sends an email to the users you specify, inviting them to join the project. Invited users don't have access to the project until they accept the invitation. Invitations expire after 30 days.   MongoDB Cloud limits MongoDB Cloud user membership to a maximum of 250 MongoDB Cloud users per team. MongoDB Cloud limits MongoDB Cloud user membership to 500 MongoDB Cloud users per project and 500 MongoDB Cloud users per organization, which includes the combined membership of all projects in the organization. MongoDB Cloud raises an error if an operation exceeds these limits. For example, if you have an organization with five projects, and each project has 100 MongoDB Cloud users, and each MongoDB Cloud user belongs to only one project, you can't add any MongoDB Cloud users to this organization without first removing existing MongoDB Cloud users from the organization.   To use this resource, the requesting API Key can have any role.
      * Create One MongoDB Cloud User
      * @param param the request object
      */
-    public createUser(param: MongoDBCloudUsersApiCreateUserRequest, options?: Configuration): Promise<ApiAppUserView> {
-        return this.api.createUser(param.apiAppUserView, param.envelope, param.pretty,  options).toPromise();
+    public createUser(param: MongoDBCloudUsersApiCreateUserRequest, options?: Configuration): Promise<CloudAppUser> {
+        return this.api.createUser(param.cloudAppUser,  options).toPromise();
     }
 
     /**
-     * Returns the details for one MongoDB Cloud user account with the specified unique identifier for the user. To use this resource, the requesting API Key can have any role. This resource doesn't require the API Key to have an Access List.
+     * Returns the details for one MongoDB Cloud user account with the specified unique identifier for the user. You can't use this endpoint to return information on an API Key. To return information about an API Key, use the [Return One Organization](#tag/Organizations/operation/getOrganization) API Key endpoint. You can always retrieve your own user account. If you are the owner of a MongoDB Cloud organization or project, you can also retrieve the user profile for any user with membership in that organization or project. To use this resource, the requesting API Key can have any role.
      * Return One MongoDB Cloud User using Its ID
      * @param param the request object
      */
-    public getUser(param: MongoDBCloudUsersApiGetUserRequest, options?: Configuration): Promise<ApiAppUserView> {
-        return this.api.getUser(param.userId, param.envelope, param.pretty,  options).toPromise();
+    public getUser(param: MongoDBCloudUsersApiGetUserRequest, options?: Configuration): Promise<CloudAppUser> {
+        return this.api.getUser(param.userId,  options).toPromise();
     }
 
     /**
-     * Returns the details for one MongoDB Cloud user account with the specified username. To use this resource, the requesting API Key can have any role. This resource doesn't require the API Key to have an Access List.
+     * Returns the details for one MongoDB Cloud user account with the specified username. You can't use this endpoint to return information about an API Key. To return information about an API Key, use the [Return One Organization](#tag/Organizations/operation/getOrganization) API Key endpoint. To use this resource, the requesting API Key can have any role.
      * Return One MongoDB Cloud User using Their Username
      * @param param the request object
      */
-    public getUserByUsername(param: MongoDBCloudUsersApiGetUserByUsernameRequest, options?: Configuration): Promise<ApiAppUserView> {
-        return this.api.getUserByUsername(param.userName, param.envelope, param.pretty,  options).toPromise();
+    public getUserByUsername(param: MongoDBCloudUsersApiGetUserByUsernameRequest, options?: Configuration): Promise<CloudAppUser> {
+        return this.api.getUserByUsername(param.userName,  options).toPromise();
     }
 
 }
@@ -7353,18 +5760,6 @@ export interface MonitoringAndLogsApiGetAtlasProcessRequest {
      * @memberof MonitoringAndLogsApigetAtlasProcess
      */
     processId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof MonitoringAndLogsApigetAtlasProcess
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof MonitoringAndLogsApigetAtlasProcess
-     */
-    pretty?: boolean
 }
 
 export interface MonitoringAndLogsApiGetDatabaseRequest {
@@ -7386,18 +5781,6 @@ export interface MonitoringAndLogsApiGetDatabaseRequest {
      * @memberof MonitoringAndLogsApigetDatabase
      */
     processId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof MonitoringAndLogsApigetDatabase
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof MonitoringAndLogsApigetDatabase
-     */
-    pretty?: boolean
 }
 
 export interface MonitoringAndLogsApiGetDatabaseMeasurementsRequest {
@@ -7420,23 +5803,35 @@ export interface MonitoringAndLogsApiGetDatabaseMeasurementsRequest {
      */
     processId: string
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
+     * Duration that specifies the interval at which Atlas reports the metrics. This parameter expresses its value in the ISO 8601 duration format in UTC.
+     * @type string
      * @memberof MonitoringAndLogsApigetDatabaseMeasurements
      */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof MonitoringAndLogsApigetDatabaseMeasurements
-     */
-    pretty?: boolean
+    granularity: string
     /**
      * One or more types of measurement to request for this MongoDB process. If omitted, the resource returns all measurements. To specify multiple values for &#x60;m&#x60;, repeat the &#x60;m&#x60; parameter for each value. Specify measurements that apply to the specified host. MongoDB Cloud returns an error if you specified any invalid measurements.
-     * @type Set&lt;&#39;DATABASE_AVERAGE_OBJECT_SIZE&#39; | &#39;DATABASE_COLLECTION_COUNT&#39; | &#39;DATABASE_DATA_SIZE&#39; | &#39;DATABASE_STORAGE_SIZE&#39; | &#39;DATABASE_INDEX_SIZE&#39; | &#39;DATABASE_INDEX_COUNT&#39; | &#39;DATABASE_EXTENT_COUNT&#39; | &#39;DATABASE_OBJECT_COUNT&#39; | &#39;DATABASE_VIEW_COUNT&#39;&gt;
+     * @type Set&lt;string&gt;
      * @memberof MonitoringAndLogsApigetDatabaseMeasurements
      */
-    m?: Set<'DATABASE_AVERAGE_OBJECT_SIZE' | 'DATABASE_COLLECTION_COUNT' | 'DATABASE_DATA_SIZE' | 'DATABASE_STORAGE_SIZE' | 'DATABASE_INDEX_SIZE' | 'DATABASE_INDEX_COUNT' | 'DATABASE_EXTENT_COUNT' | 'DATABASE_OBJECT_COUNT' | 'DATABASE_VIEW_COUNT'>
+    m?: Set<string>
+    /**
+     * Duration over which Atlas reports the metrics. This parameter expresses its value in the ISO 8601 duration format in UTC. Include this parameter when you do not set **start** and **end**.
+     * @type string
+     * @memberof MonitoringAndLogsApigetDatabaseMeasurements
+     */
+    period?: string
+    /**
+     * Date and time when MongoDB Cloud begins reporting the metrics. This parameter expresses its value in the ISO 8601 timestamp format in UTC. Include this parameter when you do not set **period**.
+     * @type Date
+     * @memberof MonitoringAndLogsApigetDatabaseMeasurements
+     */
+    start?: Date
+    /**
+     * Date and time when MongoDB Cloud stops reporting the metrics. This parameter expresses its value in the ISO 8601 timestamp format in UTC. Include this parameter when you do not set **period**.
+     * @type Date
+     * @memberof MonitoringAndLogsApigetDatabaseMeasurements
+     */
+    end?: Date
 }
 
 export interface MonitoringAndLogsApiGetDiskMeasurementsRequest {
@@ -7459,23 +5854,35 @@ export interface MonitoringAndLogsApiGetDiskMeasurementsRequest {
      */
     processId: string
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
+     * Duration that specifies the interval at which Atlas reports the metrics. This parameter expresses its value in the ISO 8601 duration format in UTC.
+     * @type string
      * @memberof MonitoringAndLogsApigetDiskMeasurements
      */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof MonitoringAndLogsApigetDiskMeasurements
-     */
-    pretty?: boolean
+    granularity: string
     /**
      * One or more types of measurement to request for this MongoDB process. If omitted, the resource returns all measurements. To specify multiple values for &#x60;m&#x60;, repeat the &#x60;m&#x60; parameter for each value. Specify measurements that apply to the specified host. MongoDB Cloud returns an error if you specified any invalid measurements.
-     * @type Set&lt;&#39;DISK_PARTITION_IOPS_READ&#39; | &#39;MAX_DISK_PARTITION_IOPS_READ&#39; | &#39;DISK_PARTITION_IOPS_WRITE&#39; | &#39;MAX_DISK_PARTITION_IOPS_WRITE&#39; | &#39;DISK_PARTITION_IOPS_TOTAL&#39; | &#39;MAX_DISK_PARTITION_IOPS_TOTAL&#39; | &#39;DISK_PARTITION_UTILIZATION&#39; | &#39;MAX_DISK_PARTITION_UTILIZATION&#39; | &#39;DISK_PARTITION_LATENCY_READ&#39; | &#39;MAX_DISK_PARTITION_LATENCY_READ&#39; | &#39;DISK_PARTITION_LATENCY_WRITE&#39; | &#39;MAX_DISK_PARTITION_LATENCY_WRITE&#39; | &#39;DISK_PARTITION_SPACE_FREE&#39; | &#39;MAX_DISK_PARTITION_SPACE_FREE&#39; | &#39;DISK_PARTITION_SPACE_USED&#39; | &#39;MAX_DISK_PARTITION_SPACE_USED&#39; | &#39;DISK_PARTITION_SPACE_PERCENT_FREE&#39; | &#39;MAX_DISK_PARTITION_SPACE_PERCENT_FREE&#39; | &#39;DISK_PARTITION_SPACE_PERCENT_USED&#39; | &#39;MAX_DISK_PARTITION_SPACE_PERCENT_USED&#39;&gt;
+     * @type Set&lt;string&gt;
      * @memberof MonitoringAndLogsApigetDiskMeasurements
      */
-    m?: Set<'DISK_PARTITION_IOPS_READ' | 'MAX_DISK_PARTITION_IOPS_READ' | 'DISK_PARTITION_IOPS_WRITE' | 'MAX_DISK_PARTITION_IOPS_WRITE' | 'DISK_PARTITION_IOPS_TOTAL' | 'MAX_DISK_PARTITION_IOPS_TOTAL' | 'DISK_PARTITION_UTILIZATION' | 'MAX_DISK_PARTITION_UTILIZATION' | 'DISK_PARTITION_LATENCY_READ' | 'MAX_DISK_PARTITION_LATENCY_READ' | 'DISK_PARTITION_LATENCY_WRITE' | 'MAX_DISK_PARTITION_LATENCY_WRITE' | 'DISK_PARTITION_SPACE_FREE' | 'MAX_DISK_PARTITION_SPACE_FREE' | 'DISK_PARTITION_SPACE_USED' | 'MAX_DISK_PARTITION_SPACE_USED' | 'DISK_PARTITION_SPACE_PERCENT_FREE' | 'MAX_DISK_PARTITION_SPACE_PERCENT_FREE' | 'DISK_PARTITION_SPACE_PERCENT_USED' | 'MAX_DISK_PARTITION_SPACE_PERCENT_USED'>
+    m?: Set<string>
+    /**
+     * Duration over which Atlas reports the metrics. This parameter expresses its value in the ISO 8601 duration format in UTC. Include this parameter when you do not set **start** and **end**.
+     * @type string
+     * @memberof MonitoringAndLogsApigetDiskMeasurements
+     */
+    period?: string
+    /**
+     * Date and time when MongoDB Cloud begins reporting the metrics. This parameter expresses its value in the ISO 8601 timestamp format in UTC. Include this parameter when you do not set **period**.
+     * @type Date
+     * @memberof MonitoringAndLogsApigetDiskMeasurements
+     */
+    start?: Date
+    /**
+     * Date and time when MongoDB Cloud stops reporting the metrics. This parameter expresses its value in the ISO 8601 timestamp format in UTC. Include this parameter when you do not set **period**.
+     * @type Date
+     * @memberof MonitoringAndLogsApigetDiskMeasurements
+     */
+    end?: Date
 }
 
 export interface MonitoringAndLogsApiGetHostLogsRequest {
@@ -7486,17 +5893,17 @@ export interface MonitoringAndLogsApiGetHostLogsRequest {
      */
     groupId: string
     /**
-     * Fully qualified domain name or IP address of the MongoDB host that stores the log files that you want to download.
+     * Human-readable label that identifies the host that stores the log files that you want to download.
      * @type string
      * @memberof MonitoringAndLogsApigetHostLogs
      */
     hostName: string
     /**
-     * Human-readable label of the log file that you want to return. You can return audit logs only if you enable Database Auditing for the specified project.
-     * @type &#39;mongodb&#39; | &#39;mongos&#39; | &#39;mongodb-audit-log&#39; | &#39;mongos-audit-log&#39;
+     * Human-readable label that identifies the log file that you want to return. To return audit logs, enable *Database Auditing* for the specified project.
+     * @type string
      * @memberof MonitoringAndLogsApigetHostLogs
      */
-    logName: 'mongodb' | 'mongos' | 'mongodb-audit-log' | 'mongos-audit-log'
+    logName: string
     /**
      * Date and time when the period specifies the inclusive ending point for the range of log messages to retrieve. This parameter expresses its value in the number of seconds that have elapsed since the UNIX epoch.
      * @type number
@@ -7525,29 +5932,35 @@ export interface MonitoringAndLogsApiGetHostMeasurementsRequest {
      */
     processId: string
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
+     * Duration that specifies the interval at which Atlas reports the metrics. This parameter expresses its value in the ISO 8601 duration format in UTC.
+     * @type string
      * @memberof MonitoringAndLogsApigetHostMeasurements
      */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof MonitoringAndLogsApigetHostMeasurements
-     */
-    pretty?: boolean
+    granularity: string
     /**
      * One or more types of measurement to request for this MongoDB process. If omitted, the resource returns all measurements. To specify multiple values for &#x60;m&#x60;, repeat the &#x60;m&#x60; parameter for each value. Specify measurements that apply to the specified host. MongoDB Cloud returns an error if you specified any invalid measurements.
-     * @type Set&lt;&#39;ASSERT_MSG&#39; | &#39;ASSERT_REGULAR&#39; | &#39;ASSERT_USER&#39; | &#39;ASSERT_WARNING&#39; | &#39;BACKGROUND_FLUSH_AVG&#39; | &#39;CACHE_BYTES_READ_INTO&#39; | &#39;CACHE_BYTES_WRITTEN_FROM&#39; | &#39;CACHE_DIRTY_BYTES&#39; | &#39;CACHE_USED_BYTES&#39; | &#39;COMPUTED_MEMORY&#39; | &#39;CONNECTIONS&#39; | &#39;CURSORS_TOTAL_OPEN&#39; | &#39;CURSORS_TOTAL_TIMED_OUT&#39; | &#39;DB_DATA_SIZE_TOTAL&#39; | &#39;DB_STORAGE_TOTAL&#39; | &#39;DOCUMENT_METRICS_DELETED&#39; | &#39;DOCUMENT_METRICS_INSERTED&#39; | &#39;DOCUMENT_METRICS_RETURNED&#39; | &#39;DOCUMENT_METRICS_UPDATED&#39; | &#39;EXTRA_INFO_PAGE_FAULTS&#39; | &#39;FTS_DISK_UTILIZATION&#39; | &#39;FTS_MEMORY_MAPPED&#39; | &#39;FTS_MEMORY_RESIDENT&#39; | &#39;FTS_MEMORY_VIRTUAL&#39; | &#39;FTS_PROCESS_CPU_KERNEL&#39; | &#39;FTS_PROCESS_CPU_USER&#39; | &#39;FTS_PROCESS_NORMALIZED_CPU_KERNEL&#39; | &#39;FTS_PROCESS_NORMALIZED_CPU_USER&#39; | &#39;GLOBAL_ACCESSES_NOT_IN_MEMORY&#39; | &#39;GLOBAL_LOCK_CURRENT_QUEUE_READERS&#39; | &#39;GLOBAL_LOCK_CURRENT_QUEUE_TOTAL&#39; | &#39;GLOBAL_LOCK_CURRENT_QUEUE_WRITERS&#39; | &#39;GLOBAL_PAGE_FAULT_EXCEPTIONS_THROWN&#39; | &#39;INDEX_COUNTERS_BTREE_ACCESSES&#39; | &#39;INDEX_COUNTERS_BTREE_HITS&#39; | &#39;INDEX_COUNTERS_BTREE_MISS_RATIO&#39; | &#39;INDEX_COUNTERS_BTREE_MISSES&#39; | &#39;JOURNALING_COMMITS_IN_WRITE_LOCK&#39; | &#39;JOURNALING_MB&#39; | &#39;JOURNALING_WRITE_DATA_FILES_MB&#39; | &#39;MAX_PROCESS_CPU_CHILDREN_KERNEL&#39; | &#39;MAX_PROCESS_CPU_CHILDREN_USER&#39; | &#39;MAX_PROCESS_CPU_KERNEL&#39; | &#39;MAX_PROCESS_CPU_USER&#39; | &#39;MAX_PROCESS_NORMALIZED_CPU_CHILDREN_KERNEL&#39; | &#39;MAX_PROCESS_NORMALIZED_CPU_CHILDREN_USER&#39; | &#39;MAX_PROCESS_NORMALIZED_CPU_KERNEL&#39; | &#39;MAX_PROCESS_NORMALIZED_CPU_USER&#39; | &#39;MAX_SWAP_USAGE_FREE&#39; | &#39;MAX_SWAP_USAGE_USED &#39; | &#39;MAX_SYSTEM_CPU_GUEST&#39; | &#39;MAX_SYSTEM_CPU_IOWAIT&#39; | &#39;MAX_SYSTEM_CPU_IRQ&#39; | &#39;MAX_SYSTEM_CPU_KERNEL&#39; | &#39;MAX_SYSTEM_CPU_SOFTIRQ&#39; | &#39;MAX_SYSTEM_CPU_STEAL&#39; | &#39;MAX_SYSTEM_CPU_USER&#39; | &#39;MAX_SYSTEM_MEMORY_AVAILABLE&#39; | &#39;MAX_SYSTEM_MEMORY_FREE&#39; | &#39;MAX_SYSTEM_MEMORY_USED&#39; | &#39;MAX_SYSTEM_NETWORK_IN&#39; | &#39;MAX_SYSTEM_NETWORK_OUT&#39; | &#39;MAX_SYSTEM_NORMALIZED_CPU_GUEST&#39; | &#39;MAX_SYSTEM_NORMALIZED_CPU_IOWAIT&#39; | &#39;MAX_SYSTEM_NORMALIZED_CPU_IRQ&#39; | &#39;MAX_SYSTEM_NORMALIZED_CPU_KERNEL&#39; | &#39;MAX_SYSTEM_NORMALIZED_CPU_NICE&#39; | &#39;MAX_SYSTEM_NORMALIZED_CPU_SOFTIRQ&#39; | &#39;MAX_SYSTEM_NORMALIZED_CPU_STEAL&#39; | &#39;MAX_SYSTEM_NORMALIZED_CPU_USER&#39; | &#39;MEMORY_MAPPED&#39; | &#39;MEMORY_RESIDENT&#39; | &#39;MEMORY_VIRTUAL&#39; | &#39;NETWORK_BYTES_IN&#39; | &#39;NETWORK_BYTES_OUT&#39; | &#39;NETWORK_NUM_REQUESTS&#39; | &#39;OP_EXECUTION_TIME_COMMANDS&#39; | &#39;OP_EXECUTION_TIME_READS&#39; | &#39;OP_EXECUTION_TIME_WRITES&#39; | &#39;OPCOUNTER_CMD&#39; | &#39;OPCOUNTER_DELETE&#39; | &#39;OPCOUNTER_GETMORE&#39; | &#39;OPCOUNTER_INSERT&#39; | &#39;OPCOUNTER_QUERY&#39; | &#39;OPCOUNTER_REPL_CMD&#39; | &#39;OPCOUNTER_REPL_DELETE&#39; | &#39;OPCOUNTER_REPL_INSERT&#39; | &#39;OPCOUNTER_REPL_UPDATE&#39; | &#39;OPCOUNTER_UPDATE&#39; | &#39;OPERATIONS_SCAN_AND_ORDER&#39; | &#39;OPLOG_MASTER_LAG_TIME_DIFF&#39; | &#39;OPLOG_MASTER_TIME&#39; | &#39;OPLOG_RATE_GB_PER_HOUR&#39; | &#39;OPLOG_SLAVE_LAG_MASTER_TIME&#39; | &#39;OPLOG_REPLICATION_LAG&#39; | &#39;PROCESS_CPU_CHILDREN_KERNEL&#39; | &#39;PROCESS_CPU_CHILDREN_USER&#39; | &#39;PROCESS_CPU_KERNEL&#39; | &#39;PROCESS_CPU_USER&#39; | &#39;PROCESS_NORMALIZED_CPU_CHILDREN_KERNEL&#39; | &#39;PROCESS_NORMALIZED_CPU_CHILDREN_USER&#39; | &#39;PROCESS_NORMALIZED_CPU_KERNEL&#39; | &#39;PROCESS_NORMALIZED_CPU_USER&#39; | &#39;QUERY_EXECUTOR_SCANNED&#39; | &#39;QUERY_EXECUTOR_SCANNED_OBJECTS&#39; | &#39;QUERY_TARGETING_SCANNED_OBJECTS_PER_RETURNED&#39; | &#39;QUERY_TARGETING_SCANNED_PER_RETURNED&#39; | &#39;RESTARTS_IN_LAST_HOUR&#39; | &#39;SWAP_USAGE_FREE&#39; | &#39;SWAP_USAGE_USED&#39; | &#39;SYSTEM_CPU_GUEST&#39; | &#39;SYSTEM_CPU_IOWAIT&#39; | &#39;SYSTEM_CPU_IRQ&#39; | &#39;SYSTEM_CPU_KERNEL&#39; | &#39;SYSTEM_CPU_NICE&#39; | &#39;SYSTEM_CPU_SOFTIRQ&#39; | &#39;SYSTEM_CPU_STEAL&#39; | &#39;SYSTEM_CPU_USER&#39; | &#39;SYSTEM_MEMORY_AVAILABLE&#39; | &#39;SYSTEM_MEMORY_FREE&#39; | &#39;SYSTEM_MEMORY_USED&#39; | &#39;SYSTEM_NETWORK_IN&#39; | &#39;SYSTEM_NETWORK_OUT&#39; | &#39;SYSTEM_NORMALIZED_CPU_GUEST&#39; | &#39;SYSTEM_NORMALIZED_CPU_IOWAIT&#39; | &#39;SYSTEM_NORMALIZED_CPU_IRQ&#39; | &#39;SYSTEM_NORMALIZED_CPU_KERNEL&#39; | &#39;SYSTEM_NORMALIZED_CPU_NICE&#39; | &#39;SYSTEM_NORMALIZED_CPU_SOFTIRQ&#39; | &#39;SYSTEM_NORMALIZED_CPU_STEAL&#39; | &#39;SYSTEM_NORMALIZED_CPU_USER&#39; | &#39;TICKETS_AVAILABLE_READS&#39; | &#39;TICKETS_AVAILABLE_WRITE&#39;&gt;
+     * @type Set&lt;string&gt;
      * @memberof MonitoringAndLogsApigetHostMeasurements
      */
-    m?: Set<'ASSERT_MSG' | 'ASSERT_REGULAR' | 'ASSERT_USER' | 'ASSERT_WARNING' | 'BACKGROUND_FLUSH_AVG' | 'CACHE_BYTES_READ_INTO' | 'CACHE_BYTES_WRITTEN_FROM' | 'CACHE_DIRTY_BYTES' | 'CACHE_USED_BYTES' | 'COMPUTED_MEMORY' | 'CONNECTIONS' | 'CURSORS_TOTAL_OPEN' | 'CURSORS_TOTAL_TIMED_OUT' | 'DB_DATA_SIZE_TOTAL' | 'DB_STORAGE_TOTAL' | 'DOCUMENT_METRICS_DELETED' | 'DOCUMENT_METRICS_INSERTED' | 'DOCUMENT_METRICS_RETURNED' | 'DOCUMENT_METRICS_UPDATED' | 'EXTRA_INFO_PAGE_FAULTS' | 'FTS_DISK_UTILIZATION' | 'FTS_MEMORY_MAPPED' | 'FTS_MEMORY_RESIDENT' | 'FTS_MEMORY_VIRTUAL' | 'FTS_PROCESS_CPU_KERNEL' | 'FTS_PROCESS_CPU_USER' | 'FTS_PROCESS_NORMALIZED_CPU_KERNEL' | 'FTS_PROCESS_NORMALIZED_CPU_USER' | 'GLOBAL_ACCESSES_NOT_IN_MEMORY' | 'GLOBAL_LOCK_CURRENT_QUEUE_READERS' | 'GLOBAL_LOCK_CURRENT_QUEUE_TOTAL' | 'GLOBAL_LOCK_CURRENT_QUEUE_WRITERS' | 'GLOBAL_PAGE_FAULT_EXCEPTIONS_THROWN' | 'INDEX_COUNTERS_BTREE_ACCESSES' | 'INDEX_COUNTERS_BTREE_HITS' | 'INDEX_COUNTERS_BTREE_MISS_RATIO' | 'INDEX_COUNTERS_BTREE_MISSES' | 'JOURNALING_COMMITS_IN_WRITE_LOCK' | 'JOURNALING_MB' | 'JOURNALING_WRITE_DATA_FILES_MB' | 'MAX_PROCESS_CPU_CHILDREN_KERNEL' | 'MAX_PROCESS_CPU_CHILDREN_USER' | 'MAX_PROCESS_CPU_KERNEL' | 'MAX_PROCESS_CPU_USER' | 'MAX_PROCESS_NORMALIZED_CPU_CHILDREN_KERNEL' | 'MAX_PROCESS_NORMALIZED_CPU_CHILDREN_USER' | 'MAX_PROCESS_NORMALIZED_CPU_KERNEL' | 'MAX_PROCESS_NORMALIZED_CPU_USER' | 'MAX_SWAP_USAGE_FREE' | 'MAX_SWAP_USAGE_USED ' | 'MAX_SYSTEM_CPU_GUEST' | 'MAX_SYSTEM_CPU_IOWAIT' | 'MAX_SYSTEM_CPU_IRQ' | 'MAX_SYSTEM_CPU_KERNEL' | 'MAX_SYSTEM_CPU_SOFTIRQ' | 'MAX_SYSTEM_CPU_STEAL' | 'MAX_SYSTEM_CPU_USER' | 'MAX_SYSTEM_MEMORY_AVAILABLE' | 'MAX_SYSTEM_MEMORY_FREE' | 'MAX_SYSTEM_MEMORY_USED' | 'MAX_SYSTEM_NETWORK_IN' | 'MAX_SYSTEM_NETWORK_OUT' | 'MAX_SYSTEM_NORMALIZED_CPU_GUEST' | 'MAX_SYSTEM_NORMALIZED_CPU_IOWAIT' | 'MAX_SYSTEM_NORMALIZED_CPU_IRQ' | 'MAX_SYSTEM_NORMALIZED_CPU_KERNEL' | 'MAX_SYSTEM_NORMALIZED_CPU_NICE' | 'MAX_SYSTEM_NORMALIZED_CPU_SOFTIRQ' | 'MAX_SYSTEM_NORMALIZED_CPU_STEAL' | 'MAX_SYSTEM_NORMALIZED_CPU_USER' | 'MEMORY_MAPPED' | 'MEMORY_RESIDENT' | 'MEMORY_VIRTUAL' | 'NETWORK_BYTES_IN' | 'NETWORK_BYTES_OUT' | 'NETWORK_NUM_REQUESTS' | 'OP_EXECUTION_TIME_COMMANDS' | 'OP_EXECUTION_TIME_READS' | 'OP_EXECUTION_TIME_WRITES' | 'OPCOUNTER_CMD' | 'OPCOUNTER_DELETE' | 'OPCOUNTER_GETMORE' | 'OPCOUNTER_INSERT' | 'OPCOUNTER_QUERY' | 'OPCOUNTER_REPL_CMD' | 'OPCOUNTER_REPL_DELETE' | 'OPCOUNTER_REPL_INSERT' | 'OPCOUNTER_REPL_UPDATE' | 'OPCOUNTER_UPDATE' | 'OPERATIONS_SCAN_AND_ORDER' | 'OPLOG_MASTER_LAG_TIME_DIFF' | 'OPLOG_MASTER_TIME' | 'OPLOG_RATE_GB_PER_HOUR' | 'OPLOG_SLAVE_LAG_MASTER_TIME' | 'OPLOG_REPLICATION_LAG' | 'PROCESS_CPU_CHILDREN_KERNEL' | 'PROCESS_CPU_CHILDREN_USER' | 'PROCESS_CPU_KERNEL' | 'PROCESS_CPU_USER' | 'PROCESS_NORMALIZED_CPU_CHILDREN_KERNEL' | 'PROCESS_NORMALIZED_CPU_CHILDREN_USER' | 'PROCESS_NORMALIZED_CPU_KERNEL' | 'PROCESS_NORMALIZED_CPU_USER' | 'QUERY_EXECUTOR_SCANNED' | 'QUERY_EXECUTOR_SCANNED_OBJECTS' | 'QUERY_TARGETING_SCANNED_OBJECTS_PER_RETURNED' | 'QUERY_TARGETING_SCANNED_PER_RETURNED' | 'RESTARTS_IN_LAST_HOUR' | 'SWAP_USAGE_FREE' | 'SWAP_USAGE_USED' | 'SYSTEM_CPU_GUEST' | 'SYSTEM_CPU_IOWAIT' | 'SYSTEM_CPU_IRQ' | 'SYSTEM_CPU_KERNEL' | 'SYSTEM_CPU_NICE' | 'SYSTEM_CPU_SOFTIRQ' | 'SYSTEM_CPU_STEAL' | 'SYSTEM_CPU_USER' | 'SYSTEM_MEMORY_AVAILABLE' | 'SYSTEM_MEMORY_FREE' | 'SYSTEM_MEMORY_USED' | 'SYSTEM_NETWORK_IN' | 'SYSTEM_NETWORK_OUT' | 'SYSTEM_NORMALIZED_CPU_GUEST' | 'SYSTEM_NORMALIZED_CPU_IOWAIT' | 'SYSTEM_NORMALIZED_CPU_IRQ' | 'SYSTEM_NORMALIZED_CPU_KERNEL' | 'SYSTEM_NORMALIZED_CPU_NICE' | 'SYSTEM_NORMALIZED_CPU_SOFTIRQ' | 'SYSTEM_NORMALIZED_CPU_STEAL' | 'SYSTEM_NORMALIZED_CPU_USER' | 'TICKETS_AVAILABLE_READS' | 'TICKETS_AVAILABLE_WRITE'>
+    m?: Set<string>
     /**
-     * Date and time that indicates how far in the past to query. You can&#39;t set this value with **start** and **end** in the same request. This parameter expresses its value in the ISO 8601 duration format in UTC
+     * Duration over which Atlas reports the metrics. This parameter expresses its value in the ISO 8601 duration format in UTC. Include this parameter when you do not set **start** and **end**.
+     * @type string
+     * @memberof MonitoringAndLogsApigetHostMeasurements
+     */
+    period?: string
+    /**
+     * Date and time when MongoDB Cloud begins reporting the metrics. This parameter expresses its value in the ISO 8601 timestamp format in UTC. Include this parameter when you do not set **period**.
      * @type Date
      * @memberof MonitoringAndLogsApigetHostMeasurements
      */
-    period?: Date
+    start?: Date
+    /**
+     * Date and time when MongoDB Cloud stops reporting the metrics. This parameter expresses its value in the ISO 8601 timestamp format in UTC. Include this parameter when you do not set **period**.
+     * @type Date
+     * @memberof MonitoringAndLogsApigetHostMeasurements
+     */
+    end?: Date
 }
 
 export interface MonitoringAndLogsApiGetIndexMetricsRequest {
@@ -7589,10 +6002,10 @@ export interface MonitoringAndLogsApiGetIndexMetricsRequest {
     granularity: string
     /**
      * List that contains the measurements that MongoDB Atlas reports for the associated data series.
-     * @type Set&lt;&#39;INDEX_SIZE_ON_DISK&#39; | &#39;NUMBER_OF_DELETES&#39; | &#39;NUMBER_OF_ERROR_QUERIES&#39; | &#39;NUMBER_OF_GETMORE_COMMANDS&#39; | &#39;NUMBER_OF_INDEX_FIELDS&#39; | &#39;NUMBER_OF_INSERTS&#39; | &#39;NUMBER_OF_SUCCESS_QUERIES&#39; | &#39;NUMBER_OF_UPDATES&#39; | &#39;REPLICATION_LAG&#39; | &#39;TOTAL_NUMBER_OF_QUERIES&#39;&gt;
+     * @type Set&lt;string&gt;
      * @memberof MonitoringAndLogsApigetIndexMetrics
      */
-    metrics: Set<'INDEX_SIZE_ON_DISK' | 'NUMBER_OF_DELETES' | 'NUMBER_OF_ERROR_QUERIES' | 'NUMBER_OF_GETMORE_COMMANDS' | 'NUMBER_OF_INDEX_FIELDS' | 'NUMBER_OF_INSERTS' | 'NUMBER_OF_SUCCESS_QUERIES' | 'NUMBER_OF_UPDATES' | 'REPLICATION_LAG' | 'TOTAL_NUMBER_OF_QUERIES'>
+    metrics: Set<string>
     /**
      * Duration over which Atlas reports the metrics. This parameter expresses its value in the ISO 8601 duration format in UTC. Include this parameter when you do not set **start** and **end**.
      * @type string
@@ -7611,12 +6024,6 @@ export interface MonitoringAndLogsApiGetIndexMetricsRequest {
      * @memberof MonitoringAndLogsApigetIndexMetrics
      */
     end?: Date
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof MonitoringAndLogsApigetIndexMetrics
-     */
-    envelope?: boolean
 }
 
 export interface MonitoringAndLogsApiGetMeasurementsRequest {
@@ -7640,10 +6047,10 @@ export interface MonitoringAndLogsApiGetMeasurementsRequest {
     granularity: string
     /**
      * List that contains the metrics that you want MongoDB Atlas to report for the associated data series. If you don&#39;t set this parameter, this resource returns all hardware and status metrics for the associated data series.
-     * @type Set&lt;&#39;FTS_DISK_USAGE&#39; | &#39;FTS_PROCESS_CPU_KERNEL&#39; | &#39;FTS_PROCESS_CPU_USER&#39; | &#39;FTS_PROCESS_NORMALIZED_CPU_KERNEL&#39; | &#39;FTS_PROCESS_NORMALIZED_CPU_USER&#39; | &#39;FTS_PROCESS_RESIDENT_MEMORY&#39; | &#39;FTS_PROCESS_SHARED_MEMORY&#39; | &#39;FTS_PROCESS_VIRTUAL_MEMORY&#39; | &#39;JVM_CURRENT_MEMORY&#39; | &#39;JVM_MAX_MEMORY&#39;&gt;
+     * @type Set&lt;string&gt;
      * @memberof MonitoringAndLogsApigetMeasurements
      */
-    metrics: Set<'FTS_DISK_USAGE' | 'FTS_PROCESS_CPU_KERNEL' | 'FTS_PROCESS_CPU_USER' | 'FTS_PROCESS_NORMALIZED_CPU_KERNEL' | 'FTS_PROCESS_NORMALIZED_CPU_USER' | 'FTS_PROCESS_RESIDENT_MEMORY' | 'FTS_PROCESS_SHARED_MEMORY' | 'FTS_PROCESS_VIRTUAL_MEMORY' | 'JVM_CURRENT_MEMORY' | 'JVM_MAX_MEMORY'>
+    metrics: Set<string>
     /**
      * Duration over which Atlas reports the metrics. This parameter expresses its value in the ISO 8601 duration format in UTC. Include this parameter when you do not set **start** and **end**.
      * @type string
@@ -7662,12 +6069,6 @@ export interface MonitoringAndLogsApiGetMeasurementsRequest {
      * @memberof MonitoringAndLogsApigetMeasurements
      */
     end?: Date
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof MonitoringAndLogsApigetMeasurements
-     */
-    envelope?: boolean
 }
 
 export interface MonitoringAndLogsApiListAtlasProcessesRequest {
@@ -7678,12 +6079,6 @@ export interface MonitoringAndLogsApiListAtlasProcessesRequest {
      */
     groupId: string
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof MonitoringAndLogsApilistAtlasProcesses
-     */
-    envelope?: boolean
-    /**
      * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
      * @memberof MonitoringAndLogsApilistAtlasProcesses
@@ -7701,12 +6096,6 @@ export interface MonitoringAndLogsApiListAtlasProcessesRequest {
      * @memberof MonitoringAndLogsApilistAtlasProcesses
      */
     pageNum?: number
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof MonitoringAndLogsApilistAtlasProcesses
-     */
-    pretty?: boolean
 }
 
 export interface MonitoringAndLogsApiListDatabasesRequest {
@@ -7717,17 +6106,11 @@ export interface MonitoringAndLogsApiListDatabasesRequest {
      */
     groupId: string
     /**
-     * Combination of hostname and Internet Assigned Numbers Authority (IANA) port that serves the MongoDB process. The host must be the hostname, fully qualified domain name (FQDN), or Internet Protocol address (IPv4 or IPv6) of the host that runs the MongoDB process (&#x60;mongod&#x60; or &#x60;mongos&#x60;). The port must be the IANA port on which the MongoDB process listens for requests.
+     * Combination of hostname and Internet Assigned Numbers Authority (IANA) port that serves the MongoDB process. The host must be the hostname, fully qualified domain name (FQDN), or Internet Protocol address (IPv4 or IPv6) of the host that runs the MongoDB process (&#x60;mongod&#x60;). The port must be the IANA port on which the MongoDB process listens for requests.
      * @type string
      * @memberof MonitoringAndLogsApilistDatabases
      */
     processId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof MonitoringAndLogsApilistDatabases
-     */
-    envelope?: boolean
     /**
      * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
@@ -7746,12 +6129,6 @@ export interface MonitoringAndLogsApiListDatabasesRequest {
      * @memberof MonitoringAndLogsApilistDatabases
      */
     pageNum?: number
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof MonitoringAndLogsApilistDatabases
-     */
-    pretty?: boolean
 }
 
 export interface MonitoringAndLogsApiListDiskMeasurementsRequest {
@@ -7773,12 +6150,6 @@ export interface MonitoringAndLogsApiListDiskMeasurementsRequest {
      * @memberof MonitoringAndLogsApilistDiskMeasurements
      */
     processId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof MonitoringAndLogsApilistDiskMeasurements
-     */
-    envelope?: boolean
 }
 
 export interface MonitoringAndLogsApiListDiskPartitionsRequest {
@@ -7794,12 +6165,6 @@ export interface MonitoringAndLogsApiListDiskPartitionsRequest {
      * @memberof MonitoringAndLogsApilistDiskPartitions
      */
     processId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof MonitoringAndLogsApilistDiskPartitions
-     */
-    envelope?: boolean
     /**
      * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
@@ -7818,12 +6183,6 @@ export interface MonitoringAndLogsApiListDiskPartitionsRequest {
      * @memberof MonitoringAndLogsApilistDiskPartitions
      */
     pageNum?: number
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof MonitoringAndLogsApilistDiskPartitions
-     */
-    pretty?: boolean
 }
 
 export interface MonitoringAndLogsApiListIndexMetricsRequest {
@@ -7859,10 +6218,10 @@ export interface MonitoringAndLogsApiListIndexMetricsRequest {
     granularity: string
     /**
      * List that contains the measurements that MongoDB Atlas reports for the associated data series.
-     * @type Set&lt;&#39;INDEX_SIZE_ON_DISK&#39; | &#39;NUMBER_OF_DELETES&#39; | &#39;NUMBER_OF_ERROR_QUERIES&#39; | &#39;NUMBER_OF_GETMORE_COMMANDS&#39; | &#39;NUMBER_OF_INDEX_FIELDS&#39; | &#39;NUMBER_OF_INSERTS&#39; | &#39;NUMBER_OF_SUCCESS_QUERIES&#39; | &#39;NUMBER_OF_UPDATES&#39; | &#39;REPLICATION_LAG&#39; | &#39;TOTAL_NUMBER_OF_QUERIES&#39;&gt;
+     * @type Set&lt;string&gt;
      * @memberof MonitoringAndLogsApilistIndexMetrics
      */
-    metrics: Set<'INDEX_SIZE_ON_DISK' | 'NUMBER_OF_DELETES' | 'NUMBER_OF_ERROR_QUERIES' | 'NUMBER_OF_GETMORE_COMMANDS' | 'NUMBER_OF_INDEX_FIELDS' | 'NUMBER_OF_INSERTS' | 'NUMBER_OF_SUCCESS_QUERIES' | 'NUMBER_OF_UPDATES' | 'REPLICATION_LAG' | 'TOTAL_NUMBER_OF_QUERIES'>
+    metrics: Set<string>
     /**
      * Duration over which Atlas reports the metrics. This parameter expresses its value in the ISO 8601 duration format in UTC. Include this parameter when you do not set **start** and **end**.
      * @type string
@@ -7881,12 +6240,6 @@ export interface MonitoringAndLogsApiListIndexMetricsRequest {
      * @memberof MonitoringAndLogsApilistIndexMetrics
      */
     end?: Date
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof MonitoringAndLogsApilistIndexMetrics
-     */
-    envelope?: boolean
 }
 
 export interface MonitoringAndLogsApiListMetricTypesRequest {
@@ -7902,12 +6255,6 @@ export interface MonitoringAndLogsApiListMetricTypesRequest {
      * @memberof MonitoringAndLogsApilistMetricTypes
      */
     groupId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof MonitoringAndLogsApilistMetricTypes
-     */
-    envelope?: boolean
 }
 
 export class ObjectMonitoringAndLogsApi {
@@ -7918,44 +6265,44 @@ export class ObjectMonitoringAndLogsApi {
     }
 
     /**
-     * Returns the processes for the specified host for the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns the processes for the specified host for the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return One MongoDB Process by ID
      * @param param the request object
      */
     public getAtlasProcess(param: MonitoringAndLogsApiGetAtlasProcessRequest, options?: Configuration): Promise<ApiHostViewAtlas> {
-        return this.api.getAtlasProcess(param.groupId, param.processId, param.envelope, param.pretty,  options).toPromise();
+        return this.api.getAtlasProcess(param.groupId, param.processId,  options).toPromise();
     }
 
     /**
-     * Returns one database running on the specified host for the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns one database running on the specified host for the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return One Database for a MongoDB Process
      * @param param the request object
      */
-    public getDatabase(param: MonitoringAndLogsApiGetDatabaseRequest, options?: Configuration): Promise<ApiDatabaseView> {
-        return this.api.getDatabase(param.groupId, param.databaseName, param.processId, param.envelope, param.pretty,  options).toPromise();
+    public getDatabase(param: MonitoringAndLogsApiGetDatabaseRequest, options?: Configuration): Promise<MesurementsDatabase> {
+        return this.api.getDatabase(param.groupId, param.databaseName, param.processId,  options).toPromise();
     }
 
     /**
-     * Returns the measurements of one database for the specified host for the specified project. Returns the database's on-disk storage space based on the MongoDB `dbStats` command output. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns the measurements of one database for the specified host for the specified project. Returns the database's on-disk storage space based on the MongoDB `dbStats` command output. To calculate some metric series, Atlas takes the rate between every two adjacent points. For these metric series, the first data point has a null value because Atlas can't calculate a rate for the first data point given the query time range. Atlas retrieves database metrics every 20 minutes but reduces frequency when necessary to optimize database performance. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return Measurements of One Database for One MongoDB Process
      * @param param the request object
      */
     public getDatabaseMeasurements(param: MonitoringAndLogsApiGetDatabaseMeasurementsRequest, options?: Configuration): Promise<ApiMeasurementsGeneralViewAtlas> {
-        return this.api.getDatabaseMeasurements(param.groupId, param.databaseName, param.processId, param.envelope, param.pretty, param.m,  options).toPromise();
+        return this.api.getDatabaseMeasurements(param.groupId, param.databaseName, param.processId, param.granularity, param.m, param.period, param.start, param.end,  options).toPromise();
     }
 
     /**
-     * Returns the measurements of one disk or partition for the specified host for the specified project. Returned value can be one of the following: - Throughput of I/O operations for the disk partition used for the MongoDB process - Percentage of time during which requests the partition issued and serviced - Latency per operation type of the disk partition used for the MongoDB process - Amount of free and used disk space on the disk partition used for the MongoDB process  To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns the measurements of one disk or partition for the specified host for the specified project. Returned value can be one of the following: - Throughput of I/O operations for the disk partition used for the MongoDB process - Percentage of time during which requests the partition issued and serviced - Latency per operation type of the disk partition used for the MongoDB process - Amount of free and used disk space on the disk partition used for the MongoDB process  To use this resource, the requesting API Key must have the Project Read Only role.
      * Return Measurements of One Disk for One MongoDB Process
      * @param param the request object
      */
     public getDiskMeasurements(param: MonitoringAndLogsApiGetDiskMeasurementsRequest, options?: Configuration): Promise<ApiMeasurementsGeneralViewAtlas> {
-        return this.api.getDiskMeasurements(param.groupId, param.partitionName, param.processId, param.envelope, param.pretty, param.m,  options).toPromise();
+        return this.api.getDiskMeasurements(param.groupId, param.partitionName, param.processId, param.granularity, param.m, param.period, param.start, param.end,  options).toPromise();
     }
 
     /**
-     * Returns a compressed (.gz) log file that contains a range of log messages for the specified host for the specified project. To use this resource, the requesting API Key must have the Project Owner or Project Data Access Read Write roles. This resource doesn't require the API Key to have an Access List. Deprecated versions: v2-{2023-01-01}
-     * Download Logs for One Multi-Cloud Cluster Host in One Project
+     * Returns a compressed (.gz) log file that contains a range of log messages for the specified host for the specified project. MongoDB updates process and audit logs from the cluster backend infrastructure every five minutes and contain log data from the previous five minutes. If you poll the API for log files, we recommend polling every five minutes. For example, if the logs are updated at 4:00 UTC and then you poll the API, the API returns log data from the interval between 3:55 UTC and 4:00 UTC. This feature isn't available for `M0` free clusters, `M2`, `M5`, or serverless clusters. To use this resource, the requesting API Key must have the Project Data Access Read Only or higher role. Deprecated versions: v2-{2023-01-01}
+     * Download Logs for One Cluster Host in One Project
      * @param param the request object
      */
     public getHostLogs(param: MonitoringAndLogsApiGetHostLogsRequest, options?: Configuration): Promise<HttpFile> {
@@ -7963,66 +6310,66 @@ export class ObjectMonitoringAndLogsApi {
     }
 
     /**
-     * Returns measurements of the disk or partition per process for the specified host for the specified project. Returned value can be one of the following: - Throughput of I/O operations for the disk partition used for the MongoDB process - Percentage of time during which requests the partition issued and serviced - Latency per operation type of the disk partition used for the MongoDB process - Amount of free and used disk space on the disk partition used for the MongoDB process   To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns disk, partition, or host measurements per process for the specified host for the specified project. Returned value can be one of the following: - Throughput of I/O operations for the disk partition used for the MongoDB process - Percentage of time during which requests the partition issued and serviced - Latency per operation type of the disk partition used for the MongoDB process - Amount of free and used disk space on the disk partition used for the MongoDB process - Measurements for the host, such as CPU usage or number of I/O operations  To use this resource, the requesting API Key must have the Project Read Only role.
      * Return Measurements for One MongoDB Process
      * @param param the request object
      */
     public getHostMeasurements(param: MonitoringAndLogsApiGetHostMeasurementsRequest, options?: Configuration): Promise<ApiMeasurementsGeneralViewAtlas> {
-        return this.api.getHostMeasurements(param.groupId, param.processId, param.envelope, param.pretty, param.m, param.period,  options).toPromise();
+        return this.api.getHostMeasurements(param.groupId, param.processId, param.granularity, param.m, param.period, param.start, param.end,  options).toPromise();
     }
 
     /**
-     * Returns the Atlas Search metrics data series within the provided time range for one namespace and index name on the specified process.
+     * Returns the Atlas Search metrics data series within the provided time range for one namespace and index name on the specified process. You must have the Project Read Only or higher role to view the Atlas Search metric types.
      * Return Atlas Search Metrics for One Index in One Specified Namespace
      * @param param the request object
      */
-    public getIndexMetrics(param: MonitoringAndLogsApiGetIndexMetricsRequest, options?: Configuration): Promise<ApiMeasurementsIndexesView> {
-        return this.api.getIndexMetrics(param.processId, param.indexName, param.databaseName, param.collectionName, param.groupId, param.granularity, param.metrics, param.period, param.start, param.end, param.envelope,  options).toPromise();
+    public getIndexMetrics(param: MonitoringAndLogsApiGetIndexMetricsRequest, options?: Configuration): Promise<MeasurementsIndexes> {
+        return this.api.getIndexMetrics(param.processId, param.indexName, param.databaseName, param.collectionName, param.groupId, param.granularity, param.metrics, param.period, param.start, param.end,  options).toPromise();
     }
 
     /**
-     * Returns the Atlas Search hardware and status data series within the provided time range for one process in the specified project.
+     * Returns the Atlas Search hardware and status data series within the provided time range for one process in the specified project. You must have the Project Read Only or higher role to view the Atlas Search metric types.
      * Return Atlas Search Hardware and Status Metrics
      * @param param the request object
      */
-    public getMeasurements(param: MonitoringAndLogsApiGetMeasurementsRequest, options?: Configuration): Promise<ApiMeasurementsNonIndexView> {
-        return this.api.getMeasurements(param.processId, param.groupId, param.granularity, param.metrics, param.period, param.start, param.end, param.envelope,  options).toPromise();
+    public getMeasurements(param: MonitoringAndLogsApiGetMeasurementsRequest, options?: Configuration): Promise<MeasurementsNonIndex> {
+        return this.api.getMeasurements(param.processId, param.groupId, param.granularity, param.metrics, param.period, param.start, param.end,  options).toPromise();
     }
 
     /**
-     * Returns details of all processes for the specified project. A MongoDB process can be either a `mongod` or `mongos`. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns details of all processes for the specified project. A MongoDB process can be either a `mongod` or `mongos`. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return All MongoDB Processes in One Project
      * @param param the request object
      */
     public listAtlasProcesses(param: MonitoringAndLogsApiListAtlasProcessesRequest, options?: Configuration): Promise<PaginatedHostViewAtlas> {
-        return this.api.listAtlasProcesses(param.groupId, param.envelope, param.includeCount, param.itemsPerPage, param.pageNum, param.pretty,  options).toPromise();
+        return this.api.listAtlasProcesses(param.groupId, param.includeCount, param.itemsPerPage, param.pageNum,  options).toPromise();
     }
 
     /**
-     * Returns the list of databases running on the specified host for the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns the list of databases running on the specified host for the specified project. `M0` free clusters, `M2`, `M5`, and serverless clusters have some [operational limits](https://www.mongodb.com/docs/atlas/reference/free-shared-limitations/#operational-limitations). The MongoDB Cloud process must be a `mongod`. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return Available Databases for One MongoDB Process
      * @param param the request object
      */
-    public listDatabases(param: MonitoringAndLogsApiListDatabasesRequest, options?: Configuration): Promise<PaginatedDatabaseView> {
-        return this.api.listDatabases(param.groupId, param.processId, param.envelope, param.includeCount, param.itemsPerPage, param.pageNum, param.pretty,  options).toPromise();
+    public listDatabases(param: MonitoringAndLogsApiListDatabasesRequest, options?: Configuration): Promise<PaginatedDatabase> {
+        return this.api.listDatabases(param.groupId, param.processId, param.includeCount, param.itemsPerPage, param.pageNum,  options).toPromise();
     }
 
     /**
-     * Returns the measurements of one disk or partition for the specified host for the specified project. Returned value can be one of the following: - Throughput of I/O operations for the disk partition used for the MongoDB process - Percentage of time during which requests the partition issued and serviced - Latency per operation type of the disk partition used for the MongoDB process - Amount of free and used disk space on the disk partition used for the MongoDB process   To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns measurement details for one disk or partition for the specified host for the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return Measurements of One Disk
      * @param param the request object
      */
-    public listDiskMeasurements(param: MonitoringAndLogsApiListDiskMeasurementsRequest, options?: Configuration): Promise<ApiDiskPartitionView> {
-        return this.api.listDiskMeasurements(param.partitionName, param.groupId, param.processId, param.envelope,  options).toPromise();
+    public listDiskMeasurements(param: MonitoringAndLogsApiListDiskMeasurementsRequest, options?: Configuration): Promise<MeasurementDiskPartition> {
+        return this.api.listDiskMeasurements(param.partitionName, param.groupId, param.processId,  options).toPromise();
     }
 
     /**
-     * Returns the list of disks or partitions for the specified host for the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns the list of disks or partitions for the specified host for the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return Available Disks for One MongoDB Process
      * @param param the request object
      */
-    public listDiskPartitions(param: MonitoringAndLogsApiListDiskPartitionsRequest, options?: Configuration): Promise<PaginatedDiskPartitionView> {
-        return this.api.listDiskPartitions(param.groupId, param.processId, param.envelope, param.includeCount, param.itemsPerPage, param.pageNum, param.pretty,  options).toPromise();
+    public listDiskPartitions(param: MonitoringAndLogsApiListDiskPartitionsRequest, options?: Configuration): Promise<PaginatedDiskPartition> {
+        return this.api.listDiskPartitions(param.groupId, param.processId, param.includeCount, param.itemsPerPage, param.pageNum,  options).toPromise();
     }
 
     /**
@@ -8030,263 +6377,17 @@ export class ObjectMonitoringAndLogsApi {
      * Return All Atlas Search Index Metrics for One Namespace
      * @param param the request object
      */
-    public listIndexMetrics(param: MonitoringAndLogsApiListIndexMetricsRequest, options?: Configuration): Promise<ApiMeasurementsIndexesView> {
-        return this.api.listIndexMetrics(param.processId, param.databaseName, param.collectionName, param.groupId, param.granularity, param.metrics, param.period, param.start, param.end, param.envelope,  options).toPromise();
+    public listIndexMetrics(param: MonitoringAndLogsApiListIndexMetricsRequest, options?: Configuration): Promise<MeasurementsIndexes> {
+        return this.api.listIndexMetrics(param.processId, param.databaseName, param.collectionName, param.groupId, param.granularity, param.metrics, param.period, param.start, param.end,  options).toPromise();
     }
 
     /**
-     * Return all Atlas Search metric types available for one process in the specified project.
+     * Returns all Atlas Search metric types available for one process in the specified project. You must have the Project Read Only or higher role to view the Atlas Search metric types.
      * Return All Atlas Search Metric Types for One Process
      * @param param the request object
      */
-    public listMetricTypes(param: MonitoringAndLogsApiListMetricTypesRequest, options?: Configuration): Promise<ApiFTSMetricsView> {
-        return this.api.listMetricTypes(param.processId, param.groupId, param.envelope,  options).toPromise();
-    }
-
-}
-
-import { ObservableMultiCloudClustersApi } from "./ObservableAPI";
-import { MultiCloudClustersApiRequestFactory, MultiCloudClustersApiResponseProcessor} from "../apis/MultiCloudClustersApi";
-
-export interface MultiCloudClustersApiCreateClusterRequest {
-    /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-     * @type string
-     * @memberof MultiCloudClustersApicreateCluster
-     */
-    groupId: string
-    /**
-     * Cluster to create in the specific project.
-     * @type ClusterDescriptionV15
-     * @memberof MultiCloudClustersApicreateCluster
-     */
-    clusterDescriptionV15: ClusterDescriptionV15
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof MultiCloudClustersApicreateCluster
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof MultiCloudClustersApicreateCluster
-     */
-    pretty?: boolean
-}
-
-export interface MultiCloudClustersApiDeleteClusterRequest {
-    /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-     * @type string
-     * @memberof MultiCloudClustersApideleteCluster
-     */
-    groupId: string
-    /**
-     * Human-readable label that identifies the cluster.
-     * @type string
-     * @memberof MultiCloudClustersApideleteCluster
-     */
-    clusterName: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof MultiCloudClustersApideleteCluster
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster.
-     * @type boolean
-     * @memberof MultiCloudClustersApideleteCluster
-     */
-    retainBackups?: boolean
-}
-
-export interface MultiCloudClustersApiGetClusterRequest {
-    /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-     * @type string
-     * @memberof MultiCloudClustersApigetCluster
-     */
-    groupId: string
-    /**
-     * Human-readable label that identifies this advanced cluster.
-     * @type string
-     * @memberof MultiCloudClustersApigetCluster
-     */
-    clusterName: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof MultiCloudClustersApigetCluster
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof MultiCloudClustersApigetCluster
-     */
-    pretty?: boolean
-}
-
-export interface MultiCloudClustersApiListClustersRequest {
-    /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-     * @type string
-     * @memberof MultiCloudClustersApilistClusters
-     */
-    groupId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof MultiCloudClustersApilistClusters
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
-     * @type boolean
-     * @memberof MultiCloudClustersApilistClusters
-     */
-    includeCount?: boolean
-    /**
-     * Number of items that the response returns per page.
-     * @type number
-     * @memberof MultiCloudClustersApilistClusters
-     */
-    itemsPerPage?: number
-    /**
-     * Number of the page that displays the current set of the total objects that the response returns.
-     * @type number
-     * @memberof MultiCloudClustersApilistClusters
-     */
-    pageNum?: number
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof MultiCloudClustersApilistClusters
-     */
-    pretty?: boolean
-}
-
-export interface MultiCloudClustersApiTestFailoverRequest {
-    /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-     * @type string
-     * @memberof MultiCloudClustersApitestFailover
-     */
-    groupId: string
-    /**
-     * Human-readable label that identifies the cluster.
-     * @type string
-     * @memberof MultiCloudClustersApitestFailover
-     */
-    clusterName: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof MultiCloudClustersApitestFailover
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof MultiCloudClustersApitestFailover
-     */
-    pretty?: boolean
-}
-
-export interface MultiCloudClustersApiUpdateClusterRequest {
-    /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-     * @type string
-     * @memberof MultiCloudClustersApiupdateCluster
-     */
-    groupId: string
-    /**
-     * Human-readable label that identifies the advanced cluster to modify.
-     * @type string
-     * @memberof MultiCloudClustersApiupdateCluster
-     */
-    clusterName: string
-    /**
-     * Cluster to update in the specified project.
-     * @type ClusterDescriptionV15
-     * @memberof MultiCloudClustersApiupdateCluster
-     */
-    clusterDescriptionV15: ClusterDescriptionV15
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof MultiCloudClustersApiupdateCluster
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof MultiCloudClustersApiupdateCluster
-     */
-    pretty?: boolean
-}
-
-export class ObjectMultiCloudClustersApi {
-    private api: ObservableMultiCloudClustersApi
-
-    public constructor(configuration: Configuration, requestFactory?: MultiCloudClustersApiRequestFactory, responseProcessor?: MultiCloudClustersApiResponseProcessor) {
-        this.api = new ObservableMultiCloudClustersApi(configuration, requestFactory, responseProcessor);
-    }
-
-    /**
-     * Creates one cluster in the specific project. Clusters contain a group of hosts that maintain the same data set. This resource can create multi-cloud clusters. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List. Deprecated versions: v2-{2023-01-01}
-     * Create One Multi-Cloud Cluster from One Project
-     * @param param the request object
-     */
-    public createCluster(param: MultiCloudClustersApiCreateClusterRequest, options?: Configuration): Promise<ClusterDescriptionV15> {
-        return this.api.createCluster(param.groupId, param.clusterDescriptionV15, param.envelope, param.pretty,  options).toPromise();
-    }
-
-    /**
-     * Removes one cluster with advanced features from the specified project. The cluster must have termination protection disabled in order to be deleted. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
-     * Remove One Multi-Cloud Cluster from One Project
-     * @param param the request object
-     */
-    public deleteCluster(param: MultiCloudClustersApiDeleteClusterRequest, options?: Configuration): Promise<void> {
-        return this.api.deleteCluster(param.groupId, param.clusterName, param.envelope, param.retainBackups,  options).toPromise();
-    }
-
-    /**
-     * Returns the details for one cluster in the specified project. Clusters contain a group of hosts that maintain the same data set. The response includes multi-cloud clusters. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List. Deprecated versions: v2-{2023-01-01}
-     * Return One Multi-Cloud Cluster from One Project
-     * @param param the request object
-     */
-    public getCluster(param: MultiCloudClustersApiGetClusterRequest, options?: Configuration): Promise<ClusterDescriptionV15> {
-        return this.api.getCluster(param.groupId, param.clusterName, param.envelope, param.pretty,  options).toPromise();
-    }
-
-    /**
-     * Returns the details for all clusters in the specific project to which you have access. Clusters contain a group of hosts that maintain the same data set. The response includes multi-cloud clusters. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List. Deprecated versions: v2-{2023-01-01}
-     * Return All Multi-Cloud Clusters from One Project
-     * @param param the request object
-     */
-    public listClusters(param: MultiCloudClustersApiListClustersRequest, options?: Configuration): Promise<PaginatedClusterDescriptionV15View> {
-        return this.api.listClusters(param.groupId, param.envelope, param.includeCount, param.itemsPerPage, param.pageNum, param.pretty,  options).toPromise();
-    }
-
-    /**
-     * Starts a failover test for the specified cluster in the specified project. Clusters contain a group of hosts that maintain the same data set. A failover test checks how MongoDB Cloud handles the failure of the cluster's primary node. During the test, MongoDB Cloud shuts down the primary node and elects a new primary. To use this resource, the requesting API Key must have the Project Cluster Manager role. This resource doesn't require the API Key to have an Access List. Deprecated versions: v2-{2023-01-01}
-     * Test Failover for One Multi-Cloud Cluster
-     * @param param the request object
-     */
-    public testFailover(param: MultiCloudClustersApiTestFailoverRequest, options?: Configuration): Promise<void> {
-        return this.api.testFailover(param.groupId, param.clusterName, param.envelope, param.pretty,  options).toPromise();
-    }
-
-    /**
-     * Updates the details for one cluster in the specified project. Clusters contain a group of hosts that maintain the same data set. This resource can update multi-cloud clusters. To update a cluster's termination protection, the requesting API Key must have the Project Owner role. For all other updates, the requesting API Key must have the Project Cluster Manager role. This resource doesn't require the API Key to have an Access List. Deprecated versions: v2-{2023-01-01}
-     * Modify One Multi-Cloud Cluster from One Project
-     * @param param the request object
-     */
-    public updateCluster(param: MultiCloudClustersApiUpdateClusterRequest, options?: Configuration): Promise<ClusterDescriptionV15> {
-        return this.api.updateCluster(param.groupId, param.clusterName, param.clusterDescriptionV15, param.envelope, param.pretty,  options).toPromise();
+    public listMetricTypes(param: MonitoringAndLogsApiListMetricTypesRequest, options?: Configuration): Promise<CloudSearchMetrics> {
+        return this.api.listMetricTypes(param.processId, param.groupId,  options).toPromise();
     }
 
 }
@@ -8303,22 +6404,10 @@ export interface NetworkPeeringApiCreatePeeringConnectionRequest {
     groupId: string
     /**
      * Create one network peering connection.
-     * @type ApiAtlasContainerPeerViewRequest
+     * @type BaseNetworkPeeringConnectionSettings
      * @memberof NetworkPeeringApicreatePeeringConnection
      */
-    apiAtlasContainerPeerViewRequest: ApiAtlasContainerPeerViewRequest
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof NetworkPeeringApicreatePeeringConnection
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof NetworkPeeringApicreatePeeringConnection
-     */
-    pretty?: boolean
+    baseNetworkPeeringConnectionSettings: BaseNetworkPeeringConnectionSettings
 }
 
 export interface NetworkPeeringApiCreatePeeringContainerRequest {
@@ -8334,18 +6423,6 @@ export interface NetworkPeeringApiCreatePeeringContainerRequest {
      * @memberof NetworkPeeringApicreatePeeringContainer
      */
     cloudProviderContainer: CloudProviderContainer
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof NetworkPeeringApicreatePeeringContainer
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof NetworkPeeringApicreatePeeringContainer
-     */
-    pretty?: boolean
 }
 
 export interface NetworkPeeringApiDeletePeeringConnectionRequest {
@@ -8361,18 +6438,6 @@ export interface NetworkPeeringApiDeletePeeringConnectionRequest {
      * @memberof NetworkPeeringApideletePeeringConnection
      */
     peerId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof NetworkPeeringApideletePeeringConnection
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof NetworkPeeringApideletePeeringConnection
-     */
-    pretty?: boolean
 }
 
 export interface NetworkPeeringApiDeletePeeringContainerRequest {
@@ -8388,18 +6453,6 @@ export interface NetworkPeeringApiDeletePeeringContainerRequest {
      * @memberof NetworkPeeringApideletePeeringContainer
      */
     containerId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof NetworkPeeringApideletePeeringContainer
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof NetworkPeeringApideletePeeringContainer
-     */
-    pretty?: boolean
 }
 
 export interface NetworkPeeringApiDisablePeeringRequest {
@@ -8411,22 +6464,10 @@ export interface NetworkPeeringApiDisablePeeringRequest {
     groupId: string
     /**
      * Disables Connect via Peering Only mode for the specified project.
-     * @type PrivateIPModeView
+     * @type PrivateIPMode
      * @memberof NetworkPeeringApidisablePeering
      */
-    privateIPModeView: PrivateIPModeView
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof NetworkPeeringApidisablePeering
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof NetworkPeeringApidisablePeering
-     */
-    pretty?: boolean
+    privateIPMode: PrivateIPMode
 }
 
 export interface NetworkPeeringApiGetPeeringConnectionRequest {
@@ -8442,18 +6483,6 @@ export interface NetworkPeeringApiGetPeeringConnectionRequest {
      * @memberof NetworkPeeringApigetPeeringConnection
      */
     peerId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof NetworkPeeringApigetPeeringConnection
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof NetworkPeeringApigetPeeringConnection
-     */
-    pretty?: boolean
 }
 
 export interface NetworkPeeringApiGetPeeringContainerRequest {
@@ -8469,18 +6498,6 @@ export interface NetworkPeeringApiGetPeeringContainerRequest {
      * @memberof NetworkPeeringApigetPeeringContainer
      */
     containerId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof NetworkPeeringApigetPeeringContainer
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof NetworkPeeringApigetPeeringContainer
-     */
-    pretty?: boolean
 }
 
 export interface NetworkPeeringApiListPeeringConnectionsRequest {
@@ -8490,12 +6507,6 @@ export interface NetworkPeeringApiListPeeringConnectionsRequest {
      * @memberof NetworkPeeringApilistPeeringConnections
      */
     groupId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof NetworkPeeringApilistPeeringConnections
-     */
-    envelope?: boolean
     /**
      * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
@@ -8515,17 +6526,11 @@ export interface NetworkPeeringApiListPeeringConnectionsRequest {
      */
     pageNum?: number
     /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof NetworkPeeringApilistPeeringConnections
-     */
-    pretty?: boolean
-    /**
      * Cloud service provider to use for this VPC peering connection.
-     * @type &#39;AWS&#39; | &#39;AZURE&#39; | &#39;GCP&#39;
+     * @type string
      * @memberof NetworkPeeringApilistPeeringConnections
      */
-    providerName?: 'AWS' | 'AZURE' | 'GCP'
+    providerName?: string
 }
 
 export interface NetworkPeeringApiListPeeringContainerByCloudProviderRequest {
@@ -8537,16 +6542,10 @@ export interface NetworkPeeringApiListPeeringContainerByCloudProviderRequest {
     groupId: string
     /**
      * Cloud service provider that serves the desired network peering containers.
-     * @type &#39;AWS&#39; | &#39;AZURE&#39; | &#39;GCP&#39;
+     * @type string
      * @memberof NetworkPeeringApilistPeeringContainerByCloudProvider
      */
-    providerName: 'AWS' | 'AZURE' | 'GCP'
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof NetworkPeeringApilistPeeringContainerByCloudProvider
-     */
-    envelope?: boolean
+    providerName: string
     /**
      * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
@@ -8565,12 +6564,6 @@ export interface NetworkPeeringApiListPeeringContainerByCloudProviderRequest {
      * @memberof NetworkPeeringApilistPeeringContainerByCloudProvider
      */
     pageNum?: number
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof NetworkPeeringApilistPeeringContainerByCloudProvider
-     */
-    pretty?: boolean
 }
 
 export interface NetworkPeeringApiListPeeringContainersRequest {
@@ -8581,12 +6574,6 @@ export interface NetworkPeeringApiListPeeringContainersRequest {
      */
     groupId: string
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof NetworkPeeringApilistPeeringContainers
-     */
-    envelope?: boolean
-    /**
      * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
      * @memberof NetworkPeeringApilistPeeringContainers
@@ -8604,12 +6591,6 @@ export interface NetworkPeeringApiListPeeringContainersRequest {
      * @memberof NetworkPeeringApilistPeeringContainers
      */
     pageNum?: number
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof NetworkPeeringApilistPeeringContainers
-     */
-    pretty?: boolean
 }
 
 export interface NetworkPeeringApiUpdatePeeringConnectionRequest {
@@ -8627,22 +6608,10 @@ export interface NetworkPeeringApiUpdatePeeringConnectionRequest {
     peerId: string
     /**
      * Modify one network peering connection.
-     * @type ApiAtlasContainerPeerViewRequest
+     * @type BaseNetworkPeeringConnectionSettings
      * @memberof NetworkPeeringApiupdatePeeringConnection
      */
-    apiAtlasContainerPeerViewRequest: ApiAtlasContainerPeerViewRequest
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof NetworkPeeringApiupdatePeeringConnection
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof NetworkPeeringApiupdatePeeringConnection
-     */
-    pretty?: boolean
+    baseNetworkPeeringConnectionSettings: BaseNetworkPeeringConnectionSettings
 }
 
 export interface NetworkPeeringApiUpdatePeeringContainerRequest {
@@ -8664,18 +6633,6 @@ export interface NetworkPeeringApiUpdatePeeringContainerRequest {
      * @memberof NetworkPeeringApiupdatePeeringContainer
      */
     cloudProviderContainer: CloudProviderContainer
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof NetworkPeeringApiupdatePeeringContainer
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof NetworkPeeringApiupdatePeeringContainer
-     */
-    pretty?: boolean
 }
 
 export interface NetworkPeeringApiVerifyConnectViaPeeringOnlyModeForOneProjectRequest {
@@ -8685,18 +6642,6 @@ export interface NetworkPeeringApiVerifyConnectViaPeeringOnlyModeForOneProjectRe
      * @memberof NetworkPeeringApiverifyConnectViaPeeringOnlyModeForOneProject
      */
     groupId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof NetworkPeeringApiverifyConnectViaPeeringOnlyModeForOneProject
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof NetworkPeeringApiverifyConnectViaPeeringOnlyModeForOneProject
-     */
-    pretty?: boolean
 }
 
 export class ObjectNetworkPeeringApi {
@@ -8707,120 +6652,120 @@ export class ObjectNetworkPeeringApi {
     }
 
     /**
-     * Creates one new network peering connection in the specified project. Network peering allows multiple cloud-hosted applications to securely connect to the same project. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List. To learn more about considerations and prerequisites, see the Network Peering Documentation.
+     * Creates one new network peering connection in the specified project. Network peering allows multiple cloud-hosted applications to securely connect to the same project. To use this resource, the requesting API Key must have the Project Owner role. To learn more about considerations and prerequisites, see the Network Peering Documentation.
      * Create One New Network Peering Connection
      * @param param the request object
      */
-    public createPeeringConnection(param: NetworkPeeringApiCreatePeeringConnectionRequest, options?: Configuration): Promise<CreatePeeringConnection200Response> {
-        return this.api.createPeeringConnection(param.groupId, param.apiAtlasContainerPeerViewRequest, param.envelope, param.pretty,  options).toPromise();
+    public createPeeringConnection(param: NetworkPeeringApiCreatePeeringConnectionRequest, options?: Configuration): Promise<BaseNetworkPeeringConnectionSettings> {
+        return this.api.createPeeringConnection(param.groupId, param.baseNetworkPeeringConnectionSettings,  options).toPromise();
     }
 
     /**
-     * Creates one new network peering container in the specified project. MongoDB Cloud can deploy Network Peering connections in a network peering container. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
+     * Creates one new network peering container in the specified project. MongoDB Cloud can deploy Network Peering connections in a network peering container. GCP can have one container per project. AWS and Azure can have one container per cloud provider region. To use this resource, the requesting API Key must have the Project Owner role.
      * Create One New Network Peering Container
      * @param param the request object
      */
     public createPeeringContainer(param: NetworkPeeringApiCreatePeeringContainerRequest, options?: Configuration): Promise<CloudProviderContainer> {
-        return this.api.createPeeringContainer(param.groupId, param.cloudProviderContainer, param.envelope, param.pretty,  options).toPromise();
+        return this.api.createPeeringContainer(param.groupId, param.cloudProviderContainer,  options).toPromise();
     }
 
     /**
-     * Removes one network peering connection in the specified project. If you Removes the last network peering connection associated with a project, MongoDB Cloud also removes any AWS security groups from the project IP access list. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Removes one network peering connection in the specified project. If you Removes the last network peering connection associated with a project, MongoDB Cloud also removes any AWS security groups from the project IP access list. To use this resource, the requesting API Key must have the Project Owner role.
      * Remove One Existing Network Peering Connection
      * @param param the request object
      */
-    public deletePeeringConnection(param: NetworkPeeringApiDeletePeeringConnectionRequest, options?: Configuration): Promise<void> {
-        return this.api.deletePeeringConnection(param.groupId, param.peerId, param.envelope, param.pretty,  options).toPromise();
+    public deletePeeringConnection(param: NetworkPeeringApiDeletePeeringConnectionRequest, options?: Configuration): Promise<any> {
+        return this.api.deletePeeringConnection(param.groupId, param.peerId,  options).toPromise();
     }
 
     /**
-     * Removes one network peering container in the specified project. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Removes one network peering container in the specified project. To use this resource, the requesting API Key must have the Project Owner role.
      * Remove One Network Peering Container
      * @param param the request object
      */
-    public deletePeeringContainer(param: NetworkPeeringApiDeletePeeringContainerRequest, options?: Configuration): Promise<void> {
-        return this.api.deletePeeringContainer(param.groupId, param.containerId, param.envelope, param.pretty,  options).toPromise();
+    public deletePeeringContainer(param: NetworkPeeringApiDeletePeeringContainerRequest, options?: Configuration): Promise<any> {
+        return this.api.deletePeeringContainer(param.groupId, param.containerId,  options).toPromise();
     }
 
     /**
-     * Disables Connect via Peering Only mode for the specified project. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Disables Connect via Peering Only mode for the specified project. To use this resource, the requesting API Key must have the Project Owner role.
      * Disable Connect via Peering Only Mode for One Project
      * @param param the request object
      */
-    public disablePeering(param: NetworkPeeringApiDisablePeeringRequest, options?: Configuration): Promise<PrivateIPModeView> {
-        return this.api.disablePeering(param.groupId, param.privateIPModeView, param.envelope, param.pretty,  options).toPromise();
+    public disablePeering(param: NetworkPeeringApiDisablePeeringRequest, options?: Configuration): Promise<PrivateIPMode> {
+        return this.api.disablePeering(param.groupId, param.privateIPMode,  options).toPromise();
     }
 
     /**
-     * Returns details about one specified network peering connection in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns details about one specified network peering connection in the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return One Network Peering Connection in One Project
      * @param param the request object
      */
-    public getPeeringConnection(param: NetworkPeeringApiGetPeeringConnectionRequest, options?: Configuration): Promise<GetPeeringConnection200Response> {
-        return this.api.getPeeringConnection(param.groupId, param.peerId, param.envelope, param.pretty,  options).toPromise();
+    public getPeeringConnection(param: NetworkPeeringApiGetPeeringConnectionRequest, options?: Configuration): Promise<BaseNetworkPeeringConnectionSettings> {
+        return this.api.getPeeringConnection(param.groupId, param.peerId,  options).toPromise();
     }
 
     /**
-     * Returns details about one network peering container in one specified project. Network peering containers contain network peering connections. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns details about one network peering container in one specified project. Network peering containers contain network peering connections. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return One Network Peering Container
      * @param param the request object
      */
     public getPeeringContainer(param: NetworkPeeringApiGetPeeringContainerRequest, options?: Configuration): Promise<CloudProviderContainer> {
-        return this.api.getPeeringContainer(param.groupId, param.containerId, param.envelope, param.pretty,  options).toPromise();
+        return this.api.getPeeringContainer(param.groupId, param.containerId,  options).toPromise();
     }
 
     /**
-     * Returns details about all network peering connections in the specified project. Network peering allows multiple cloud-hosted applications to securely connect to the same project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns details about all network peering connections in the specified project. Network peering allows multiple cloud-hosted applications to securely connect to the same project. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return All Network Peering Connections in One Project
      * @param param the request object
      */
-    public listPeeringConnections(param: NetworkPeeringApiListPeeringConnectionsRequest, options?: Configuration): Promise<ListPeeringConnections200Response> {
-        return this.api.listPeeringConnections(param.groupId, param.envelope, param.includeCount, param.itemsPerPage, param.pageNum, param.pretty, param.providerName,  options).toPromise();
+    public listPeeringConnections(param: NetworkPeeringApiListPeeringConnectionsRequest, options?: Configuration): Promise<PaginatedContainerPeer> {
+        return this.api.listPeeringConnections(param.groupId, param.includeCount, param.itemsPerPage, param.pageNum, param.providerName,  options).toPromise();
     }
 
     /**
-     * Returns details about all network peering containers in the specified project for the specified cloud provider. If you do not specify the cloud provider, MongoDB Cloud returns details about all network peering containers in the project for Amazon Web Services (AWS). To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns details about all network peering containers in the specified project for the specified cloud provider. If you do not specify the cloud provider, MongoDB Cloud returns details about all network peering containers in the project for Amazon Web Services (AWS). To use this resource, the requesting API Key must have the Project Read Only role.
      * Return All Network Peering Containers in One Project for One Cloud Provider
      * @param param the request object
      */
-    public listPeeringContainerByCloudProvider(param: NetworkPeeringApiListPeeringContainerByCloudProviderRequest, options?: Configuration): Promise<PaginatedCloudProviderContainerView> {
-        return this.api.listPeeringContainerByCloudProvider(param.groupId, param.providerName, param.envelope, param.includeCount, param.itemsPerPage, param.pageNum, param.pretty,  options).toPromise();
+    public listPeeringContainerByCloudProvider(param: NetworkPeeringApiListPeeringContainerByCloudProviderRequest, options?: Configuration): Promise<PaginatedCloudProviderContainer> {
+        return this.api.listPeeringContainerByCloudProvider(param.groupId, param.providerName, param.includeCount, param.itemsPerPage, param.pageNum,  options).toPromise();
     }
 
     /**
-     * Returns details about all network peering containers in the specified project. Network peering containers contain network peering connections. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns details about all network peering containers in the specified project. Network peering containers contain network peering connections. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return All Network Peering Containers in One Project
      * @param param the request object
      */
-    public listPeeringContainers(param: NetworkPeeringApiListPeeringContainersRequest, options?: Configuration): Promise<PaginatedCloudProviderContainerView> {
-        return this.api.listPeeringContainers(param.groupId, param.envelope, param.includeCount, param.itemsPerPage, param.pageNum, param.pretty,  options).toPromise();
+    public listPeeringContainers(param: NetworkPeeringApiListPeeringContainersRequest, options?: Configuration): Promise<PaginatedCloudProviderContainer> {
+        return this.api.listPeeringContainers(param.groupId, param.includeCount, param.itemsPerPage, param.pageNum,  options).toPromise();
     }
 
     /**
-     * Updates one specified network peering connection in the specified project. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Updates one specified network peering connection in the specified project. To use this resource, the requesting API Key must have the Project Owner role.
      * Update One New Network Peering Connection
      * @param param the request object
      */
-    public updatePeeringConnection(param: NetworkPeeringApiUpdatePeeringConnectionRequest, options?: Configuration): Promise<GetPeeringConnection200Response> {
-        return this.api.updatePeeringConnection(param.groupId, param.peerId, param.apiAtlasContainerPeerViewRequest, param.envelope, param.pretty,  options).toPromise();
+    public updatePeeringConnection(param: NetworkPeeringApiUpdatePeeringConnectionRequest, options?: Configuration): Promise<BaseNetworkPeeringConnectionSettings> {
+        return this.api.updatePeeringConnection(param.groupId, param.peerId, param.baseNetworkPeeringConnectionSettings,  options).toPromise();
     }
 
     /**
-     * Updates the network details and labels of one specified network peering container in the specified project. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Updates the network details and labels of one specified network peering container in the specified project. To use this resource, the requesting API Key must have the Project Owner role.
      * Update One Network Peering Container
      * @param param the request object
      */
     public updatePeeringContainer(param: NetworkPeeringApiUpdatePeeringContainerRequest, options?: Configuration): Promise<CloudProviderContainer> {
-        return this.api.updatePeeringContainer(param.groupId, param.containerId, param.cloudProviderContainer, param.envelope, param.pretty,  options).toPromise();
+        return this.api.updatePeeringContainer(param.groupId, param.containerId, param.cloudProviderContainer,  options).toPromise();
     }
 
     /**
-     * Verifies if someone set the specified project to **Connect via Peering Only** mode. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Verifies if someone set the specified project to **Connect via Peering Only** mode. To use this resource, the requesting API Key must have the Project Read Only role.
      * Verify Connect via Peering Only Mode for One Project
      * @param param the request object
      */
-    public verifyConnectViaPeeringOnlyModeForOneProject(param: NetworkPeeringApiVerifyConnectViaPeeringOnlyModeForOneProjectRequest, options?: Configuration): Promise<PrivateIPModeView> {
-        return this.api.verifyConnectViaPeeringOnlyModeForOneProject(param.groupId, param.envelope, param.pretty,  options).toPromise();
+    public verifyConnectViaPeeringOnlyModeForOneProject(param: NetworkPeeringApiVerifyConnectViaPeeringOnlyModeForOneProjectRequest, options?: Configuration): Promise<PrivateIPMode> {
+        return this.api.verifyConnectViaPeeringOnlyModeForOneProject(param.groupId,  options).toPromise();
     }
 
 }
@@ -8843,22 +6788,10 @@ export interface OnlineArchiveApiCreateOnlineArchiveRequest {
     clusterName: string
     /**
      * Creates one online archive.
-     * @type OnlineArchive
+     * @type BackupOnlineArchiveCreate
      * @memberof OnlineArchiveApicreateOnlineArchive
      */
-    onlineArchive: OnlineArchive
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof OnlineArchiveApicreateOnlineArchive
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof OnlineArchiveApicreateOnlineArchive
-     */
-    pretty?: boolean
+    backupOnlineArchiveCreate: BackupOnlineArchiveCreate
 }
 
 export interface OnlineArchiveApiDeleteOnlineArchiveRequest {
@@ -8880,18 +6813,6 @@ export interface OnlineArchiveApiDeleteOnlineArchiveRequest {
      * @memberof OnlineArchiveApideleteOnlineArchive
      */
     clusterName: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof OnlineArchiveApideleteOnlineArchive
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof OnlineArchiveApideleteOnlineArchive
-     */
-    pretty?: boolean
 }
 
 export interface OnlineArchiveApiDownloadOnlineArchiveQueryLogsRequest {
@@ -8907,12 +6828,6 @@ export interface OnlineArchiveApiDownloadOnlineArchiveQueryLogsRequest {
      * @memberof OnlineArchiveApidownloadOnlineArchiveQueryLogs
      */
     clusterName: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof OnlineArchiveApidownloadOnlineArchiveQueryLogs
-     */
-    envelope?: boolean
     /**
      * Date and time that specifies the starting point for the range of log messages to return. This resource expresses this value in the number of seconds that have elapsed since the [UNIX epoch](https://en.wikipedia.org/wiki/Unix_time).
      * @type number
@@ -8952,18 +6867,6 @@ export interface OnlineArchiveApiGetOnlineArchiveRequest {
      * @memberof OnlineArchiveApigetOnlineArchive
      */
     clusterName: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof OnlineArchiveApigetOnlineArchive
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof OnlineArchiveApigetOnlineArchive
-     */
-    pretty?: boolean
 }
 
 export interface OnlineArchiveApiListOnlineArchivesRequest {
@@ -8979,12 +6882,6 @@ export interface OnlineArchiveApiListOnlineArchivesRequest {
      * @memberof OnlineArchiveApilistOnlineArchives
      */
     clusterName: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof OnlineArchiveApilistOnlineArchives
-     */
-    envelope?: boolean
     /**
      * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
@@ -9003,12 +6900,6 @@ export interface OnlineArchiveApiListOnlineArchivesRequest {
      * @memberof OnlineArchiveApilistOnlineArchives
      */
     pageNum?: number
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof OnlineArchiveApilistOnlineArchives
-     */
-    pretty?: boolean
 }
 
 export interface OnlineArchiveApiUpdateOnlineArchiveRequest {
@@ -9032,22 +6923,10 @@ export interface OnlineArchiveApiUpdateOnlineArchiveRequest {
     clusterName: string
     /**
      * Updates, pauses, or resumes one online archive.
-     * @type OnlineArchive
+     * @type BackupOnlineArchive
      * @memberof OnlineArchiveApiupdateOnlineArchive
      */
-    onlineArchive: OnlineArchive
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof OnlineArchiveApiupdateOnlineArchive
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof OnlineArchiveApiupdateOnlineArchive
-     */
-    pretty?: boolean
+    backupOnlineArchive: BackupOnlineArchive
 }
 
 export class ObjectOnlineArchiveApi {
@@ -9058,57 +6937,57 @@ export class ObjectOnlineArchiveApi {
     }
 
     /**
-     * Creates one online archive. This archive stores data from one cluster within one project. To use this resource, the requesting API Key must have the Project Data Access Admin role. This resource doesn't require the API Key to have an Access List.
+     * Creates one online archive. This archive stores data from one cluster within one project. To use this resource, the requesting API Key must have the Project Data Access Admin role.
      * Create One Online Archive
      * @param param the request object
      */
-    public createOnlineArchive(param: OnlineArchiveApiCreateOnlineArchiveRequest, options?: Configuration): Promise<OnlineArchive> {
-        return this.api.createOnlineArchive(param.groupId, param.clusterName, param.onlineArchive, param.envelope, param.pretty,  options).toPromise();
+    public createOnlineArchive(param: OnlineArchiveApiCreateOnlineArchiveRequest, options?: Configuration): Promise<BackupOnlineArchive> {
+        return this.api.createOnlineArchive(param.groupId, param.clusterName, param.backupOnlineArchiveCreate,  options).toPromise();
     }
 
     /**
-     * Removes one online archive. This archive stores data from one cluster within one project. To use this resource, the requesting API Key must have the Project Data Access Admin role. This resource doesn't require the API Key to have an Access List.
+     * Removes one online archive. This archive stores data from one cluster within one project. To use this resource, the requesting API Key must have the Project Data Access Admin role.
      * Remove One Online Archive
      * @param param the request object
      */
-    public deleteOnlineArchive(param: OnlineArchiveApiDeleteOnlineArchiveRequest, options?: Configuration): Promise<void> {
-        return this.api.deleteOnlineArchive(param.groupId, param.archiveId, param.clusterName, param.envelope, param.pretty,  options).toPromise();
+    public deleteOnlineArchive(param: OnlineArchiveApiDeleteOnlineArchiveRequest, options?: Configuration): Promise<any> {
+        return this.api.deleteOnlineArchive(param.groupId, param.archiveId, param.clusterName,  options).toPromise();
     }
 
     /**
-     * Downloads query logs for the specified online archive. To use this resource, the requesting API Key must have the Project Data Access Read Only or higher role. This resource doesn't require the API Key to have an Access List.
+     * Downloads query logs for the specified online archive. To use this resource, the requesting API Key must have the Project Data Access Read Only or higher role.
      * Download Online Archive Query Logs
      * @param param the request object
      */
     public downloadOnlineArchiveQueryLogs(param: OnlineArchiveApiDownloadOnlineArchiveQueryLogsRequest, options?: Configuration): Promise<HttpFile> {
-        return this.api.downloadOnlineArchiveQueryLogs(param.groupId, param.clusterName, param.envelope, param.startDate, param.endDate, param.archiveOnly,  options).toPromise();
+        return this.api.downloadOnlineArchiveQueryLogs(param.groupId, param.clusterName, param.startDate, param.endDate, param.archiveOnly,  options).toPromise();
     }
 
     /**
-     * Returns one online archive for one cluster. This archive stores data from one cluster within one project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns one online archive for one cluster. This archive stores data from one cluster within one project. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return One Online Archive
      * @param param the request object
      */
-    public getOnlineArchive(param: OnlineArchiveApiGetOnlineArchiveRequest, options?: Configuration): Promise<OnlineArchive> {
-        return this.api.getOnlineArchive(param.groupId, param.archiveId, param.clusterName, param.envelope, param.pretty,  options).toPromise();
+    public getOnlineArchive(param: OnlineArchiveApiGetOnlineArchiveRequest, options?: Configuration): Promise<BackupOnlineArchive> {
+        return this.api.getOnlineArchive(param.groupId, param.archiveId, param.clusterName,  options).toPromise();
     }
 
     /**
-     * Returns details of all online archives. This archive stores data from one cluster within one project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns details of all online archives. This archive stores data from one cluster within one project. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return All Online Archives for One Cluster
      * @param param the request object
      */
-    public listOnlineArchives(param: OnlineArchiveApiListOnlineArchivesRequest, options?: Configuration): Promise<PaginatedOnlineArchiveView> {
-        return this.api.listOnlineArchives(param.groupId, param.clusterName, param.envelope, param.includeCount, param.itemsPerPage, param.pageNum, param.pretty,  options).toPromise();
+    public listOnlineArchives(param: OnlineArchiveApiListOnlineArchivesRequest, options?: Configuration): Promise<PaginatedOnlineArchive> {
+        return this.api.listOnlineArchives(param.groupId, param.clusterName, param.includeCount, param.itemsPerPage, param.pageNum,  options).toPromise();
     }
 
     /**
-     * Updates, pauses, or resumes one online archive. This archive stores data from one cluster within one project. To use this resource, the requesting API Key must have the Project Data Access Admin role. This resource doesn't require the API Key to have an Access List.
+     * Updates, pauses, or resumes one online archive. This archive stores data from one cluster within one project. To use this resource, the requesting API Key must have the Project Data Access Admin role.
      * Update One Online Archive
      * @param param the request object
      */
-    public updateOnlineArchive(param: OnlineArchiveApiUpdateOnlineArchiveRequest, options?: Configuration): Promise<OnlineArchive> {
-        return this.api.updateOnlineArchive(param.groupId, param.archiveId, param.clusterName, param.onlineArchive, param.envelope, param.pretty,  options).toPromise();
+    public updateOnlineArchive(param: OnlineArchiveApiUpdateOnlineArchiveRequest, options?: Configuration): Promise<BackupOnlineArchive> {
+        return this.api.updateOnlineArchive(param.groupId, param.archiveId, param.clusterName, param.backupOnlineArchive,  options).toPromise();
     }
 
 }
@@ -9123,18 +7002,6 @@ export interface OrganizationsApiCreateOrganizationRequest {
      * @memberof OrganizationsApicreateOrganization
      */
     createOrganizationRequest: CreateOrganizationRequest
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof OrganizationsApicreateOrganization
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof OrganizationsApicreateOrganization
-     */
-    pretty?: boolean
 }
 
 export interface OrganizationsApiCreateOrganizationInvitationRequest {
@@ -9146,22 +7013,10 @@ export interface OrganizationsApiCreateOrganizationInvitationRequest {
     orgId: string
     /**
      * Invites one MongoDB Cloud user to join the specified organization.
-     * @type ApiOrganizationInvitationRequestView
+     * @type OrganizationInvitationRequest
      * @memberof OrganizationsApicreateOrganizationInvitation
      */
-    apiOrganizationInvitationRequestView: ApiOrganizationInvitationRequestView
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof OrganizationsApicreateOrganizationInvitation
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof OrganizationsApicreateOrganizationInvitation
-     */
-    pretty?: boolean
+    organizationInvitationRequest: OrganizationInvitationRequest
 }
 
 export interface OrganizationsApiDeleteOrganizationRequest {
@@ -9171,12 +7026,6 @@ export interface OrganizationsApiDeleteOrganizationRequest {
      * @memberof OrganizationsApideleteOrganization
      */
     orgId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof OrganizationsApideleteOrganization
-     */
-    envelope?: boolean
 }
 
 export interface OrganizationsApiDeleteOrganizationInvitationRequest {
@@ -9192,18 +7041,6 @@ export interface OrganizationsApiDeleteOrganizationInvitationRequest {
      * @memberof OrganizationsApideleteOrganizationInvitation
      */
     invitationId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof OrganizationsApideleteOrganizationInvitation
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof OrganizationsApideleteOrganizationInvitation
-     */
-    pretty?: boolean
 }
 
 export interface OrganizationsApiGetOrganizationRequest {
@@ -9213,18 +7050,6 @@ export interface OrganizationsApiGetOrganizationRequest {
      * @memberof OrganizationsApigetOrganization
      */
     orgId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof OrganizationsApigetOrganization
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof OrganizationsApigetOrganization
-     */
-    pretty?: boolean
 }
 
 export interface OrganizationsApiGetOrganizationInvitationRequest {
@@ -9240,12 +7065,6 @@ export interface OrganizationsApiGetOrganizationInvitationRequest {
      * @memberof OrganizationsApigetOrganizationInvitation
      */
     invitationId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof OrganizationsApigetOrganizationInvitation
-     */
-    envelope?: boolean
 }
 
 export interface OrganizationsApiGetOrganizationSettingsRequest {
@@ -9255,18 +7074,6 @@ export interface OrganizationsApiGetOrganizationSettingsRequest {
      * @memberof OrganizationsApigetOrganizationSettings
      */
     orgId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof OrganizationsApigetOrganizationSettings
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof OrganizationsApigetOrganizationSettings
-     */
-    pretty?: boolean
 }
 
 export interface OrganizationsApiListOrganizationInvitationsRequest {
@@ -9276,18 +7083,6 @@ export interface OrganizationsApiListOrganizationInvitationsRequest {
      * @memberof OrganizationsApilistOrganizationInvitations
      */
     orgId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof OrganizationsApilistOrganizationInvitations
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof OrganizationsApilistOrganizationInvitations
-     */
-    pretty?: boolean
     /**
      * Email address of the user account invited to this organization. If you exclude this parameter, this resource returns all pending invitations.
      * @type string
@@ -9304,12 +7099,6 @@ export interface OrganizationsApiListOrganizationProjectsRequest {
      */
     orgId: string
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof OrganizationsApilistOrganizationProjects
-     */
-    envelope?: boolean
-    /**
      * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
      * @memberof OrganizationsApilistOrganizationProjects
@@ -9327,12 +7116,6 @@ export interface OrganizationsApiListOrganizationProjectsRequest {
      * @memberof OrganizationsApilistOrganizationProjects
      */
     pageNum?: number
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof OrganizationsApilistOrganizationProjects
-     */
-    pretty?: boolean
     /**
      * Human-readable label of the project to use to filter the returned list. Performs a case-insensitive search for a project within the organization which is prefixed by the specified name.
      * @type string
@@ -9349,26 +7132,26 @@ export interface OrganizationsApiListOrganizationUsersRequest {
      */
     orgId: string
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+     * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
      * @memberof OrganizationsApilistOrganizationUsers
      */
-    envelope?: boolean
+    includeCount?: boolean
     /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
+     * Number of items that the response returns per page.
+     * @type number
      * @memberof OrganizationsApilistOrganizationUsers
      */
-    pretty?: boolean
+    itemsPerPage?: number
+    /**
+     * Number of the page that displays the current set of the total objects that the response returns.
+     * @type number
+     * @memberof OrganizationsApilistOrganizationUsers
+     */
+    pageNum?: number
 }
 
 export interface OrganizationsApiListOrganizationsRequest {
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof OrganizationsApilistOrganizations
-     */
-    envelope?: boolean
     /**
      * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
@@ -9388,17 +7171,26 @@ export interface OrganizationsApiListOrganizationsRequest {
      */
     pageNum?: number
     /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof OrganizationsApilistOrganizations
-     */
-    pretty?: boolean
-    /**
      * Human-readable label of the organization to use to filter the returned list. Performs a case-insensitive search for an organization that starts with the specified name.
      * @type string
      * @memberof OrganizationsApilistOrganizations
      */
     name?: string
+}
+
+export interface OrganizationsApiRemoveOrganizationUserRequest {
+    /**
+     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
+     * @type string
+     * @memberof OrganizationsApiremoveOrganizationUser
+     */
+    orgId: string
+    /**
+     * Unique 24-hexadecimal digit string that identifies the user to be deleted.
+     * @type string
+     * @memberof OrganizationsApiremoveOrganizationUser
+     */
+    userId: string
 }
 
 export interface OrganizationsApiRenameOrganizationRequest {
@@ -9410,22 +7202,10 @@ export interface OrganizationsApiRenameOrganizationRequest {
     orgId: string
     /**
      * Details to update on the specified organization.
-     * @type ApiOrganizationView
+     * @type AtlasOrganization
      * @memberof OrganizationsApirenameOrganization
      */
-    apiOrganizationView: ApiOrganizationView
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof OrganizationsApirenameOrganization
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof OrganizationsApirenameOrganization
-     */
-    pretty?: boolean
+    atlasOrganization: AtlasOrganization
 }
 
 export interface OrganizationsApiUpdateOrganizationInvitationRequest {
@@ -9437,22 +7217,10 @@ export interface OrganizationsApiUpdateOrganizationInvitationRequest {
     orgId: string
     /**
      * Updates the details of one pending invitation to the specified organization.
-     * @type ApiOrganizationInvitationRequestView
+     * @type OrganizationInvitationRequest
      * @memberof OrganizationsApiupdateOrganizationInvitation
      */
-    apiOrganizationInvitationRequestView: ApiOrganizationInvitationRequestView
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof OrganizationsApiupdateOrganizationInvitation
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof OrganizationsApiupdateOrganizationInvitation
-     */
-    pretty?: boolean
+    organizationInvitationRequest: OrganizationInvitationRequest
 }
 
 export interface OrganizationsApiUpdateOrganizationInvitationByIdRequest {
@@ -9470,22 +7238,31 @@ export interface OrganizationsApiUpdateOrganizationInvitationByIdRequest {
     invitationId: string
     /**
      * Updates the details of one pending invitation to the specified organization.
-     * @type ApiOrganizationInvitationUpdateRequestView
+     * @type OrganizationInvitationUpdateRequest
      * @memberof OrganizationsApiupdateOrganizationInvitationById
      */
-    apiOrganizationInvitationUpdateRequestView: ApiOrganizationInvitationUpdateRequestView
+    organizationInvitationUpdateRequest: OrganizationInvitationUpdateRequest
+}
+
+export interface OrganizationsApiUpdateOrganizationRolesRequest {
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof OrganizationsApiupdateOrganizationInvitationById
+     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
+     * @type string
+     * @memberof OrganizationsApiupdateOrganizationRoles
      */
-    envelope?: boolean
+    orgId: string
     /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof OrganizationsApiupdateOrganizationInvitationById
+     * Unique 24-hexadecimal digit string that identifies the user to modify.
+     * @type string
+     * @memberof OrganizationsApiupdateOrganizationRoles
      */
-    pretty?: boolean
+    userId: string
+    /**
+     * Roles to update for the specified user.
+     * @type UpdateOrgRolesForUser
+     * @memberof OrganizationsApiupdateOrganizationRoles
+     */
+    updateOrgRolesForUser: UpdateOrgRolesForUser
 }
 
 export interface OrganizationsApiUpdateOrganizationSettingsRequest {
@@ -9501,18 +7278,6 @@ export interface OrganizationsApiUpdateOrganizationSettingsRequest {
      * @memberof OrganizationsApiupdateOrganizationSettings
      */
     organizationSettings: OrganizationSettings
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof OrganizationsApiupdateOrganizationSettings
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof OrganizationsApiupdateOrganizationSettings
-     */
-    pretty?: boolean
 }
 
 export class ObjectOrganizationsApi {
@@ -9523,138 +7288,156 @@ export class ObjectOrganizationsApi {
     }
 
     /**
-     * Creates one organization in MongoDB Cloud and links it to the requesting API Key's organization. To use this resource, the requesting API Key must have the Organization Owner role. The requesting API Key's organization must be a paying organization. To learn more, see [Configure a Paying Organization](https://www.mongodb.com/docs/atlas/billing/#configure-a-paying-organization) in the MongoDB Atlas documentation. This resource doesn't require the API Key to have an API Access List.
+     * Creates one organization in MongoDB Cloud and links it to the requesting API Key's organization. To use this resource, the requesting API Key must have the Organization Owner role. The requesting API Key's organization must be a paying organization. To learn more, see [Configure a Paying Organization](https://www.mongodb.com/docs/atlas/billing/#configure-a-paying-organization) in the MongoDB Atlas documentation.
      * Create One Organization
      * @param param the request object
      */
     public createOrganization(param: OrganizationsApiCreateOrganizationRequest, options?: Configuration): Promise<CreateOrganizationResponse> {
-        return this.api.createOrganization(param.createOrganizationRequest, param.envelope, param.pretty,  options).toPromise();
+        return this.api.createOrganization(param.createOrganizationRequest,  options).toPromise();
     }
 
     /**
-     * Invites one MongoDB Cloud user to join the specified organization. The user must accept the invitation to access information within the specified organization. To use this resource, the requesting API Key must have the Organization User Admin role. This resource doesn't require the API Key to have an Access List.
+     * Invites one MongoDB Cloud user to join the specified organization. The user must accept the invitation to access information within the specified organization. To use this resource, the requesting API Key must have the Organization Owner role.
      * Invite One MongoDB Cloud User to Join One Atlas Organization
      * @param param the request object
      */
-    public createOrganizationInvitation(param: OrganizationsApiCreateOrganizationInvitationRequest, options?: Configuration): Promise<ApiOrganizationInvitationView> {
-        return this.api.createOrganizationInvitation(param.orgId, param.apiOrganizationInvitationRequestView, param.envelope, param.pretty,  options).toPromise();
+    public createOrganizationInvitation(param: OrganizationsApiCreateOrganizationInvitationRequest, options?: Configuration): Promise<OrganizationInvitation> {
+        return this.api.createOrganizationInvitation(param.orgId, param.organizationInvitationRequest,  options).toPromise();
     }
 
     /**
-     * Removes one specified organization. MongoDB Cloud imposes the following limits on this resource:   - Organizations with active projects cannot be removed.  - All projects in the organization must be removed before you can remove the organization.  To use this resource, the requesting API Key must have the Organization Owner role. This resource doesn't require the API Key to have an Access List.
+     * Removes one specified organization. MongoDB Cloud imposes the following limits on this resource:   - Organizations with active projects cannot be removed.  - All projects in the organization must be removed before you can remove the organization.  To use this resource, the requesting API Key must have the Organization Owner role.
      * Remove One Organization
      * @param param the request object
      */
-    public deleteOrganization(param: OrganizationsApiDeleteOrganizationRequest, options?: Configuration): Promise<void> {
-        return this.api.deleteOrganization(param.orgId, param.envelope,  options).toPromise();
+    public deleteOrganization(param: OrganizationsApiDeleteOrganizationRequest, options?: Configuration): Promise<any> {
+        return this.api.deleteOrganization(param.orgId,  options).toPromise();
     }
 
     /**
-     * Cancels one pending invitation sent to the specified MongoDB Cloud user to join an organization. You can't cancel an invitation that the user accepted. To use this resource, the requesting API Key must have the Organization User Admin role. This resource doesn't require the API Key to have an Access List.
+     * Cancels one pending invitation sent to the specified MongoDB Cloud user to join an organization. You can't cancel an invitation that the user accepted. To use this resource, the requesting API Key must have the Organization Owner role.
      * Cancel One Organization Invitation
      * @param param the request object
      */
-    public deleteOrganizationInvitation(param: OrganizationsApiDeleteOrganizationInvitationRequest, options?: Configuration): Promise<void> {
-        return this.api.deleteOrganizationInvitation(param.orgId, param.invitationId, param.envelope, param.pretty,  options).toPromise();
+    public deleteOrganizationInvitation(param: OrganizationsApiDeleteOrganizationInvitationRequest, options?: Configuration): Promise<any> {
+        return this.api.deleteOrganizationInvitation(param.orgId, param.invitationId,  options).toPromise();
     }
 
     /**
-     * Returns one organization to which the requesting API key has access. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an Access List.
+     * Returns one organization to which the requesting API key has access. To use this resource, the requesting API Key must have the Organization Member role.
      * Return One Organization
      * @param param the request object
      */
-    public getOrganization(param: OrganizationsApiGetOrganizationRequest, options?: Configuration): Promise<ApiOrganizationView> {
-        return this.api.getOrganization(param.orgId, param.envelope, param.pretty,  options).toPromise();
+    public getOrganization(param: OrganizationsApiGetOrganizationRequest, options?: Configuration): Promise<AtlasOrganization> {
+        return this.api.getOrganization(param.orgId,  options).toPromise();
     }
 
     /**
-     * Returns the details of one pending invitation to the specified organization. To use this resource, the requesting API Key must have the Organization User Admin role. This resource doesn't require the API Key to have an Access List.
+     * Returns the details of one pending invitation to the specified organization. To use this resource, the requesting API Key must have the Organization Owner role.
      * Return One Organization Invitation
      * @param param the request object
      */
-    public getOrganizationInvitation(param: OrganizationsApiGetOrganizationInvitationRequest, options?: Configuration): Promise<ApiOrganizationInvitationView> {
-        return this.api.getOrganizationInvitation(param.orgId, param.invitationId, param.envelope,  options).toPromise();
+    public getOrganizationInvitation(param: OrganizationsApiGetOrganizationInvitationRequest, options?: Configuration): Promise<OrganizationInvitation> {
+        return this.api.getOrganizationInvitation(param.orgId, param.invitationId,  options).toPromise();
     }
 
     /**
-     * Returns details about the specified organization's settings. To use this resource, the requesting API Key must have the Organization Owner role. This resource does not require the API Key to have an API access list.
+     * Returns details about the specified organization's settings. To use this resource, the requesting API Key must have the Organization Owner role.
      * Return Settings for One Organization
      * @param param the request object
      */
     public getOrganizationSettings(param: OrganizationsApiGetOrganizationSettingsRequest, options?: Configuration): Promise<OrganizationSettings> {
-        return this.api.getOrganizationSettings(param.orgId, param.envelope, param.pretty,  options).toPromise();
+        return this.api.getOrganizationSettings(param.orgId,  options).toPromise();
     }
 
     /**
-     * Returns all pending invitations to the specified organization. To use this resource, the requesting API Key must have the Organization User Admin role. This resource doesn't require the API Key to have an Access List.
+     * Returns all pending invitations to the specified organization. To use this resource, the requesting API Key must have the Organization Owner role.
      * Return All Organization Invitations
      * @param param the request object
      */
-    public listOrganizationInvitations(param: OrganizationsApiListOrganizationInvitationsRequest, options?: Configuration): Promise<Array<ApiOrganizationInvitationView>> {
-        return this.api.listOrganizationInvitations(param.orgId, param.envelope, param.pretty, param.username,  options).toPromise();
+    public listOrganizationInvitations(param: OrganizationsApiListOrganizationInvitationsRequest, options?: Configuration): Promise<Array<OrganizationInvitation>> {
+        return this.api.listOrganizationInvitations(param.orgId, param.username,  options).toPromise();
     }
 
     /**
-     * Returns multiple projects in the specified organization. Each organization can have multiple projects. Use projects to:  - Isolate different environments, such as development, test, or production environments, from each other. - Associate different MongoDB Cloud users or teams with different environments, or give different permission to MongoDB Cloud users in different environments. - Maintain separate cluster security configurations. - Create different alert settings.  To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an Access List.
+     * Returns multiple projects in the specified organization. Each organization can have multiple projects. Use projects to:  - Isolate different environments, such as development, test, or production environments, from each other. - Associate different MongoDB Cloud users or teams with different environments, or give different permission to MongoDB Cloud users in different environments. - Maintain separate cluster security configurations. - Create different alert settings.  To use this resource, the requesting API Key must have the Organization Member role.
      * Return One or More Projects in One Organization
      * @param param the request object
      */
-    public listOrganizationProjects(param: OrganizationsApiListOrganizationProjectsRequest, options?: Configuration): Promise<PaginatedAtlasGroupView> {
-        return this.api.listOrganizationProjects(param.orgId, param.envelope, param.includeCount, param.itemsPerPage, param.pageNum, param.pretty, param.name,  options).toPromise();
+    public listOrganizationProjects(param: OrganizationsApiListOrganizationProjectsRequest, options?: Configuration): Promise<PaginatedAtlasGroup> {
+        return this.api.listOrganizationProjects(param.orgId, param.includeCount, param.itemsPerPage, param.pageNum, param.name,  options).toPromise();
     }
 
     /**
-     * Returns details about the MongoDB Cloud users associated with the specified organization. Each MongoDB Cloud user returned must belong to the specified organization or to a project within the specified organization. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an Access List.
+     * Returns details about the MongoDB Cloud users associated with the specified organization. Each MongoDB Cloud user returned must belong to the specified organization or to a project within the specified organization. To use this resource, the requesting API Key must have the Organization Member role.
      * Return All MongoDB Cloud Users in One Organization
      * @param param the request object
      */
-    public listOrganizationUsers(param: OrganizationsApiListOrganizationUsersRequest, options?: Configuration): Promise<PaginatedAppUserView> {
-        return this.api.listOrganizationUsers(param.orgId, param.envelope, param.pretty,  options).toPromise();
+    public listOrganizationUsers(param: OrganizationsApiListOrganizationUsersRequest, options?: Configuration): Promise<PaginatedAppUser> {
+        return this.api.listOrganizationUsers(param.orgId, param.includeCount, param.itemsPerPage, param.pageNum,  options).toPromise();
     }
 
     /**
-     * Returns all organizations to which you belong. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an Access List.
+     * Returns all organizations to which the requesting API Key has access. To use this resource, the requesting API Key must have the Organization Member role.
      * Return All Organizations
      * @param param the request object
      */
-    public listOrganizations(param: OrganizationsApiListOrganizationsRequest = {}, options?: Configuration): Promise<PaginatedOrganizationView> {
-        return this.api.listOrganizations(param.envelope, param.includeCount, param.itemsPerPage, param.pageNum, param.pretty, param.name,  options).toPromise();
+    public listOrganizations(param: OrganizationsApiListOrganizationsRequest = {}, options?: Configuration): Promise<PaginatedOrganization> {
+        return this.api.listOrganizations(param.includeCount, param.itemsPerPage, param.pageNum, param.name,  options).toPromise();
     }
 
     /**
-     * Renames one organization. To use this resource, the requesting API Key must have the Organization Owner role. This resource doesn't require the API Key to have an Access List.
+     * Removes one MongoDB Cloud user from the specified organization. To use this resource, the requesting API Key must have the Organization User Admin role.
+     * Remove One MongoDB Cloud User from One Organization
+     * @param param the request object
+     */
+    public removeOrganizationUser(param: OrganizationsApiRemoveOrganizationUserRequest, options?: Configuration): Promise<any> {
+        return this.api.removeOrganizationUser(param.orgId, param.userId,  options).toPromise();
+    }
+
+    /**
+     * Renames one organization. To use this resource, the requesting API Key must have the Organization Owner role.
      * Rename One Organization
      * @param param the request object
      */
-    public renameOrganization(param: OrganizationsApiRenameOrganizationRequest, options?: Configuration): Promise<ApiOrganizationView> {
-        return this.api.renameOrganization(param.orgId, param.apiOrganizationView, param.envelope, param.pretty,  options).toPromise();
+    public renameOrganization(param: OrganizationsApiRenameOrganizationRequest, options?: Configuration): Promise<AtlasOrganization> {
+        return this.api.renameOrganization(param.orgId, param.atlasOrganization,  options).toPromise();
     }
 
     /**
-     * Updates the details of one pending invitation to the specified organization. To specify which invitation, provide the username of the invited user. To use this resource, the requesting API Key must have the Organization User Admin role. This resource doesn't require the API Key to have an Access List.
+     * Updates the details of one pending invitation to the specified organization. To specify which invitation, provide the username of the invited user. To use this resource, the requesting API Key must have the Organization Owner role.
      * Update One Organization Invitation
      * @param param the request object
      */
-    public updateOrganizationInvitation(param: OrganizationsApiUpdateOrganizationInvitationRequest, options?: Configuration): Promise<ApiOrganizationInvitationView> {
-        return this.api.updateOrganizationInvitation(param.orgId, param.apiOrganizationInvitationRequestView, param.envelope, param.pretty,  options).toPromise();
+    public updateOrganizationInvitation(param: OrganizationsApiUpdateOrganizationInvitationRequest, options?: Configuration): Promise<OrganizationInvitation> {
+        return this.api.updateOrganizationInvitation(param.orgId, param.organizationInvitationRequest,  options).toPromise();
     }
 
     /**
-     * Updates the details of one pending invitation to the specified organization. To specify which invitation, provide the unique identification string for that invitation. Use the Return All Organization Invitations endpoint to retrieve IDs for all pending organization invitations. To use this resource, the requesting API Key must have the Organization Owner role. This resource doesn't require the API Key to have an Access List.
+     * Updates the details of one pending invitation to the specified organization. To specify which invitation, provide the unique identification string for that invitation. Use the Return All Organization Invitations endpoint to retrieve IDs for all pending organization invitations. To use this resource, the requesting API Key must have the Organization Owner role.
      * Update One Organization Invitation by Invitation ID
      * @param param the request object
      */
-    public updateOrganizationInvitationById(param: OrganizationsApiUpdateOrganizationInvitationByIdRequest, options?: Configuration): Promise<ApiOrganizationInvitationView> {
-        return this.api.updateOrganizationInvitationById(param.orgId, param.invitationId, param.apiOrganizationInvitationUpdateRequestView, param.envelope, param.pretty,  options).toPromise();
+    public updateOrganizationInvitationById(param: OrganizationsApiUpdateOrganizationInvitationByIdRequest, options?: Configuration): Promise<OrganizationInvitation> {
+        return this.api.updateOrganizationInvitationById(param.orgId, param.invitationId, param.organizationInvitationUpdateRequest,  options).toPromise();
     }
 
     /**
-     * Updates the organization's settings. To use this resource, the requesting API Key must have the Organization Owner role. This resource does not require the API Key to have an API access list.
+     * Updates the roles of the specified user in the specified organization. To specify the user to update, provide the unique 24-hexadecimal digit string that identifies the user in the specified organization. To use this resource, the requesting API Key must have the Organization User Admin role.
+     * Update Organization Roles for One MongoDB Cloud User
+     * @param param the request object
+     */
+    public updateOrganizationRoles(param: OrganizationsApiUpdateOrganizationRolesRequest, options?: Configuration): Promise<UpdateOrgRolesForUser> {
+        return this.api.updateOrganizationRoles(param.orgId, param.userId, param.updateOrgRolesForUser,  options).toPromise();
+    }
+
+    /**
+     * Updates the organization's settings. To use this resource, the requesting API Key must have the Organization Owner role.
      * Update Settings for One Organization
      * @param param the request object
      */
     public updateOrganizationSettings(param: OrganizationsApiUpdateOrganizationSettingsRequest, options?: Configuration): Promise<OrganizationSettings> {
-        return this.api.updateOrganizationSettings(param.orgId, param.organizationSettings, param.envelope, param.pretty,  options).toPromise();
+        return this.api.updateOrganizationSettings(param.orgId, param.organizationSettings,  options).toPromise();
     }
 
 }
@@ -9669,18 +7452,6 @@ export interface PerformanceAdvisorApiDisableSlowOperationThresholdingRequest {
      * @memberof PerformanceAdvisorApidisableSlowOperationThresholding
      */
     groupId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof PerformanceAdvisorApidisableSlowOperationThresholding
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof PerformanceAdvisorApidisableSlowOperationThresholding
-     */
-    pretty?: boolean
 }
 
 export interface PerformanceAdvisorApiEnableSlowOperationThresholdingRequest {
@@ -9690,18 +7461,6 @@ export interface PerformanceAdvisorApiEnableSlowOperationThresholdingRequest {
      * @memberof PerformanceAdvisorApienableSlowOperationThresholding
      */
     groupId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof PerformanceAdvisorApienableSlowOperationThresholding
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof PerformanceAdvisorApienableSlowOperationThresholding
-     */
-    pretty?: boolean
 }
 
 export interface PerformanceAdvisorApiListSlowQueriesRequest {
@@ -9718,25 +7477,13 @@ export interface PerformanceAdvisorApiListSlowQueriesRequest {
      */
     processId: string
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof PerformanceAdvisorApilistSlowQueries
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof PerformanceAdvisorApilistSlowQueries
-     */
-    pretty?: boolean
-    /**
-     * Length of time expressed during which the query finds suggested indexes among the managed namespaces in the cluster. This parameter expresses its value in milliseconds.  - If you don&#39;t specify the **since** parameter, the endpoint returns data covering the duration before the current time. - If you specify neither the **duration** nor **since** parameters, the endpoint returns data from the previous 24 hours.
+     * Length of time expressed during which the query finds slow queries among the managed namespaces in the cluster. This parameter expresses its value in milliseconds.  - If you don&#39;t specify the **since** parameter, the endpoint returns data covering the duration before the current time. - If you specify neither the **duration** nor **since** parameters, the endpoint returns data from the previous 24 hours.
      * @type number
      * @memberof PerformanceAdvisorApilistSlowQueries
      */
     duration?: number
     /**
-     * Namespaces from which to retrieve suggested indexes. A namespace consists of one database and one collection resource written as &#x60;.&#x60;: &#x60;&lt;database&gt;.&lt;collection&gt;&#x60;. To include multiple namespaces, pass the parameter multiple times delimited with an ampersand (&#x60;&amp;&#x60;) between each namespace. Omit this parameter to return results for all namespaces.
+     * Namespaces from which to retrieve slow queries. A namespace consists of one database and one collection resource written as &#x60;.&#x60;: &#x60;&lt;database&gt;.&lt;collection&gt;&#x60;. To include multiple namespaces, pass the parameter multiple times delimited with an ampersand (&#x60;&amp;&#x60;) between each namespace. Omit this parameter to return results for all namespaces.
      * @type Array&lt;string&gt;
      * @memberof PerformanceAdvisorApilistSlowQueries
      */
@@ -9748,7 +7495,7 @@ export interface PerformanceAdvisorApiListSlowQueriesRequest {
      */
     nLogs?: number
     /**
-     * Date and time from which the query retrieves the suggested indexes. This parameter expresses its value in the number of seconds that have elapsed since the [UNIX epoch](https://en.wikipedia.org/wiki/Unix_time).  - If you don&#39;t specify the **duration** parameter, the endpoint returns data covering from the **since** value and the current time. - If you specify neither the **duration** nor the **since** parameters, the endpoint returns data from the previous 24 hours.
+     * Date and time from which the query retrieves the slow queries. This parameter expresses its value in the number of seconds that have elapsed since the [UNIX epoch](https://en.wikipedia.org/wiki/Unix_time).  - If you don&#39;t specify the **duration** parameter, the endpoint returns data covering from the **since** value and the current time. - If you specify neither the **duration** nor the **since** parameters, the endpoint returns data from the previous 24 hours.
      * @type number
      * @memberof PerformanceAdvisorApilistSlowQueries
      */
@@ -9768,18 +7515,6 @@ export interface PerformanceAdvisorApiListSlowQueryNamespacesRequest {
      * @memberof PerformanceAdvisorApilistSlowQueryNamespaces
      */
     processId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof PerformanceAdvisorApilistSlowQueryNamespaces
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof PerformanceAdvisorApilistSlowQueryNamespaces
-     */
-    pretty?: boolean
     /**
      * Length of time expressed during which the query finds suggested indexes among the managed namespaces in the cluster. This parameter expresses its value in milliseconds.  - If you don&#39;t specify the **since** parameter, the endpoint returns data covering the duration before the current time. - If you specify neither the **duration** nor **since** parameters, the endpoint returns data from the previous 24 hours.
      * @type number
@@ -9808,12 +7543,6 @@ export interface PerformanceAdvisorApiListSuggestedIndexesRequest {
      */
     processId: string
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof PerformanceAdvisorApilistSuggestedIndexes
-     */
-    envelope?: boolean
-    /**
      * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
      * @memberof PerformanceAdvisorApilistSuggestedIndexes
@@ -9831,12 +7560,6 @@ export interface PerformanceAdvisorApiListSuggestedIndexesRequest {
      * @memberof PerformanceAdvisorApilistSuggestedIndexes
      */
     pageNum?: number
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof PerformanceAdvisorApilistSuggestedIndexes
-     */
-    pretty?: boolean
     /**
      * Length of time expressed during which the query finds suggested indexes among the managed namespaces in the cluster. This parameter expresses its value in milliseconds.  - If you don&#39;t specify the **since** parameter, the endpoint returns data covering the duration before the current time. - If you specify neither the **duration** nor **since** parameters, the endpoint returns data from the previous 24 hours.
      * @type number
@@ -9877,48 +7600,48 @@ export class ObjectPerformanceAdvisorApi {
     }
 
     /**
-     * Disables the slow operation threshold that MongoDB Cloud calculated for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Disables the slow operation threshold that MongoDB Cloud calculated for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. To use this resource, the requesting API Key must have the Project Owner role.
      * Disable Managed Slow Operation Threshold
      * @param param the request object
      */
     public disableSlowOperationThresholding(param: PerformanceAdvisorApiDisableSlowOperationThresholdingRequest, options?: Configuration): Promise<void> {
-        return this.api.disableSlowOperationThresholding(param.groupId, param.envelope, param.pretty,  options).toPromise();
+        return this.api.disableSlowOperationThresholding(param.groupId,  options).toPromise();
     }
 
     /**
-     * Enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. To use this resource, the requesting API Key must have the Project Owner role.
      * Enable Managed Slow Operation Threshold
      * @param param the request object
      */
     public enableSlowOperationThresholding(param: PerformanceAdvisorApiEnableSlowOperationThresholdingRequest, options?: Configuration): Promise<void> {
-        return this.api.enableSlowOperationThresholding(param.groupId, param.envelope, param.pretty,  options).toPromise();
+        return this.api.enableSlowOperationThresholding(param.groupId,  options).toPromise();
     }
 
     /**
-     * Returns log lines for slow queries that the Performance Advisor and Query Profiler identified. The Performance Advisor monitors queries that MongoDB considers slow and suggests new indexes to improve query performance. MongoDB Cloud bases the threshold for slow queries on the average time of operations on your cluster. This enables workload-relevant recommendations. To use this resource, the requesting API Key must have the Project Data Access Read Write role. This resource doesn't require the API Key to have an Access List.
+     * Returns log lines for slow queries that the Performance Advisor and Query Profiler identified. The Performance Advisor monitors queries that MongoDB considers slow and suggests new indexes to improve query performance. MongoDB Cloud bases the threshold for slow queries on the average time of operations on your cluster. This enables workload-relevant recommendations. To use this resource, the requesting API Key must have the Project Data Access Read Write role.
      * Return Slow Queries
      * @param param the request object
      */
-    public listSlowQueries(param: PerformanceAdvisorApiListSlowQueriesRequest, options?: Configuration): Promise<ApiPerformanceAdvisorSlowQueryListView> {
-        return this.api.listSlowQueries(param.groupId, param.processId, param.envelope, param.pretty, param.duration, param.namespaces, param.nLogs, param.since,  options).toPromise();
+    public listSlowQueries(param: PerformanceAdvisorApiListSlowQueriesRequest, options?: Configuration): Promise<PerformanceAdvisorSlowQueryList> {
+        return this.api.listSlowQueries(param.groupId, param.processId, param.duration, param.namespaces, param.nLogs, param.since,  options).toPromise();
     }
 
     /**
-     * Returns up to 20 namespaces for collections experiencing slow queries on the specified host. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns up to 20 namespaces for collections experiencing slow queries on the specified host. If you specify a secondary member of a replica set that hasn't received any database read operations, the endpoint doesn't return any namespaces. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return All Namespaces for One Host
      * @param param the request object
      */
-    public listSlowQueryNamespaces(param: PerformanceAdvisorApiListSlowQueryNamespacesRequest, options?: Configuration): Promise<ApiNamespacesView> {
-        return this.api.listSlowQueryNamespaces(param.groupId, param.processId, param.envelope, param.pretty, param.duration, param.since,  options).toPromise();
+    public listSlowQueryNamespaces(param: PerformanceAdvisorApiListSlowQueryNamespacesRequest, options?: Configuration): Promise<Namespaces> {
+        return this.api.listSlowQueryNamespaces(param.groupId, param.processId, param.duration, param.since,  options).toPromise();
     }
 
     /**
-     * Returns the indexes that the Performance Advisor suggests. The Performance Advisor monitors queries that MongoDB considers slow and suggests new indexes to improve query performance. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns the indexes that the Performance Advisor suggests. The Performance Advisor monitors queries that MongoDB considers slow and suggests new indexes to improve query performance. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return Suggested Indexes
      * @param param the request object
      */
-    public listSuggestedIndexes(param: PerformanceAdvisorApiListSuggestedIndexesRequest, options?: Configuration): Promise<ApiPerformanceAdvisorResponseView> {
-        return this.api.listSuggestedIndexes(param.groupId, param.processId, param.envelope, param.includeCount, param.itemsPerPage, param.pageNum, param.pretty, param.duration, param.namespaces, param.nExamples, param.nIndexes, param.since,  options).toPromise();
+    public listSuggestedIndexes(param: PerformanceAdvisorApiListSuggestedIndexesRequest, options?: Configuration): Promise<PerformanceAdvisorResponse> {
+        return this.api.listSuggestedIndexes(param.groupId, param.processId, param.includeCount, param.itemsPerPage, param.pageNum, param.duration, param.namespaces, param.nExamples, param.nIndexes, param.since,  options).toPromise();
     }
 
 }
@@ -9935,10 +7658,10 @@ export interface PrivateEndpointServicesApiCreatePrivateEndpointRequest {
     groupId: string
     /**
      * Cloud service provider that manages this private endpoint.
-     * @type &#39;AWS&#39; | &#39;AZURE&#39; | &#39;GCP&#39;
+     * @type string
      * @memberof PrivateEndpointServicesApicreatePrivateEndpoint
      */
-    cloudProvider: 'AWS' | 'AZURE' | 'GCP'
+    cloudProvider: string
     /**
      * Unique 24-hexadecimal digit string that identifies the private endpoint service for which you want to create a private endpoint.
      * @type string
@@ -9946,23 +7669,11 @@ export interface PrivateEndpointServicesApiCreatePrivateEndpointRequest {
      */
     endpointServiceId: string
     /**
-     * Creates one private resource endpoint for the specified cloud service provider.
-     * @type CreatePrivateEndpointRequest
+     * Creates one private endpoint for the specified cloud service provider.
+     * @type CreateEndpointRequest
      * @memberof PrivateEndpointServicesApicreatePrivateEndpoint
      */
-    createPrivateEndpointRequest: CreatePrivateEndpointRequest
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof PrivateEndpointServicesApicreatePrivateEndpoint
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof PrivateEndpointServicesApicreatePrivateEndpoint
-     */
-    pretty?: boolean
+    createEndpointRequest: CreateEndpointRequest
 }
 
 export interface PrivateEndpointServicesApiCreatePrivateEndpointServiceRequest {
@@ -9973,23 +7684,11 @@ export interface PrivateEndpointServicesApiCreatePrivateEndpointServiceRequest {
      */
     groupId: string
     /**
-     * Creates one private resource service for the specified cloud service provider.
-     * @type CreateEndpointServiceRequest
+     * Creates one private endpoint for the specified cloud service provider.
+     * @type CloudProviderEndpointServiceRequest
      * @memberof PrivateEndpointServicesApicreatePrivateEndpointService
      */
-    createEndpointServiceRequest: CreateEndpointServiceRequest
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof PrivateEndpointServicesApicreatePrivateEndpointService
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof PrivateEndpointServicesApicreatePrivateEndpointService
-     */
-    pretty?: boolean
+    cloudProviderEndpointServiceRequest: CloudProviderEndpointServiceRequest
 }
 
 export interface PrivateEndpointServicesApiDeletePrivateEndpointRequest {
@@ -10001,10 +7700,10 @@ export interface PrivateEndpointServicesApiDeletePrivateEndpointRequest {
     groupId: string
     /**
      * Cloud service provider that manages this private endpoint.
-     * @type &#39;AWS&#39; | &#39;AZURE&#39; | &#39;GCP&#39;
+     * @type string
      * @memberof PrivateEndpointServicesApideletePrivateEndpoint
      */
-    cloudProvider: 'AWS' | 'AZURE' | 'GCP'
+    cloudProvider: string
     /**
      * Unique string that identifies the private endpoint you want to delete. The format of the **endpointId** parameter differs for AWS and Azure. You must URL encode the **endpointId** for Azure private endpoints.
      * @type string
@@ -10017,18 +7716,6 @@ export interface PrivateEndpointServicesApiDeletePrivateEndpointRequest {
      * @memberof PrivateEndpointServicesApideletePrivateEndpoint
      */
     endpointServiceId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof PrivateEndpointServicesApideletePrivateEndpoint
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof PrivateEndpointServicesApideletePrivateEndpoint
-     */
-    pretty?: boolean
 }
 
 export interface PrivateEndpointServicesApiDeletePrivateEndpointServiceRequest {
@@ -10040,28 +7727,16 @@ export interface PrivateEndpointServicesApiDeletePrivateEndpointServiceRequest {
     groupId: string
     /**
      * Cloud service provider that manages this private endpoint service.
-     * @type &#39;AWS&#39; | &#39;AZURE&#39; | &#39;GCP&#39;
+     * @type string
      * @memberof PrivateEndpointServicesApideletePrivateEndpointService
      */
-    cloudProvider: 'AWS' | 'AZURE' | 'GCP'
+    cloudProvider: string
     /**
      * Unique 24-hexadecimal digit string that identifies the private endpoint service that you want to delete.
      * @type string
      * @memberof PrivateEndpointServicesApideletePrivateEndpointService
      */
     endpointServiceId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof PrivateEndpointServicesApideletePrivateEndpointService
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof PrivateEndpointServicesApideletePrivateEndpointService
-     */
-    pretty?: boolean
 }
 
 export interface PrivateEndpointServicesApiGetPrivateEndpointRequest {
@@ -10073,10 +7748,10 @@ export interface PrivateEndpointServicesApiGetPrivateEndpointRequest {
     groupId: string
     /**
      * Cloud service provider that manages this private endpoint.
-     * @type &#39;AWS&#39; | &#39;AZURE&#39; | &#39;GCP&#39;
+     * @type string
      * @memberof PrivateEndpointServicesApigetPrivateEndpoint
      */
-    cloudProvider: 'AWS' | 'AZURE' | 'GCP'
+    cloudProvider: string
     /**
      * Unique string that identifies the private endpoint you want to return. The format of the **endpointId** parameter differs for AWS and Azure. You must URL encode the **endpointId** for Azure private endpoints.
      * @type string
@@ -10089,18 +7764,6 @@ export interface PrivateEndpointServicesApiGetPrivateEndpointRequest {
      * @memberof PrivateEndpointServicesApigetPrivateEndpoint
      */
     endpointServiceId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof PrivateEndpointServicesApigetPrivateEndpoint
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof PrivateEndpointServicesApigetPrivateEndpoint
-     */
-    pretty?: boolean
 }
 
 export interface PrivateEndpointServicesApiGetPrivateEndpointServiceRequest {
@@ -10112,28 +7775,16 @@ export interface PrivateEndpointServicesApiGetPrivateEndpointServiceRequest {
     groupId: string
     /**
      * Cloud service provider that manages this private endpoint service.
-     * @type &#39;AWS&#39; | &#39;AZURE&#39; | &#39;GCP&#39;
+     * @type string
      * @memberof PrivateEndpointServicesApigetPrivateEndpointService
      */
-    cloudProvider: 'AWS' | 'AZURE' | 'GCP'
+    cloudProvider: string
     /**
      * Unique 24-hexadecimal digit string that identifies the private endpoint service that you want to return.
      * @type string
      * @memberof PrivateEndpointServicesApigetPrivateEndpointService
      */
     endpointServiceId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof PrivateEndpointServicesApigetPrivateEndpointService
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof PrivateEndpointServicesApigetPrivateEndpointService
-     */
-    pretty?: boolean
 }
 
 export interface PrivateEndpointServicesApiGetRegionalizedPrivateEndpointSettingRequest {
@@ -10143,18 +7794,6 @@ export interface PrivateEndpointServicesApiGetRegionalizedPrivateEndpointSetting
      * @memberof PrivateEndpointServicesApigetRegionalizedPrivateEndpointSetting
      */
     groupId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof PrivateEndpointServicesApigetRegionalizedPrivateEndpointSetting
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof PrivateEndpointServicesApigetRegionalizedPrivateEndpointSetting
-     */
-    pretty?: boolean
 }
 
 export interface PrivateEndpointServicesApiListPrivateEndpointServicesRequest {
@@ -10166,22 +7805,10 @@ export interface PrivateEndpointServicesApiListPrivateEndpointServicesRequest {
     groupId: string
     /**
      * Cloud service provider that manages this private endpoint service.
-     * @type &#39;AWS&#39; | &#39;AZURE&#39; | &#39;GCP&#39;
+     * @type string
      * @memberof PrivateEndpointServicesApilistPrivateEndpointServices
      */
-    cloudProvider: 'AWS' | 'AZURE' | 'GCP'
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof PrivateEndpointServicesApilistPrivateEndpointServices
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof PrivateEndpointServicesApilistPrivateEndpointServices
-     */
-    pretty?: boolean
+    cloudProvider: string
 }
 
 export interface PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingRequest {
@@ -10192,23 +7819,11 @@ export interface PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSett
      */
     groupId: string
     /**
-     * Enables or disables the ability can create multiple private resources per region in all cloud service providers in one project.
-     * @type ProjectSettingItemView
+     * Enables or disables the ability to create multiple private endpoints per region in all cloud service providers in one project.
+     * @type ProjectSettingItem
      * @memberof PrivateEndpointServicesApitoggleRegionalizedPrivateEndpointSetting
      */
-    projectSettingItemView: ProjectSettingItemView
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof PrivateEndpointServicesApitoggleRegionalizedPrivateEndpointSetting
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof PrivateEndpointServicesApitoggleRegionalizedPrivateEndpointSetting
-     */
-    pretty?: boolean
+    projectSettingItem: ProjectSettingItem
 }
 
 export class ObjectPrivateEndpointServicesApi {
@@ -10219,84 +7834,84 @@ export class ObjectPrivateEndpointServicesApi {
     }
 
     /**
-     * Creates one private resource in the specified private resource service hosted from one cloud service provider. This cloud service provider manages the private resource service for the project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
+     * Creates one private endpoint for the specified cloud service provider. This cloud service provider manages the private endpoint service, which in turn manages the private endpoints for the project. To use this resource, the requesting API Key must have the Project Owner role. To learn more about considerations, limitations, and prerequisites, see the MongoDB documentation for setting up a private endpoint.
      * Create One Private Endpoint for One Provider
      * @param param the request object
      */
-    public createPrivateEndpoint(param: PrivateEndpointServicesApiCreatePrivateEndpointRequest, options?: Configuration): Promise<Endpoint> {
-        return this.api.createPrivateEndpoint(param.groupId, param.cloudProvider, param.endpointServiceId, param.createPrivateEndpointRequest, param.envelope, param.pretty,  options).toPromise();
+    public createPrivateEndpoint(param: PrivateEndpointServicesApiCreatePrivateEndpointRequest, options?: Configuration): Promise<PrivateLinkEndpoint> {
+        return this.api.createPrivateEndpoint(param.groupId, param.cloudProvider, param.endpointServiceId, param.createEndpointRequest,  options).toPromise();
     }
 
     /**
-     * Creates one private resource service for the specified cloud service provider. This cloud service provider manages the private resource service for the project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
+     * Creates one private endpoint service for the specified cloud service provider. This cloud service provider manages the private endpoint service for the project. When you create a private endpoint service, MongoDB Cloud creates a network container in the project for the cloud provider for which you create the private endpoint service if one doesn't already exist. To use this resource, the requesting API Key must have the Project Owner role.
      * Create One Private Endpoint Service for One Provider
      * @param param the request object
      */
     public createPrivateEndpointService(param: PrivateEndpointServicesApiCreatePrivateEndpointServiceRequest, options?: Configuration): Promise<EndpointService> {
-        return this.api.createPrivateEndpointService(param.groupId, param.createEndpointServiceRequest, param.envelope, param.pretty,  options).toPromise();
+        return this.api.createPrivateEndpointService(param.groupId, param.cloudProviderEndpointServiceRequest,  options).toPromise();
     }
 
     /**
-     * Removes one private resource from the specified project. This cloud service provider manages the private resource service that manages the private resource that belongs to the project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
+     * Removes one private endpoint from the specified project and private endpoint service, as managed by the specified cloud service provider. When the last private endpoint is removed from a given private endpoint service, that private endpoint service is also removed. To use this resource, the requesting API Key must have the Project Owner role.
      * Remove One Private Endpoint for One Provider
      * @param param the request object
      */
-    public deletePrivateEndpoint(param: PrivateEndpointServicesApiDeletePrivateEndpointRequest, options?: Configuration): Promise<void> {
-        return this.api.deletePrivateEndpoint(param.groupId, param.cloudProvider, param.endpointId, param.endpointServiceId, param.envelope, param.pretty,  options).toPromise();
+    public deletePrivateEndpoint(param: PrivateEndpointServicesApiDeletePrivateEndpointRequest, options?: Configuration): Promise<any> {
+        return this.api.deletePrivateEndpoint(param.groupId, param.cloudProvider, param.endpointId, param.endpointServiceId,  options).toPromise();
     }
 
     /**
-     * Removes one private resource service from the specified project. This cloud service provider manages the private resource service that belongs to the project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
+     * Removes one private endpoint service from the specified project. This cloud service provider manages the private endpoint service that belongs to the project. To use this resource, the requesting API Key must have the Project Owner role.
      * Remove One Private Endpoint Service for One Provider
      * @param param the request object
      */
-    public deletePrivateEndpointService(param: PrivateEndpointServicesApiDeletePrivateEndpointServiceRequest, options?: Configuration): Promise<void> {
-        return this.api.deletePrivateEndpointService(param.groupId, param.cloudProvider, param.endpointServiceId, param.envelope, param.pretty,  options).toPromise();
+    public deletePrivateEndpointService(param: PrivateEndpointServicesApiDeletePrivateEndpointServiceRequest, options?: Configuration): Promise<any> {
+        return this.api.deletePrivateEndpointService(param.groupId, param.cloudProvider, param.endpointServiceId,  options).toPromise();
     }
 
     /**
-     * Returns the connection state of the specified private resource. The private resource service manages this private resource which belongs to one project hosted from one cloud service provider. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns the connection state of the specified private endpoint. The private endpoint service manages this private endpoint which belongs to one project hosted from one cloud service provider. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return One Private Endpoint for One Provider
      * @param param the request object
      */
-    public getPrivateEndpoint(param: PrivateEndpointServicesApiGetPrivateEndpointRequest, options?: Configuration): Promise<Endpoint> {
-        return this.api.getPrivateEndpoint(param.groupId, param.cloudProvider, param.endpointId, param.endpointServiceId, param.envelope, param.pretty,  options).toPromise();
+    public getPrivateEndpoint(param: PrivateEndpointServicesApiGetPrivateEndpointRequest, options?: Configuration): Promise<PrivateLinkEndpoint> {
+        return this.api.getPrivateEndpoint(param.groupId, param.cloudProvider, param.endpointId, param.endpointServiceId,  options).toPromise();
     }
 
     /**
-     * Returns the name, interfaces, and state of the specified private resource service from one project. The cloud service provider hosted this private resource service that belongs to the project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns the name, interfaces, and state of the specified private endpoint service from one project. The cloud service provider hosted this private endpoint service that belongs to the project. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return One Private Endpoint Service for One Provider
      * @param param the request object
      */
     public getPrivateEndpointService(param: PrivateEndpointServicesApiGetPrivateEndpointServiceRequest, options?: Configuration): Promise<EndpointService> {
-        return this.api.getPrivateEndpointService(param.groupId, param.cloudProvider, param.endpointServiceId, param.envelope, param.pretty,  options).toPromise();
+        return this.api.getPrivateEndpointService(param.groupId, param.cloudProvider, param.endpointServiceId,  options).toPromise();
     }
 
     /**
-     * Checks whether each region in the specified cloud service provider can create multiple private resources per region. The cloud service provider manages the private resource for the project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Checks whether each region in the specified cloud service provider can create multiple private endpoints per region. The cloud service provider manages the private endpoint for the project. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return Regionalized Private Endpoint Status
      * @param param the request object
      */
-    public getRegionalizedPrivateEndpointSetting(param: PrivateEndpointServicesApiGetRegionalizedPrivateEndpointSettingRequest, options?: Configuration): Promise<ProjectSettingItemView> {
-        return this.api.getRegionalizedPrivateEndpointSetting(param.groupId, param.envelope, param.pretty,  options).toPromise();
+    public getRegionalizedPrivateEndpointSetting(param: PrivateEndpointServicesApiGetRegionalizedPrivateEndpointSettingRequest, options?: Configuration): Promise<ProjectSettingItem> {
+        return this.api.getRegionalizedPrivateEndpointSetting(param.groupId,  options).toPromise();
     }
 
     /**
-     * Returns the name, interfaces, and state of all private resource services for the specified cloud service provider. This cloud service provider manages the private resource service for the project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns the name, interfaces, and state of all private endpoint services for the specified cloud service provider. This cloud service provider manages the private endpoint service for the project. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return All Private Endpoint Services for One Provider
      * @param param the request object
      */
-    public listPrivateEndpointServices(param: PrivateEndpointServicesApiListPrivateEndpointServicesRequest, options?: Configuration): Promise<PaginatedPrivateLinkConnectionView> {
-        return this.api.listPrivateEndpointServices(param.groupId, param.cloudProvider, param.envelope, param.pretty,  options).toPromise();
+    public listPrivateEndpointServices(param: PrivateEndpointServicesApiListPrivateEndpointServicesRequest, options?: Configuration): Promise<Array<EndpointService>> {
+        return this.api.listPrivateEndpointServices(param.groupId, param.cloudProvider,  options).toPromise();
     }
 
     /**
-     * Enables or disables the ability can create multiple private resources per region in all cloud service providers in one project. The cloud service provider manages the private resource for the project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
+     * Enables or disables the ability to create multiple private endpoints per region in all cloud service providers in one project. The cloud service provider manages the private endpoints for the project. Connection strings to existing multi-region and global sharded clusters change when you enable this setting. You must update your applications to use the new connection strings. This might cause downtime. To use this resource, the requesting API Key must have the Project Owner role and all clusters in the deployment must be sharded clusters. Once enabled, you cannot create replica sets.
      * Toggle Regionalized Private Endpoint Status
      * @param param the request object
      */
-    public toggleRegionalizedPrivateEndpointSetting(param: PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingRequest, options?: Configuration): Promise<ProjectSettingItemView> {
-        return this.api.toggleRegionalizedPrivateEndpointSetting(param.groupId, param.projectSettingItemView, param.envelope, param.pretty,  options).toPromise();
+    public toggleRegionalizedPrivateEndpointSetting(param: PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingRequest, options?: Configuration): Promise<ProjectSettingItem> {
+        return this.api.toggleRegionalizedPrivateEndpointSetting(param.groupId, param.projectSettingItem,  options).toPromise();
     }
 
 }
@@ -10319,22 +7934,10 @@ export interface ProgrammaticAPIKeysApiAddProjectApiKeyRequest {
     apiUserId: string
     /**
      * Organization API key to be assigned to the specified project.
-     * @type Array&lt;ApiUserRoleAssignment&gt;
+     * @type Array&lt;UserAccessRoleAssignment&gt;
      * @memberof ProgrammaticAPIKeysApiaddProjectApiKey
      */
-    apiUserRoleAssignment: Array<ApiUserRoleAssignment>
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ProgrammaticAPIKeysApiaddProjectApiKey
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ProgrammaticAPIKeysApiaddProjectApiKey
-     */
-    pretty?: boolean
+    userAccessRoleAssignment: Array<UserAccessRoleAssignment>
 }
 
 export interface ProgrammaticAPIKeysApiCreateApiKeyRequest {
@@ -10345,23 +7948,11 @@ export interface ProgrammaticAPIKeysApiCreateApiKeyRequest {
      */
     orgId: string
     /**
-     * Organization API Key to be created. This request requires a minimum of one of the two body parameters.
-     * @type ApiCreateApiKeyView
+     * Organization API Key to be created.
+     * @type CreateAtlasOrganizationApiKey
      * @memberof ProgrammaticAPIKeysApicreateApiKey
      */
-    apiCreateApiKeyView: ApiCreateApiKeyView
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ProgrammaticAPIKeysApicreateApiKey
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ProgrammaticAPIKeysApicreateApiKey
-     */
-    pretty?: boolean
+    createAtlasOrganizationApiKey: CreateAtlasOrganizationApiKey
 }
 
 export interface ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest {
@@ -10379,16 +7970,10 @@ export interface ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest {
     apiUserId: string
     /**
      * Access list entries to be created for the specified organization API key.
-     * @type Array&lt;ApiUserAccessListView&gt;
+     * @type Array&lt;UserAccessList&gt;
      * @memberof ProgrammaticAPIKeysApicreateApiKeyAccessList
      */
-    apiUserAccessListView: Array<ApiUserAccessListView>
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ProgrammaticAPIKeysApicreateApiKeyAccessList
-     */
-    envelope?: boolean
+    userAccessList: Array<UserAccessList>
     /**
      * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
@@ -10407,12 +7992,6 @@ export interface ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest {
      * @memberof ProgrammaticAPIKeysApicreateApiKeyAccessList
      */
     pageNum?: number
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ProgrammaticAPIKeysApicreateApiKeyAccessList
-     */
-    pretty?: boolean
 }
 
 export interface ProgrammaticAPIKeysApiCreateProjectApiKeyRequest {
@@ -10423,23 +8002,11 @@ export interface ProgrammaticAPIKeysApiCreateProjectApiKeyRequest {
      */
     groupId: string
     /**
-     * Organization API key to be created and assigned to the specified project. This request requires a minimum of one of the two body parameters.
-     * @type ApiCreateApiKeyView
+     * Organization API key to be created and assigned to the specified project.
+     * @type CreateAtlasProjectApiKey
      * @memberof ProgrammaticAPIKeysApicreateProjectApiKey
      */
-    apiCreateApiKeyView: ApiCreateApiKeyView
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ProgrammaticAPIKeysApicreateProjectApiKey
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ProgrammaticAPIKeysApicreateProjectApiKey
-     */
-    pretty?: boolean
+    createAtlasProjectApiKey: CreateAtlasProjectApiKey
 }
 
 export interface ProgrammaticAPIKeysApiDeleteApiKeyRequest {
@@ -10455,51 +8022,27 @@ export interface ProgrammaticAPIKeysApiDeleteApiKeyRequest {
      * @memberof ProgrammaticAPIKeysApideleteApiKey
      */
     apiUserId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ProgrammaticAPIKeysApideleteApiKey
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ProgrammaticAPIKeysApideleteApiKey
-     */
-    pretty?: boolean
 }
 
-export interface ProgrammaticAPIKeysApiDeleteApiKeyAcessListRequest {
+export interface ProgrammaticAPIKeysApiDeleteApiKeyAccessListEntryRequest {
     /**
      * Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
      * @type string
-     * @memberof ProgrammaticAPIKeysApideleteApiKeyAcessList
+     * @memberof ProgrammaticAPIKeysApideleteApiKeyAccessListEntry
      */
     orgId: string
     /**
      * Unique 24-hexadecimal digit string that identifies this organization API key for which you want to remove access list entries.
      * @type string
-     * @memberof ProgrammaticAPIKeysApideleteApiKeyAcessList
+     * @memberof ProgrammaticAPIKeysApideleteApiKeyAccessListEntry
      */
     apiUserId: string
     /**
      * One IP address or multiple IP addresses represented as one CIDR block to limit requests to API resources in the specified organization. When adding a CIDR block with a subnet mask, such as 192.0.2.0/24, use the URL-encoded value %2F for the forward slash /.
      * @type string
-     * @memberof ProgrammaticAPIKeysApideleteApiKeyAcessList
+     * @memberof ProgrammaticAPIKeysApideleteApiKeyAccessListEntry
      */
     ipAddress: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ProgrammaticAPIKeysApideleteApiKeyAcessList
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ProgrammaticAPIKeysApideleteApiKeyAcessList
-     */
-    pretty?: boolean
 }
 
 export interface ProgrammaticAPIKeysApiGetApiKeyRequest {
@@ -10515,18 +8058,6 @@ export interface ProgrammaticAPIKeysApiGetApiKeyRequest {
      * @memberof ProgrammaticAPIKeysApigetApiKey
      */
     apiUserId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ProgrammaticAPIKeysApigetApiKey
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ProgrammaticAPIKeysApigetApiKey
-     */
-    pretty?: boolean
 }
 
 export interface ProgrammaticAPIKeysApiGetApiKeyAccessListRequest {
@@ -10548,18 +8079,6 @@ export interface ProgrammaticAPIKeysApiGetApiKeyAccessListRequest {
      * @memberof ProgrammaticAPIKeysApigetApiKeyAccessList
      */
     apiUserId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ProgrammaticAPIKeysApigetApiKeyAccessList
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ProgrammaticAPIKeysApigetApiKeyAccessList
-     */
-    pretty?: boolean
 }
 
 export interface ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest {
@@ -10576,12 +8095,6 @@ export interface ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest {
      */
     apiUserId: string
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ProgrammaticAPIKeysApilistApiKeyAccessListsEntries
-     */
-    envelope?: boolean
-    /**
      * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
      * @memberof ProgrammaticAPIKeysApilistApiKeyAccessListsEntries
@@ -10599,12 +8112,6 @@ export interface ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest {
      * @memberof ProgrammaticAPIKeysApilistApiKeyAccessListsEntries
      */
     pageNum?: number
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ProgrammaticAPIKeysApilistApiKeyAccessListsEntries
-     */
-    pretty?: boolean
 }
 
 export interface ProgrammaticAPIKeysApiListApiKeysRequest {
@@ -10615,12 +8122,6 @@ export interface ProgrammaticAPIKeysApiListApiKeysRequest {
      */
     orgId: string
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ProgrammaticAPIKeysApilistApiKeys
-     */
-    envelope?: boolean
-    /**
      * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
      * @memberof ProgrammaticAPIKeysApilistApiKeys
@@ -10638,12 +8139,6 @@ export interface ProgrammaticAPIKeysApiListApiKeysRequest {
      * @memberof ProgrammaticAPIKeysApilistApiKeys
      */
     pageNum?: number
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ProgrammaticAPIKeysApilistApiKeys
-     */
-    pretty?: boolean
 }
 
 export interface ProgrammaticAPIKeysApiListProjectApiKeysRequest {
@@ -10654,12 +8149,6 @@ export interface ProgrammaticAPIKeysApiListProjectApiKeysRequest {
      */
     groupId: string
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ProgrammaticAPIKeysApilistProjectApiKeys
-     */
-    envelope?: boolean
-    /**
      * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
      * @memberof ProgrammaticAPIKeysApilistProjectApiKeys
@@ -10677,12 +8166,6 @@ export interface ProgrammaticAPIKeysApiListProjectApiKeysRequest {
      * @memberof ProgrammaticAPIKeysApilistProjectApiKeys
      */
     pageNum?: number
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ProgrammaticAPIKeysApilistProjectApiKeys
-     */
-    pretty?: boolean
 }
 
 export interface ProgrammaticAPIKeysApiRemoveProjectApiKeyRequest {
@@ -10698,18 +8181,6 @@ export interface ProgrammaticAPIKeysApiRemoveProjectApiKeyRequest {
      * @memberof ProgrammaticAPIKeysApiremoveProjectApiKey
      */
     apiUserId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ProgrammaticAPIKeysApiremoveProjectApiKey
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ProgrammaticAPIKeysApiremoveProjectApiKey
-     */
-    pretty?: boolean
 }
 
 export interface ProgrammaticAPIKeysApiUpdateApiKeyRequest {
@@ -10727,22 +8198,10 @@ export interface ProgrammaticAPIKeysApiUpdateApiKeyRequest {
     apiUserId: string
     /**
      * Organization API key to be updated. This request requires a minimum of one of the two body parameters.
-     * @type ApiApiUserView
+     * @type UpdateAtlasOrganizationApiKey
      * @memberof ProgrammaticAPIKeysApiupdateApiKey
      */
-    apiApiUserView: ApiApiUserView
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ProgrammaticAPIKeysApiupdateApiKey
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ProgrammaticAPIKeysApiupdateApiKey
-     */
-    pretty?: boolean
+    updateAtlasOrganizationApiKey: UpdateAtlasOrganizationApiKey
 }
 
 export interface ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest {
@@ -10760,10 +8219,10 @@ export interface ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest {
     apiUserId: string
     /**
      * Organization API Key to be updated. This request requires a minimum of one of the two body parameters.
-     * @type ApiCreateApiKeyView
+     * @type UpdateAtlasProjectApiKey
      * @memberof ProgrammaticAPIKeysApiupdateApiKeyRoles
      */
-    apiCreateApiKeyView: ApiCreateApiKeyView
+    updateAtlasProjectApiKey: UpdateAtlasProjectApiKey
     /**
      * Number of the page that displays the current set of the total objects that the response returns.
      * @type number
@@ -10782,18 +8241,6 @@ export interface ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest {
      * @memberof ProgrammaticAPIKeysApiupdateApiKeyRoles
      */
     includeCount?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ProgrammaticAPIKeysApiupdateApiKeyRoles
-     */
-    pretty?: boolean
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ProgrammaticAPIKeysApiupdateApiKeyRoles
-     */
-    envelope?: boolean
 }
 
 export class ObjectProgrammaticAPIKeysApi {
@@ -10804,120 +8251,120 @@ export class ObjectProgrammaticAPIKeysApi {
     }
 
     /**
-     * Assigns the specified organization API key to the specified project. Users with the Project Owner role in the project associated with the API key can then use the organization API key to access the resources. To use this resource, the requesting API Key must have the Project User Admin role. This resource doesn't require the API Key to have an Access List.
+     * Assigns the specified organization API key to the specified project. Users with the Project Owner role in the project associated with the API key can then use the organization API key to access the resources. To use this resource, the requesting API Key must have the Project User Admin role.
      * Assign One Organization API Key to One Project
      * @param param the request object
      */
-    public addProjectApiKey(param: ProgrammaticAPIKeysApiAddProjectApiKeyRequest, options?: Configuration): Promise<ApiApiUserView> {
-        return this.api.addProjectApiKey(param.groupId, param.apiUserId, param.apiUserRoleAssignment, param.envelope, param.pretty,  options).toPromise();
+    public addProjectApiKey(param: ProgrammaticAPIKeysApiAddProjectApiKeyRequest, options?: Configuration): Promise<ApiKeyUserDetails> {
+        return this.api.addProjectApiKey(param.groupId, param.apiUserId, param.userAccessRoleAssignment,  options).toPromise();
     }
 
     /**
-     * Creates one API key for the specified organization. An organization API key grants programmatic access to an organization. You can't use the API key to log into the console. To use this resource, the requesting API Key must have the Organization User Admin role. This resource doesn't require the API Key to have an Access List.
+     * Creates one API key for the specified organization. An organization API key grants programmatic access to an organization. You can't use the API key to log into the console. To use this resource, the requesting API Key must have the Organization Owner role.
      * Create One Organization API Key
      * @param param the request object
      */
-    public createApiKey(param: ProgrammaticAPIKeysApiCreateApiKeyRequest, options?: Configuration): Promise<ApiApiUserView> {
-        return this.api.createApiKey(param.orgId, param.apiCreateApiKeyView, param.envelope, param.pretty,  options).toPromise();
+    public createApiKey(param: ProgrammaticAPIKeysApiCreateApiKeyRequest, options?: Configuration): Promise<ApiKeyUserDetails> {
+        return this.api.createApiKey(param.orgId, param.createAtlasOrganizationApiKey,  options).toPromise();
     }
 
     /**
-     * Creates the access list entries for the specified organization API key. Resources require all API requests originate from IP addresses on the API access list. To use this resource, the requesting API Key must have the Read Write role and an entry for the project access list.
+     * Creates the access list entries for the specified organization API key. Resources require all API requests originate from IP addresses on the API access list. To use this resource, the requesting API Key must have the Read Write role.
      * Create Access List Entries for One Organization API Key
      * @param param the request object
      */
-    public createApiKeyAccessList(param: ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest, options?: Configuration): Promise<ApiUserAccessListView> {
-        return this.api.createApiKeyAccessList(param.orgId, param.apiUserId, param.apiUserAccessListView, param.envelope, param.includeCount, param.itemsPerPage, param.pageNum, param.pretty,  options).toPromise();
+    public createApiKeyAccessList(param: ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest, options?: Configuration): Promise<PaginatedApiUserAccessList> {
+        return this.api.createApiKeyAccessList(param.orgId, param.apiUserId, param.userAccessList, param.includeCount, param.itemsPerPage, param.pageNum,  options).toPromise();
     }
 
     /**
-     * Creates and assigns the specified organization API key to the specified project. Users with the Project Owner role in the project associated with the API key can use the organization API key to access the resources. To use this resource, the requesting API Key must have the Project User Admin role. This resource doesn't require the API Key to have an Access List.
+     * Creates and assigns the specified organization API key to the specified project. Users with the Project Owner role in the project associated with the API key can use the organization API key to access the resources. To use this resource, the requesting API Key must have the Project User Admin role.
      * Create and Assign One Organization API Key to One Project
      * @param param the request object
      */
-    public createProjectApiKey(param: ProgrammaticAPIKeysApiCreateProjectApiKeyRequest, options?: Configuration): Promise<ApiApiUserView> {
-        return this.api.createProjectApiKey(param.groupId, param.apiCreateApiKeyView, param.envelope, param.pretty,  options).toPromise();
+    public createProjectApiKey(param: ProgrammaticAPIKeysApiCreateProjectApiKeyRequest, options?: Configuration): Promise<ApiKeyUserDetails> {
+        return this.api.createProjectApiKey(param.groupId, param.createAtlasProjectApiKey,  options).toPromise();
     }
 
     /**
-     * Removes one organization API key from the specified organization. When you remove an API key from an organization, MongoDB Cloud also removes that key from any projects that use that key. To use this resource, the requesting API Key must have the Organization User Admin role. This resource doesn't require the API Key to have an Access List.
+     * Removes one organization API key from the specified organization. When you remove an API key from an organization, MongoDB Cloud also removes that key from any projects that use that key. To use this resource, the requesting API Key must have the Organization Owner role.
      * Remove One Organization API Key
      * @param param the request object
      */
-    public deleteApiKey(param: ProgrammaticAPIKeysApiDeleteApiKeyRequest, options?: Configuration): Promise<void> {
-        return this.api.deleteApiKey(param.orgId, param.apiUserId, param.envelope, param.pretty,  options).toPromise();
+    public deleteApiKey(param: ProgrammaticAPIKeysApiDeleteApiKeyRequest, options?: Configuration): Promise<any> {
+        return this.api.deleteApiKey(param.orgId, param.apiUserId,  options).toPromise();
     }
 
     /**
-     * Removes the specified access list entry from the specified organization API key. Resources require all API requests originate from the IP addresses on the API access list. To use this resource, the requesting API Key must have the Read Write role and an entry for the project access list.
+     * Removes the specified access list entry from the specified organization API key. Resources require all API requests originate from the IP addresses on the API access list. To use this resource, the requesting API Key must have the Read Write role. In addition, you cannot remove the requesting IP address from the requesting organization API key.
      * Remove One Access List Entry for One Organization API Key
      * @param param the request object
      */
-    public deleteApiKeyAcessList(param: ProgrammaticAPIKeysApiDeleteApiKeyAcessListRequest, options?: Configuration): Promise<void> {
-        return this.api.deleteApiKeyAcessList(param.orgId, param.apiUserId, param.ipAddress, param.envelope, param.pretty,  options).toPromise();
+    public deleteApiKeyAccessListEntry(param: ProgrammaticAPIKeysApiDeleteApiKeyAccessListEntryRequest, options?: Configuration): Promise<any> {
+        return this.api.deleteApiKeyAccessListEntry(param.orgId, param.apiUserId, param.ipAddress,  options).toPromise();
     }
 
     /**
-     * Returns one organization API key. The organization API keys grant programmatic access to an organization. You can't use the API key to log into MongoDB Cloud through the user interface. To use this resource, the requesting API Key must have the  Organization Member role. This resource doesn't require the API Key to have an  Access List.
+     * Returns one organization API key. The organization API keys grant programmatic access to an organization. You can't use the API key to log into MongoDB Cloud through the user interface. To use this resource, the requesting API Key must have the  Organization Member role.
      * Return One Organization API Key
      * @param param the request object
      */
-    public getApiKey(param: ProgrammaticAPIKeysApiGetApiKeyRequest, options?: Configuration): Promise<ApiApiUserView> {
-        return this.api.getApiKey(param.orgId, param.apiUserId, param.envelope, param.pretty,  options).toPromise();
+    public getApiKey(param: ProgrammaticAPIKeysApiGetApiKeyRequest, options?: Configuration): Promise<ApiKeyUserDetails> {
+        return this.api.getApiKey(param.orgId, param.apiUserId,  options).toPromise();
     }
 
     /**
-     * Returns one access list entry for the specified organization API key. Resources require  all API requests originate from IP addresses on the API access list. To use this resource,  the requesting API Key must have the Organization Member role. This resource  doesn't require the API Key to have an Access List.
+     * Returns one access list entry for the specified organization API key. Resources require  all API requests originate from IP addresses on the API access list. To use this resource, the requesting API Key must have the Organization Member role.
      * Return One Access List Entry for One Organization API Key
      * @param param the request object
      */
-    public getApiKeyAccessList(param: ProgrammaticAPIKeysApiGetApiKeyAccessListRequest, options?: Configuration): Promise<ApiUserAccessListView> {
-        return this.api.getApiKeyAccessList(param.orgId, param.ipAddress, param.apiUserId, param.envelope, param.pretty,  options).toPromise();
+    public getApiKeyAccessList(param: ProgrammaticAPIKeysApiGetApiKeyAccessListRequest, options?: Configuration): Promise<UserAccessList> {
+        return this.api.getApiKeyAccessList(param.orgId, param.ipAddress, param.apiUserId,  options).toPromise();
     }
 
     /**
-     * Returns all access list entries that you configured for the specified organization API key. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an Access List.
+     * Returns all access list entries that you configured for the specified organization API key. To use this resource, the requesting API Key must have the Organization Member role.
      * Return All Access List Entries for One Organization API Key
      * @param param the request object
      */
-    public listApiKeyAccessListsEntries(param: ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest, options?: Configuration): Promise<PaginatedApiUserAccessListView> {
-        return this.api.listApiKeyAccessListsEntries(param.orgId, param.apiUserId, param.envelope, param.includeCount, param.itemsPerPage, param.pageNum, param.pretty,  options).toPromise();
+    public listApiKeyAccessListsEntries(param: ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest, options?: Configuration): Promise<PaginatedApiUserAccessList> {
+        return this.api.listApiKeyAccessListsEntries(param.orgId, param.apiUserId, param.includeCount, param.itemsPerPage, param.pageNum,  options).toPromise();
     }
 
     /**
-     * Returns all organization API keys for the specified organization. The organization API keys grant programmatic access to an organization. You can't use the API key to log into MongoDB Cloud through the console. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an Access List.
+     * Returns all organization API keys for the specified organization. The organization API keys grant programmatic access to an organization. You can't use the API key to log into MongoDB Cloud through the console. To use this resource, the requesting API Key must have the Organization Member role.
      * Return All Organization API Keys
      * @param param the request object
      */
-    public listApiKeys(param: ProgrammaticAPIKeysApiListApiKeysRequest, options?: Configuration): Promise<PaginatedApiApiUserView> {
-        return this.api.listApiKeys(param.orgId, param.envelope, param.includeCount, param.itemsPerPage, param.pageNum, param.pretty,  options).toPromise();
+    public listApiKeys(param: ProgrammaticAPIKeysApiListApiKeysRequest, options?: Configuration): Promise<PaginatedApiApiUser> {
+        return this.api.listApiKeys(param.orgId, param.includeCount, param.itemsPerPage, param.pageNum,  options).toPromise();
     }
 
     /**
-     * Returns all organization API keys that you assigned to the specified project. Users with the Project Owner role in the project associated with the API key can use the organization API key to access the resources. To use this resource, the requesting API Key must have the Project User Admin role. This resource doesn't require the API Key to have an Access List.
+     * Returns all organization API keys that you assigned to the specified project. Users with the Project Owner role in the project associated with the API key can use the organization API key to access the resources. To use this resource, the requesting API Key must have the Project User Admin role.
      * Return All Organization API Keys Assigned to One Project
      * @param param the request object
      */
-    public listProjectApiKeys(param: ProgrammaticAPIKeysApiListProjectApiKeysRequest, options?: Configuration): Promise<PaginatedApiApiUserView> {
-        return this.api.listProjectApiKeys(param.groupId, param.envelope, param.includeCount, param.itemsPerPage, param.pageNum, param.pretty,  options).toPromise();
+    public listProjectApiKeys(param: ProgrammaticAPIKeysApiListProjectApiKeysRequest, options?: Configuration): Promise<PaginatedApiApiUser> {
+        return this.api.listProjectApiKeys(param.groupId, param.includeCount, param.itemsPerPage, param.pageNum,  options).toPromise();
     }
 
     /**
-     * Removes one organization API key from the specified project. To use this resource, the requesting API Key must have the Project User Admin role. This resource doesn't require the API Key to have an Access List.
+     * Removes one organization API key from the specified project. To use this resource, the requesting API Key must have the Project User Admin role.
      * Unassign One Organization API Key from One Project
      * @param param the request object
      */
-    public removeProjectApiKey(param: ProgrammaticAPIKeysApiRemoveProjectApiKeyRequest, options?: Configuration): Promise<void> {
-        return this.api.removeProjectApiKey(param.groupId, param.apiUserId, param.envelope, param.pretty,  options).toPromise();
+    public removeProjectApiKey(param: ProgrammaticAPIKeysApiRemoveProjectApiKeyRequest, options?: Configuration): Promise<any> {
+        return this.api.removeProjectApiKey(param.groupId, param.apiUserId,  options).toPromise();
     }
 
     /**
-     * Updates one organization API key in the specified organization. The organization API keys  grant programmatic access to an organization. To use this resource, the requesting  API Key must have the Organization User Admin role. This resource doesn't require  the API Key to have an Access List.
+     * Updates one organization API key in the specified organization. The organization API keys  grant programmatic access to an organization. To use this resource, the requesting  API Key must have the Organization Owner role.
      * Update One Organization API Key
      * @param param the request object
      */
-    public updateApiKey(param: ProgrammaticAPIKeysApiUpdateApiKeyRequest, options?: Configuration): Promise<ApiApiUserView> {
-        return this.api.updateApiKey(param.orgId, param.apiUserId, param.apiApiUserView, param.envelope, param.pretty,  options).toPromise();
+    public updateApiKey(param: ProgrammaticAPIKeysApiUpdateApiKeyRequest, options?: Configuration): Promise<ApiKeyUserDetails> {
+        return this.api.updateApiKey(param.orgId, param.apiUserId, param.updateAtlasOrganizationApiKey,  options).toPromise();
     }
 
     /**
@@ -10925,8 +8372,8 @@ export class ObjectProgrammaticAPIKeysApi {
      * Update Roles of One Organization API Key to One Project
      * @param param the request object
      */
-    public updateApiKeyRoles(param: ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest, options?: Configuration): Promise<ApiApiUserView> {
-        return this.api.updateApiKeyRoles(param.groupId, param.apiUserId, param.apiCreateApiKeyView, param.pageNum, param.itemsPerPage, param.includeCount, param.pretty, param.envelope,  options).toPromise();
+    public updateApiKeyRoles(param: ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest, options?: Configuration): Promise<ApiKeyUserDetails> {
+        return this.api.updateApiKeyRoles(param.groupId, param.apiUserId, param.updateAtlasProjectApiKey, param.pageNum, param.itemsPerPage, param.includeCount,  options).toPromise();
     }
 
 }
@@ -10948,12 +8395,6 @@ export interface ProjectIPAccessListApiCreateProjectIpAccessListRequest {
      */
     networkPermissionEntry: Array<NetworkPermissionEntry>
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ProjectIPAccessListApicreateProjectIpAccessList
-     */
-    envelope?: boolean
-    /**
      * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
      * @memberof ProjectIPAccessListApicreateProjectIpAccessList
@@ -10971,12 +8412,6 @@ export interface ProjectIPAccessListApiCreateProjectIpAccessListRequest {
      * @memberof ProjectIPAccessListApicreateProjectIpAccessList
      */
     pageNum?: number
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ProjectIPAccessListApicreateProjectIpAccessList
-     */
-    pretty?: boolean
 }
 
 export interface ProjectIPAccessListApiDeleteProjectIpAccessListRequest {
@@ -10992,18 +8427,6 @@ export interface ProjectIPAccessListApiDeleteProjectIpAccessListRequest {
      * @memberof ProjectIPAccessListApideleteProjectIpAccessList
      */
     entryValue: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ProjectIPAccessListApideleteProjectIpAccessList
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ProjectIPAccessListApideleteProjectIpAccessList
-     */
-    pretty?: boolean
 }
 
 export interface ProjectIPAccessListApiGetProjectIpAccessListStatusRequest {
@@ -11019,18 +8442,6 @@ export interface ProjectIPAccessListApiGetProjectIpAccessListStatusRequest {
      * @memberof ProjectIPAccessListApigetProjectIpAccessListStatus
      */
     entryValue: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ProjectIPAccessListApigetProjectIpAccessListStatus
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ProjectIPAccessListApigetProjectIpAccessListStatus
-     */
-    pretty?: boolean
 }
 
 export interface ProjectIPAccessListApiGetProjectIpListRequest {
@@ -11046,18 +8457,6 @@ export interface ProjectIPAccessListApiGetProjectIpListRequest {
      * @memberof ProjectIPAccessListApigetProjectIpList
      */
     entryValue: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ProjectIPAccessListApigetProjectIpList
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ProjectIPAccessListApigetProjectIpList
-     */
-    pretty?: boolean
 }
 
 export interface ProjectIPAccessListApiListProjectIpAccessListsRequest {
@@ -11067,12 +8466,6 @@ export interface ProjectIPAccessListApiListProjectIpAccessListsRequest {
      * @memberof ProjectIPAccessListApilistProjectIpAccessLists
      */
     groupId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ProjectIPAccessListApilistProjectIpAccessLists
-     */
-    envelope?: boolean
     /**
      * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
@@ -11091,12 +8484,6 @@ export interface ProjectIPAccessListApiListProjectIpAccessListsRequest {
      * @memberof ProjectIPAccessListApilistProjectIpAccessLists
      */
     pageNum?: number
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ProjectIPAccessListApilistProjectIpAccessLists
-     */
-    pretty?: boolean
 }
 
 export class ObjectProjectIPAccessListApi {
@@ -11107,21 +8494,21 @@ export class ObjectProjectIPAccessListApi {
     }
 
     /**
-     * Adds one or more access list entries to the specified project. MongoDB Cloud only allows client connections to the cluster from entries in the project's IP access list. Write each entry as either one IP address or one CIDR-notated block of IP addresses. To use this resource, the requesting API Key must have the Project Owner or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List. This resource replaces the whitelist resource. MongoDB Cloud removed whitelists in July 2021. Update your applications to use this new resource. The `/groups/{GROUP-ID}/accessList` endpoint manages the database IP access list. This endpoint is distinct from the `orgs/{ORG-ID}/apiKeys/{API-KEY-ID}/accesslist` endpoint, which manages the access list for MongoDB Cloud organizations. This endpoint doesn't support concurrent `POST` requests. You must submit multiple `POST` requests synchronously.
+     * Adds one or more access list entries to the specified project. MongoDB Cloud only allows client connections to the cluster from entries in the project's IP access list. Write each entry as either one IP address or one CIDR-notated block of IP addresses. To use this resource, the requesting API Key must have the Project Owner or Project Charts Admin roles. This resource replaces the whitelist resource. MongoDB Cloud removed whitelists in July 2021. Update your applications to use this new resource. The `/groups/{GROUP-ID}/accessList` endpoint manages the database IP access list. This endpoint is distinct from the `orgs/{ORG-ID}/apiKeys/{API-KEY-ID}/accesslist` endpoint, which manages the access list for MongoDB Cloud organizations. This endpoint doesn't support concurrent `POST` requests. You must submit multiple `POST` requests synchronously.
      * Add Entries to Project IP Access List
      * @param param the request object
      */
-    public createProjectIpAccessList(param: ProjectIPAccessListApiCreateProjectIpAccessListRequest, options?: Configuration): Promise<PaginatedNetworkAccessView> {
-        return this.api.createProjectIpAccessList(param.groupId, param.networkPermissionEntry, param.envelope, param.includeCount, param.itemsPerPage, param.pageNum, param.pretty,  options).toPromise();
+    public createProjectIpAccessList(param: ProjectIPAccessListApiCreateProjectIpAccessListRequest, options?: Configuration): Promise<PaginatedNetworkAccess> {
+        return this.api.createProjectIpAccessList(param.groupId, param.networkPermissionEntry, param.includeCount, param.itemsPerPage, param.pageNum,  options).toPromise();
     }
 
     /**
-     * Removes one access list entry from the specified project's IP access list. Each entry in the project's IP access list contains one IP address, one CIDR-notated block of IP addresses, or one AWS Security Group ID. MongoDB Cloud only allows client connections to the cluster from entries in the project's IP access list. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List. This resource replaces the whitelist resource. MongoDB Cloud removed whitelists in July 2021. Update your applications to use this new resource. The `/groups/{GROUP-ID}/accessList` endpoint manages the database IP access list. This endpoint is distinct from the `orgs/{ORG-ID}/apiKeys/{API-KEY-ID}/accesslist` endpoint, which manages the access list for MongoDB Cloud organizations.
+     * Removes one access list entry from the specified project's IP access list. Each entry in the project's IP access list contains one IP address, one CIDR-notated block of IP addresses, or one AWS Security Group ID. MongoDB Cloud only allows client connections to the cluster from entries in the project's IP access list. To use this resource, the requesting API Key must have the Project Owner role. This resource replaces the whitelist resource. MongoDB Cloud removed whitelists in July 2021. Update your applications to use this new resource. The `/groups/{GROUP-ID}/accessList` endpoint manages the database IP access list. This endpoint is distinct from the `orgs/{ORG-ID}/apiKeys/{API-KEY-ID}/accesslist` endpoint, which manages the access list for MongoDB Cloud organizations.
      * Remove One Entry from One Project IP Access List
      * @param param the request object
      */
-    public deleteProjectIpAccessList(param: ProjectIPAccessListApiDeleteProjectIpAccessListRequest, options?: Configuration): Promise<void> {
-        return this.api.deleteProjectIpAccessList(param.groupId, param.entryValue, param.envelope, param.pretty,  options).toPromise();
+    public deleteProjectIpAccessList(param: ProjectIPAccessListApiDeleteProjectIpAccessListRequest, options?: Configuration): Promise<any> {
+        return this.api.deleteProjectIpAccessList(param.groupId, param.entryValue,  options).toPromise();
     }
 
     /**
@@ -11130,31 +8517,46 @@ export class ObjectProjectIPAccessListApi {
      * @param param the request object
      */
     public getProjectIpAccessListStatus(param: ProjectIPAccessListApiGetProjectIpAccessListStatusRequest, options?: Configuration): Promise<NetworkPermissionEntryStatus> {
-        return this.api.getProjectIpAccessListStatus(param.groupId, param.entryValue, param.envelope, param.pretty,  options).toPromise();
+        return this.api.getProjectIpAccessListStatus(param.groupId, param.entryValue,  options).toPromise();
     }
 
     /**
-     * Returns one access list entry from the specified project's IP access list. Each entry in the project's IP access list contains either one IP address or one CIDR-notated block of IP addresses. MongoDB Cloud only allows client connections to the cluster from entries in the project's IP access list. To use this resource, the requesting API Key must have the Project Read Only or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List. This resource replaces the whitelist resource. MongoDB Cloud removed whitelists in July 2021. Update your applications to use this new resource. This endpoint (`/groups/{GROUP-ID}/accessList`) manages the Project IP Access List. It doesn't manage the access list for MongoDB Cloud organizations. TheProgrammatic API Keys endpoint (`/orgs/{ORG-ID}/apiKeys/{API-KEY-ID}/accesslist`) manages those access lists.
+     * Returns one access list entry from the specified project's IP access list. Each entry in the project's IP access list contains either one IP address or one CIDR-notated block of IP addresses. MongoDB Cloud only allows client connections to the cluster from entries in the project's IP access list. To use this resource, the requesting API Key must have the Project Read Only or Project Charts Admin roles. This resource replaces the whitelist resource. MongoDB Cloud removed whitelists in July 2021. Update your applications to use this new resource. This endpoint (`/groups/{GROUP-ID}/accessList`) manages the Project IP Access List. It doesn't manage the access list for MongoDB Cloud organizations. TheProgrammatic API Keys endpoint (`/orgs/{ORG-ID}/apiKeys/{API-KEY-ID}/accesslist`) manages those access lists.
      * Return One Project IP Access List Entry
      * @param param the request object
      */
     public getProjectIpList(param: ProjectIPAccessListApiGetProjectIpListRequest, options?: Configuration): Promise<NetworkPermissionEntry> {
-        return this.api.getProjectIpList(param.groupId, param.entryValue, param.envelope, param.pretty,  options).toPromise();
+        return this.api.getProjectIpList(param.groupId, param.entryValue,  options).toPromise();
     }
 
     /**
-     * Returns all access list entries from the specified project's IP access list. Each entry in the project's IP access list contains either one IP address or one CIDR-notated block of IP addresses. MongoDB Cloud only allows client connections to the cluster from entries in the project's IP access list. To use this resource, the requesting API Key must have the Project Read Only or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List. This resource replaces the whitelist resource. MongoDB Cloud removed whitelists in July 2021. Update your applications to use this new resource. The `/groups/{GROUP-ID}/accessList` endpoint manages the database IP access list. This endpoint is distinct from the `orgs/{ORG-ID}/apiKeys/{API-KEY-ID}/accesslist` endpoint, which manages the access list for MongoDB Cloud organizations.
+     * Returns all access list entries from the specified project's IP access list. Each entry in the project's IP access list contains either one IP address or one CIDR-notated block of IP addresses. MongoDB Cloud only allows client connections to the cluster from entries in the project's IP access list. To use this resource, the requesting API Key must have the Project Read Only or Project Charts Admin roles. This resource replaces the whitelist resource. MongoDB Cloud removed whitelists in July 2021. Update your applications to use this new resource. The `/groups/{GROUP-ID}/accessList` endpoint manages the database IP access list. This endpoint is distinct from the `orgs/{ORG-ID}/apiKeys/{API-KEY-ID}/accesslist` endpoint, which manages the access list for MongoDB Cloud organizations.
      * Return Project IP Access List
      * @param param the request object
      */
-    public listProjectIpAccessLists(param: ProjectIPAccessListApiListProjectIpAccessListsRequest, options?: Configuration): Promise<PaginatedNetworkAccessView> {
-        return this.api.listProjectIpAccessLists(param.groupId, param.envelope, param.includeCount, param.itemsPerPage, param.pageNum, param.pretty,  options).toPromise();
+    public listProjectIpAccessLists(param: ProjectIPAccessListApiListProjectIpAccessListsRequest, options?: Configuration): Promise<PaginatedNetworkAccess> {
+        return this.api.listProjectIpAccessLists(param.groupId, param.includeCount, param.itemsPerPage, param.pageNum,  options).toPromise();
     }
 
 }
 
 import { ObservableProjectsApi } from "./ObservableAPI";
 import { ProjectsApiRequestFactory, ProjectsApiResponseProcessor} from "../apis/ProjectsApi";
+
+export interface ProjectsApiAddUserToProjectRequest {
+    /**
+     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+     * @type string
+     * @memberof ProjectsApiaddUserToProject
+     */
+    groupId: string
+    /**
+     * Adds one MongoDB Cloud user to the specified project.
+     * @type GroupInvitationRequest
+     * @memberof ProjectsApiaddUserToProject
+     */
+    groupInvitationRequest: GroupInvitationRequest
+}
 
 export interface ProjectsApiCreateProjectRequest {
     /**
@@ -11164,19 +8566,7 @@ export interface ProjectsApiCreateProjectRequest {
      */
     group: Group
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ProjectsApicreateProject
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ProjectsApicreateProject
-     */
-    pretty?: boolean
-    /**
-     * Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user to whom to grant the Project Owner role on the specified project. If you set this parameter, it overrides the default value of the oldest Organization Owner. 
+     * Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user to whom to grant the Project Owner role on the specified project. If you set this parameter, it overrides the default value of the oldest Organization Owner.
      * @type string
      * @memberof ProjectsApicreateProject
      */
@@ -11192,22 +8582,10 @@ export interface ProjectsApiCreateProjectInvitationRequest {
     groupId: string
     /**
      * Invites one MongoDB Cloud user to join the specified project.
-     * @type ApiGroupInvitationRequestView
+     * @type GroupInvitationRequest
      * @memberof ProjectsApicreateProjectInvitation
      */
-    apiGroupInvitationRequestView: ApiGroupInvitationRequestView
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ProjectsApicreateProjectInvitation
-     */
-    pretty?: boolean
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ProjectsApicreateProjectInvitation
-     */
-    envelope?: boolean
+    groupInvitationRequest: GroupInvitationRequest
 }
 
 export interface ProjectsApiDeleteProjectRequest {
@@ -11217,18 +8595,6 @@ export interface ProjectsApiDeleteProjectRequest {
      * @memberof ProjectsApideleteProject
      */
     groupId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ProjectsApideleteProject
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ProjectsApideleteProject
-     */
-    pretty?: boolean
 }
 
 export interface ProjectsApiDeleteProjectInvitationRequest {
@@ -11244,39 +8610,21 @@ export interface ProjectsApiDeleteProjectInvitationRequest {
      * @memberof ProjectsApideleteProjectInvitation
      */
     invitationId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ProjectsApideleteProjectInvitation
-     */
-    envelope?: boolean
 }
 
 export interface ProjectsApiDeleteProjectLimitRequest {
     /**
-     * Human-readable label that identifies this project limit.  | Limit Name | Description | Default | | --- | --- | --- | | atlas.project.deployment.clusters | Limit on the number of clusters in this project | 25 | | atlas.project.deployment.nodesPerPrivateLinkRegion | Limit on the number of nodes per Private Link region in this project | 50 | | atlas.project.security.databaseAccess.customRoles | Limit on the number of custom roles in this project | 100 | | atlas.project.security.databaseAccess.users | Limit on the number of database users in this project | 100 | | atlas.project.security.networkAccess.crossRegionEntries | Limit on the number of cross-region network access entries in this project | 40 | | atlas.project.security.networkAccess.entries | Limit on the number of network access entries in this project | 200 | | dataFederation.bytesProcessed.query | Limit on the number of bytes processed during a single Data Federation query | N/A | | dataFederation.bytesProcessed.daily | Limit on the number of bytes processed across all Data Federation tenants for the current day | N/A | | dataFederation.bytesProcessed.weekly | Limit on the number of bytes processed across all Data Federation tenants for the current week | N/A | | dataFederation.bytesProcessed.monthly | Limit on the number of bytes processed across all Data Federation tenants for the current month | N/A | 
-     * @type &#39;atlas.project.security.databaseAccess.users&#39; | &#39;atlas.project.deployment.clusters&#39; | &#39;atlas.project.security.databaseAccess.customRoles&#39; | &#39;atlas.project.security.networkAccess.entries&#39; | &#39;atlas.project.security.networkAccess.crossRegionEntries&#39; | &#39;atlas.project.deployment.nodesPerPrivateLinkRegion&#39; | &#39;dataFederation.bytesProcessed.query&#39; | &#39;dataFederation.bytesProcessed.daily&#39; | &#39;dataFederation.bytesProcessed.weekly&#39; | &#39;dataFederation.bytesProcessed.monthly&#39;
+     * Human-readable label that identifies this project limit.  | Limit Name | Description | Default | API Override Limit | | --- | --- | --- | --- | | atlas.project.deployment.clusters | Limit on the number of clusters in this project | 25 | 90 | | atlas.project.deployment.nodesPerPrivateLinkRegion | Limit on the number of nodes per Private Link region in this project | 50 | 90 | | atlas.project.security.databaseAccess.customRoles | Limit on the number of custom roles in this project | 100 | 1400 | | atlas.project.security.databaseAccess.users | Limit on the number of database users in this project | 100 | 900 | | atlas.project.security.networkAccess.crossRegionEntries | Limit on the number of cross-region network access entries in this project | 40 | 220 | | atlas.project.security.networkAccess.entries | Limit on the number of network access entries in this project | 200 | 20 | | dataFederation.bytesProcessed.query | Limit on the number of bytes processed during a single Data Federation query | N/A | N/A | | dataFederation.bytesProcessed.daily | Limit on the number of bytes processed across all Data Federation tenants for the current day | N/A | N/A | | dataFederation.bytesProcessed.weekly | Limit on the number of bytes processed across all Data Federation tenants for the current week | N/A | N/A | | dataFederation.bytesProcessed.monthly | Limit on the number of bytes processed across all Data Federation tenants for the current month | N/A | N/A | | atlas.project.deployment.privateServiceConnectionsPerRegionGroup | Number of Private Serivce Connections per Region Group | 50 | 100| | atlas.project.deployment.privateServiceConnectionsSubnetMask | Subnet mask for GCP PSC Networks. Has lower limit of 20. | 27 | 27| 
+     * @type string
      * @memberof ProjectsApideleteProjectLimit
      */
-    limitName: 'atlas.project.security.databaseAccess.users' | 'atlas.project.deployment.clusters' | 'atlas.project.security.databaseAccess.customRoles' | 'atlas.project.security.networkAccess.entries' | 'atlas.project.security.networkAccess.crossRegionEntries' | 'atlas.project.deployment.nodesPerPrivateLinkRegion' | 'dataFederation.bytesProcessed.query' | 'dataFederation.bytesProcessed.daily' | 'dataFederation.bytesProcessed.weekly' | 'dataFederation.bytesProcessed.monthly'
+    limitName: string
     /**
      * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
      * @type string
      * @memberof ProjectsApideleteProjectLimit
      */
     groupId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ProjectsApideleteProjectLimit
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ProjectsApideleteProjectLimit
-     */
-    pretty?: boolean
 }
 
 export interface ProjectsApiGetProjectRequest {
@@ -11286,18 +8634,6 @@ export interface ProjectsApiGetProjectRequest {
      * @memberof ProjectsApigetProject
      */
     groupId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ProjectsApigetProject
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ProjectsApigetProject
-     */
-    pretty?: boolean
 }
 
 export interface ProjectsApiGetProjectByNameRequest {
@@ -11307,18 +8643,6 @@ export interface ProjectsApiGetProjectByNameRequest {
      * @memberof ProjectsApigetProjectByName
      */
     groupName: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ProjectsApigetProjectByName
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ProjectsApigetProjectByName
-     */
-    pretty?: boolean
 }
 
 export interface ProjectsApiGetProjectInvitationRequest {
@@ -11334,45 +8658,21 @@ export interface ProjectsApiGetProjectInvitationRequest {
      * @memberof ProjectsApigetProjectInvitation
      */
     invitationId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ProjectsApigetProjectInvitation
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ProjectsApigetProjectInvitation
-     */
-    pretty?: boolean
 }
 
 export interface ProjectsApiGetProjectLimitRequest {
     /**
-     * Human-readable label that identifies this project limit.  | Limit Name | Description | Default | | --- | --- | --- | | atlas.project.deployment.clusters | Limit on the number of clusters in this project | 25 | | atlas.project.deployment.nodesPerPrivateLinkRegion | Limit on the number of nodes per Private Link region in this project | 50 | | atlas.project.security.databaseAccess.customRoles | Limit on the number of custom roles in this project | 100 | | atlas.project.security.databaseAccess.users | Limit on the number of database users in this project | 100 | | atlas.project.security.networkAccess.crossRegionEntries | Limit on the number of cross-region network access entries in this project | 40 | | atlas.project.security.networkAccess.entries | Limit on the number of network access entries in this project | 200 | | dataFederation.bytesProcessed.query | Limit on the number of bytes processed during a single Data Federation query | N/A | | dataFederation.bytesProcessed.daily | Limit on the number of bytes processed across all Data Federation tenants for the current day | N/A | | dataFederation.bytesProcessed.weekly | Limit on the number of bytes processed across all Data Federation tenants for the current week | N/A | | dataFederation.bytesProcessed.monthly | Limit on the number of bytes processed across all Data Federation tenants for the current month | N/A | 
-     * @type &#39;atlas.project.security.databaseAccess.users&#39; | &#39;atlas.project.deployment.clusters&#39; | &#39;atlas.project.security.databaseAccess.customRoles&#39; | &#39;atlas.project.security.networkAccess.entries&#39; | &#39;atlas.project.security.networkAccess.crossRegionEntries&#39; | &#39;atlas.project.deployment.nodesPerPrivateLinkRegion&#39; | &#39;dataFederation.bytesProcessed.query&#39; | &#39;dataFederation.bytesProcessed.daily&#39; | &#39;dataFederation.bytesProcessed.weekly&#39; | &#39;dataFederation.bytesProcessed.monthly&#39;
+     * Human-readable label that identifies this project limit.  | Limit Name | Description | Default | API Override Limit | | --- | --- | --- | --- | | atlas.project.deployment.clusters | Limit on the number of clusters in this project | 25 | 90 | | atlas.project.deployment.nodesPerPrivateLinkRegion | Limit on the number of nodes per Private Link region in this project | 50 | 90 | | atlas.project.security.databaseAccess.customRoles | Limit on the number of custom roles in this project | 100 | 1400 | | atlas.project.security.databaseAccess.users | Limit on the number of database users in this project | 100 | 900 | | atlas.project.security.networkAccess.crossRegionEntries | Limit on the number of cross-region network access entries in this project | 40 | 220 | | atlas.project.security.networkAccess.entries | Limit on the number of network access entries in this project | 200 | 20 | | dataFederation.bytesProcessed.query | Limit on the number of bytes processed during a single Data Federation query | N/A | N/A | | dataFederation.bytesProcessed.daily | Limit on the number of bytes processed across all Data Federation tenants for the current day | N/A | N/A | | dataFederation.bytesProcessed.weekly | Limit on the number of bytes processed across all Data Federation tenants for the current week | N/A | N/A | | dataFederation.bytesProcessed.monthly | Limit on the number of bytes processed across all Data Federation tenants for the current month | N/A | N/A | | atlas.project.deployment.privateServiceConnectionsPerRegionGroup | Number of Private Serivce Connections per Region Group | 50 | 100| | atlas.project.deployment.privateServiceConnectionsSubnetMask | Subnet mask for GCP PSC Networks. Has lower limit of 20. | 27 | 27| 
+     * @type string
      * @memberof ProjectsApigetProjectLimit
      */
-    limitName: 'atlas.project.security.databaseAccess.users' | 'atlas.project.deployment.clusters' | 'atlas.project.security.databaseAccess.customRoles' | 'atlas.project.security.networkAccess.entries' | 'atlas.project.security.networkAccess.crossRegionEntries' | 'atlas.project.deployment.nodesPerPrivateLinkRegion' | 'dataFederation.bytesProcessed.query' | 'dataFederation.bytesProcessed.daily' | 'dataFederation.bytesProcessed.weekly' | 'dataFederation.bytesProcessed.monthly'
+    limitName: string
     /**
      * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
      * @type string
      * @memberof ProjectsApigetProjectLimit
      */
     groupId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ProjectsApigetProjectLimit
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ProjectsApigetProjectLimit
-     */
-    pretty?: boolean
 }
 
 export interface ProjectsApiGetProjectSettingsRequest {
@@ -11382,18 +8682,6 @@ export interface ProjectsApiGetProjectSettingsRequest {
      * @memberof ProjectsApigetProjectSettings
      */
     groupId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ProjectsApigetProjectSettings
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ProjectsApigetProjectSettings
-     */
-    pretty?: boolean
 }
 
 export interface ProjectsApiListProjectInvitationsRequest {
@@ -11403,18 +8691,6 @@ export interface ProjectsApiListProjectInvitationsRequest {
      * @memberof ProjectsApilistProjectInvitations
      */
     groupId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ProjectsApilistProjectInvitations
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ProjectsApilistProjectInvitations
-     */
-    pretty?: boolean
     /**
      * Email address of the user account invited to this project.
      * @type string
@@ -11430,18 +8706,6 @@ export interface ProjectsApiListProjectLimitsRequest {
      * @memberof ProjectsApilistProjectLimits
      */
     groupId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ProjectsApilistProjectLimits
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ProjectsApilistProjectLimits
-     */
-    pretty?: boolean
 }
 
 export interface ProjectsApiListProjectUsersRequest {
@@ -11451,12 +8715,6 @@ export interface ProjectsApiListProjectUsersRequest {
      * @memberof ProjectsApilistProjectUsers
      */
     groupId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ProjectsApilistProjectUsers
-     */
-    envelope?: boolean
     /**
      * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
@@ -11475,12 +8733,6 @@ export interface ProjectsApiListProjectUsersRequest {
      * @memberof ProjectsApilistProjectUsers
      */
     pageNum?: number
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ProjectsApilistProjectUsers
-     */
-    pretty?: boolean
     /**
      * Flag that indicates whether the returned list should include users who belong to a team with a role in this project. You might not have assigned the individual users a role in this project. If &#x60;\&quot;flattenTeams\&quot; : false&#x60;, this resource returns only users with a role in the project.  If &#x60;\&quot;flattenTeams\&quot; : true&#x60;, this resource returns both users with roles in the project and users who belong to teams with roles in the project.
      * @type boolean
@@ -11497,12 +8749,6 @@ export interface ProjectsApiListProjectUsersRequest {
 
 export interface ProjectsApiListProjectsRequest {
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ProjectsApilistProjects
-     */
-    envelope?: boolean
-    /**
      * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
      * @memberof ProjectsApilistProjects
@@ -11520,12 +8766,6 @@ export interface ProjectsApiListProjectsRequest {
      * @memberof ProjectsApilistProjects
      */
     pageNum?: number
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ProjectsApilistProjects
-     */
-    pretty?: boolean
 }
 
 export interface ProjectsApiRemoveProjectUserRequest {
@@ -11541,27 +8781,24 @@ export interface ProjectsApiRemoveProjectUserRequest {
      * @memberof ProjectsApiremoveProjectUser
      */
     userId: string
+}
+
+export interface ProjectsApiReturnAllIPAddressesRequest {
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ProjectsApiremoveProjectUser
+     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+     * @type string
+     * @memberof ProjectsApireturnAllIPAddresses
      */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ProjectsApiremoveProjectUser
-     */
-    pretty?: boolean
+    groupId: string
 }
 
 export interface ProjectsApiSetProjectLimitRequest {
     /**
-     * Human-readable label that identifies this project limit.  | Limit Name | Description | Default | | --- | --- | --- | | atlas.project.deployment.clusters | Limit on the number of clusters in this project | 25 | | atlas.project.deployment.nodesPerPrivateLinkRegion | Limit on the number of nodes per Private Link region in this project | 50 | | atlas.project.security.databaseAccess.customRoles | Limit on the number of custom roles in this project | 100 | | atlas.project.security.databaseAccess.users | Limit on the number of database users in this project | 100 | | atlas.project.security.networkAccess.crossRegionEntries | Limit on the number of cross-region network access entries in this project | 40 | | atlas.project.security.networkAccess.entries | Limit on the number of network access entries in this project | 200 | | dataFederation.bytesProcessed.query | Limit on the number of bytes processed during a single Data Federation query | N/A | | dataFederation.bytesProcessed.daily | Limit on the number of bytes processed across all Data Federation tenants for the current day | N/A | | dataFederation.bytesProcessed.weekly | Limit on the number of bytes processed across all Data Federation tenants for the current week | N/A | | dataFederation.bytesProcessed.monthly | Limit on the number of bytes processed across all Data Federation tenants for the current month | N/A | 
-     * @type &#39;atlas.project.security.databaseAccess.users&#39; | &#39;atlas.project.deployment.clusters&#39; | &#39;atlas.project.security.databaseAccess.customRoles&#39; | &#39;atlas.project.security.networkAccess.entries&#39; | &#39;atlas.project.security.networkAccess.crossRegionEntries&#39; | &#39;atlas.project.deployment.nodesPerPrivateLinkRegion&#39; | &#39;dataFederation.bytesProcessed.query&#39; | &#39;dataFederation.bytesProcessed.daily&#39; | &#39;dataFederation.bytesProcessed.weekly&#39; | &#39;dataFederation.bytesProcessed.monthly&#39;
+     * Human-readable label that identifies this project limit.  | Limit Name | Description | Default | API Override Limit | | --- | --- | --- | --- | | atlas.project.deployment.clusters | Limit on the number of clusters in this project | 25 | 90 | | atlas.project.deployment.nodesPerPrivateLinkRegion | Limit on the number of nodes per Private Link region in this project | 50 | 90 | | atlas.project.security.databaseAccess.customRoles | Limit on the number of custom roles in this project | 100 | 1400 | | atlas.project.security.databaseAccess.users | Limit on the number of database users in this project | 100 | 900 | | atlas.project.security.networkAccess.crossRegionEntries | Limit on the number of cross-region network access entries in this project | 40 | 220 | | atlas.project.security.networkAccess.entries | Limit on the number of network access entries in this project | 200 | 20 | | dataFederation.bytesProcessed.query | Limit on the number of bytes processed during a single Data Federation query | N/A | N/A | | dataFederation.bytesProcessed.daily | Limit on the number of bytes processed across all Data Federation tenants for the current day | N/A | N/A | | dataFederation.bytesProcessed.weekly | Limit on the number of bytes processed across all Data Federation tenants for the current week | N/A | N/A | | dataFederation.bytesProcessed.monthly | Limit on the number of bytes processed across all Data Federation tenants for the current month | N/A | N/A | | atlas.project.deployment.privateServiceConnectionsPerRegionGroup | Number of Private Serivce Connections per Region Group | 50 | 100| | atlas.project.deployment.privateServiceConnectionsSubnetMask | Subnet mask for GCP PSC Networks. Has lower limit of 20. | 27 | 27| 
+     * @type string
      * @memberof ProjectsApisetProjectLimit
      */
-    limitName: 'atlas.project.security.databaseAccess.users' | 'atlas.project.deployment.clusters' | 'atlas.project.security.databaseAccess.customRoles' | 'atlas.project.security.networkAccess.entries' | 'atlas.project.security.networkAccess.crossRegionEntries' | 'atlas.project.deployment.nodesPerPrivateLinkRegion' | 'dataFederation.bytesProcessed.query' | 'dataFederation.bytesProcessed.daily' | 'dataFederation.bytesProcessed.weekly' | 'dataFederation.bytesProcessed.monthly'
+    limitName: string
     /**
      * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
      * @type string
@@ -11569,23 +8806,11 @@ export interface ProjectsApiSetProjectLimitRequest {
      */
     groupId: string
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
+     * Limit to update.
+     * @type DataFederationLimit
      * @memberof ProjectsApisetProjectLimit
      */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ProjectsApisetProjectLimit
-     */
-    pretty?: boolean
-    /**
-     * 
-     * @type ApiLimitView
-     * @memberof ProjectsApisetProjectLimit
-     */
-    apiLimitView?: ApiLimitView
+    dataFederationLimit: DataFederationLimit
 }
 
 export interface ProjectsApiUpdateProjectRequest {
@@ -11596,23 +8821,11 @@ export interface ProjectsApiUpdateProjectRequest {
      */
     groupId: string
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ProjectsApiupdateProject
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ProjectsApiupdateProject
-     */
-    pretty?: boolean
-    /**
-     * 
+     * Project to update.
      * @type GroupName
      * @memberof ProjectsApiupdateProject
      */
-    groupName?: GroupName
+    groupName: GroupName
 }
 
 export interface ProjectsApiUpdateProjectInvitationRequest {
@@ -11624,22 +8837,10 @@ export interface ProjectsApiUpdateProjectInvitationRequest {
     groupId: string
     /**
      * Updates the details of one pending invitation to the specified project.
-     * @type ApiGroupInvitationRequestView
+     * @type GroupInvitationRequest
      * @memberof ProjectsApiupdateProjectInvitation
      */
-    apiGroupInvitationRequestView: ApiGroupInvitationRequestView
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ProjectsApiupdateProjectInvitation
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ProjectsApiupdateProjectInvitation
-     */
-    pretty?: boolean
+    groupInvitationRequest: GroupInvitationRequest
 }
 
 export interface ProjectsApiUpdateProjectInvitationByIdRequest {
@@ -11657,16 +8858,31 @@ export interface ProjectsApiUpdateProjectInvitationByIdRequest {
     invitationId: string
     /**
      * Updates the details of one pending invitation to the specified project.
-     * @type ApiGroupInvitationUpdateRequestView
+     * @type GroupInvitationUpdateRequest
      * @memberof ProjectsApiupdateProjectInvitationById
      */
-    apiGroupInvitationUpdateRequestView: ApiGroupInvitationUpdateRequestView
+    groupInvitationUpdateRequest: GroupInvitationUpdateRequest
+}
+
+export interface ProjectsApiUpdateProjectRolesRequest {
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ProjectsApiupdateProjectInvitationById
+     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+     * @type string
+     * @memberof ProjectsApiupdateProjectRoles
      */
-    envelope?: boolean
+    groupId: string
+    /**
+     * Unique 24-hexadecimal digit string that identifies the user to modify.
+     * @type string
+     * @memberof ProjectsApiupdateProjectRoles
+     */
+    userId: string
+    /**
+     * Roles to update for the specified user.
+     * @type UpdateGroupRolesForUser
+     * @memberof ProjectsApiupdateProjectRoles
+     */
+    updateGroupRolesForUser: UpdateGroupRolesForUser
 }
 
 export interface ProjectsApiUpdateProjectSettingsRequest {
@@ -11677,23 +8893,11 @@ export interface ProjectsApiUpdateProjectSettingsRequest {
      */
     groupId: string
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ProjectsApiupdateProjectSettings
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ProjectsApiupdateProjectSettings
-     */
-    pretty?: boolean
-    /**
-     * 
+     * Settings to update.
      * @type GroupSettings
      * @memberof ProjectsApiupdateProjectSettings
      */
-    groupSettings?: GroupSettings
+    groupSettings: GroupSettings
 }
 
 export class ObjectProjectsApi {
@@ -11704,183 +8908,306 @@ export class ObjectProjectsApi {
     }
 
     /**
-     * Creates one project. Projects group clusters into logical collections that support an application environment, workload, or both. Each project can have its own users, teams, security, and alert settings. To use this resource, the requesting API Key must have the Read Write role. This resource doesn't require the API Key to have an Access List.
+     * Adds one MongoDB Cloud user to the specified project. If the MongoDB Cloud user is not a member of the project's organization, then the user must accept their invitation to the organization to access information within the specified project. To use this resource, the requesting API Key must have the Group User Admin role.
+     * Add One MongoDB Cloud User to One Project
+     * @param param the request object
+     */
+    public addUserToProject(param: ProjectsApiAddUserToProjectRequest, options?: Configuration): Promise<OrganizationInvitation> {
+        return this.api.addUserToProject(param.groupId, param.groupInvitationRequest,  options).toPromise();
+    }
+
+    /**
+     * Creates one project. Projects group clusters into logical collections that support an application environment, workload, or both. Each project can have its own users, teams, security, and alert settings. To use this resource, the requesting API Key must have the Read Write role.
      * Create One Project
      * @param param the request object
      */
     public createProject(param: ProjectsApiCreateProjectRequest, options?: Configuration): Promise<Group> {
-        return this.api.createProject(param.group, param.envelope, param.pretty, param.projectOwnerId,  options).toPromise();
+        return this.api.createProject(param.group, param.projectOwnerId,  options).toPromise();
     }
 
     /**
-     * Invites one MongoDB Cloud user to join the specified project. The MongoDB Cloud user must accept the invitation to access information within the specified project. To use this resource, the requesting API Key must have the Project User Admin role. This resource doesn't require the API Key to have an Access List.
+     * Invites one MongoDB Cloud user to join the specified project. The MongoDB Cloud user must accept the invitation to access information within the specified project. To use this resource, the requesting API Key must have the Project Owner role.
      * Invite One MongoDB Cloud User to Join One Project
      * @param param the request object
      */
-    public createProjectInvitation(param: ProjectsApiCreateProjectInvitationRequest, options?: Configuration): Promise<ApiGroupInvitationView> {
-        return this.api.createProjectInvitation(param.groupId, param.apiGroupInvitationRequestView, param.pretty, param.envelope,  options).toPromise();
+    public createProjectInvitation(param: ProjectsApiCreateProjectInvitationRequest, options?: Configuration): Promise<GroupInvitation> {
+        return this.api.createProjectInvitation(param.groupId, param.groupInvitationRequest,  options).toPromise();
     }
 
     /**
-     * Removes the specified project. Projects group clusters into logical collections that support an application environment, workload, or both. Each project can have its own users, teams, security, and alert settings. You can delete a project only if there are no Online Archives for the clusters in the project. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Removes the specified project. Projects group clusters into logical collections that support an application environment, workload, or both. Each project can have its own users, teams, security, and alert settings. You can delete a project only if there are no Online Archives for the clusters in the project. To use this resource, the requesting API Key must have the Project Owner role.
      * Remove One Project
      * @param param the request object
      */
-    public deleteProject(param: ProjectsApiDeleteProjectRequest, options?: Configuration): Promise<void> {
-        return this.api.deleteProject(param.groupId, param.envelope, param.pretty,  options).toPromise();
+    public deleteProject(param: ProjectsApiDeleteProjectRequest, options?: Configuration): Promise<any> {
+        return this.api.deleteProject(param.groupId,  options).toPromise();
     }
 
     /**
-     * Cancels one pending invitation sent to the specified MongoDB Cloud user to join a project. You can't cancel an invitation that the user accepted. To use this resource, the requesting API Key must have the Project User Admin role. This resource doesn't require the API Key to have an Access List.
+     * Cancels one pending invitation sent to the specified MongoDB Cloud user to join a project. You can't cancel an invitation that the user accepted. To use this resource, the requesting API Key must have the Project Owner role.
      * Cancel One Project Invitation
      * @param param the request object
      */
-    public deleteProjectInvitation(param: ProjectsApiDeleteProjectInvitationRequest, options?: Configuration): Promise<void> {
-        return this.api.deleteProjectInvitation(param.groupId, param.invitationId, param.envelope,  options).toPromise();
+    public deleteProjectInvitation(param: ProjectsApiDeleteProjectInvitationRequest, options?: Configuration): Promise<any> {
+        return this.api.deleteProjectInvitation(param.groupId, param.invitationId,  options).toPromise();
     }
 
     /**
-     * Removes the specified project limit. Depending on the limit, Atlas either resets the limit to its default value or removes the limit entirely. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Removes the specified project limit. Depending on the limit, Atlas either resets the limit to its default value or removes the limit entirely. To use this resource, the requesting API Key must have the Project Owner role.
      * Remove One Project Limit
      * @param param the request object
      */
-    public deleteProjectLimit(param: ProjectsApiDeleteProjectLimitRequest, options?: Configuration): Promise<void> {
-        return this.api.deleteProjectLimit(param.limitName, param.groupId, param.envelope, param.pretty,  options).toPromise();
+    public deleteProjectLimit(param: ProjectsApiDeleteProjectLimitRequest, options?: Configuration): Promise<any> {
+        return this.api.deleteProjectLimit(param.limitName, param.groupId,  options).toPromise();
     }
 
     /**
-     * Returns details about the specified project. Projects group clusters into logical collections that support an application environment, workload, or both. Each project can have its own users, teams, security, and alert settings. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns details about the specified project. Projects group clusters into logical collections that support an application environment, workload, or both. Each project can have its own users, teams, security, and alert settings. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return One Project
      * @param param the request object
      */
     public getProject(param: ProjectsApiGetProjectRequest, options?: Configuration): Promise<Group> {
-        return this.api.getProject(param.groupId, param.envelope, param.pretty,  options).toPromise();
+        return this.api.getProject(param.groupId,  options).toPromise();
     }
 
     /**
-     * Returns details about the specified project. Projects group clusters into logical collections that support an application environment, workload, or both. Each project can have its own users, teams, security, and alert settings. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns details about the specified project. Projects group clusters into logical collections that support an application environment, workload, or both. Each project can have its own users, teams, security, and alert settings. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return One Project using Its Name
      * @param param the request object
      */
     public getProjectByName(param: ProjectsApiGetProjectByNameRequest, options?: Configuration): Promise<Group> {
-        return this.api.getProjectByName(param.groupName, param.envelope, param.pretty,  options).toPromise();
+        return this.api.getProjectByName(param.groupName,  options).toPromise();
     }
 
     /**
-     * Returns the details of one pending invitation to the specified project. To use this resource, the requesting API Key must have the Project User Admin role. This resource doesn't require the API Key to have an Access List.
+     * Returns the details of one pending invitation to the specified project. To use this resource, the requesting API Key must have the Project Owner role.
      * Return One Project Invitation
      * @param param the request object
      */
-    public getProjectInvitation(param: ProjectsApiGetProjectInvitationRequest, options?: Configuration): Promise<ApiGroupInvitationView> {
-        return this.api.getProjectInvitation(param.groupId, param.invitationId, param.envelope, param.pretty,  options).toPromise();
+    public getProjectInvitation(param: ProjectsApiGetProjectInvitationRequest, options?: Configuration): Promise<GroupInvitation> {
+        return this.api.getProjectInvitation(param.groupId, param.invitationId,  options).toPromise();
     }
 
     /**
-     * Returns the specified limit for the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns the specified limit for the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return One Limit for One Project
      * @param param the request object
      */
-    public getProjectLimit(param: ProjectsApiGetProjectLimitRequest, options?: Configuration): Promise<ApiLimitView> {
-        return this.api.getProjectLimit(param.limitName, param.groupId, param.envelope, param.pretty,  options).toPromise();
+    public getProjectLimit(param: ProjectsApiGetProjectLimitRequest, options?: Configuration): Promise<DataFederationLimit> {
+        return this.api.getProjectLimit(param.limitName, param.groupId,  options).toPromise();
     }
 
     /**
-     * Returns details about the specified project's settings. To use this resource, the requesting API Key must have the Project Read Only role. This resource does not require the API Key to have an Access List.
+     * Returns details about the specified project's settings. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return One Project Settings
      * @param param the request object
      */
     public getProjectSettings(param: ProjectsApiGetProjectSettingsRequest, options?: Configuration): Promise<GroupSettings> {
-        return this.api.getProjectSettings(param.groupId, param.envelope, param.pretty,  options).toPromise();
+        return this.api.getProjectSettings(param.groupId,  options).toPromise();
     }
 
     /**
-     * Returns all pending invitations to the specified project. To use this resource, the requesting API Key must have the Project User Admin role. This resource doesn't require the API Key to have an Access List.
+     * Returns all pending invitations to the specified project. To use this resource, the requesting API Key must have the Project Owner role.
      * Return All Project Invitations
      * @param param the request object
      */
-    public listProjectInvitations(param: ProjectsApiListProjectInvitationsRequest, options?: Configuration): Promise<Array<ApiGroupInvitationView>> {
-        return this.api.listProjectInvitations(param.groupId, param.envelope, param.pretty, param.username,  options).toPromise();
+    public listProjectInvitations(param: ProjectsApiListProjectInvitationsRequest, options?: Configuration): Promise<Array<GroupInvitation>> {
+        return this.api.listProjectInvitations(param.groupId, param.username,  options).toPromise();
     }
 
     /**
-     * Returns all the limits for the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns all the limits for the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return All Limits for One Project
      * @param param the request object
      */
-    public listProjectLimits(param: ProjectsApiListProjectLimitsRequest, options?: Configuration): Promise<ApiLimitView> {
-        return this.api.listProjectLimits(param.groupId, param.envelope, param.pretty,  options).toPromise();
+    public listProjectLimits(param: ProjectsApiListProjectLimitsRequest, options?: Configuration): Promise<Array<DataFederationLimit>> {
+        return this.api.listProjectLimits(param.groupId,  options).toPromise();
     }
 
     /**
-     * Returns details about all users in the specified project. Users belong to an organization. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns details about all users in the specified project. Users belong to an organization. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return All Users in One Project
      * @param param the request object
      */
-    public listProjectUsers(param: ProjectsApiListProjectUsersRequest, options?: Configuration): Promise<PaginatedApiAppUserView> {
-        return this.api.listProjectUsers(param.groupId, param.envelope, param.includeCount, param.itemsPerPage, param.pageNum, param.pretty, param.flattenTeams, param.includeOrgUsers,  options).toPromise();
+    public listProjectUsers(param: ProjectsApiListProjectUsersRequest, options?: Configuration): Promise<PaginatedAppUser> {
+        return this.api.listProjectUsers(param.groupId, param.includeCount, param.itemsPerPage, param.pageNum, param.flattenTeams, param.includeOrgUsers,  options).toPromise();
     }
 
     /**
-     * Returns details about all projects. Projects group clusters into logical collections that support an application environment, workload, or both. Each project can have its own users, teams, security, and alert settings. To use this resource, the requesting API Key must have the Read Write role. This resource doesn't require the API Key to have an Access List.
+     * Returns details about all projects. Projects group clusters into logical collections that support an application environment, workload, or both. Each project can have its own users, teams, security, and alert settings. To use this resource, the requesting API Key must have the Read Write role.
      * Return All Projects
      * @param param the request object
      */
-    public listProjects(param: ProjectsApiListProjectsRequest = {}, options?: Configuration): Promise<PaginatedAtlasGroupView> {
-        return this.api.listProjects(param.envelope, param.includeCount, param.itemsPerPage, param.pageNum, param.pretty,  options).toPromise();
+    public listProjects(param: ProjectsApiListProjectsRequest = {}, options?: Configuration): Promise<PaginatedAtlasGroup> {
+        return this.api.listProjects(param.includeCount, param.itemsPerPage, param.pageNum,  options).toPromise();
     }
 
     /**
-     * Removes the specified user from the specified project. To use this resource, the requesting API Key must have the Project User Admin role. This resource doesn't require the API Key to have an Access List.
+     * Removes the specified user from the specified project. To use this resource, the requesting API Key must have the Project Owner role.
      * Remove One User from One Project
      * @param param the request object
      */
     public removeProjectUser(param: ProjectsApiRemoveProjectUserRequest, options?: Configuration): Promise<void> {
-        return this.api.removeProjectUser(param.groupId, param.userId, param.envelope, param.pretty,  options).toPromise();
+        return this.api.removeProjectUser(param.groupId, param.userId,  options).toPromise();
     }
 
     /**
-     * Sets the specified project limit. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Returns all IP addresses for this project. To use this resource, the requesting API Key must have the Project Read Only role.
+     * Return All IP Addresses for One Project
+     * @param param the request object
+     */
+    public returnAllIPAddresses(param: ProjectsApiReturnAllIPAddressesRequest, options?: Configuration): Promise<Array<GroupIPAddresses>> {
+        return this.api.returnAllIPAddresses(param.groupId,  options).toPromise();
+    }
+
+    /**
+     * Sets the specified project limit. To use this resource, the requesting API Key must have the Project Owner role.  **NOTE**: Increasing the following configuration limits might lead to slower response times in the MongoDB Cloud UI or increased user management overhead leading to authentication or authorization re-architecture. If possible, we recommend that you create additional projects to gain access to more of these resources for a more sustainable growth pattern.
      * Set One Project Limit
      * @param param the request object
      */
-    public setProjectLimit(param: ProjectsApiSetProjectLimitRequest, options?: Configuration): Promise<ApiLimitView> {
-        return this.api.setProjectLimit(param.limitName, param.groupId, param.envelope, param.pretty, param.apiLimitView,  options).toPromise();
+    public setProjectLimit(param: ProjectsApiSetProjectLimitRequest, options?: Configuration): Promise<DataFederationLimit> {
+        return this.api.setProjectLimit(param.limitName, param.groupId, param.dataFederationLimit,  options).toPromise();
     }
 
     /**
-     * Updates the human-readable label that identifies the specified project. To use this resource, the requesting API Key must have the Project Owner role. This resource does not require the API Key to have an Access List.
+     * Updates the human-readable label that identifies the specified project. To use this resource, the requesting API Key must have the Project Owner role.
      * Update One Project Name
      * @param param the request object
      */
     public updateProject(param: ProjectsApiUpdateProjectRequest, options?: Configuration): Promise<Group> {
-        return this.api.updateProject(param.groupId, param.envelope, param.pretty, param.groupName,  options).toPromise();
+        return this.api.updateProject(param.groupId, param.groupName,  options).toPromise();
     }
 
     /**
-     * Updates the details of one pending invitation to the specified project. To specify which invitation to update, provide the username of the invited user. To use this resource, the requesting API Key must have the Project User Admin role. This resource doesn't require the API Key to have an Access List.
+     * Updates the details of one pending invitation to the specified project. To specify which invitation to update, provide the username of the invited user. To use this resource, the requesting API Key must have the Project Owner role.
      * Update One Project Invitation
      * @param param the request object
      */
-    public updateProjectInvitation(param: ProjectsApiUpdateProjectInvitationRequest, options?: Configuration): Promise<ApiGroupInvitationView> {
-        return this.api.updateProjectInvitation(param.groupId, param.apiGroupInvitationRequestView, param.envelope, param.pretty,  options).toPromise();
+    public updateProjectInvitation(param: ProjectsApiUpdateProjectInvitationRequest, options?: Configuration): Promise<GroupInvitation> {
+        return this.api.updateProjectInvitation(param.groupId, param.groupInvitationRequest,  options).toPromise();
     }
 
     /**
-     * Updates the details of one pending invitation to the specified project. To specify which invitation to update, provide the unique identification string for that invitation. Use the Return All Project Invitations endpoint to retrieve IDs for all pending project invitations. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Updates the details of one pending invitation to the specified project. To specify which invitation to update, provide the unique identification string for that invitation. Use the Return All Project Invitations endpoint to retrieve IDs for all pending project invitations. To use this resource, the requesting API Key must have the Project Owner role.
      * Update One Project Invitation by Invitation ID
      * @param param the request object
      */
-    public updateProjectInvitationById(param: ProjectsApiUpdateProjectInvitationByIdRequest, options?: Configuration): Promise<ApiGroupInvitationView> {
-        return this.api.updateProjectInvitationById(param.groupId, param.invitationId, param.apiGroupInvitationUpdateRequestView, param.envelope,  options).toPromise();
+    public updateProjectInvitationById(param: ProjectsApiUpdateProjectInvitationByIdRequest, options?: Configuration): Promise<GroupInvitation> {
+        return this.api.updateProjectInvitationById(param.groupId, param.invitationId, param.groupInvitationUpdateRequest,  options).toPromise();
     }
 
     /**
-     * Updates the settings of the specified project. You can update any of the options available. MongoDB cloud only updates the options provided in the request. To use this resource, the requesting API Key must have the Project Owner role. This resource does not require the API Key to have an Access List.
+     * Updates the roles of the specified user in the specified project. To specify the user to update, provide the unique 24-hexadecimal digit string that identifies the user in the specified project. To use this resource, the requesting API Key must have the Group User Admin role.
+     * Update Project Roles for One MongoDB Cloud User
+     * @param param the request object
+     */
+    public updateProjectRoles(param: ProjectsApiUpdateProjectRolesRequest, options?: Configuration): Promise<UpdateGroupRolesForUser> {
+        return this.api.updateProjectRoles(param.groupId, param.userId, param.updateGroupRolesForUser,  options).toPromise();
+    }
+
+    /**
+     * Updates the settings of the specified project. You can update any of the options available. MongoDB cloud only updates the options provided in the request. To use this resource, the requesting API Key must have the Project Owner role.
      * Update One Project Settings
      * @param param the request object
      */
     public updateProjectSettings(param: ProjectsApiUpdateProjectSettingsRequest, options?: Configuration): Promise<GroupSettings> {
-        return this.api.updateProjectSettings(param.groupId, param.envelope, param.pretty, param.groupSettings,  options).toPromise();
+        return this.api.updateProjectSettings(param.groupId, param.groupSettings,  options).toPromise();
+    }
+
+}
+
+import { ObservablePushBasedLogExportApi } from "./ObservableAPI";
+import { PushBasedLogExportApiRequestFactory, PushBasedLogExportApiResponseProcessor} from "../apis/PushBasedLogExportApi";
+
+export interface PushBasedLogExportApiCreatePushBasedLogConfigurationRequest {
+    /**
+     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+     * @type string
+     * @memberof PushBasedLogExportApicreatePushBasedLogConfiguration
+     */
+    groupId: string
+    /**
+     * The project configuration details. The S3 bucket name, IAM role ID, and prefix path fields are required.
+     * @type PushBasedLogExportProject
+     * @memberof PushBasedLogExportApicreatePushBasedLogConfiguration
+     */
+    pushBasedLogExportProject: PushBasedLogExportProject
+}
+
+export interface PushBasedLogExportApiDeletePushBasedLogConfigurationRequest {
+    /**
+     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+     * @type string
+     * @memberof PushBasedLogExportApideletePushBasedLogConfiguration
+     */
+    groupId: string
+}
+
+export interface PushBasedLogExportApiGetPushBasedLogConfigurationRequest {
+    /**
+     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+     * @type string
+     * @memberof PushBasedLogExportApigetPushBasedLogConfiguration
+     */
+    groupId: string
+}
+
+export interface PushBasedLogExportApiUpdatePushBasedLogConfigurationRequest {
+    /**
+     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+     * @type string
+     * @memberof PushBasedLogExportApiupdatePushBasedLogConfiguration
+     */
+    groupId: string
+    /**
+     * The project configuration details. The S3 bucket name, IAM role ID, and prefix path fields are the only fields that may be specified. Fields left unspecified will not be modified.
+     * @type PushBasedLogExportProject
+     * @memberof PushBasedLogExportApiupdatePushBasedLogConfiguration
+     */
+    pushBasedLogExportProject: PushBasedLogExportProject
+}
+
+export class ObjectPushBasedLogExportApi {
+    private api: ObservablePushBasedLogExportApi
+
+    public constructor(configuration: Configuration, requestFactory?: PushBasedLogExportApiRequestFactory, responseProcessor?: PushBasedLogExportApiResponseProcessor) {
+        this.api = new ObservablePushBasedLogExportApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Configures the project level settings for the push-based log export feature.
+     * Enable the push-based log export feature for a project
+     * @param param the request object
+     */
+    public createPushBasedLogConfiguration(param: PushBasedLogExportApiCreatePushBasedLogConfigurationRequest, options?: Configuration): Promise<void> {
+        return this.api.createPushBasedLogConfiguration(param.groupId, param.pushBasedLogExportProject,  options).toPromise();
+    }
+
+    /**
+     * Disables the push-based log export feature by resetting the project level settings to its default configuration.
+     * Disable the push-based log export feature for a project
+     * @param param the request object
+     */
+    public deletePushBasedLogConfiguration(param: PushBasedLogExportApiDeletePushBasedLogConfigurationRequest, options?: Configuration): Promise<void> {
+        return this.api.deletePushBasedLogConfiguration(param.groupId,  options).toPromise();
+    }
+
+    /**
+     * Fetches the current project level settings for the push-based log export feature.
+     * Get the push-based log export configuration for a project
+     * @param param the request object
+     */
+    public getPushBasedLogConfiguration(param: PushBasedLogExportApiGetPushBasedLogConfigurationRequest, options?: Configuration): Promise<PushBasedLogExportProject> {
+        return this.api.getPushBasedLogConfiguration(param.groupId,  options).toPromise();
+    }
+
+    /**
+     * Updates the project level settings for the push-based log export feature.
+     * Update the push-based log export feature for a project
+     * @param param the request object
+     */
+    public updatePushBasedLogConfiguration(param: PushBasedLogExportApiUpdatePushBasedLogConfigurationRequest, options?: Configuration): Promise<void> {
+        return this.api.updatePushBasedLogConfiguration(param.groupId, param.pushBasedLogExportProject,  options).toPromise();
     }
 
 }
@@ -11903,22 +9230,10 @@ export interface RollingIndexApiCreateRollingIndexRequest {
     clusterName: string
     /**
      * Rolling index to create on the specified cluster.
-     * @type ApiIndexRequestView
+     * @type DatabaseRollingIndexRequest
      * @memberof RollingIndexApicreateRollingIndex
      */
-    apiIndexRequestView: ApiIndexRequestView
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof RollingIndexApicreateRollingIndex
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof RollingIndexApicreateRollingIndex
-     */
-    pretty?: boolean
+    databaseRollingIndexRequest: DatabaseRollingIndexRequest
 }
 
 export class ObjectRollingIndexApi {
@@ -11929,12 +9244,12 @@ export class ObjectRollingIndexApi {
     }
 
     /**
-     * Creates an index on the cluster identified by its name in a rolling manner. Creating the index in this way allows index builds on one replica set member as a standalone at a time, starting with the secondary members. Creating indexes in this way requires at least one replica set election. To use this resource, the requesting API Key must have the Project Data Access Admin role. This resource doesn't require the API Key to have an Access List.
+     * Creates an index on the cluster identified by its name in a rolling manner. Creating the index in this way allows index builds on one replica set member as a standalone at a time, starting with the secondary members. Creating indexes in this way requires at least one replica set election. To use this resource, the requesting API Key must have the Project Data Access Admin role.
      * Create One Rolling Index
      * @param param the request object
      */
     public createRollingIndex(param: RollingIndexApiCreateRollingIndexRequest, options?: Configuration): Promise<void> {
-        return this.api.createRollingIndex(param.groupId, param.clusterName, param.apiIndexRequestView, param.envelope, param.pretty,  options).toPromise();
+        return this.api.createRollingIndex(param.groupId, param.clusterName, param.databaseRollingIndexRequest,  options).toPromise();
     }
 
 }
@@ -11943,18 +9258,6 @@ import { ObservableRootApi } from "./ObservableAPI";
 import { RootApiRequestFactory, RootApiResponseProcessor} from "../apis/RootApi";
 
 export interface RootApiGetSystemStatusRequest {
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof RootApigetSystemStatus
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof RootApigetSystemStatus
-     */
-    pretty?: boolean
 }
 
 export class ObjectRootApi {
@@ -11969,8 +9272,8 @@ export class ObjectRootApi {
      * Return the status of this MongoDB application
      * @param param the request object
      */
-    public getSystemStatus(param: RootApiGetSystemStatusRequest = {}, options?: Configuration): Promise<ApiSystemStatusView> {
-        return this.api.getSystemStatus(param.envelope, param.pretty,  options).toPromise();
+    public getSystemStatus(param: RootApiGetSystemStatusRequest = {}, options?: Configuration): Promise<SystemStatus> {
+        return this.api.getSystemStatus( options).toPromise();
     }
 
 }
@@ -11991,18 +9294,6 @@ export interface ServerlessInstancesApiCreateServerlessInstanceRequest {
      * @memberof ServerlessInstancesApicreateServerlessInstance
      */
     serverlessInstanceDescriptionCreate: ServerlessInstanceDescriptionCreate
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ServerlessInstancesApicreateServerlessInstance
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ServerlessInstancesApicreateServerlessInstance
-     */
-    pretty?: boolean
 }
 
 export interface ServerlessInstancesApiDeleteServerlessInstanceRequest {
@@ -12018,18 +9309,6 @@ export interface ServerlessInstancesApiDeleteServerlessInstanceRequest {
      * @memberof ServerlessInstancesApideleteServerlessInstance
      */
     name: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ServerlessInstancesApideleteServerlessInstance
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ServerlessInstancesApideleteServerlessInstance
-     */
-    pretty?: boolean
 }
 
 export interface ServerlessInstancesApiGetServerlessInstanceRequest {
@@ -12045,18 +9324,6 @@ export interface ServerlessInstancesApiGetServerlessInstanceRequest {
      * @memberof ServerlessInstancesApigetServerlessInstance
      */
     name: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ServerlessInstancesApigetServerlessInstance
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ServerlessInstancesApigetServerlessInstance
-     */
-    pretty?: boolean
 }
 
 export interface ServerlessInstancesApiListServerlessInstancesRequest {
@@ -12066,12 +9333,6 @@ export interface ServerlessInstancesApiListServerlessInstancesRequest {
      * @memberof ServerlessInstancesApilistServerlessInstances
      */
     groupId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ServerlessInstancesApilistServerlessInstances
-     */
-    envelope?: boolean
     /**
      * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
@@ -12090,12 +9351,6 @@ export interface ServerlessInstancesApiListServerlessInstancesRequest {
      * @memberof ServerlessInstancesApilistServerlessInstances
      */
     pageNum?: number
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ServerlessInstancesApilistServerlessInstances
-     */
-    pretty?: boolean
 }
 
 export interface ServerlessInstancesApiUpdateServerlessInstanceRequest {
@@ -12117,18 +9372,6 @@ export interface ServerlessInstancesApiUpdateServerlessInstanceRequest {
      * @memberof ServerlessInstancesApiupdateServerlessInstance
      */
     serverlessInstanceDescriptionUpdate: ServerlessInstanceDescriptionUpdate
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ServerlessInstancesApiupdateServerlessInstance
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ServerlessInstancesApiupdateServerlessInstance
-     */
-    pretty?: boolean
 }
 
 export class ObjectServerlessInstancesApi {
@@ -12139,48 +9382,48 @@ export class ObjectServerlessInstancesApi {
     }
 
     /**
-     * Creates one serverless instance in the specified project. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Creates one serverless instance in the specified project. To use this resource, the requesting API Key must have the Project Owner role.
      * Create One Serverless Instance in One Project
      * @param param the request object
      */
     public createServerlessInstance(param: ServerlessInstancesApiCreateServerlessInstanceRequest, options?: Configuration): Promise<ServerlessInstanceDescription> {
-        return this.api.createServerlessInstance(param.groupId, param.serverlessInstanceDescriptionCreate, param.envelope, param.pretty,  options).toPromise();
+        return this.api.createServerlessInstance(param.groupId, param.serverlessInstanceDescriptionCreate,  options).toPromise();
     }
 
     /**
-     * Removes one serverless instance from the specified project. The serverless instance must have termination protection disabled in order to be deleted. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Removes one serverless instance from the specified project. The serverless instance must have termination protection disabled in order to be deleted. To use this resource, the requesting API Key must have the Project Owner role.
      * Remove One Serverless Instance from One Project
      * @param param the request object
      */
-    public deleteServerlessInstance(param: ServerlessInstancesApiDeleteServerlessInstanceRequest, options?: Configuration): Promise<void> {
-        return this.api.deleteServerlessInstance(param.groupId, param.name, param.envelope, param.pretty,  options).toPromise();
+    public deleteServerlessInstance(param: ServerlessInstancesApiDeleteServerlessInstanceRequest, options?: Configuration): Promise<any> {
+        return this.api.deleteServerlessInstance(param.groupId, param.name,  options).toPromise();
     }
 
     /**
-     * Returns details for one serverless instance in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns details for one serverless instance in the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return One Serverless Instance from One Project
      * @param param the request object
      */
     public getServerlessInstance(param: ServerlessInstancesApiGetServerlessInstanceRequest, options?: Configuration): Promise<ServerlessInstanceDescription> {
-        return this.api.getServerlessInstance(param.groupId, param.name, param.envelope, param.pretty,  options).toPromise();
+        return this.api.getServerlessInstance(param.groupId, param.name,  options).toPromise();
     }
 
     /**
-     * Returns details for all serverless instances in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns details for all serverless instances in the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return All Serverless Instances from One Project
      * @param param the request object
      */
-    public listServerlessInstances(param: ServerlessInstancesApiListServerlessInstancesRequest, options?: Configuration): Promise<PaginatedServerlessInstanceDescriptionView> {
-        return this.api.listServerlessInstances(param.groupId, param.envelope, param.includeCount, param.itemsPerPage, param.pageNum, param.pretty,  options).toPromise();
+    public listServerlessInstances(param: ServerlessInstancesApiListServerlessInstancesRequest, options?: Configuration): Promise<PaginatedServerlessInstanceDescription> {
+        return this.api.listServerlessInstances(param.groupId, param.includeCount, param.itemsPerPage, param.pageNum,  options).toPromise();
     }
 
     /**
-     * Updates one serverless instance in the specified project. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Updates one serverless instance in the specified project. To use this resource, the requesting API Key must have the Project Owner role.
      * Update One Serverless Instance in One Project
      * @param param the request object
      */
     public updateServerlessInstance(param: ServerlessInstancesApiUpdateServerlessInstanceRequest, options?: Configuration): Promise<ServerlessInstanceDescription> {
-        return this.api.updateServerlessInstance(param.groupId, param.name, param.serverlessInstanceDescriptionUpdate, param.envelope, param.pretty,  options).toPromise();
+        return this.api.updateServerlessInstance(param.groupId, param.name, param.serverlessInstanceDescriptionUpdate,  options).toPromise();
     }
 
 }
@@ -12203,16 +9446,10 @@ export interface ServerlessPrivateEndpointsApiCreateServerlessPrivateEndpointReq
     instanceName: string
     /**
      * Information about the Private Endpoint to create for the Serverless Instance.
-     * @type ServerlessTenantEndpointCreate
+     * @type ServerlessTenantCreateRequest
      * @memberof ServerlessPrivateEndpointsApicreateServerlessPrivateEndpoint
      */
-    serverlessTenantEndpointCreate: ServerlessTenantEndpointCreate
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ServerlessPrivateEndpointsApicreateServerlessPrivateEndpoint
-     */
-    envelope?: boolean
+    serverlessTenantCreateRequest: ServerlessTenantCreateRequest
 }
 
 export interface ServerlessPrivateEndpointsApiDeleteServerlessPrivateEndpointRequest {
@@ -12234,12 +9471,6 @@ export interface ServerlessPrivateEndpointsApiDeleteServerlessPrivateEndpointReq
      * @memberof ServerlessPrivateEndpointsApideleteServerlessPrivateEndpoint
      */
     endpointId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ServerlessPrivateEndpointsApideleteServerlessPrivateEndpoint
-     */
-    envelope?: boolean
 }
 
 export interface ServerlessPrivateEndpointsApiGetServerlessPrivateEndpointRequest {
@@ -12261,12 +9492,6 @@ export interface ServerlessPrivateEndpointsApiGetServerlessPrivateEndpointReques
      * @memberof ServerlessPrivateEndpointsApigetServerlessPrivateEndpoint
      */
     endpointId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ServerlessPrivateEndpointsApigetServerlessPrivateEndpoint
-     */
-    envelope?: boolean
 }
 
 export interface ServerlessPrivateEndpointsApiListServerlessPrivateEndpointsRequest {
@@ -12282,12 +9507,6 @@ export interface ServerlessPrivateEndpointsApiListServerlessPrivateEndpointsRequ
      * @memberof ServerlessPrivateEndpointsApilistServerlessPrivateEndpoints
      */
     instanceName: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ServerlessPrivateEndpointsApilistServerlessPrivateEndpoints
-     */
-    envelope?: boolean
 }
 
 export interface ServerlessPrivateEndpointsApiUpdateServerlessPrivateEndpointRequest {
@@ -12310,17 +9529,11 @@ export interface ServerlessPrivateEndpointsApiUpdateServerlessPrivateEndpointReq
      */
     endpointId: string
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ServerlessPrivateEndpointsApiupdateServerlessPrivateEndpoint
-     */
-    envelope?: boolean
-    /**
-     * 
+     * Object used for update.
      * @type ServerlessTenantEndpointUpdate
      * @memberof ServerlessPrivateEndpointsApiupdateServerlessPrivateEndpoint
      */
-    serverlessTenantEndpointUpdate?: ServerlessTenantEndpointUpdate
+    serverlessTenantEndpointUpdate: ServerlessTenantEndpointUpdate
 }
 
 export class ObjectServerlessPrivateEndpointsApi {
@@ -12331,48 +9544,48 @@ export class ObjectServerlessPrivateEndpointsApi {
     }
 
     /**
-     * Creates one private endpoint for one serverless instance. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.   A new endpoint won't be immediately available after creation.  Read the steps in the linked tutorial for detailed guidance.
+     * Creates one private endpoint for one serverless instance. To use this resource, the requesting API Key must have the Project Owner role.   A new endpoint won't be immediately available after creation.  Read the steps in the linked tutorial for detailed guidance.
      * Create One Private Endpoint for One Serverless Instance
      * @param param the request object
      */
     public createServerlessPrivateEndpoint(param: ServerlessPrivateEndpointsApiCreateServerlessPrivateEndpointRequest, options?: Configuration): Promise<ServerlessTenantEndpoint> {
-        return this.api.createServerlessPrivateEndpoint(param.groupId, param.instanceName, param.serverlessTenantEndpointCreate, param.envelope,  options).toPromise();
+        return this.api.createServerlessPrivateEndpoint(param.groupId, param.instanceName, param.serverlessTenantCreateRequest,  options).toPromise();
     }
 
     /**
-     * Remove one private endpoint from one serverless instance. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Remove one private endpoint from one serverless instance. To use this resource, the requesting API Key must have the Project Owner role.
      * Remove One Private Endpoint for One Serverless Instance
      * @param param the request object
      */
-    public deleteServerlessPrivateEndpoint(param: ServerlessPrivateEndpointsApiDeleteServerlessPrivateEndpointRequest, options?: Configuration): Promise<void> {
-        return this.api.deleteServerlessPrivateEndpoint(param.groupId, param.instanceName, param.endpointId, param.envelope,  options).toPromise();
+    public deleteServerlessPrivateEndpoint(param: ServerlessPrivateEndpointsApiDeleteServerlessPrivateEndpointRequest, options?: Configuration): Promise<any> {
+        return this.api.deleteServerlessPrivateEndpoint(param.groupId, param.instanceName, param.endpointId,  options).toPromise();
     }
 
     /**
-     * Return one private endpoint for one serverless instance. Identify this endpoint using its unique ID. You must have at least the Project Read Only role for the project to successfully call this resource. This resource doesn't require the API Key to have an Access List.
+     * Return one private endpoint for one serverless instance. Identify this endpoint using its unique ID. You must have at least the Project Read Only role for the project to successfully call this resource.
      * Return One Private Endpoint for One Serverless Instance
      * @param param the request object
      */
     public getServerlessPrivateEndpoint(param: ServerlessPrivateEndpointsApiGetServerlessPrivateEndpointRequest, options?: Configuration): Promise<ServerlessTenantEndpoint> {
-        return this.api.getServerlessPrivateEndpoint(param.groupId, param.instanceName, param.endpointId, param.envelope,  options).toPromise();
+        return this.api.getServerlessPrivateEndpoint(param.groupId, param.instanceName, param.endpointId,  options).toPromise();
     }
 
     /**
-     * Returns all private endpoints for one serverless instance. You must have at least the Project Read Only role for the project to successfully call this resource. This resource doesn't require the API Key to have an Access List.
+     * Returns all private endpoints for one serverless instance. You must have at least the Project Read Only role for the project to successfully call this resource.
      * Return All Private Endpoints for One Serverless Instance
      * @param param the request object
      */
     public listServerlessPrivateEndpoints(param: ServerlessPrivateEndpointsApiListServerlessPrivateEndpointsRequest, options?: Configuration): Promise<Array<ServerlessTenantEndpoint>> {
-        return this.api.listServerlessPrivateEndpoints(param.groupId, param.instanceName, param.envelope,  options).toPromise();
+        return this.api.listServerlessPrivateEndpoints(param.groupId, param.instanceName,  options).toPromise();
     }
 
     /**
-     * Updates one private endpoint for one serverless instance. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Updates one private endpoint for one serverless instance. To use this resource, the requesting API Key must have the Project Owner role.
      * Update One Private Endpoint for One Serverless Instance
      * @param param the request object
      */
     public updateServerlessPrivateEndpoint(param: ServerlessPrivateEndpointsApiUpdateServerlessPrivateEndpointRequest, options?: Configuration): Promise<ServerlessTenantEndpoint> {
-        return this.api.updateServerlessPrivateEndpoint(param.groupId, param.instanceName, param.endpointId, param.envelope, param.serverlessTenantEndpointUpdate,  options).toPromise();
+        return this.api.updateServerlessPrivateEndpoint(param.groupId, param.instanceName, param.endpointId, param.serverlessTenantEndpointUpdate,  options).toPromise();
     }
 
 }
@@ -12399,18 +9612,6 @@ export interface SharedTierRestoreJobsApiCreateSharedClusterBackupRestoreJobRequ
      * @memberof SharedTierRestoreJobsApicreateSharedClusterBackupRestoreJob
      */
     tenantRestore: TenantRestore
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof SharedTierRestoreJobsApicreateSharedClusterBackupRestoreJob
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof SharedTierRestoreJobsApicreateSharedClusterBackupRestoreJob
-     */
-    pretty?: boolean
 }
 
 export interface SharedTierRestoreJobsApiGetSharedClusterBackupRestoreJobRequest {
@@ -12432,18 +9633,6 @@ export interface SharedTierRestoreJobsApiGetSharedClusterBackupRestoreJobRequest
      * @memberof SharedTierRestoreJobsApigetSharedClusterBackupRestoreJob
      */
     restoreId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof SharedTierRestoreJobsApigetSharedClusterBackupRestoreJob
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof SharedTierRestoreJobsApigetSharedClusterBackupRestoreJob
-     */
-    pretty?: boolean
 }
 
 export interface SharedTierRestoreJobsApiListSharedClusterBackupRestoreJobsRequest {
@@ -12459,18 +9648,6 @@ export interface SharedTierRestoreJobsApiListSharedClusterBackupRestoreJobsReque
      * @memberof SharedTierRestoreJobsApilistSharedClusterBackupRestoreJobs
      */
     groupId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof SharedTierRestoreJobsApilistSharedClusterBackupRestoreJobs
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof SharedTierRestoreJobsApilistSharedClusterBackupRestoreJobs
-     */
-    pretty?: boolean
 }
 
 export class ObjectSharedTierRestoreJobsApi {
@@ -12481,30 +9658,30 @@ export class ObjectSharedTierRestoreJobsApi {
     }
 
     /**
-     * Restores the specified cluster. MongoDB Cloud limits which clusters can be the target clusters of a restore. The target cluster can't use encryption at rest, run a major release MongoDB version different than the snapshot, or receive client requests during restores. MongoDB Cloud deletes all existing data on the target cluster prior to the restore operation. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Restores the specified cluster. MongoDB Cloud limits which clusters can be the target clusters of a restore. The target cluster can't use encryption at rest, run a major release MongoDB version different than the snapshot, or receive client requests during restores. MongoDB Cloud deletes all existing data on the target cluster prior to the restore operation. To use this resource, the requesting API Key must have the Project Owner role.
      * Create One Restore Job from One M2 or M5 Cluster
      * @param param the request object
      */
     public createSharedClusterBackupRestoreJob(param: SharedTierRestoreJobsApiCreateSharedClusterBackupRestoreJobRequest, options?: Configuration): Promise<TenantRestore> {
-        return this.api.createSharedClusterBackupRestoreJob(param.clusterName, param.groupId, param.tenantRestore, param.envelope, param.pretty,  options).toPromise();
+        return this.api.createSharedClusterBackupRestoreJob(param.clusterName, param.groupId, param.tenantRestore,  options).toPromise();
     }
 
     /**
-     * Returns the specified restore job. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns the specified restore job. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return One Restore Job for One M2 or M5 Cluster
      * @param param the request object
      */
     public getSharedClusterBackupRestoreJob(param: SharedTierRestoreJobsApiGetSharedClusterBackupRestoreJobRequest, options?: Configuration): Promise<TenantRestore> {
-        return this.api.getSharedClusterBackupRestoreJob(param.clusterName, param.groupId, param.restoreId, param.envelope, param.pretty,  options).toPromise();
+        return this.api.getSharedClusterBackupRestoreJob(param.clusterName, param.groupId, param.restoreId,  options).toPromise();
     }
 
     /**
-     * Returns all restore jobs for the specified M2 or M5 cluster. Restore jobs restore a cluster using a snapshot. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns all restore jobs for the specified M2 or M5 cluster. Restore jobs restore a cluster using a snapshot. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return All Restore Jobs for One M2 or M5 Cluster
      * @param param the request object
      */
-    public listSharedClusterBackupRestoreJobs(param: SharedTierRestoreJobsApiListSharedClusterBackupRestoreJobsRequest, options?: Configuration): Promise<PaginatedTenantRestoreView> {
-        return this.api.listSharedClusterBackupRestoreJobs(param.clusterName, param.groupId, param.envelope, param.pretty,  options).toPromise();
+    public listSharedClusterBackupRestoreJobs(param: SharedTierRestoreJobsApiListSharedClusterBackupRestoreJobsRequest, options?: Configuration): Promise<PaginatedTenantRestore> {
+        return this.api.listSharedClusterBackupRestoreJobs(param.clusterName, param.groupId,  options).toPromise();
     }
 
 }
@@ -12531,18 +9708,6 @@ export interface SharedTierSnapshotsApiDownloadSharedClusterBackupRequest {
      * @memberof SharedTierSnapshotsApidownloadSharedClusterBackup
      */
     tenantRestore: TenantRestore
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof SharedTierSnapshotsApidownloadSharedClusterBackup
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof SharedTierSnapshotsApidownloadSharedClusterBackup
-     */
-    pretty?: boolean
 }
 
 export interface SharedTierSnapshotsApiGetSharedClusterBackupRequest {
@@ -12564,18 +9729,6 @@ export interface SharedTierSnapshotsApiGetSharedClusterBackupRequest {
      * @memberof SharedTierSnapshotsApigetSharedClusterBackup
      */
     snapshotId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof SharedTierSnapshotsApigetSharedClusterBackup
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof SharedTierSnapshotsApigetSharedClusterBackup
-     */
-    pretty?: boolean
 }
 
 export interface SharedTierSnapshotsApiListSharedClusterBackupsRequest {
@@ -12591,18 +9744,6 @@ export interface SharedTierSnapshotsApiListSharedClusterBackupsRequest {
      * @memberof SharedTierSnapshotsApilistSharedClusterBackups
      */
     clusterName: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof SharedTierSnapshotsApilistSharedClusterBackups
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof SharedTierSnapshotsApilistSharedClusterBackups
-     */
-    pretty?: boolean
 }
 
 export class ObjectSharedTierSnapshotsApi {
@@ -12613,30 +9754,342 @@ export class ObjectSharedTierSnapshotsApi {
     }
 
     /**
-     * Requests one snapshot for the specified shared cluster. This resource returns a `snapshotURL` that you can use to download the snapshot. This `snapshotURL` remains active for four hours after you make the request. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Requests one snapshot for the specified shared cluster. This resource returns a `snapshotURL` that you can use to download the snapshot. This `snapshotURL` remains active for four hours after you make the request. To use this resource, the requesting API Key must have the Project Owner role.
      * Download One M2 or M5 Cluster Snapshot
      * @param param the request object
      */
     public downloadSharedClusterBackup(param: SharedTierSnapshotsApiDownloadSharedClusterBackupRequest, options?: Configuration): Promise<TenantRestore> {
-        return this.api.downloadSharedClusterBackup(param.clusterName, param.groupId, param.tenantRestore, param.envelope, param.pretty,  options).toPromise();
+        return this.api.downloadSharedClusterBackup(param.clusterName, param.groupId, param.tenantRestore,  options).toPromise();
     }
 
     /**
-     * Returns details for one snapshot for the specified shared cluster. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns details for one snapshot for the specified shared cluster. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return One Snapshot for One M2 or M5 Cluster
      * @param param the request object
      */
-    public getSharedClusterBackup(param: SharedTierSnapshotsApiGetSharedClusterBackupRequest, options?: Configuration): Promise<TenantSnapshot> {
-        return this.api.getSharedClusterBackup(param.groupId, param.clusterName, param.snapshotId, param.envelope, param.pretty,  options).toPromise();
+    public getSharedClusterBackup(param: SharedTierSnapshotsApiGetSharedClusterBackupRequest, options?: Configuration): Promise<BackupTenantSnapshot> {
+        return this.api.getSharedClusterBackup(param.groupId, param.clusterName, param.snapshotId,  options).toPromise();
     }
 
     /**
-     * Returns details for all snapshots for the specified shared cluster. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns details for all snapshots for the specified shared cluster. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return All Snapshots for One M2 or M5 Cluster
      * @param param the request object
      */
-    public listSharedClusterBackups(param: SharedTierSnapshotsApiListSharedClusterBackupsRequest, options?: Configuration): Promise<PaginatedTenantSnapshotView> {
-        return this.api.listSharedClusterBackups(param.groupId, param.clusterName, param.envelope, param.pretty,  options).toPromise();
+    public listSharedClusterBackups(param: SharedTierSnapshotsApiListSharedClusterBackupsRequest, options?: Configuration): Promise<PaginatedTenantSnapshot> {
+        return this.api.listSharedClusterBackups(param.groupId, param.clusterName,  options).toPromise();
+    }
+
+}
+
+import { ObservableStreamsApi } from "./ObservableAPI";
+import { StreamsApiRequestFactory, StreamsApiResponseProcessor} from "../apis/StreamsApi";
+
+export interface StreamsApiCreateStreamConnectionRequest {
+    /**
+     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+     * @type string
+     * @memberof StreamsApicreateStreamConnection
+     */
+    groupId: string
+    /**
+     * Human-readable label that identifies the stream instance.
+     * @type string
+     * @memberof StreamsApicreateStreamConnection
+     */
+    tenantName: string
+    /**
+     * Details to create one connection for a streams instance in the specified project.
+     * @type StreamsConnection
+     * @memberof StreamsApicreateStreamConnection
+     */
+    streamsConnection: StreamsConnection
+}
+
+export interface StreamsApiCreateStreamInstanceRequest {
+    /**
+     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+     * @type string
+     * @memberof StreamsApicreateStreamInstance
+     */
+    groupId: string
+    /**
+     * Details to create one streams instance in the specified project.
+     * @type StreamsTenant
+     * @memberof StreamsApicreateStreamInstance
+     */
+    streamsTenant: StreamsTenant
+}
+
+export interface StreamsApiDeleteStreamConnectionRequest {
+    /**
+     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+     * @type string
+     * @memberof StreamsApideleteStreamConnection
+     */
+    groupId: string
+    /**
+     * Human-readable label that identifies the stream instance.
+     * @type string
+     * @memberof StreamsApideleteStreamConnection
+     */
+    tenantName: string
+    /**
+     * Human-readable label that identifies the stream connection.
+     * @type string
+     * @memberof StreamsApideleteStreamConnection
+     */
+    connectionName: string
+}
+
+export interface StreamsApiDeleteStreamInstanceRequest {
+    /**
+     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+     * @type string
+     * @memberof StreamsApideleteStreamInstance
+     */
+    groupId: string
+    /**
+     * Human-readable label that identifies the stream instance to delete.
+     * @type string
+     * @memberof StreamsApideleteStreamInstance
+     */
+    tenantName: string
+}
+
+export interface StreamsApiGetStreamConnectionRequest {
+    /**
+     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+     * @type string
+     * @memberof StreamsApigetStreamConnection
+     */
+    groupId: string
+    /**
+     * Human-readable label that identifies the stream instance to return.
+     * @type string
+     * @memberof StreamsApigetStreamConnection
+     */
+    tenantName: string
+    /**
+     * Human-readable label that identifies the stream connection to return.
+     * @type string
+     * @memberof StreamsApigetStreamConnection
+     */
+    connectionName: string
+}
+
+export interface StreamsApiGetStreamInstanceRequest {
+    /**
+     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+     * @type string
+     * @memberof StreamsApigetStreamInstance
+     */
+    groupId: string
+    /**
+     * Human-readable label that identifies the stream instance to return.
+     * @type string
+     * @memberof StreamsApigetStreamInstance
+     */
+    tenantName: string
+    /**
+     * Flag to indicate whether connections information should be included in the stream instance.
+     * @type boolean
+     * @memberof StreamsApigetStreamInstance
+     */
+    includeConnections?: boolean
+}
+
+export interface StreamsApiListStreamConnectionsRequest {
+    /**
+     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+     * @type string
+     * @memberof StreamsApilistStreamConnections
+     */
+    groupId: string
+    /**
+     * Human-readable label that identifies the stream instance.
+     * @type string
+     * @memberof StreamsApilistStreamConnections
+     */
+    tenantName: string
+    /**
+     * Number of items that the response returns per page.
+     * @type number
+     * @memberof StreamsApilistStreamConnections
+     */
+    itemsPerPage?: number
+    /**
+     * Number of the page that displays the current set of the total objects that the response returns.
+     * @type number
+     * @memberof StreamsApilistStreamConnections
+     */
+    pageNum?: number
+}
+
+export interface StreamsApiListStreamInstancesRequest {
+    /**
+     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+     * @type string
+     * @memberof StreamsApilistStreamInstances
+     */
+    groupId: string
+    /**
+     * Number of items that the response returns per page.
+     * @type number
+     * @memberof StreamsApilistStreamInstances
+     */
+    itemsPerPage?: number
+    /**
+     * Number of the page that displays the current set of the total objects that the response returns.
+     * @type number
+     * @memberof StreamsApilistStreamInstances
+     */
+    pageNum?: number
+}
+
+export interface StreamsApiUpdateStreamConnectionRequest {
+    /**
+     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+     * @type string
+     * @memberof StreamsApiupdateStreamConnection
+     */
+    groupId: string
+    /**
+     * Human-readable label that identifies the stream instance.
+     * @type string
+     * @memberof StreamsApiupdateStreamConnection
+     */
+    tenantName: string
+    /**
+     * Human-readable label that identifies the stream connection.
+     * @type string
+     * @memberof StreamsApiupdateStreamConnection
+     */
+    connectionName: string
+    /**
+     * Details to update one connection for a streams instance in the specified project.
+     * @type StreamsConnection
+     * @memberof StreamsApiupdateStreamConnection
+     */
+    streamsConnection: StreamsConnection
+}
+
+export interface StreamsApiUpdateStreamInstanceRequest {
+    /**
+     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+     * @type string
+     * @memberof StreamsApiupdateStreamInstance
+     */
+    groupId: string
+    /**
+     * Human-readable label that identifies the stream instance to update.
+     * @type string
+     * @memberof StreamsApiupdateStreamInstance
+     */
+    tenantName: string
+    /**
+     * Details of the new data process region to update in the streams instance.
+     * @type StreamsDataProcessRegion
+     * @memberof StreamsApiupdateStreamInstance
+     */
+    streamsDataProcessRegion: StreamsDataProcessRegion
+}
+
+export class ObjectStreamsApi {
+    private api: ObservableStreamsApi
+
+    public constructor(configuration: Configuration, requestFactory?: StreamsApiRequestFactory, responseProcessor?: StreamsApiResponseProcessor) {
+        this.api = new ObservableStreamsApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Creates one connection for a stream instance in the specified project. To use this resource, the requesting API Key must have the Project Owner roles.
+     * Create One Connection
+     * @param param the request object
+     */
+    public createStreamConnection(param: StreamsApiCreateStreamConnectionRequest, options?: Configuration): Promise<StreamsConnection> {
+        return this.api.createStreamConnection(param.groupId, param.tenantName, param.streamsConnection,  options).toPromise();
+    }
+
+    /**
+     * Creates one stream instance in the specified project. To use this resource, the requesting API Key must have the Project Owner roles.
+     * Create One Stream Instance
+     * @param param the request object
+     */
+    public createStreamInstance(param: StreamsApiCreateStreamInstanceRequest, options?: Configuration): Promise<StreamsTenant> {
+        return this.api.createStreamInstance(param.groupId, param.streamsTenant,  options).toPromise();
+    }
+
+    /**
+     * Delete one connection of the specified stream instance. To use this resource, the requesting API Key must have the Project Owner roles.
+     * Delete One Stream Connection
+     * @param param the request object
+     */
+    public deleteStreamConnection(param: StreamsApiDeleteStreamConnectionRequest, options?: Configuration): Promise<any> {
+        return this.api.deleteStreamConnection(param.groupId, param.tenantName, param.connectionName,  options).toPromise();
+    }
+
+    /**
+     * Delete one stream instance in the specified project. To use this resource, the requesting API Key must have the Project Owner roles.
+     * Delete One Stream Instance
+     * @param param the request object
+     */
+    public deleteStreamInstance(param: StreamsApiDeleteStreamInstanceRequest, options?: Configuration): Promise<any> {
+        return this.api.deleteStreamInstance(param.groupId, param.tenantName,  options).toPromise();
+    }
+
+    /**
+     * Returns the details of one stream connection within the specified stream instance. To use this resource, the requesting API Key must have the Project Read Only role.
+     * Return One Stream Connection
+     * @param param the request object
+     */
+    public getStreamConnection(param: StreamsApiGetStreamConnectionRequest, options?: Configuration): Promise<StreamsConnection> {
+        return this.api.getStreamConnection(param.groupId, param.tenantName, param.connectionName,  options).toPromise();
+    }
+
+    /**
+     * Returns the details of one stream instance within the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
+     * Return One Stream Instance
+     * @param param the request object
+     */
+    public getStreamInstance(param: StreamsApiGetStreamInstanceRequest, options?: Configuration): Promise<StreamsTenant> {
+        return this.api.getStreamInstance(param.groupId, param.tenantName, param.includeConnections,  options).toPromise();
+    }
+
+    /**
+     * Returns all connections of the stream instance for the specified project.
+     * Return All Connections Of The Stream Instances
+     * @param param the request object
+     */
+    public listStreamConnections(param: StreamsApiListStreamConnectionsRequest, options?: Configuration): Promise<PaginatedApiStreamsConnection> {
+        return this.api.listStreamConnections(param.groupId, param.tenantName, param.itemsPerPage, param.pageNum,  options).toPromise();
+    }
+
+    /**
+     * Returns all stream instances for the specified project.
+     * Return All Project Stream Instances
+     * @param param the request object
+     */
+    public listStreamInstances(param: StreamsApiListStreamInstancesRequest, options?: Configuration): Promise<PaginatedApiStreamsTenant> {
+        return this.api.listStreamInstances(param.groupId, param.itemsPerPage, param.pageNum,  options).toPromise();
+    }
+
+    /**
+     * Update one connection for the specified stream instance in the specified project. To use this resource, the requesting API Key must have the Project Owner roles.
+     * Update One Stream Connection
+     * @param param the request object
+     */
+    public updateStreamConnection(param: StreamsApiUpdateStreamConnectionRequest, options?: Configuration): Promise<StreamsConnection> {
+        return this.api.updateStreamConnection(param.groupId, param.tenantName, param.connectionName, param.streamsConnection,  options).toPromise();
+    }
+
+    /**
+     * Update one stream instance in the specified project. To use this resource, the requesting API Key must have the Project Owner roles.
+     * Update One Stream Instance
+     * @param param the request object
+     */
+    public updateStreamInstance(param: StreamsApiUpdateStreamInstanceRequest, options?: Configuration): Promise<StreamsTenant> {
+        return this.api.updateStreamInstance(param.groupId, param.tenantName, param.streamsDataProcessRegion,  options).toPromise();
     }
 
 }
@@ -12653,22 +10106,10 @@ export interface TeamsApiAddAllTeamsToProjectRequest {
     groupId: string
     /**
      * Team to add to the specified project.
-     * @type Array&lt;ApiTeamRoleView&gt;
+     * @type Array&lt;TeamRole&gt;
      * @memberof TeamsApiaddAllTeamsToProject
      */
-    apiTeamRoleView: Array<ApiTeamRoleView>
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof TeamsApiaddAllTeamsToProject
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof TeamsApiaddAllTeamsToProject
-     */
-    pretty?: boolean
+    teamRole: Array<TeamRole>
 }
 
 export interface TeamsApiAddTeamUserRequest {
@@ -12686,22 +10127,10 @@ export interface TeamsApiAddTeamUserRequest {
     teamId: string
     /**
      * One or more MongoDB Cloud users that you want to add to the specified team.
-     * @type Array&lt;ApiAddUserToTeamView&gt;
+     * @type Array&lt;AddUserToTeam&gt;
      * @memberof TeamsApiaddTeamUser
      */
-    apiAddUserToTeamView: Array<ApiAddUserToTeamView>
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof TeamsApiaddTeamUser
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof TeamsApiaddTeamUser
-     */
-    pretty?: boolean
+    addUserToTeam: Array<AddUserToTeam>
 }
 
 export interface TeamsApiCreateTeamRequest {
@@ -12713,22 +10142,10 @@ export interface TeamsApiCreateTeamRequest {
     orgId: string
     /**
      * Team that you want to create in the specified organization.
-     * @type ApiTeamView
+     * @type Team
      * @memberof TeamsApicreateTeam
      */
-    apiTeamView: ApiTeamView
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof TeamsApicreateTeam
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof TeamsApicreateTeam
-     */
-    pretty?: boolean
+    team: Team
 }
 
 export interface TeamsApiDeleteTeamRequest {
@@ -12744,18 +10161,6 @@ export interface TeamsApiDeleteTeamRequest {
      * @memberof TeamsApideleteTeam
      */
     teamId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof TeamsApideleteTeam
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof TeamsApideleteTeam
-     */
-    pretty?: boolean
 }
 
 export interface TeamsApiGetTeamByIdRequest {
@@ -12771,18 +10176,6 @@ export interface TeamsApiGetTeamByIdRequest {
      * @memberof TeamsApigetTeamById
      */
     teamId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof TeamsApigetTeamById
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof TeamsApigetTeamById
-     */
-    pretty?: boolean
 }
 
 export interface TeamsApiGetTeamByNameRequest {
@@ -12798,18 +10191,6 @@ export interface TeamsApiGetTeamByNameRequest {
      * @memberof TeamsApigetTeamByName
      */
     teamName: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof TeamsApigetTeamByName
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof TeamsApigetTeamByName
-     */
-    pretty?: boolean
 }
 
 export interface TeamsApiListOrganizationTeamsRequest {
@@ -12819,12 +10200,6 @@ export interface TeamsApiListOrganizationTeamsRequest {
      * @memberof TeamsApilistOrganizationTeams
      */
     orgId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof TeamsApilistOrganizationTeams
-     */
-    envelope?: boolean
     /**
      * Number of items that the response returns per page.
      * @type number
@@ -12843,12 +10218,6 @@ export interface TeamsApiListOrganizationTeamsRequest {
      * @memberof TeamsApilistOrganizationTeams
      */
     pageNum?: number
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof TeamsApilistOrganizationTeams
-     */
-    pretty?: boolean
 }
 
 export interface TeamsApiListProjectTeamsRequest {
@@ -12858,18 +10227,6 @@ export interface TeamsApiListProjectTeamsRequest {
      * @memberof TeamsApilistProjectTeams
      */
     groupId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof TeamsApilistProjectTeams
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof TeamsApilistProjectTeams
-     */
-    pretty?: boolean
     /**
      * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
@@ -12904,12 +10261,6 @@ export interface TeamsApiListTeamUsersRequest {
      */
     teamId: string
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof TeamsApilistTeamUsers
-     */
-    envelope?: boolean
-    /**
      * Number of items that the response returns per page.
      * @type number
      * @memberof TeamsApilistTeamUsers
@@ -12921,12 +10272,6 @@ export interface TeamsApiListTeamUsersRequest {
      * @memberof TeamsApilistTeamUsers
      */
     pageNum?: number
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof TeamsApilistTeamUsers
-     */
-    pretty?: boolean
 }
 
 export interface TeamsApiRemoveProjectTeamRequest {
@@ -12942,12 +10287,6 @@ export interface TeamsApiRemoveProjectTeamRequest {
      * @memberof TeamsApiremoveProjectTeam
      */
     teamId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof TeamsApiremoveProjectTeam
-     */
-    envelope?: boolean
 }
 
 export interface TeamsApiRemoveTeamUserRequest {
@@ -12969,18 +10308,6 @@ export interface TeamsApiRemoveTeamUserRequest {
      * @memberof TeamsApiremoveTeamUser
      */
     userId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof TeamsApiremoveTeamUser
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof TeamsApiremoveTeamUser
-     */
-    pretty?: boolean
 }
 
 export interface TeamsApiRenameTeamRequest {
@@ -12998,22 +10325,10 @@ export interface TeamsApiRenameTeamRequest {
     teamId: string
     /**
      * Details to update on the specified team.
-     * @type ApiTeamView
+     * @type Team
      * @memberof TeamsApirenameTeam
      */
-    apiTeamView: ApiTeamView
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof TeamsApirenameTeam
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof TeamsApirenameTeam
-     */
-    pretty?: boolean
+    team: Team
 }
 
 export interface TeamsApiUpdateTeamRolesRequest {
@@ -13031,22 +10346,10 @@ export interface TeamsApiUpdateTeamRolesRequest {
     teamId: string
     /**
      * The project roles assigned to the specified team.
-     * @type ApiTeamRoleView
+     * @type TeamRole
      * @memberof TeamsApiupdateTeamRoles
      */
-    apiTeamRoleView: ApiTeamRoleView
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof TeamsApiupdateTeamRoles
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof TeamsApiupdateTeamRoles
-     */
-    pretty?: boolean
+    teamRole: TeamRole
 }
 
 export class ObjectTeamsApi {
@@ -13057,156 +10360,120 @@ export class ObjectTeamsApi {
     }
 
     /**
-     * Adds one team to the specified project. All members of the team share the same project access. MongoDB Cloud limits the number of users to a maximum of 100 teams per project and a maximum of 250 teams per organization. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Adds one team to the specified project. All members of the team share the same project access. MongoDB Cloud limits the number of users to a maximum of 100 teams per project and a maximum of 250 teams per organization. To use this resource, the requesting API Key must have the Project Owner role.
      * Add One or More Teams to One Project
      * @param param the request object
      */
-    public addAllTeamsToProject(param: TeamsApiAddAllTeamsToProjectRequest, options?: Configuration): Promise<PaginatedTeamRoleView> {
-        return this.api.addAllTeamsToProject(param.groupId, param.apiTeamRoleView, param.envelope, param.pretty,  options).toPromise();
+    public addAllTeamsToProject(param: TeamsApiAddAllTeamsToProjectRequest, options?: Configuration): Promise<PaginatedTeamRole> {
+        return this.api.addAllTeamsToProject(param.groupId, param.teamRole,  options).toPromise();
     }
 
     /**
-     * Adds one or more MongoDB Cloud users from the specified organization to the specified team. Teams enable you to grant project access roles to MongoDB Cloud users. You can assign up to 250 MongoDB Cloud users from one organization to one team. To use this resource, the requesting API Key must have the Organization User Admin role. This resource doesn't require the API Key to have an Access List.
+     * Adds one or more MongoDB Cloud users from the specified organization to the specified team. Teams enable you to grant project access roles to MongoDB Cloud users. You can assign up to 250 MongoDB Cloud users from one organization to one team. To use this resource, the requesting API Key must have the Organization Owner role.
      * Assign MongoDB Cloud Users from One Organization to One Team
      * @param param the request object
      */
-    public addTeamUser(param: TeamsApiAddTeamUserRequest, options?: Configuration): Promise<PaginatedApiAppUserView> {
-        return this.api.addTeamUser(param.orgId, param.teamId, param.apiAddUserToTeamView, param.envelope, param.pretty,  options).toPromise();
+    public addTeamUser(param: TeamsApiAddTeamUserRequest, options?: Configuration): Promise<PaginatedApiAppUser> {
+        return this.api.addTeamUser(param.orgId, param.teamId, param.addUserToTeam,  options).toPromise();
     }
 
     /**
-     * Creates one team in the specified organization. Teams enable you to grant project access roles to MongoDB Cloud users. MongoDB Cloud limits the number of teams to a maximum of 250 teams per organization. To use this resource, the requesting API Key must have the Organization Owner role. This resource doesn't require the API Key to have an Access List.
+     * Creates one team in the specified organization. Teams enable you to grant project access roles to MongoDB Cloud users. MongoDB Cloud limits the number of teams to a maximum of 250 teams per organization. To use this resource, the requesting API Key must have the Organization Owner role.
      * Create One Team in One Organization
      * @param param the request object
      */
-    public createTeam(param: TeamsApiCreateTeamRequest, options?: Configuration): Promise<ApiTeamView> {
-        return this.api.createTeam(param.orgId, param.apiTeamView, param.envelope, param.pretty,  options).toPromise();
+    public createTeam(param: TeamsApiCreateTeamRequest, options?: Configuration): Promise<Team> {
+        return this.api.createTeam(param.orgId, param.team,  options).toPromise();
     }
 
     /**
-     * Removes one team specified using its unique 24-hexadecimal digit identifier from the organization specified using its unique 24-hexadecimal digit identifier. To use this resource, the requesting API Key must have the Organization User Admin role. This resource doesn't require the API Key to have an Access List.
+     * Removes one team specified using its unique 24-hexadecimal digit identifier from the organization specified using its unique 24-hexadecimal digit identifier. To use this resource, the requesting API Key must have the Organization Owner role.
      * Remove One Team from One Organization
      * @param param the request object
      */
-    public deleteTeam(param: TeamsApiDeleteTeamRequest, options?: Configuration): Promise<void> {
-        return this.api.deleteTeam(param.orgId, param.teamId, param.envelope, param.pretty,  options).toPromise();
+    public deleteTeam(param: TeamsApiDeleteTeamRequest, options?: Configuration): Promise<any> {
+        return this.api.deleteTeam(param.orgId, param.teamId,  options).toPromise();
     }
 
     /**
-     * Returns one team that you identified using its unique 24-hexadecimal digit ID. This team belongs to one organization. Teams enable you to grant project access roles to MongoDB Cloud users. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an  Access List.
+     * Returns one team that you identified using its unique 24-hexadecimal digit ID. This team belongs to one organization. Teams enable you to grant project access roles to MongoDB Cloud users. To use this resource, the requesting API Key must have the Organization Member role.
      * Return One Team using its ID
      * @param param the request object
      */
-    public getTeamById(param: TeamsApiGetTeamByIdRequest, options?: Configuration): Promise<ApiTeamResponseView> {
-        return this.api.getTeamById(param.orgId, param.teamId, param.envelope, param.pretty,  options).toPromise();
+    public getTeamById(param: TeamsApiGetTeamByIdRequest, options?: Configuration): Promise<TeamResponse> {
+        return this.api.getTeamById(param.orgId, param.teamId,  options).toPromise();
     }
 
     /**
-     * Returns one team that you identified using its human-readable name. This team belongs to one organization. Teams enable you to grant project access roles to MongoDB Cloud users. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an Access List.
+     * Returns one team that you identified using its human-readable name. This team belongs to one organization. Teams enable you to grant project access roles to MongoDB Cloud users. To use this resource, the requesting API Key must have the Organization Member role.
      * Return One Team using its Name
      * @param param the request object
      */
-    public getTeamByName(param: TeamsApiGetTeamByNameRequest, options?: Configuration): Promise<ApiTeamResponseView> {
-        return this.api.getTeamByName(param.orgId, param.teamName, param.envelope, param.pretty,  options).toPromise();
+    public getTeamByName(param: TeamsApiGetTeamByNameRequest, options?: Configuration): Promise<TeamResponse> {
+        return this.api.getTeamByName(param.orgId, param.teamName,  options).toPromise();
     }
 
     /**
-     * Returns all teams that belong to the specified organization. Teams enable you to grant project access roles to MongoDB Cloud users. MongoDB Cloud only returns teams for which you have access. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an Access List.
+     * Returns all teams that belong to the specified organization. Teams enable you to grant project access roles to MongoDB Cloud users. MongoDB Cloud only returns teams for which you have access. To use this resource, the requesting API Key must have the Organization Member role.
      * Return All Teams in One Organization
      * @param param the request object
      */
-    public listOrganizationTeams(param: TeamsApiListOrganizationTeamsRequest, options?: Configuration): Promise<PaginatedTeamView> {
-        return this.api.listOrganizationTeams(param.orgId, param.envelope, param.itemsPerPage, param.includeCount, param.pageNum, param.pretty,  options).toPromise();
+    public listOrganizationTeams(param: TeamsApiListOrganizationTeamsRequest, options?: Configuration): Promise<PaginatedTeam> {
+        return this.api.listOrganizationTeams(param.orgId, param.itemsPerPage, param.includeCount, param.pageNum,  options).toPromise();
     }
 
     /**
-     * Returns all teams to which the authenticated user has access in the project specified using its unique 24-hexadecimal digit identifier. All members of the team share the same project access. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns all teams to which the authenticated user has access in the project specified using its unique 24-hexadecimal digit identifier. All members of the team share the same project access. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return All Teams in One Project
      * @param param the request object
      */
-    public listProjectTeams(param: TeamsApiListProjectTeamsRequest, options?: Configuration): Promise<PaginatedTeamRoleView> {
-        return this.api.listProjectTeams(param.groupId, param.envelope, param.pretty, param.includeCount, param.itemsPerPage, param.pageNum,  options).toPromise();
+    public listProjectTeams(param: TeamsApiListProjectTeamsRequest, options?: Configuration): Promise<PaginatedTeamRole> {
+        return this.api.listProjectTeams(param.groupId, param.includeCount, param.itemsPerPage, param.pageNum,  options).toPromise();
     }
 
     /**
-     * Returns all MongoDB Cloud users assigned to the team specified using its unique 24-hexadecimal digit identifier. This team belongs to one organization. Teams enable you to grant project access roles to MongoDB Cloud users. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an Access List.
+     * Returns all MongoDB Cloud users assigned to the team specified using its unique 24-hexadecimal digit identifier. This team belongs to one organization. Teams enable you to grant project access roles to MongoDB Cloud users. To use this resource, the requesting API Key must have the Organization Member role.
      * Return All MongoDB Cloud Users Assigned to One Team
      * @param param the request object
      */
-    public listTeamUsers(param: TeamsApiListTeamUsersRequest, options?: Configuration): Promise<PaginatedApiAppUserView> {
-        return this.api.listTeamUsers(param.orgId, param.teamId, param.envelope, param.itemsPerPage, param.pageNum, param.pretty,  options).toPromise();
+    public listTeamUsers(param: TeamsApiListTeamUsersRequest, options?: Configuration): Promise<PaginatedApiAppUser> {
+        return this.api.listTeamUsers(param.orgId, param.teamId, param.itemsPerPage, param.pageNum,  options).toPromise();
     }
 
     /**
-     * Removes one team specified using its unique 24-hexadecimal digit identifier from the project specified using its unique 24-hexadecimal digit identifier. To use this resource, the requesting API Key must have the Project User Admin role.
+     * Removes one team specified using its unique 24-hexadecimal digit identifier from the project specified using its unique 24-hexadecimal digit identifier. To use this resource, the requesting API Key must have the Project Owner role.
      * Remove One Team from One Project
      * @param param the request object
      */
     public removeProjectTeam(param: TeamsApiRemoveProjectTeamRequest, options?: Configuration): Promise<void> {
-        return this.api.removeProjectTeam(param.groupId, param.teamId, param.envelope,  options).toPromise();
+        return this.api.removeProjectTeam(param.groupId, param.teamId,  options).toPromise();
     }
 
     /**
-     * Removes one MongoDB Cloud user from the specified team. This team belongs to one organization. Teams enable you to grant project access roles to MongoDB Cloud users. To use this resource, the requesting API Key must have the Organization User Admin role. This resource doesn't require the API Key to have an Access List.
+     * Removes one MongoDB Cloud user from the specified team. This team belongs to one organization. Teams enable you to grant project access roles to MongoDB Cloud users. To use this resource, the requesting API Key must have the Organization Owner role.
      * Remove One MongoDB Cloud User from One Team
      * @param param the request object
      */
     public removeTeamUser(param: TeamsApiRemoveTeamUserRequest, options?: Configuration): Promise<void> {
-        return this.api.removeTeamUser(param.orgId, param.teamId, param.userId, param.envelope, param.pretty,  options).toPromise();
+        return this.api.removeTeamUser(param.orgId, param.teamId, param.userId,  options).toPromise();
     }
 
     /**
-     * Renames one team in the specified organization. Teams enable you to grant project access roles to MongoDB Cloud users. To use this resource, the requesting API Key must have the Organization User Admin role. This resource doesn't require the API Key to have an Access List.
+     * Renames one team in the specified organization. Teams enable you to grant project access roles to MongoDB Cloud users. To use this resource, the requesting API Key must have the Organization Owner role.
      * Rename One Team
      * @param param the request object
      */
-    public renameTeam(param: TeamsApiRenameTeamRequest, options?: Configuration): Promise<ApiTeamResponseView> {
-        return this.api.renameTeam(param.orgId, param.teamId, param.apiTeamView, param.envelope, param.pretty,  options).toPromise();
+    public renameTeam(param: TeamsApiRenameTeamRequest, options?: Configuration): Promise<TeamResponse> {
+        return this.api.renameTeam(param.orgId, param.teamId, param.team,  options).toPromise();
     }
 
     /**
-     * Updates the project roles assigned to the specified team. You can grant team roles for specific projects and grant project access roles to users in the team. All members of the team share the same project access. To use this resource, the requesting API Key must have the Project User Admin role.
+     * Updates the project roles assigned to the specified team. You can grant team roles for specific projects and grant project access roles to users in the team. All members of the team share the same project access. To use this resource, the requesting API Key must have the Project Owner role.
      * Update Team Roles in One Project
      * @param param the request object
      */
-    public updateTeamRoles(param: TeamsApiUpdateTeamRolesRequest, options?: Configuration): Promise<PaginatedTeamRoleView> {
-        return this.api.updateTeamRoles(param.groupId, param.teamId, param.apiTeamRoleView, param.envelope, param.pretty,  options).toPromise();
-    }
-
-}
-
-import { ObservableTestApi } from "./ObservableAPI";
-import { TestApiRequestFactory, TestApiResponseProcessor} from "../apis/TestApi";
-
-export interface TestApiVersionedExampleRequest {
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof TestApiversionedExample
-     */
-    envelope?: boolean
-    /**
-     * 
-     * @type boolean
-     * @memberof TestApiversionedExample
-     */
-    additionalInfo?: boolean
-}
-
-export class ObjectTestApi {
-    private api: ObservableTestApi
-
-    public constructor(configuration: Configuration, requestFactory?: TestApiRequestFactory, responseProcessor?: TestApiResponseProcessor) {
-        this.api = new ObservableTestApi(configuration, requestFactory, responseProcessor);
-    }
-
-    /**
-     * Returns some text dummy data for test purposes. Deprecated versions: v2-{2023-01-01}
-     * Example resource info for versioning of the Atlas API
-     * @param param the request object
-     */
-    public versionedExample(param: TestApiVersionedExampleRequest = {}, options?: Configuration): Promise<ExampleResourceResponseView20230201> {
-        return this.api.versionedExample(param.envelope, param.additionalInfo,  options).toPromise();
+    public updateTeamRoles(param: TeamsApiUpdateTeamRolesRequest, options?: Configuration): Promise<PaginatedTeamRole> {
+        return this.api.updateTeamRoles(param.groupId, param.teamId, param.teamRole,  options).toPromise();
     }
 
 }
@@ -13217,10 +10484,10 @@ import { ThirdPartyIntegrationsApiRequestFactory, ThirdPartyIntegrationsApiRespo
 export interface ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest {
     /**
      * Human-readable label that identifies the service which you want to integrate with MongoDB Cloud.
-     * @type &#39;PAGER_DUTY&#39; | &#39;SLACK&#39; | &#39;DATADOG&#39; | &#39;NEW_RELIC&#39; | &#39;OPS_GENIE&#39; | &#39;VICTOR_OPS&#39; | &#39;WEBHOOK&#39; | &#39;PROMETHEUS&#39; | &#39;MICROSOFT_TEAMS&#39;
+     * @type string
      * @memberof ThirdPartyIntegrationsApicreateThirdPartyIntegration
      */
-    integrationType: 'PAGER_DUTY' | 'SLACK' | 'DATADOG' | 'NEW_RELIC' | 'OPS_GENIE' | 'VICTOR_OPS' | 'WEBHOOK' | 'PROMETHEUS' | 'MICROSOFT_TEAMS'
+    integrationType: string
     /**
      * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
      * @type string
@@ -13229,16 +10496,10 @@ export interface ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest {
     groupId: string
     /**
      * Third-party integration that you want to configure for your project.
-     * @type IntegrationViewForNdsGroup
+     * @type ThridPartyIntegration
      * @memberof ThirdPartyIntegrationsApicreateThirdPartyIntegration
      */
-    integrationViewForNdsGroup: IntegrationViewForNdsGroup
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ThirdPartyIntegrationsApicreateThirdPartyIntegration
-     */
-    envelope?: boolean
+    thridPartyIntegration: ThridPartyIntegration
     /**
      * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
@@ -13257,39 +10518,21 @@ export interface ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest {
      * @memberof ThirdPartyIntegrationsApicreateThirdPartyIntegration
      */
     pageNum?: number
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ThirdPartyIntegrationsApicreateThirdPartyIntegration
-     */
-    pretty?: boolean
 }
 
 export interface ThirdPartyIntegrationsApiDeleteThirdPartyIntegrationRequest {
     /**
      * Human-readable label that identifies the service which you want to integrate with MongoDB Cloud.
-     * @type &#39;PAGER_DUTY&#39; | &#39;SLACK&#39; | &#39;DATADOG&#39; | &#39;NEW_RELIC&#39; | &#39;OPS_GENIE&#39; | &#39;VICTOR_OPS&#39; | &#39;WEBHOOK&#39; | &#39;PROMETHEUS&#39; | &#39;MICROSOFT_TEAMS&#39;
+     * @type string
      * @memberof ThirdPartyIntegrationsApideleteThirdPartyIntegration
      */
-    integrationType: 'PAGER_DUTY' | 'SLACK' | 'DATADOG' | 'NEW_RELIC' | 'OPS_GENIE' | 'VICTOR_OPS' | 'WEBHOOK' | 'PROMETHEUS' | 'MICROSOFT_TEAMS'
+    integrationType: string
     /**
      * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
      * @type string
      * @memberof ThirdPartyIntegrationsApideleteThirdPartyIntegration
      */
     groupId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ThirdPartyIntegrationsApideleteThirdPartyIntegration
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ThirdPartyIntegrationsApideleteThirdPartyIntegration
-     */
-    pretty?: boolean
 }
 
 export interface ThirdPartyIntegrationsApiGetThirdPartyIntegrationRequest {
@@ -13301,22 +10544,10 @@ export interface ThirdPartyIntegrationsApiGetThirdPartyIntegrationRequest {
     groupId: string
     /**
      * Human-readable label that identifies the service which you want to integrate with MongoDB Cloud.
-     * @type &#39;PAGER_DUTY&#39; | &#39;SLACK&#39; | &#39;DATADOG&#39; | &#39;NEW_RELIC&#39; | &#39;OPS_GENIE&#39; | &#39;VICTOR_OPS&#39; | &#39;WEBHOOK&#39; | &#39;PROMETHEUS&#39; | &#39;MICROSOFT_TEAMS&#39;
+     * @type string
      * @memberof ThirdPartyIntegrationsApigetThirdPartyIntegration
      */
-    integrationType: 'PAGER_DUTY' | 'SLACK' | 'DATADOG' | 'NEW_RELIC' | 'OPS_GENIE' | 'VICTOR_OPS' | 'WEBHOOK' | 'PROMETHEUS' | 'MICROSOFT_TEAMS'
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ThirdPartyIntegrationsApigetThirdPartyIntegration
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ThirdPartyIntegrationsApigetThirdPartyIntegration
-     */
-    pretty?: boolean
+    integrationType: string
 }
 
 export interface ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest {
@@ -13327,12 +10558,6 @@ export interface ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest {
      */
     groupId: string
     /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ThirdPartyIntegrationsApilistThirdPartyIntegrations
-     */
-    envelope?: boolean
-    /**
      * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
      * @memberof ThirdPartyIntegrationsApilistThirdPartyIntegrations
@@ -13350,21 +10575,15 @@ export interface ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest {
      * @memberof ThirdPartyIntegrationsApilistThirdPartyIntegrations
      */
     pageNum?: number
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ThirdPartyIntegrationsApilistThirdPartyIntegrations
-     */
-    pretty?: boolean
 }
 
 export interface ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest {
     /**
      * Human-readable label that identifies the service which you want to integrate with MongoDB Cloud.
-     * @type &#39;PAGER_DUTY&#39; | &#39;SLACK&#39; | &#39;DATADOG&#39; | &#39;NEW_RELIC&#39; | &#39;OPS_GENIE&#39; | &#39;VICTOR_OPS&#39; | &#39;WEBHOOK&#39; | &#39;PROMETHEUS&#39; | &#39;MICROSOFT_TEAMS&#39;
+     * @type string
      * @memberof ThirdPartyIntegrationsApiupdateThirdPartyIntegration
      */
-    integrationType: 'PAGER_DUTY' | 'SLACK' | 'DATADOG' | 'NEW_RELIC' | 'OPS_GENIE' | 'VICTOR_OPS' | 'WEBHOOK' | 'PROMETHEUS' | 'MICROSOFT_TEAMS'
+    integrationType: string
     /**
      * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
      * @type string
@@ -13373,16 +10592,10 @@ export interface ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest {
     groupId: string
     /**
      * Third-party integration that you want to configure for your project.
-     * @type IntegrationViewForNdsGroup
+     * @type ThridPartyIntegration
      * @memberof ThirdPartyIntegrationsApiupdateThirdPartyIntegration
      */
-    integrationViewForNdsGroup: IntegrationViewForNdsGroup
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof ThirdPartyIntegrationsApiupdateThirdPartyIntegration
-     */
-    envelope?: boolean
+    thridPartyIntegration: ThridPartyIntegration
     /**
      * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
@@ -13401,12 +10614,6 @@ export interface ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest {
      * @memberof ThirdPartyIntegrationsApiupdateThirdPartyIntegration
      */
     pageNum?: number
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof ThirdPartyIntegrationsApiupdateThirdPartyIntegration
-     */
-    pretty?: boolean
 }
 
 export class ObjectThirdPartyIntegrationsApi {
@@ -13417,48 +10624,48 @@ export class ObjectThirdPartyIntegrationsApi {
     }
 
     /**
-     * Adds the settings for configuring one third-party service integration. These settings apply to all databases managed in the specified MongoDB Cloud project. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Adds the settings for configuring one third-party service integration. These settings apply to all databases managed in the specified MongoDB Cloud project. Each project can have only one configuration per `{INTEGRATION-TYPE}`. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role.
      * Configure One Third-Party Service Integration
      * @param param the request object
      */
-    public createThirdPartyIntegration(param: ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest, options?: Configuration): Promise<GroupPaginatedIntegrationView> {
-        return this.api.createThirdPartyIntegration(param.integrationType, param.groupId, param.integrationViewForNdsGroup, param.envelope, param.includeCount, param.itemsPerPage, param.pageNum, param.pretty,  options).toPromise();
+    public createThirdPartyIntegration(param: ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest, options?: Configuration): Promise<PaginatedIntegration> {
+        return this.api.createThirdPartyIntegration(param.integrationType, param.groupId, param.thridPartyIntegration, param.includeCount, param.itemsPerPage, param.pageNum,  options).toPromise();
     }
 
     /**
-     * Removes the settings that permit configuring one third-party service integration. These settings apply to all databases managed in one MongoDB Cloud project. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Removes the settings that permit configuring one third-party service integration. These settings apply to all databases managed in one MongoDB Cloud project. If you delete an integration from a project, you remove that integration configuration only for that project. This action doesn't affect any other project or organization's configured `{INTEGRATION-TYPE}` integrations. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role.
      * Remove One Third-Party Service Integration
      * @param param the request object
      */
-    public deleteThirdPartyIntegration(param: ThirdPartyIntegrationsApiDeleteThirdPartyIntegrationRequest, options?: Configuration): Promise<void> {
-        return this.api.deleteThirdPartyIntegration(param.integrationType, param.groupId, param.envelope, param.pretty,  options).toPromise();
+    public deleteThirdPartyIntegration(param: ThirdPartyIntegrationsApiDeleteThirdPartyIntegrationRequest, options?: Configuration): Promise<any> {
+        return this.api.deleteThirdPartyIntegration(param.integrationType, param.groupId,  options).toPromise();
     }
 
     /**
-     * Returns the settings for configuring integration with one third-party service. These settings apply to all databases managed in one MongoDB Cloud project. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Returns the settings for configuring integration with one third-party service. These settings apply to all databases managed in one MongoDB Cloud project. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role.
      * Return One Third-Party Service Integration
      * @param param the request object
      */
-    public getThirdPartyIntegration(param: ThirdPartyIntegrationsApiGetThirdPartyIntegrationRequest, options?: Configuration): Promise<IntegrationViewForNdsGroup> {
-        return this.api.getThirdPartyIntegration(param.groupId, param.integrationType, param.envelope, param.pretty,  options).toPromise();
+    public getThirdPartyIntegration(param: ThirdPartyIntegrationsApiGetThirdPartyIntegrationRequest, options?: Configuration): Promise<ThridPartyIntegration> {
+        return this.api.getThirdPartyIntegration(param.groupId, param.integrationType,  options).toPromise();
     }
 
     /**
-     * Returns the settings that permit integrations with all configured third-party services. These settings apply to all databases managed in one MongoDB Cloud project. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Returns the settings that permit integrations with all configured third-party services. These settings apply to all databases managed in one MongoDB Cloud project. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role.
      * Return All Active Third-Party Service Integrations
      * @param param the request object
      */
-    public listThirdPartyIntegrations(param: ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest, options?: Configuration): Promise<GroupPaginatedIntegrationView> {
-        return this.api.listThirdPartyIntegrations(param.groupId, param.envelope, param.includeCount, param.itemsPerPage, param.pageNum, param.pretty,  options).toPromise();
+    public listThirdPartyIntegrations(param: ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest, options?: Configuration): Promise<PaginatedIntegration> {
+        return this.api.listThirdPartyIntegrations(param.groupId, param.includeCount, param.itemsPerPage, param.pageNum,  options).toPromise();
     }
 
     /**
-     * Updates the settings for configuring integration with one third-party service. These settings apply to all databases managed in one MongoDB Cloud project. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role. This resource doesn't require the API Key to have an Access List.
+     * Updates the settings for configuring integration with one third-party service. These settings apply to all databases managed in one MongoDB Cloud project. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role.
      * Update One Third-Party Service Integration
      * @param param the request object
      */
-    public updateThirdPartyIntegration(param: ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest, options?: Configuration): Promise<GroupPaginatedIntegrationView> {
-        return this.api.updateThirdPartyIntegration(param.integrationType, param.groupId, param.integrationViewForNdsGroup, param.envelope, param.includeCount, param.itemsPerPage, param.pageNum, param.pretty,  options).toPromise();
+    public updateThirdPartyIntegration(param: ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest, options?: Configuration): Promise<PaginatedIntegration> {
+        return this.api.updateThirdPartyIntegration(param.integrationType, param.groupId, param.thridPartyIntegration, param.includeCount, param.itemsPerPage, param.pageNum,  options).toPromise();
     }
 
 }
@@ -13485,18 +10692,6 @@ export interface X509AuthenticationApiCreateDatabaseUserCertificateRequest {
      * @memberof X509AuthenticationApicreateDatabaseUserCertificate
      */
     userCert: UserCert
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof X509AuthenticationApicreateDatabaseUserCertificate
-     */
-    envelope?: boolean
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof X509AuthenticationApicreateDatabaseUserCertificate
-     */
-    pretty?: boolean
 }
 
 export interface X509AuthenticationApiDisableCustomerManagedX509Request {
@@ -13506,12 +10701,6 @@ export interface X509AuthenticationApiDisableCustomerManagedX509Request {
      * @memberof X509AuthenticationApidisableCustomerManagedX509
      */
     groupId: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof X509AuthenticationApidisableCustomerManagedX509
-     */
-    envelope?: boolean
 }
 
 export interface X509AuthenticationApiListDatabaseUserCertificatesRequest {
@@ -13527,12 +10716,6 @@ export interface X509AuthenticationApiListDatabaseUserCertificatesRequest {
      * @memberof X509AuthenticationApilistDatabaseUserCertificates
      */
     username: string
-    /**
-     * Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @type boolean
-     * @memberof X509AuthenticationApilistDatabaseUserCertificates
-     */
-    envelope?: boolean
     /**
      * Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
      * @type boolean
@@ -13551,12 +10734,6 @@ export interface X509AuthenticationApiListDatabaseUserCertificatesRequest {
      * @memberof X509AuthenticationApilistDatabaseUserCertificates
      */
     pageNum?: number
-    /**
-     * Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-     * @type boolean
-     * @memberof X509AuthenticationApilistDatabaseUserCertificates
-     */
-    pretty?: boolean
 }
 
 export class ObjectX509AuthenticationApi {
@@ -13567,30 +10744,30 @@ export class ObjectX509AuthenticationApi {
     }
 
     /**
-     * Generates one X.509 certificate for the specified MongoDB user. Atlas manages the certificate and MongoDB user that belong to one project. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.  To get MongoDB Cloud to generate a managed certificate for a database user, set `\"x509Type\" : \"MANAGED\"` on the desired MongoDB Database User.  If you are managing your own Certificate Authority (CA) in Self-Managed X.509 mode, you must generate certificates for database users using your own CA.
+     * Generates one X.509 certificate for the specified MongoDB user. Atlas manages the certificate and MongoDB user that belong to one project. To use this resource, the requesting API Key must have the Project Owner role.  To get MongoDB Cloud to generate a managed certificate for a database user, set `\"x509Type\" : \"MANAGED\"` on the desired MongoDB Database User.  If you are managing your own Certificate Authority (CA) in Self-Managed X.509 mode, you must generate certificates for database users using your own CA.
      * Create One X.509 Certificate for One MongoDB User
      * @param param the request object
      */
-    public createDatabaseUserCertificate(param: X509AuthenticationApiCreateDatabaseUserCertificateRequest, options?: Configuration): Promise<UserCert> {
-        return this.api.createDatabaseUserCertificate(param.groupId, param.username, param.userCert, param.envelope, param.pretty,  options).toPromise();
+    public createDatabaseUserCertificate(param: X509AuthenticationApiCreateDatabaseUserCertificateRequest, options?: Configuration): Promise<string> {
+        return this.api.createDatabaseUserCertificate(param.groupId, param.username, param.userCert,  options).toPromise();
     }
 
     /**
-     * Clear customer-managed X.509 settings on a project, including the uploaded Certificate Authority, disabling Self-Managed X.509.  Updating this configuration triggers a rolling restart of the database.
+     * Clears the customer-managed X.509 settings on a project, including the uploaded Certificate Authority, which disables self-managed X.509.   Updating this configuration triggers a rolling restart of the database. You must have the Project Owner role to use this endpoint.
      * Disable Customer-Managed X.509
      * @param param the request object
      */
     public disableCustomerManagedX509(param: X509AuthenticationApiDisableCustomerManagedX509Request, options?: Configuration): Promise<UserSecurity> {
-        return this.api.disableCustomerManagedX509(param.groupId, param.envelope,  options).toPromise();
+        return this.api.disableCustomerManagedX509(param.groupId,  options).toPromise();
     }
 
     /**
-     * Returns all unexpired X.509 certificates for the specified MongoDB user. This MongoDB user belongs to one project. Atlas manages these certificates and the MongoDB user. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns all unexpired X.509 certificates for the specified MongoDB user. This MongoDB user belongs to one project. Atlas manages these certificates and the MongoDB user. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return All X.509 Certificates Assigned to One MongoDB User
      * @param param the request object
      */
-    public listDatabaseUserCertificates(param: X509AuthenticationApiListDatabaseUserCertificatesRequest, options?: Configuration): Promise<PaginatedUserCertView> {
-        return this.api.listDatabaseUserCertificates(param.groupId, param.username, param.envelope, param.includeCount, param.itemsPerPage, param.pageNum, param.pretty,  options).toPromise();
+    public listDatabaseUserCertificates(param: X509AuthenticationApiListDatabaseUserCertificatesRequest, options?: Configuration): Promise<PaginatedUserCert> {
+        return this.api.listDatabaseUserCertificates(param.groupId, param.username, param.includeCount, param.itemsPerPage, param.pageNum,  options).toPromise();
     }
 
 }

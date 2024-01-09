@@ -8,9 +8,9 @@ Method | HTTP request | Description
 
 
 # **createLegacyBackupRestoreJob**
-> PaginatedRestoreJobView createLegacyBackupRestoreJob(apiRestoreJobView)
+> PaginatedRestoreJob createLegacyBackupRestoreJob(backupRestoreJob)
 
-Restores one legacy backup for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
+Restores one legacy backup for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Owner role. Effective 23 March 2020, all new clusters can use only Cloud Backups. When you upgrade to 4.2, your backup system upgrades to cloud backup if it is currently set to legacy backup. After this upgrade, all your existing legacy backup snapshots remain available. They expire over time in accordance with your retention policy. Your backup policy resets to the default schedule. If you had a custom backup policy in place with legacy backups, you must re-create it with the procedure outlined in the [Cloud Backup documentation](https://www.mongodb.com/docs/atlas/backup/cloud-backup/scheduling/#std-label-cloud-provider-backup-schedule). This endpoint doesn't support creating checkpoint restore jobs for sharded clusters, or creating restore jobs for queryable backup snapshots. If you create an automated restore job by specifying `delivery.methodName` of `AUTOMATED_RESTORE` in your request body, MongoDB Cloud removes all existing data on the target cluster prior to the restore.
 
 ### Example
 
@@ -26,16 +26,16 @@ let body:.LegacyBackupRestoreJobsApiCreateLegacyBackupRestoreJobRequest = {
   // string | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
   groupId: "32b6e34b3d91647abb20e7b8",
   // string | Human-readable label that identifies the cluster with the snapshot you want to return.
-  clusterName: "gqW,C",
-  // ApiRestoreJobView | Legacy backup to restore to one cluster in the specified project.
-  apiRestoreJobView: {
+  clusterName: "gqWzyBAw2ZuufUOHOEhA8IcFQXnua",
+  // BackupRestoreJob | Legacy backup to restore to one cluster in the specified project.
+  backupRestoreJob: {
     checkpointId: "32b6e34b3d91647abb20e7b8",
     delivery: {
       expirationHours: 1,
       maxDownloads: 1,
-      methodName: "CLIENT_PIT_HTTP",
+      methodName: "methodName_example",
       targetClusterId: "32b6e34b3d91647abb20e7b8",
-      targetClusterName: "gqW,C",
+      targetClusterName: "gqWzyBAw2ZuufUOHOEhA8IcFQXnua",
       targetGroupId: "32b6e34b3d91647abb20e7b8",
     },
     oplogInc: 1,
@@ -43,10 +43,6 @@ let body:.LegacyBackupRestoreJobsApiCreateLegacyBackupRestoreJobRequest = {
     pointInTimeUTCMillis: 1199145600000,
     snapshotId: "32b6e34b3d91647abb20e7b8",
   },
-  // boolean | Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. (optional)
-  envelope: false,
-  // boolean | Flag that indicates whether the response body should be in the <a href=\"https://en.wikipedia.org/wiki/Prettyprint\" target=\"_blank\" rel=\"noopener noreferrer\">prettyprint</a> format. (optional)
-  pretty: false,
 };
 
 apiInstance.createLegacyBackupRestoreJob(body).then((data:any) => {
@@ -59,16 +55,14 @@ apiInstance.createLegacyBackupRestoreJob(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **apiRestoreJobView** | **ApiRestoreJobView**| Legacy backup to restore to one cluster in the specified project. |
+ **backupRestoreJob** | **BackupRestoreJob**| Legacy backup to restore to one cluster in the specified project. |
  **groupId** | [**string**] | Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. | defaults to undefined
  **clusterName** | [**string**] | Human-readable label that identifies the cluster with the snapshot you want to return. | defaults to undefined
- **envelope** | [**boolean**] | Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. | (optional) defaults to undefined
- **pretty** | [**boolean**] | Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format. | (optional) defaults to undefined
 
 
 ### Return type
 
-**PaginatedRestoreJobView**
+**PaginatedRestoreJob**
 
 ### Authorization
 
@@ -84,9 +78,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**400** | Bad Request |  -  |
-**404** | Not Found |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Bad Request. |  -  |
+**404** | Not Found. |  -  |
+**500** | Internal Server Error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 

@@ -8,8 +8,8 @@ import {canConsumeForm, isCodeInRange} from '../util';
 import {SecurityAuthentication} from '../auth/auth';
 
 
-import { ApiAppUserView } from '../models/ApiAppUserView';
 import { ApiError } from '../models/ApiError';
+import { CloudAppUser } from '../models/CloudAppUser';
 
 /**
  * no description
@@ -17,21 +17,17 @@ import { ApiError } from '../models/ApiError';
 export class MongoDBCloudUsersApiRequestFactory extends BaseAPIRequestFactory {
 
     /**
-     * Creates one MongoDB Cloud user account. A MongoDB Cloud user account only grants access to the MongoDB Cloud application. To grant database access, create a database user. To use this resource, the requesting API Key can have any role. This resource doesn't require the API Key to have an Access List.
+     * Creates one MongoDB Cloud user account. A MongoDB Cloud user account grants access to only the MongoDB Cloud application. To grant database access, create a database user. MongoDB Cloud sends an email to the users you specify, inviting them to join the project. Invited users don't have access to the project until they accept the invitation. Invitations expire after 30 days.   MongoDB Cloud limits MongoDB Cloud user membership to a maximum of 250 MongoDB Cloud users per team. MongoDB Cloud limits MongoDB Cloud user membership to 500 MongoDB Cloud users per project and 500 MongoDB Cloud users per organization, which includes the combined membership of all projects in the organization. MongoDB Cloud raises an error if an operation exceeds these limits. For example, if you have an organization with five projects, and each project has 100 MongoDB Cloud users, and each MongoDB Cloud user belongs to only one project, you can't add any MongoDB Cloud users to this organization without first removing existing MongoDB Cloud users from the organization.   To use this resource, the requesting API Key can have any role.
      * Create One MongoDB Cloud User
-     * @param apiAppUserView MongoDB Cloud user account to create.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+     * @param cloudAppUser MongoDB Cloud user account to create.
      */
-    public async createUser(apiAppUserView: ApiAppUserView, envelope?: boolean, pretty?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async createUser(cloudAppUser: CloudAppUser, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
-        // verify required parameter 'apiAppUserView' is not null or undefined
-        if (apiAppUserView === null || apiAppUserView === undefined) {
-            throw new RequiredError("MongoDBCloudUsersApi", "createUser", "apiAppUserView");
+        // verify required parameter 'cloudAppUser' is not null or undefined
+        if (cloudAppUser === null || cloudAppUser === undefined) {
+            throw new RequiredError("MongoDBCloudUsersApi", "createUser", "cloudAppUser");
         }
-
-
 
 
         // Path Params
@@ -41,24 +37,14 @@ export class MongoDBCloudUsersApiRequestFactory extends BaseAPIRequestFactory {
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
 
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
-
 
         // Body Params
         const contentType = ObjectSerializer.getPreferredMediaType([
-            "application/json"
+            "application/vnd.atlas.2023-01-01+json"
         ]);
         requestContext.setHeaderParam("Content-Type", contentType);
         const serializedBody = ObjectSerializer.stringify(
-            ObjectSerializer.serialize(apiAppUserView, "ApiAppUserView", ""),
+            ObjectSerializer.serialize(cloudAppUser, "CloudAppUser", ""),
             contentType
         );
         requestContext.setBody(serializedBody);
@@ -73,21 +59,17 @@ export class MongoDBCloudUsersApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * Returns the details for one MongoDB Cloud user account with the specified unique identifier for the user. To use this resource, the requesting API Key can have any role. This resource doesn't require the API Key to have an Access List.
+     * Returns the details for one MongoDB Cloud user account with the specified unique identifier for the user. You can't use this endpoint to return information on an API Key. To return information about an API Key, use the [Return One Organization](#tag/Organizations/operation/getOrganization) API Key endpoint. You can always retrieve your own user account. If you are the owner of a MongoDB Cloud organization or project, you can also retrieve the user profile for any user with membership in that organization or project. To use this resource, the requesting API Key can have any role.
      * Return One MongoDB Cloud User using Its ID
      * @param userId Unique 24-hexadecimal digit string that identifies this user.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
      */
-    public async getUser(userId: string, envelope?: boolean, pretty?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async getUser(userId: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'userId' is not null or undefined
         if (userId === null || userId === undefined) {
             throw new RequiredError("MongoDBCloudUsersApi", "getUser", "userId");
         }
-
-
 
 
         // Path Params
@@ -97,16 +79,6 @@ export class MongoDBCloudUsersApiRequestFactory extends BaseAPIRequestFactory {
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
-
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
 
 
         
@@ -119,21 +91,17 @@ export class MongoDBCloudUsersApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * Returns the details for one MongoDB Cloud user account with the specified username. To use this resource, the requesting API Key can have any role. This resource doesn't require the API Key to have an Access List.
+     * Returns the details for one MongoDB Cloud user account with the specified username. You can't use this endpoint to return information about an API Key. To return information about an API Key, use the [Return One Organization](#tag/Organizations/operation/getOrganization) API Key endpoint. To use this resource, the requesting API Key can have any role.
      * Return One MongoDB Cloud User using Their Username
      * @param userName Email address that belongs to the MongoDB Cloud user account. You cannot modify this address after creating the user.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
      */
-    public async getUserByUsername(userName: string, envelope?: boolean, pretty?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async getUserByUsername(userName: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'userName' is not null or undefined
         if (userName === null || userName === undefined) {
             throw new RequiredError("MongoDBCloudUsersApi", "getUserByUsername", "userName");
         }
-
-
 
 
         // Path Params
@@ -143,16 +111,6 @@ export class MongoDBCloudUsersApiRequestFactory extends BaseAPIRequestFactory {
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
-
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
 
 
         
@@ -175,13 +133,13 @@ export class MongoDBCloudUsersApiResponseProcessor {
      * @params response Response returned by the server for a request to createUser
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createUser(response: ResponseContext): Promise<ApiAppUserView > {
+     public async createUser(response: ResponseContext): Promise<CloudAppUser > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: ApiAppUserView = ObjectSerializer.deserialize(
+            const body: CloudAppUser = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "ApiAppUserView", ""
-            ) as ApiAppUserView;
+                "CloudAppUser", ""
+            ) as CloudAppUser;
             return body;
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
@@ -189,29 +147,29 @@ export class MongoDBCloudUsersApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized.", body, response.headers);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: ApiAppUserView = ObjectSerializer.deserialize(
+            const body: CloudAppUser = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "ApiAppUserView", ""
-            ) as ApiAppUserView;
+                "CloudAppUser", ""
+            ) as CloudAppUser;
             return body;
         }
 
@@ -225,13 +183,13 @@ export class MongoDBCloudUsersApiResponseProcessor {
      * @params response Response returned by the server for a request to getUser
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getUser(response: ResponseContext): Promise<ApiAppUserView > {
+     public async getUser(response: ResponseContext): Promise<CloudAppUser > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: ApiAppUserView = ObjectSerializer.deserialize(
+            const body: CloudAppUser = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "ApiAppUserView", ""
-            ) as ApiAppUserView;
+                "CloudAppUser", ""
+            ) as CloudAppUser;
             return body;
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
@@ -239,29 +197,29 @@ export class MongoDBCloudUsersApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized.", body, response.headers);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: ApiAppUserView = ObjectSerializer.deserialize(
+            const body: CloudAppUser = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "ApiAppUserView", ""
-            ) as ApiAppUserView;
+                "CloudAppUser", ""
+            ) as CloudAppUser;
             return body;
         }
 
@@ -275,13 +233,13 @@ export class MongoDBCloudUsersApiResponseProcessor {
      * @params response Response returned by the server for a request to getUserByUsername
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getUserByUsername(response: ResponseContext): Promise<ApiAppUserView > {
+     public async getUserByUsername(response: ResponseContext): Promise<CloudAppUser > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: ApiAppUserView = ObjectSerializer.deserialize(
+            const body: CloudAppUser = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "ApiAppUserView", ""
-            ) as ApiAppUserView;
+                "CloudAppUser", ""
+            ) as CloudAppUser;
             return body;
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
@@ -289,29 +247,29 @@ export class MongoDBCloudUsersApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized.", body, response.headers);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Not Found.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: ApiAppUserView = ObjectSerializer.deserialize(
+            const body: CloudAppUser = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "ApiAppUserView", ""
-            ) as ApiAppUserView;
+                "CloudAppUser", ""
+            ) as CloudAppUser;
             return body;
         }
 

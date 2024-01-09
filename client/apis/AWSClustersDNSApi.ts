@@ -8,7 +8,7 @@ import {canConsumeForm, isCodeInRange} from '../util';
 import {SecurityAuthentication} from '../auth/auth';
 
 
-import { AWSCustomDNSEnabledView } from '../models/AWSCustomDNSEnabledView';
+import { AWSCustomDNSEnabled } from '../models/AWSCustomDNSEnabled';
 import { ApiError } from '../models/ApiError';
 
 /**
@@ -17,21 +17,17 @@ import { ApiError } from '../models/ApiError';
 export class AWSClustersDNSApiRequestFactory extends BaseAPIRequestFactory {
 
     /**
-     * Returns the custom DNS configuration for AWS clusters in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+     * Returns the custom DNS configuration for AWS clusters in the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
      * Return One Custom DNS Configuration for Atlas Clusters on AWS
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
      */
-    public async getAWSCustomDNS(groupId: string, envelope?: boolean, pretty?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async getAWSCustomDNS(groupId: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
         if (groupId === null || groupId === undefined) {
             throw new RequiredError("AWSClustersDNSApi", "getAWSCustomDNS", "groupId");
         }
-
-
 
 
         // Path Params
@@ -41,16 +37,6 @@ export class AWSClustersDNSApiRequestFactory extends BaseAPIRequestFactory {
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
-
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
 
 
         
@@ -63,14 +49,12 @@ export class AWSClustersDNSApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * Enables or disables the custom DNS configuration for AWS clusters in the specified project. Enable custom DNS if you use AWS VPC peering and use your own DNS servers. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
+     * Enables or disables the custom DNS configuration for AWS clusters in the specified project. Enable custom DNS if you use AWS VPC peering and use your own DNS servers. To use this resource, the requesting API Key must have the Project Atlas Admin role.
      * Toggle State of One Custom DNS Configuration for Atlas Clusters on AWS
      * @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-     * @param aWSCustomDNSEnabledView Enables or disables the custom DNS configuration for AWS clusters in the specified project.
-     * @param envelope Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-     * @param pretty Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+     * @param aWSCustomDNSEnabled Enables or disables the custom DNS configuration for AWS clusters in the specified project.
      */
-    public async toggleAWSCustomDNS(groupId: string, aWSCustomDNSEnabledView: AWSCustomDNSEnabledView, envelope?: boolean, pretty?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async toggleAWSCustomDNS(groupId: string, aWSCustomDNSEnabled: AWSCustomDNSEnabled, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'groupId' is not null or undefined
@@ -79,12 +63,10 @@ export class AWSClustersDNSApiRequestFactory extends BaseAPIRequestFactory {
         }
 
 
-        // verify required parameter 'aWSCustomDNSEnabledView' is not null or undefined
-        if (aWSCustomDNSEnabledView === null || aWSCustomDNSEnabledView === undefined) {
-            throw new RequiredError("AWSClustersDNSApi", "toggleAWSCustomDNS", "aWSCustomDNSEnabledView");
+        // verify required parameter 'aWSCustomDNSEnabled' is not null or undefined
+        if (aWSCustomDNSEnabled === null || aWSCustomDNSEnabled === undefined) {
+            throw new RequiredError("AWSClustersDNSApi", "toggleAWSCustomDNS", "aWSCustomDNSEnabled");
         }
-
-
 
 
         // Path Params
@@ -95,16 +77,6 @@ export class AWSClustersDNSApiRequestFactory extends BaseAPIRequestFactory {
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
         requestContext.setHeaderParam("Accept","application/vnd.atlas.2023-01-01+json")
 
-        // Query Params
-        if (envelope !== undefined) {
-            requestContext.setQueryParam("envelope", ObjectSerializer.serialize(envelope, "boolean", ""));
-        }
-
-        // Query Params
-        if (pretty !== undefined) {
-            requestContext.setQueryParam("pretty", ObjectSerializer.serialize(pretty, "boolean", ""));
-        }
-
 
         // Body Params
         const contentType = ObjectSerializer.getPreferredMediaType([
@@ -112,7 +84,7 @@ export class AWSClustersDNSApiRequestFactory extends BaseAPIRequestFactory {
         ]);
         requestContext.setHeaderParam("Content-Type", contentType);
         const serializedBody = ObjectSerializer.stringify(
-            ObjectSerializer.serialize(aWSCustomDNSEnabledView, "AWSCustomDNSEnabledView", ""),
+            ObjectSerializer.serialize(aWSCustomDNSEnabled, "AWSCustomDNSEnabled", ""),
             contentType
         );
         requestContext.setBody(serializedBody);
@@ -137,13 +109,13 @@ export class AWSClustersDNSApiResponseProcessor {
      * @params response Response returned by the server for a request to getAWSCustomDNS
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getAWSCustomDNS(response: ResponseContext): Promise<AWSCustomDNSEnabledView > {
+     public async getAWSCustomDNS(response: ResponseContext): Promise<AWSCustomDNSEnabled > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: AWSCustomDNSEnabledView = ObjectSerializer.deserialize(
+            const body: AWSCustomDNSEnabled = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "AWSCustomDNSEnabledView", ""
-            ) as AWSCustomDNSEnabledView;
+                "AWSCustomDNSEnabled", ""
+            ) as AWSCustomDNSEnabled;
             return body;
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
@@ -151,22 +123,22 @@ export class AWSClustersDNSApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: AWSCustomDNSEnabledView = ObjectSerializer.deserialize(
+            const body: AWSCustomDNSEnabled = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "AWSCustomDNSEnabledView", ""
-            ) as AWSCustomDNSEnabledView;
+                "AWSCustomDNSEnabled", ""
+            ) as AWSCustomDNSEnabled;
             return body;
         }
 
@@ -180,13 +152,13 @@ export class AWSClustersDNSApiResponseProcessor {
      * @params response Response returned by the server for a request to toggleAWSCustomDNS
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async toggleAWSCustomDNS(response: ResponseContext): Promise<AWSCustomDNSEnabledView > {
+     public async toggleAWSCustomDNS(response: ResponseContext): Promise<AWSCustomDNSEnabled > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: AWSCustomDNSEnabledView = ObjectSerializer.deserialize(
+            const body: AWSCustomDNSEnabled = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "AWSCustomDNSEnabledView", ""
-            ) as AWSCustomDNSEnabledView;
+                "AWSCustomDNSEnabled", ""
+            ) as AWSCustomDNSEnabled;
             return body;
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
@@ -194,22 +166,22 @@ export class AWSClustersDNSApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Unauthorized.", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             const body: ApiError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ApiError", ""
             ) as ApiError;
-            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error", body, response.headers);
+            throw new ApiException<ApiError>(response.httpStatusCode, "Internal Server Error.", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: AWSCustomDNSEnabledView = ObjectSerializer.deserialize(
+            const body: AWSCustomDNSEnabled = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "AWSCustomDNSEnabledView", ""
-            ) as AWSCustomDNSEnabledView;
+                "AWSCustomDNSEnabled", ""
+            ) as AWSCustomDNSEnabled;
             return body;
         }
 

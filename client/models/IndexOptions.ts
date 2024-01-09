@@ -1,6 +1,6 @@
 /**
  * MongoDB Atlas Administration API
- * The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas. To learn more, review the [Administration API overview](https://www.mongodb.com/docs/atlas/api/atlas-admin-api/). This OpenAPI specification covers all of the collections with the exception of Alerts, Alert Configurations, and Events. Refer to the [legacy documentation](https://www.mongodb.com/docs/atlas/reference/api-resources/) for the specifications of these resources.
+ * The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas.  The Atlas Administration API uses HTTP Digest Authentication to authenticate requests. Provide a programmatic API public key and corresponding private key as the username and password when constructing the HTTP request. For example, to [return database access history](#tag/Access-Tracking/operation/listAccessLogsByClusterName) with [cURL](https://en.wikipedia.org/wiki/CURL), run the following command in the terminal:  ``` curl --user \"{PUBLIC-KEY}:{PRIVATE-KEY}\" \\   --digest \\   --header \"Accept: application/vnd.atlas.2023-02-01+json\" \\   GET \"https://cloud.mongodb.com/api/atlas/v2/groups/{groupId}/dbAccessHistory/clusters/{clusterName}?pretty=true\" ```  To learn more, see [Get Started with the Atlas Administration API](https://www.mongodb.com/docs/atlas/configure-api-access/). For support, see [MongoDB Support](https://www.mongodb.com/support/get-started).
  *
  * OpenAPI spec version: 2.0
  * 
@@ -20,7 +20,7 @@ export class IndexOptions {
     * Index version number applied to the 2dsphere index. MongoDB 3.2 and later use version 3. Use this option to override the default version number. This option applies to the **2dsphere** index type only.
     */
 
-    '_2dsphereIndexVersion': number;
+    '_2dsphereIndexVersion'?: number;
     /**
     * Flag that indicates whether MongoDB should build the index in the background. This applies to MongoDB databases running feature compatibility version 4.0 or earlier. MongoDB databases running FCV 4.2 or later build indexes using an optimized build process. This process holds the exclusive lock only at the beginning and end of the build process. The rest of the build process yields to interleaving read and write operations. MongoDB databases running FCV 4.2 or later ignore this option. This option applies to all index types.
     */
@@ -36,6 +36,11 @@ export class IndexOptions {
     */
 
     'bucketSize'?: number;
+    /**
+    * The columnstoreProjection document allows to include or exclude subschemas schema. One cannot combine inclusion and exclusion statements. Accordingly, the <value> can be either of the following: 1 or true to include the field and recursively all fields it is a prefix of in the index 0 or false to exclude the field and recursively all fields it is a prefix of from the index.
+    */
+
+    'columnstoreProjection'?: { [key: string]: number; };
     /**
     * Human language that determines the list of stop words and the rules for the stemmer and tokenizer. This option accepts the supported languages using its name in lowercase english or the ISO 639-2 code. If you set this parameter to `\"none\"`, then the text search uses simple tokenization with no list of stop words and no stemming. This option applies to the **text** index type only.
     */
@@ -92,7 +97,7 @@ export class IndexOptions {
 
     'textIndexVersion'?: number;
     /**
-    * Flag that indicates whether this index can accept insertion or update of documents when the index key value matches an existing index key value. Set `\"unique\" : true` to set this index as unique. You can't set a hashed index to be unique. This option applies to all index types.
+    * Flag that indicates whether this index can accept insertion or update of documents when the index key value matches an existing index key value. Set `\"unique\" : true` to set this index as unique. You can't set a hashed index to be unique. This option applies to all index types. This option is unsupported for rolling indexes.
     */
 
     'unique'?: boolean;
@@ -127,6 +132,12 @@ export class IndexOptions {
             "name": "bucketSize",
             "baseName": "bucketSize",
             "type": "number",
+            "format": "int32"
+        },
+        {
+            "name": "columnstoreProjection",
+            "baseName": "columnstoreProjection",
+            "type": "{ [key: string]: number; }",
             "format": "int32"
         },
         {

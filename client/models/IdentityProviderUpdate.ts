@@ -1,6 +1,6 @@
 /**
  * MongoDB Atlas Administration API
- * The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas. To learn more, review the [Administration API overview](https://www.mongodb.com/docs/atlas/api/atlas-admin-api/). This OpenAPI specification covers all of the collections with the exception of Alerts, Alert Configurations, and Events. Refer to the [legacy documentation](https://www.mongodb.com/docs/atlas/reference/api-resources/) for the specifications of these resources.
+ * The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas.  The Atlas Administration API uses HTTP Digest Authentication to authenticate requests. Provide a programmatic API public key and corresponding private key as the username and password when constructing the HTTP request. For example, to [return database access history](#tag/Access-Tracking/operation/listAccessLogsByClusterName) with [cURL](https://en.wikipedia.org/wiki/CURL), run the following command in the terminal:  ``` curl --user \"{PUBLIC-KEY}:{PRIVATE-KEY}\" \\   --digest \\   --header \"Accept: application/vnd.atlas.2023-02-01+json\" \\   GET \"https://cloud.mongodb.com/api/atlas/v2/groups/{groupId}/dbAccessHistory/clusters/{clusterName}?pretty=true\" ```  To learn more, see [Get Started with the Atlas Administration API](https://www.mongodb.com/docs/atlas/configure-api-access/). For support, see [MongoDB Support](https://www.mongodb.com/support/get-started).
  *
  * OpenAPI spec version: 2.0
  * 
@@ -20,6 +20,11 @@ export class IdentityProviderUpdate {
 
     'associatedDomains'?: Set<string>;
     /**
+    * The description for the identity provider.
+    */
+
+    'description'?: string;
+    /**
     * Human-readable label that identifies the identity provider.
     */
 
@@ -29,6 +34,36 @@ export class IdentityProviderUpdate {
     */
 
     'issuerUri'?: string;
+    /**
+    * The protocol for the identity provider.
+    */
+
+    'protocol'?: string;
+    /**
+    * Audience claim for the identity provider.
+    */
+
+    'audienceClaim'?: Array<string>;
+    /**
+    * Client ID for the identity provider.
+    */
+
+    'clientId'?: string;
+    /**
+    * Groups claim for the identity provider.
+    */
+
+    'groupsClaim'?: string;
+    /**
+    * Requested scopes for the identity provider.
+    */
+
+    'requestedScopes'?: Array<string>;
+    /**
+    * User claim for the identity provider.
+    */
+
+    'userClaim'?: string;
 
     'pemFileInfo'?: PemFileInfo;
     /**
@@ -42,10 +77,15 @@ export class IdentityProviderUpdate {
 
     'responseSignatureAlgorithm'?: string;
     /**
+    * Custom SSO Url for identity provider.
+    */
+
+    'slug'?: string;
+    /**
     * Flag that indicates whether the identity provider has SSO debug enabled.
     */
 
-    'ssoDebugEnabled': boolean;
+    'ssoDebugEnabled'?: boolean;
     /**
     * Unique string that identifies the intended audience of the SAML assertion.
     */
@@ -67,6 +107,12 @@ export class IdentityProviderUpdate {
             "format": ""
         },
         {
+            "name": "description",
+            "baseName": "description",
+            "type": "string",
+            "format": ""
+        },
+        {
             "name": "displayName",
             "baseName": "displayName",
             "type": "string",
@@ -75,6 +121,42 @@ export class IdentityProviderUpdate {
         {
             "name": "issuerUri",
             "baseName": "issuerUri",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "protocol",
+            "baseName": "protocol",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "audienceClaim",
+            "baseName": "audienceClaim",
+            "type": "Array<string>",
+            "format": ""
+        },
+        {
+            "name": "clientId",
+            "baseName": "clientId",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "groupsClaim",
+            "baseName": "groupsClaim",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "requestedScopes",
+            "baseName": "requestedScopes",
+            "type": "Array<string>",
+            "format": ""
+        },
+        {
+            "name": "userClaim",
+            "baseName": "userClaim",
             "type": "string",
             "format": ""
         },
@@ -93,6 +175,12 @@ export class IdentityProviderUpdate {
         {
             "name": "responseSignatureAlgorithm",
             "baseName": "responseSignatureAlgorithm",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "slug",
+            "baseName": "slug",
             "type": "string",
             "format": ""
         },
@@ -122,9 +210,4 @@ export class IdentityProviderUpdate {
     public constructor() {
     }
 }
-
-
-export type IdentityProviderUpdateRequestBindingEnum = "HTTP-POST" | "HTTP-REDIRECT" ;
-export type IdentityProviderUpdateResponseSignatureAlgorithmEnum = "SHA-1" | "SHA-256" ;
-export type IdentityProviderUpdateStatusEnum = "ACTIVE" | "INACTIVE" ;
 

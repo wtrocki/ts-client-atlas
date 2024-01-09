@@ -1,6 +1,6 @@
 /**
  * MongoDB Atlas Administration API
- * The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas. To learn more, review the [Administration API overview](https://www.mongodb.com/docs/atlas/api/atlas-admin-api/). This OpenAPI specification covers all of the collections with the exception of Alerts, Alert Configurations, and Events. Refer to the [legacy documentation](https://www.mongodb.com/docs/atlas/reference/api-resources/) for the specifications of these resources.
+ * The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas.  The Atlas Administration API uses HTTP Digest Authentication to authenticate requests. Provide a programmatic API public key and corresponding private key as the username and password when constructing the HTTP request. For example, to [return database access history](#tag/Access-Tracking/operation/listAccessLogsByClusterName) with [cURL](https://en.wikipedia.org/wiki/CURL), run the following command in the terminal:  ``` curl --user \"{PUBLIC-KEY}:{PRIVATE-KEY}\" \\   --digest \\   --header \"Accept: application/vnd.atlas.2023-02-01+json\" \\   GET \"https://cloud.mongodb.com/api/atlas/v2/groups/{groupId}/dbAccessHistory/clusters/{clusterName}?pretty=true\" ```  To learn more, see [Get Started with the Atlas Administration API](https://www.mongodb.com/docs/atlas/configure-api-access/). For support, see [MongoDB Support](https://www.mongodb.com/support/get-started).
  *
  * OpenAPI spec version: 2.0
  * 
@@ -10,35 +10,12 @@
  * Do not edit the class manually.
  */
 
-import { AWSCloudProviderContainer } from '../models/AWSCloudProviderContainer';
-import { AzureCloudProviderContainer } from '../models/AzureCloudProviderContainer';
-import { GCPCloudProviderContainer } from '../models/GCPCloudProviderContainer';
 import { HttpFile } from '../http/http';
 
 /**
 * Collection of settings that configures the network container for a virtual private connection on Amazon Web Services.
 */
 export class CloudProviderContainer {
-    /**
-    * IP addresses expressed in Classless Inter-Domain Routing (CIDR) notation that MongoDB Cloud uses for the network peering containers in your project. MongoDB Cloud assigns all of the project's clusters deployed to this cloud provider an IP address from this range. MongoDB Cloud locks this value if an M10 or greater cluster or a network peering connection exists in this project.  These CIDR blocks must fall within the ranges reserved per RFC 1918. AWS and Azure further limit the block to between the `/24` and  `/21` ranges.  To modify the CIDR block, the target project cannot have:  - Any M10 or greater clusters - Any other VPC peering connections   You can also create a new project and create a network peering connection to set the desired MongoDB Cloud network peering container CIDR block for that project. MongoDB Cloud limits the number of MongoDB nodes per network peering connection based on the CIDR block and the region selected for the project.   **Example:** A project in an Amazon Web Services (AWS) region supporting three availability zones and an MongoDB CIDR network peering container block of limit of `/24` equals 27 three-node replica sets.
-    */
-
-    'atlasCidrBlock': string;
-    /**
-    * Unique string that identifies the Azure subscription in which the MongoDB Cloud VNet resides.
-    */
-
-    'azureSubscriptionId'?: string;
-    /**
-    * Azure region to which MongoDB Cloud deployed this network peering container.
-    */
-
-    'region': string;
-    /**
-    * Unique string that identifies the Azure VNet in which MongoDB Cloud clusters in this network peering container exist. The response returns **null** if no clusters exist in this network peering container.
-    */
-
-    'vnetName'?: string;
     /**
     * Unique 24-hexadecimal digit string that identifies the network peering container.
     */
@@ -54,6 +31,26 @@ export class CloudProviderContainer {
     */
 
     'provisioned'?: boolean;
+    /**
+    * IP addresses expressed in Classless Inter-Domain Routing (CIDR) notation that MongoDB Cloud uses for the network peering containers in your project. MongoDB Cloud assigns all of the project's clusters deployed to this cloud provider an IP address from this range. MongoDB Cloud locks this value if an M10 or greater cluster or a network peering connection exists in this project.  These CIDR blocks must fall within the ranges reserved per RFC 1918. AWS and Azure further limit the block to between the `/24` and  `/21` ranges.  To modify the CIDR block, the target project cannot have:  - Any M10 or greater clusters - Any other VPC peering connections   You can also create a new project and create a network peering connection to set the desired MongoDB Cloud network peering container CIDR block for that project. MongoDB Cloud limits the number of MongoDB nodes per network peering connection based on the CIDR block and the region selected for the project.   **Example:** A project in an Amazon Web Services (AWS) region supporting three availability zones and an MongoDB CIDR network peering container block of limit of `/24` equals 27 three-node replica sets.  Alternatively: IP addresses expressed in Classless Inter-Domain Routing (CIDR) notation that MongoDB Cloud uses for the network peering containers in your project. MongoDB Cloud assigns all of the project's clusters deployed to this cloud provider an IP address from this range. MongoDB Cloud locks this value if an M10 or greater cluster or a network peering connection exists in this project.  These CIDR blocks must fall within the ranges reserved per RFC 1918. GCP further limits the block to a lower bound of the `/18` range.  To modify the CIDR block, the target project cannot have:  - Any M10 or greater clusters - Any other VPC peering connections   You can also create a new project and create a network peering connection to set the desired MongoDB Cloud network peering container CIDR block for that project. MongoDB Cloud limits the number of MongoDB nodes per network peering connection based on the CIDR block and the region selected for the project.   **Example:** A project in an Google Cloud (GCP) region supporting three availability zones and an MongoDB CIDR network peering container block of limit of `/24` equals 27 three-node replica sets.  Alternatively: IP addresses expressed in Classless Inter-Domain Routing (CIDR) notation that MongoDB Cloud uses for the network peering containers in your project. MongoDB Cloud assigns all of the project's clusters deployed to this cloud provider an IP address from this range. MongoDB Cloud locks this value if an M10 or greater cluster or a network peering connection exists in this project.  These CIDR blocks must fall within the ranges reserved per RFC 1918. AWS and Azure further limit the block to between the `/24` and  `/21` ranges.  To modify the CIDR block, the target project cannot have:  - Any M10 or greater clusters - Any other VPC peering connections   You can also create a new project and create a network peering connection to set the desired MongoDB Cloud network peering container CIDR block for that project. MongoDB Cloud limits the number of MongoDB nodes per network peering connection based on the CIDR block and the region selected for the project.   **Example:** A project in an Amazon Web Services (AWS) region supporting three availability zones and an MongoDB CIDR network peering container block of limit of `/24` equals 27 three-node replica sets.
+    */
+
+    'atlasCidrBlock'?: string;
+    /**
+    * Unique string that identifies the Azure subscription in which the MongoDB Cloud VNet resides.
+    */
+
+    'azureSubscriptionId'?: string;
+    /**
+    * Azure region to which MongoDB Cloud deployed this network peering container.
+    */
+
+    'region'?: string;
+    /**
+    * Unique string that identifies the Azure VNet in which MongoDB Cloud clusters in this network peering container exist. The response returns **null** if no clusters exist in this network peering container.
+    */
+
+    'vnetName'?: string;
     /**
     * Unique string that identifies the GCP project in which MongoDB Cloud clusters in this network peering container exist. The response returns **null** if no clusters exist in this network peering container.
     */
@@ -73,16 +70,34 @@ export class CloudProviderContainer {
     * Geographic area that Amazon Web Services (AWS) defines to which MongoDB Cloud deployed this network peering container.
     */
 
-    'regionName': string;
+    'regionName'?: string;
     /**
     * Unique string that identifies the MongoDB Cloud VPC on AWS.
     */
 
     'vpcId'?: string;
 
-    static readonly discriminator: string | undefined = "providerName";
+    static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "id",
+            "baseName": "id",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "providerName",
+            "baseName": "providerName",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "provisioned",
+            "baseName": "provisioned",
+            "type": "boolean",
+            "format": ""
+        },
         {
             "name": "atlasCidrBlock",
             "baseName": "atlasCidrBlock",
@@ -105,24 +120,6 @@ export class CloudProviderContainer {
             "name": "vnetName",
             "baseName": "vnetName",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "id",
-            "baseName": "id",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "providerName",
-            "baseName": "providerName",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "provisioned",
-            "baseName": "provisioned",
-            "type": "boolean",
             "format": ""
         },
         {
@@ -163,10 +160,4 @@ export class CloudProviderContainer {
     public constructor() {
     }
 }
-
-
-export type CloudProviderContainerRegionEnum = "US_CENTRAL" | "US_EAST" | "US_EAST_2" | "US_NORTH_CENTRAL" | "US_WEST" | "US_SOUTH_CENTRAL" | "EUROPE_NORTH" | "EUROPE_WEST" | "US_WEST_CENTRAL" | "US_WEST_2" | "US_WEST_3" | "CANADA_EAST" | "CANADA_CENTRAL" | "BRAZIL_SOUTH" | "BRAZIL_SOUTHEAST" | "AUSTRALIA_EAST" | "AUSTRALIA_SOUTH_EAST" | "AUSTRALIA_CENTRAL" | "AUSTRALIA_CENTRAL_2" | "UAE_NORTH" | "GERMANY_CENTRAL" | "GERMANY_NORTH_EAST" | "GERMANY_WEST_CENTRAL" | "GERMANY_NORTH" | "SWITZERLAND_NORTH" | "SWITZERLAND_WEST" | "SWEDEN_CENTRAL" | "SWEDEN_SOUTH" | "UK_SOUTH" | "UK_WEST" | "INDIA_CENTRAL" | "INDIA_WEST" | "INDIA_SOUTH" | "CHINA_EAST" | "CHINA_NORTH" | "ASIA_EAST" | "JAPAN_EAST" | "JAPAN_WEST" | "ASIA_SOUTH_EAST" | "KOREA_CENTRAL" | "KOREA_SOUTH" | "FRANCE_CENTRAL" | "FRANCE_SOUTH" | "SOUTH_AFRICA_NORTH" | "SOUTH_AFRICA_WEST" | "NORWAY_EAST" | "NORWAY_WEST" | "UAE_CENTRAL" ;
-export type CloudProviderContainerProviderNameEnum = "AWS" | "GCP" | "AZURE" | "TENANT" | "SERVERLESS" ;
-export type CloudProviderContainerRegionsEnum = "ASIA_EAST_2" | "ASIA_NORTHEAST_2" | "ASIA_NORTHEAST_3" | "ASIA_SOUTH_1" | "ASIA_SOUTH_2" | "ASIA_SOUTHEAST_2" | "AUSTRALIA_SOUTHEAST_1" | "AUSTRALIA_SOUTHEAST_2" | "CENTRAL_US" | "EASTERN_ASIA_PACIFIC" | "EASTERN_US" | "EUROPE_CENTRAL_2" | "EUROPE_NORTH_1" | "EUROPE_WEST_2" | "EUROPE_WEST_3" | "EUROPE_WEST_4" | "EUROPE_WEST_6" | "NORTH_AMERICA_NORTHEAST_1" | "NORTH_AMERICA_NORTHEAST_2" | "NORTHEASTERN_ASIA_PACIFIC" | "SOUTH_AMERICA_EAST_1" | "SOUTH_AMERICA_WEST_1" | "SOUTHEASTERN_ASIA_PACIFIC" | "US_EAST_4" | "US_WEST_2" | "US_WEST_3" | "US_WEST_4" | "WESTERN_EUROPE" | "WESTERN_US" ;
-export type CloudProviderContainerRegionNameEnum = "US_EAST_1" | "US_EAST_2" | "US_WEST_1" | "US_WEST_2" | "CA_CENTRAL_1" | "EU_NORTH_1" | "EU_WEST_1" | "EU_WEST_2" | "EU_WEST_3" | "EU_CENTRAL_1" | "SA_EAST_1" | "AP_EAST_1" | "AP_SOUTHEAST_2" | "AP_SOUTHEAST_3" | "AP_NORTHEAST_1" | "AP_NORTHEAST_2" | "AP_NORTHEAST_3" | "AP_SOUTHEAST_1" | "AP_SOUTH_1" | "CN_NORTH_1" | "CN_NORTHWEST_1" | "ME_SOUTH_1" | "AF_SOUTH_1" | "EU_SOUTH_1" | "GLOBAL" | "US_GOV_WEST_1" | "US_GOV_EAST_1" ;
 

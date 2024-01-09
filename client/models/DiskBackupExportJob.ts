@@ -1,6 +1,6 @@
 /**
  * MongoDB Atlas Administration API
- * The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas. To learn more, review the [Administration API overview](https://www.mongodb.com/docs/atlas/api/atlas-admin-api/). This OpenAPI specification covers all of the collections with the exception of Alerts, Alert Configurations, and Events. Refer to the [legacy documentation](https://www.mongodb.com/docs/atlas/reference/api-resources/) for the specifications of these resources.
+ * The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas.  The Atlas Administration API uses HTTP Digest Authentication to authenticate requests. Provide a programmatic API public key and corresponding private key as the username and password when constructing the HTTP request. For example, to [return database access history](#tag/Access-Tracking/operation/listAccessLogsByClusterName) with [cURL](https://en.wikipedia.org/wiki/CURL), run the following command in the terminal:  ``` curl --user \"{PUBLIC-KEY}:{PRIVATE-KEY}\" \\   --digest \\   --header \"Accept: application/vnd.atlas.2023-02-01+json\" \\   GET \"https://cloud.mongodb.com/api/atlas/v2/groups/{groupId}/dbAccessHistory/clusters/{clusterName}?pretty=true\" ```  To learn more, see [Get Started with the Atlas Administration API](https://www.mongodb.com/docs/atlas/configure-api-access/). For support, see [MongoDB Support](https://www.mongodb.com/support/get-started).
  *
  * OpenAPI spec version: 2.0
  * 
@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ApiExportStatusView } from '../models/ApiExportStatusView';
+import { BackupLabel } from '../models/BackupLabel';
 import { DiskBackupBaseRestoreMember } from '../models/DiskBackupBaseRestoreMember';
-import { Label } from '../models/Label';
+import { ExportStatus } from '../models/ExportStatus';
 import { Link } from '../models/Link';
 import { HttpFile } from '../http/http';
 
@@ -31,7 +31,7 @@ export class DiskBackupExportJob {
     * Collection of key-value pairs that represent custom data for the metadata file that MongoDB Cloud uploads to the bucket when the export job finishes.
     */
 
-    'customData'?: Array<Label>;
+    'customData'?: Array<BackupLabel>;
     /**
     * One or more Uniform Resource Locators (URLs) that point to the compressed snapshot files for manual download. MongoDB Cloud returns this parameter when `\"deliveryType\" : \"download\"`.
     */
@@ -43,7 +43,7 @@ export class DiskBackupExportJob {
 
     'exportBucketId': string;
 
-    'exportStatus'?: ApiExportStatusView;
+    'exportStatus'?: ExportStatus;
     /**
     * Date and time when this export job completed. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
     */
@@ -93,7 +93,7 @@ export class DiskBackupExportJob {
         {
             "name": "customData",
             "baseName": "customData",
-            "type": "Array<Label>",
+            "type": "Array<BackupLabel>",
             "format": ""
         },
         {
@@ -111,7 +111,7 @@ export class DiskBackupExportJob {
         {
             "name": "exportStatus",
             "baseName": "exportStatus",
-            "type": "ApiExportStatusView",
+            "type": "ExportStatus",
             "format": ""
         },
         {
@@ -158,7 +158,4 @@ export class DiskBackupExportJob {
     public constructor() {
     }
 }
-
-
-export type DiskBackupExportJobStateEnum = "Cancelled" | "Failed" | "InProgress" | "Queued" | "Successful" ;
 
